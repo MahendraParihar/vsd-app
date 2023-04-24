@@ -1,0 +1,142 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{stringRes.SEARCH}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form *ngIf="searchFormGroup" [formGroup]="searchFormGroup">
+    <div class="form-body">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+        <div class="form-item"
+             fxFlex="calc(25%)"
+             fxFlex.lt-lg="calc(25%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Text" formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(25%)"
+             fxFlex.lt-lg="calc(25%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>--Select--</mat-label>
+            <mat-select formControlName="active">
+              <mat-option value="1">Active</mat-option>
+              <mat-option value="0">In-Active</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(25%)"
+             fxFlex.lt-lg="calc(25%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>Created From-To</mat-label>
+            <mat-date-range-input [formGroup]="searchFormGroup" [rangePicker]="createdFromToDatePicker">
+              <input matStartDate (click)="createdFromToDatePicker.open()" readonly placeholder="Created From Date"
+                     formControlName="createdFrom">
+              <input matEndDate (click)="createdFromToDatePicker.open()" readonly placeholder="Created To Date"
+                     formControlName="createdTo">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="createdFromToDatePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #createdFromToDatePicker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+  <mat-action-row>
+    <button mat-button color="warn" (click)="clearSearchForm()">{{stringRes.CLEAR}}</button>
+    <button mat-button color="primary" (click)="searchResult()">{{stringRes.SEARCH}}</button>
+  </mat-action-row>
+</mat-expansion-panel>
+
+<div class="data-table">
+
+  <div class="action-panel">
+    <button mat-raised-button color="primary" class="btn gradient-btn" (click)="onAddClick()">
+      <mat-icon>add</mat-icon>
+      {{stringRes.CURRENT_AFFAIR_CREATE}}
+    </button>
+  </div>
+
+  <mat-table  [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="seqNo">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let d; let i = index;">{{i + 1}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.title}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dateTime">
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.date }} {{d.time}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="isApproved">
+      <mat-header-cell *matHeaderCellDef>Is Approved</mat-header-cell>
+      <mat-cell *matCellDef="let d; let i = index">
+        <button appStatusBtn [flag]="d.isApproved" mat-flat-button (click)="updateApprovalStatusTask(d, i)">
+          {{d.isApproved ? 'Published' : 'Not Published'}}
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="commentsAllow">
+      <mat-header-cell *matHeaderCellDef>Comments Allow</mat-header-cell>
+      <mat-cell *matCellDef="let d; let i = index">
+        <button appStatusBtn [flag]="d.commentsAllow" mat-flat-button (click)="updateCommentAllowStatusTask(d, i)">
+          {{d.commentsAllow ? 'Yes' : 'No'}}
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let d;"><span
+        class="chip {{d.active?'green-bg green-text':'red-bg red-text'}}">{{d.active ? 'Active' : 'In-Active'}}</span>
+      </mat-cell>
+    </ng-container>
+    <!--<ng-container matColumnDef="createdBy">
+        <mat-header-cell *matHeaderCellDef>Created By</mat-header-cell>
+        <mat-cell *matCellDef="let d;">{{d.createdBy}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
+        <mat-cell *matCellDef="let d;">{{d.createdAt}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updatedBy">
+        <mat-header-cell *matHeaderCellDef>Updated By</mat-header-cell>
+        <mat-cell *matCellDef="let d;">{{d.updatedBy}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updatedAt">
+        <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
+        <mat-cell *matCellDef="let d;">{{d.updatedAt}}</mat-cell>
+    </ng-container>-->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let d; let i = index">
+        <button mat-icon-button color="primary" (click)="onEditClick(d.id)" aria-label="Update" matTooltip="Edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="{{d.active?'warn':'primary'}}"
+                matTooltip="{{d.active ? 'Mark In-Active': 'Mark Active'}}" (click)="onDeleteClick(d, i)">
+          <mat-icon>{{d.active ? 'clear' : 'done'}}</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="totalCount" [pageSize]="defaultPageSize"
+                 [pageSizeOptions]="pageSizeList"></mat-paginator>
+</div>

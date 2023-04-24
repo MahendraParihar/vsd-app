@@ -1,0 +1,103 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{stringRes.SEARCH}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form *ngIf="searchFormGroup" [formGroup]="searchFormGroup">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="fromDate" placeholder="From Date" formControlName="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+        <mat-datepicker #fromDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="toDate" placeholder="To Date" formControlName="toDate">
+        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+        <mat-datepicker #toDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+  <mat-action-row>
+    <button mat-button color="warn" (click)="clearSearchForm()">{{stringRes.CLEAR}}</button>
+    <button mat-button color="primary" (click)="searchResult()">{{stringRes.SEARCH}}</button>
+  </mat-action-row>
+</mat-expansion-panel>
+
+<div class="data-table">
+
+  <div class="action-panel">
+    <button mat-raised-button color="primary" class="btn gradient-btn" (click)="onAddClick()">
+      <mat-icon>add</mat-icon>
+      {{stringRes.ADMIN_CREATE}}
+    </button>
+  </div>
+
+  <mat-table class="m-t-medium" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="seqNo">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let d; let i = index;">{{i + 1}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+      <mat-cell *matCellDef="let d;">
+        <img *ngIf="d.imagePath && d.imagePath.length > 0" class="avatar"
+             src="{{d.imagePath[0].webUrl}}"/>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let d;">
+        <a class="link" (click)="onEditClick(d.id)">{{d.firstName}} {{d.lastName}}</a>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="emailId">
+      <mat-header-cell *matHeaderCellDef>Email Id</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.emailId}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="contactNumber">
+      <mat-header-cell *matHeaderCellDef>Contact Number</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.contactNo}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cityVillage">
+      <mat-header-cell *matHeaderCellDef>Village</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.cityVillage}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+      <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.startDate | appDateTime: 'onlyDate'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="endDate">
+      <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.endDate | appDateTime:'onlyDate' }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let d;">{{d.adminUserStatusId}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let d; let i = index">
+        <button mat-icon-button color="primary" (click)="onEditClick(d.id)" aria-label="Update" matTooltip="Edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="{{d.active?'warn':'primary'}}"
+                matTooltip="{{d.active ? 'Mark In-Active': 'Mark Active'}}" (click)="onDeleteClick(d, i)">
+          <mat-icon>{{d.active ? 'clear' : 'done'}}</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="totalCount" [pageSize]="defaultPageSize"
+                 [pageSizeOptions]="pageSizeList"></mat-paginator>
+</div>

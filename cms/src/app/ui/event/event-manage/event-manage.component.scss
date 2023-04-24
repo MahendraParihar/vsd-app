@@ -1,0 +1,32 @@
+@import "../../../../theme/padding";
+@import "../../../../theme/margin";
+
+.agenda {
+
+  .agenda-item {
+    border: 1px solid #80808075;
+    margin-top: $margin-medium;
+
+    .agenda-header {
+      border-bottom: 1px solid #80808075;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-column-gap: $padding-large;
+      align-items: center;
+      padding: $padding-medium 0 0 0;
+
+      .form-item {
+        padding: 0 $padding-medium;
+      }
+    }
+
+    .agenda-item-container {
+      .agenda-details-item {
+        display: grid;
+        grid-template-columns: auto auto auto 1fr auto;
+        grid-column-gap: $padding-large;
+        align-items: center;
+      }
+    }
+  }
+}

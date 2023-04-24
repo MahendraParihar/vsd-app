@@ -1,0 +1,82 @@
+<ng-container *ngIf="eventObj">
+  <img class="banner" src="{{eventObj.imagePath[0].webUrl}}">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start" fxLayoutGap="12px">
+    <div fxFlex="calc(69%)"
+         fxFlex.lt-lg="calc(69%)"
+         fxFlex.lt-md="calc(59%)"
+         fxFlex.lt-sm="100%">
+      <div>
+        <mat-card class="m-t-medium">
+          <mat-card-header class="border-bottom">
+            <mat-card-title>{{eventObj.title}}</mat-card-title>
+          </mat-card-header>
+          <mat-dialog-content>
+            <div class="date-container">
+              <div class="date-w-icon">
+                <h6 class="header">{{stringRes.DATE}}</h6>
+                <div class="title">
+                  <mat-icon class="material-icons-outlined">event</mat-icon>
+                  {{eventObj.date}}</div>
+              </div>
+              <div class="date-w-icon">
+                <h6 class="header">{{stringRes.TIME}}</h6>
+                <div class="title">
+                  <mat-icon class="material-icons-outlined">schedule</mat-icon>
+                  {{eventObj.time}}</div>
+              </div>
+              <div class="date-w-icon">
+                <h6 class="header">{{stringRes.ADDRESS}}</h6>
+                <div class="title">
+                  <mat-icon class="material-icons-outlined">location_on</mat-icon>
+                  {{eventObj.addressModel.address}},
+                  {{eventObj.addressModel.cityVillage}},
+                  {{eventObj.addressModel.district}},
+                  {{eventObj.addressModel.state}},
+                  {{eventObj.addressModel.country}} -
+                  {{eventObj.addressModel.pinCode ? eventObj.addressModel.pinCode : ''}}</div>
+              </div>
+            </div>
+          </mat-dialog-content>
+          <p class="m-t-medium" *ngIf="eventObj.description" [innerHTML]="eventObj.description"></p>
+        </mat-card>
+
+        <mat-card class="m-t-medium" *ngIf="eventObj.agenda && eventObj.agenda.length > 0">
+          <mat-card-header class="border-bottom">
+            <mat-card-title>{{stringRes.AGENDA}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-stepper orientation="vertical" [linear]="true" #stepper>
+              <mat-step *ngFor="let obj of eventObj.agenda">
+                <ng-template matStepLabel>{{obj.agendaDate}}</ng-template>
+              </mat-step>
+            </mat-stepper>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div fxFlex="calc(30%)"
+         fxFlex.lt-lg="calc(30%)"
+         fxFlex.lt-md="calc(40%)"
+         fxFlex.lt-sm="100%">
+      <mat-card class="m-t-medium">
+        <mat-card-header class="border-bottom">
+          <mat-card-title>{{stringRes.EVENT_COORDINATOR}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content *ngIf="eventObj.eventCoordinators && eventObj.eventCoordinators.length > 0">
+          <div class="person-list">
+            <div class="person-list-item" *ngFor="let obj of eventObj.eventCoordinators">
+              <img class="avatar" *ngIf="obj.imagePath && obj.imagePath.length>0" src="{{obj.imagePath[0].webUrl}}"/>
+              <div class="text-container">
+                <div class="title">{{obj.name}}</div>
+                <div class="sub-title"> {{obj.subText}} </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-content *ngIf="!eventObj.eventCoordinators || eventObj.eventCoordinators.length === 0">
+          Coordinator information not available
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ng-container>

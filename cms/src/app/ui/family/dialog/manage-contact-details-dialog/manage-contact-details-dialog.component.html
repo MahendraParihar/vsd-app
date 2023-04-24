@@ -1,0 +1,66 @@
+<h4 mat-dialog-title>{{isAdd ? stringRes.ADD_CONTACT_NUMBER : stringRes.EDIT_CONTACT_NUMBER}}</h4>
+<mat-dialog-content>
+  <form [formGroup]="formGroup" class="form-group">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+      <div class="form-item"
+           fxFlex="calc(100%)"
+           fxFlex.lt-lg="calc(100%)"
+           fxFlex.lt-md="calc(100%)"
+           fxFlex.lt-sm="100%">
+        <mat-form-field>
+          <mat-label>{{stringRes.COUNTRY}}</mat-label>
+          <mat-select formControlName="countryCode" required>
+            <mat-option>-- Select --</mat-option>
+            <mat-option *ngFor="let o of countryList" [value]="o.id">{{o.name}}</mat-option>
+          </mat-select>
+          <mat-error>
+            <app-input-error [control]="formControl['countryCode']"
+                             [controlName]="stringRes.COUNTRY"></app-input-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-item"
+           fxFlex="calc(100%)"
+           fxFlex.lt-lg="calc(100%)"
+           fxFlex.lt-md="calc(100%)"
+           fxFlex.lt-sm="100%">
+        <mat-form-field>
+          <mat-label>{{stringRes.CONTACT_TYPE}}</mat-label>
+          <mat-select formControlName="contactTypeId" required>
+            <mat-option>-- Select --</mat-option>
+            <mat-option *ngFor="let o of contactTypeList" [value]="o.id">{{o.name}}</mat-option>
+          </mat-select>
+          <mat-error>
+            <app-input-error [control]="formControl['contactTypeId']"
+                             [controlName]="stringRes.CONTACT_TYPE"></app-input-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-item"
+           fxFlex="calc(100%)"
+           fxFlex.lt-lg="calc(100%)"
+           fxFlex.lt-md="calc(100%)"
+           fxFlex.lt-sm="100%">
+        <mat-form-field>
+          <mat-label>{{stringRes.CONTACT_NUMBER}}</mat-label>
+          <input type="text" #contactNo placeholder="Enter contact number" formControlName="contactNumber" matInput
+                 required maxlength="{{inputLength.MAX_CONTACT_NUMBER}}">
+          <mat-hint align="end">{{contactNo.value.length}} / {{inputLength.MAX_CONTACT_NUMBER}}</mat-hint>
+          <mat-error>
+            <app-input-error [control]="formControl['contactNumber']"
+                             [controlName]="stringRes.CONTACT_NUMBER"></app-input-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="round-btn" mat-raised-button (click)="onNegativeClick()">
+    {{stringRes.CANCEL}}
+  </button>
+  <button class="round-btn gradient-btn" mat-raised-button color="primary"
+          (click)="manageContactNumberTask()">
+    {{isAdd ? stringRes.SAVE : stringRes.UPDATE}}
+  </button>
+</mat-dialog-actions>

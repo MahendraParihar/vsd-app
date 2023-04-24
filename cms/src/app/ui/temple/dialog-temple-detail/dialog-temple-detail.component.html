@@ -1,0 +1,22 @@
+<ng-container *ngIf="templeObj">
+  <div mat-dialog-content>
+    <div class="temple-detail">
+      <img src="{{templeObj.imagePath[0].webUrl}}">
+      <h4 class="m-t-medium">{{templeObj.name}}</h4>
+      <p *ngIf="templeObj.description" [innerHTML]="templeObj.description"></p>
+      <div class="address-w-icon" *ngIf="templeObj.addressModel">
+        <mat-icon class="material-icons-outlined">location_on</mat-icon>
+        <div>
+          {{templeObj.addressModel.address}},
+          {{templeObj.addressModel.cityVillage}},
+          {{templeObj.addressModel.district}},
+          {{templeObj.addressModel.state}},
+          {{templeObj.addressModel.country}} -
+          {{templeObj.addressModel.pinCode ? templeObj.addressModel.pinCode : ''}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+  </div>
+</ng-container>

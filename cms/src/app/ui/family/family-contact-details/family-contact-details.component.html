@@ -1,0 +1,49 @@
+<mat-card class="mat-card-header-w-border">
+  <mat-card-header>
+    <mat-card-title>
+      <h5>{{stringRes.CONTACT_DETAIL}}</h5>
+    </mat-card-title>
+    <button mat-raised-button class="btn gradient-btn" (click)="manageContactDetail(null)">
+      <mat-icon>add</mat-icon>
+      {{stringRes.ADD_CONTACT_NUMBER}}
+    </button>
+  </mat-card-header>
+  <div class="m-t-medium" *ngIf="!familyContactNumberList || familyContactNumberList.length === 0">
+    <div class="empty-detail">
+      <img src="assets/errors/empty-data.jpg">
+      <h5 class="secondary-text">No Contact Number present for this family member, please click on add contact number
+        for add new contact number</h5>
+    </div>
+  </div>
+  <div class="m-t-medium" *ngIf="familyContactNumberList && familyContactNumberList.length > 0">
+    <div *ngFor="let s of familyContactNumberList; let i = index">
+      <div class="contact-number-table-item rounded-border m-b-medium">
+        <div class="left-section">
+          <mat-icon *ngIf="s.contactTypeId === contactTypeEnum.MOBILE" fontSet="material-icons-outlined">smartphone
+          </mat-icon>
+          <mat-icon *ngIf="s.contactTypeId === contactTypeEnum.ALTERNATE_NUMBER" fontSet="material-icons-outlined">
+            stay_primary_portrait
+          </mat-icon>
+          <mat-icon *ngIf="s.contactTypeId === contactTypeEnum.LANDLINE_NUMBER" fontSet="material-icons-outlined">call
+          </mat-icon>
+          <mat-icon *ngIf="s.contactTypeId === contactTypeEnum.OFFICE" fontSet="material-icons-outlined">smartphone
+          </mat-icon>
+          <div>
+            <h6>{{s.contactType}}</h6>
+            <span class="info">{{s.countryCode}} - {{s.contactNumber}}</span>
+          </div>
+        </div>
+        <div class="action-section">
+          <button class="btn" mat-mini-fab color="primary" matTooltip="{{stringRes.EDIT}}"
+                  (click)="manageContactDetail(s, false, i)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="btn" mat-mini-fab color="warn" matTooltip="{{stringRes.DELETE}}"
+                  (click)="deleteContactNumber(s, i)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

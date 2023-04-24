@@ -1,0 +1,57 @@
+<mat-expansion-panel class="search-form">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{stringRes.SEARCH_FILTER}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form *ngIf="searchFormGroup" [formGroup]="searchFormGroup">
+    <div class="form-body">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+        <div class="form-item"
+             fxFlex="calc(25%)"
+             fxFlex.lt-lg="calc(25%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.SEARCH_TEXT}}</mat-label>
+            <input matInput placeholder="{{stringRes.SEARCH_TEXT}}" formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(25%)"
+             fxFlex.lt-lg="calc(25%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.STATUS}}</mat-label>
+            <mat-select formControlName="active">
+              <mat-option *ngFor="let o of statusList" [value]="o.value">{{o.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(25%)"
+             fxFlex.lt-lg="calc(25%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.CREATED_AT_FROM_TO_DATE}}</mat-label>
+            <mat-date-range-input [formGroup]="searchFormGroup" [rangePicker]="createdFromToDatePicker">
+              <input matStartDate (click)="createdFromToDatePicker.open()" readonly placeholder="{{stringRes.CREATED_AT_FROM_TO_DATE}}"
+                     formControlName="createdFrom">
+              <input matEndDate (click)="createdFromToDatePicker.open()" readonly placeholder="{{stringRes.CREATED_AT_FROM_TO_DATE}}"
+                     formControlName="createdTo">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="createdFromToDatePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #createdFromToDatePicker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+  <mat-action-row>
+    <button mat-button color="warn" (click)="clearSearchForm()">{{stringRes.CLEAR}}</button>
+    <button mat-button color="primary" (click)="searchResult()">{{stringRes.SEARCH}}</button>
+  </mat-action-row>
+</mat-expansion-panel>

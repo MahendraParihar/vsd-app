@@ -1,0 +1,149 @@
+<form [formGroup]="formGroup" class="form-group">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title><h5
+          class="dark-text uppercase">{{id > 0 ? stringRes.EDIT_FAMILY_DETAIL : stringRes.ADD_FAMILY_DETAIL}}</h5>
+        </mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="form-body">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+        <div class="form-item"
+             fxFlex="calc(33%)"
+             fxFlex.lt-lg="calc(33%)"
+             fxFlex.lt-md="calc(33%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.FIRST_NAME}}</mat-label>
+            <input type="text" #firstName placeholder="Enter first name" formControlName="firstName"
+                   matInput
+                   required maxlength="{{inputLength.MAX_NAME}}">
+            <mat-hint align="end">{{firstName.value.length}} / {{inputLength.MAX_NAME}}</mat-hint>
+            <mat-error>
+              <app-input-error [control]="formControl['firstName']"
+                               [controlName]="stringRes.FIRST_NAME"></app-input-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(33%)"
+             fxFlex.lt-lg="calc(33%)"
+             fxFlex.lt-md="calc(33%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.MIDDLE_NAME}}</mat-label>
+            <input type="text" #middleName placeholder="Enter middle name" formControlName="middleName"
+                   matInput
+                   required maxlength="{{inputLength.MAX_NAME}}">
+            <mat-hint align="end">{{middleName.value.length}} / {{inputLength.MAX_NAME}}</mat-hint>
+            <mat-error>
+              <app-input-error [control]="formControl['middleName']"
+                               [controlName]="stringRes.MIDDLE_NAME"></app-input-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(33%)"
+             fxFlex.lt-lg="calc(33%)"
+             fxFlex.lt-md="calc(33%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.LAST_NAME}}</mat-label>
+            <input type="text" #lastName placeholder="Enter last name" formControlName="lastName"
+                   matInput
+                   required maxlength="{{inputLength.MAX_NAME}}">
+            <mat-hint align="end">{{lastName.value.length}} / {{inputLength.MAX_NAME}}</mat-hint>
+            <mat-error>
+              <app-input-error [control]="formControl['lastName']"
+                               [controlName]="stringRes.LAST_NAME"></app-input-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+        <div class="form-item"
+             fxFlex="calc(33%)"
+             fxFlex.lt-lg="calc(33%)"
+             fxFlex.lt-md="calc(33%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.EMAIL_ID}}</mat-label>
+            <input type="text" #emailId placeholder="Enter email id" formControlName="emailId" matInput
+                   required maxlength="{{inputLength.MAX_EMAIL}}">
+            <mat-hint align="end">{{emailId.value.length}} / {{inputLength.MAX_EMAIL}}</mat-hint>
+            <mat-error>
+              <app-input-error [control]="formControl['emailId']"
+                               [controlName]="stringRes.EMAIL_ID"></app-input-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(33%)"
+             fxFlex.lt-lg="calc(33%)"
+             fxFlex.lt-md="calc(33%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.CONTACT_NUMBER}}</mat-label>
+            <input type="text" #contactNo placeholder="Enter contact number" formControlName="contactNo" matInput
+                   required maxlength="{{inputLength.MAX_CONTACT_NUMBER}}">
+            <mat-hint align="end">{{contactNo.value.length}} / {{inputLength.MAX_CONTACT_NUMBER}}</mat-hint>
+            <mat-error>
+              <app-input-error [control]="formControl['contactNo']"
+                               [controlName]="stringRes.CONTACT_NUMBER"></app-input-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-item"
+             fxFlex="calc(33%)"
+             fxFlex.lt-lg="calc(33%)"
+             fxFlex.lt-md="calc(33%)"
+             fxFlex.lt-sm="100%">
+          <mat-form-field>
+            <mat-label>{{stringRes.VILLAGE}}</mat-label>
+            <mat-select formControlName="familyCityVillageId" required>
+              <mat-option>-- None --</mat-option>
+              <mat-option *ngFor="let o of familyCityVillageList" [value]="o.id">{{o.name}}</mat-option>
+            </mat-select>
+            <mat-error>
+              <app-input-error [control]="formControl['familyCityVillageId']"
+                               [controlName]="stringRes.VILLAGE"></app-input-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+        <div class="form-item"
+             fxFlex="calc(50%)"
+             fxFlex.lt-lg="calc(50%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+        </div>
+        <div class="form-item"
+             fxFlex="calc(50%)"
+             fxFlex.lt-lg="calc(50%)"
+             fxFlex.lt-md="calc(50%)"
+             fxFlex.lt-sm="100%">
+        </div>
+      </div>
+      <app-file-selector [formGroup]="formGroup" [isMultiFile]="false"
+                         [controlName]="'uploadFiles'"
+                         [mediaFor]="mediaForEnum.FAMILY"
+                         [isRequired]="true"
+                         [uploadedMediaList]="familyObj ? familyObj.imagePath : []"
+                         [mediaType]="fileTypeEnum.IMAGE"></app-file-selector>
+    </mat-card-content>
+    <app-family-personal-detail-manage *ngIf="id > 0" [familyProfileObj]="familyProfileObj"
+                                       [formGroup]="formGroup"></app-family-personal-detail-manage>
+  </mat-card>
+  <mat-card class="form-card">
+    <mat-card-actions align="end">
+      <button class="round-btn" mat-raised-button (click)="onCancel()">
+        {{stringRes.CANCEL}}
+      </button>
+      <button class="round-btn gradient-btn" mat-raised-button color="primary" (click)="onSubmit()">
+        {{id > 0 ? stringRes.UPDATE : stringRes.SAVE}}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

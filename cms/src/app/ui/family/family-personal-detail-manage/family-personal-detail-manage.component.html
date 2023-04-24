@@ -1,0 +1,204 @@
+<form *ngIf="formGroup" [formGroup]="profileForm">
+  <mat-card-title>Profile Information</mat-card-title>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.ABOUT_YOUR_SELF}}</mat-label>
+        <textarea type="text" #desc rows="3" placeholder="Enter about your self" formControlName="description"
+                  matInput></textarea>
+        <mat-hint align="end">{{desc.value?.length || 0}}/{{inputLength.CHAR_1000}}</mat-hint>
+        <mat-error>
+          <app-input-error [control]="formControl['description']"
+                           [controlName]="stringRes.DOB"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.DOB}}</mat-label>
+        <input type="text" placeholder="Enter date of birth" formControlName="dateOfBirth" matInput
+               readonly
+               required
+               [min]="minDate"
+               [max]="maxDate"
+               [matDatepicker]="picker"
+               (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+          <app-input-error [control]="formControl['dateOfBirth']"
+                           [controlName]="stringRes.DOB"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.WEIGHT}}</mat-label>
+        <input type="number" placeholder="Enter weight" formControlName="weight" matInput>
+        <span matSuffix>{{stringRes.KGS}}</span>
+        <mat-error>
+          <app-input-error [control]="formControl['weight']"
+                           [controlName]="stringRes.WEIGHT"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.HEIGHT}}</mat-label>
+        <input type="number" placeholder="Enter height" formControlName="height" matInput>
+        <span matSuffix>{{stringRes.FT_IN}}</span>
+        <mat-error>
+          <app-input-error [control]="formControl['height']"
+                           [controlName]="stringRes.HEIGHT"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.GENDER}}</mat-label>
+        <mat-select formControlName="genderId" required>
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let o of genderList" [value]="o.id">{{o.name}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-input-error [control]="formControl['genderId']"
+                           [controlName]="stringRes.GENDER"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.MARITAL_STATUS}}</mat-label>
+        <mat-select formControlName="maritalStatusId" required>
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let o of maritalStatusList" [value]="o.id">{{o.name}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-input-error [control]="formControl['maritalStatusId']"
+                           [controlName]="stringRes.MARITAL_STATUS"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.GOTRA}}</mat-label>
+        <mat-select formControlName="gotraId" required>
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let o of gotraList" [value]="o.id">{{o.name}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-input-error [control]="formControl['gotraId']"
+                           [controlName]="stringRes.GOTRA"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <div class="form-item"
+         fxFlex="calc(100%)"
+         fxFlex.lt-lg="calc(100%)"
+         fxFlex.lt-md="calc(100%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.HOBBIES}}</mat-label>
+        <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="hobbiesFormControl">
+          <mat-chip
+            *ngFor="let keyword of hobbiesArray; let i = index"
+            [selected]="keyword"
+            [value]="keyword"
+            (removed)="removeHobby(i, keyword)">
+            {{keyword}}
+          </mat-chip>
+          <input
+            placeholder="New keyword..."
+            [matChipInputFor]="chipList"
+            (matChipInputTokenEnd)="addHobbyFromInput($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.RAASI}}</mat-label>
+        <mat-select formControlName="raasiId">
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let o of raasiList" [value]="o.id">{{o.name}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-input-error [control]="formControl['raasiId']"
+                           [controlName]="stringRes.RAASI"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.ARE_YOU_MAGLIK}}</mat-label>
+        <mat-select formControlName="isMaglik">
+          <mat-option>-- None --</mat-option>
+          <mat-option [value]="true">{{stringRes.YES}}</mat-option>
+          <mat-option [value]="false">{{stringRes.NO}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-input-error [control]="formControl['isMaglik']"
+                           [controlName]="stringRes.MAGLIK"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-item"
+         fxFlex="calc(33%)"
+         fxFlex.lt-lg="calc(33%)"
+         fxFlex.lt-md="calc(33%)"
+         fxFlex.lt-sm="100%">
+      <mat-form-field>
+        <mat-label>{{stringRes.MONTHLY_INCOME}}</mat-label>
+        <input type="number" placeholder="Enter monthly income" formControlName="monthlyIncome" matInput>
+        <span matSuffix>{{stringRes.PER_MONTH}}</span>
+        <mat-error>
+          <app-input-error [control]="formControl['monthlyIncome']"
+                           [controlName]="stringRes.MONTHLY_INCOME"></app-input-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
