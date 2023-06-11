@@ -1,0 +1,15 @@
+cms-api/media-files/admin/*.*
+cms-api/media-files/family/*.*
+cms-api/media-files/job/*.*
+cms-api/media-files/lovs/*.*
+cms-api/media-files/news/*.*
+cms-api/media-files/temple/*.*
+cms-api/media-files/uploads/*.*
+cms-api/.env
+cms-api/node_modules/*.*
+cms-api/.idea/*.*
+cms/.idea/*.*
+cms/node_modules/*.*
+cms/package-lock.json
+cms-api/package-lock.json
+cms-api/.idea/inspectionProfiles/Project_Default.xml
