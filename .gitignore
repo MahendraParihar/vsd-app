@@ -13,3 +13,8 @@ cms-api/package-lock.json
 cms/node_modules/
 cms/.idea/*.*
 cms/package-lock.json
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/vcs.xml
+/.idea/vsd-app.iml
+/.idea/inspectionProfiles/Project_Default.xml
