@@ -6,10 +6,10 @@ cms-api/media-files/news/*.*
 cms-api/media-files/temple/*.*
 cms-api/media-files/uploads/*.*
 cms-api/.env
-cms-api/node_modules/*.*
-cms-api/.idea/*.*
-cms/.idea/*.*
-cms/node_modules/*.*
-cms/package-lock.json
+cms-api/node_modules/
+cms-api/.idea/
 cms-api/package-lock.json
-cms-api/.idea/inspectionProfiles/Project_Default.xml
+
+cms/node_modules/
+cms/.idea/*.*
+cms/package-lock.json
