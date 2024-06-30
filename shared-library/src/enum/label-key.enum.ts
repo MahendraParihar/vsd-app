@@ -96,4 +96,5 @@ export enum LabelKey {
 
   LOGIN_PAGE_TITLE = 'login_page_title',
   LOGIN_SUB_TITLE = 'login_sub_title',
+  SUCCESS_STATUS_CHANGE = 'success_status_change',
 }

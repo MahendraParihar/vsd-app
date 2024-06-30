@@ -33,6 +33,7 @@ export class ServiceService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["service","asc"]],
     });
     const data = rows.map((data: ServiceModel) => {
       return <IServiceList>{

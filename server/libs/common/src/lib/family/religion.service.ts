@@ -33,6 +33,7 @@ export class ReligionService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["religion","asc"]],
     });
     const data = rows.map((data: ReligionModel) => {
       return <IReligionList>{

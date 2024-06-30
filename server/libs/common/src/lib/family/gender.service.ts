@@ -33,6 +33,7 @@ export class GenderService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["gender","asc"]],
     });
     const data = rows.map((data: GenderModel) => {
       return <IGenderList>{

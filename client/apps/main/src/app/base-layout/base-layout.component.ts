@@ -135,6 +135,11 @@ export class BaseLayoutComponent implements OnInit {
         iconName: 'temple_hindu',
       },
       {
+        title: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL),
+        path: NavigationPathEnum.MANDAL,
+        iconName: 'corporate_fare',
+      },
+      {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT),
         path: NavigationPathEnum.EVENT,
         iconName: 'menu_book',
@@ -156,7 +161,7 @@ export class BaseLayoutComponent implements OnInit {
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAQ),
-        iconName: 'diversity_1',
+        iconName: 'quiz',
         path: NavigationPathEnum.FAQ,
       },
       {

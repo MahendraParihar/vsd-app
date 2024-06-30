@@ -33,6 +33,7 @@ export class JobStatusService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["jobStatus","asc"]],
     });
     const data = rows.map((data: JobStatusModel) => {
       return <IJobStatusList>{

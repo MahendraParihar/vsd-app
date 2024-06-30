@@ -33,6 +33,7 @@ export class RelationshipService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["relationship","asc"]],
     });
     const data = rows.map((data: RelationshipModel) => {
       return <IRelationshipList>{

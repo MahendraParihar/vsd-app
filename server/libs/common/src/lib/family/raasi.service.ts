@@ -33,6 +33,7 @@ export class RaasiService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["raasi","asc"]],
     });
     const data = rows.map((data: RaasiModel) => {
       return <IRaasiList>{

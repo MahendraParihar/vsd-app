@@ -36,11 +36,11 @@ export class PostModel extends Model<PostModel> {
   postId: number;
 
   @Column({
-    field: 'post_name',
+    field: 'post',
     allowNull: false,
     type: DataType.STRING(50),
   })
-  postName: string;
+  post: string;
 
   @Column({
     field: 'image_path',

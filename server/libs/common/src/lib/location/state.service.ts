@@ -33,11 +33,14 @@ export class StateService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[['countryId','asc'],['state','asc']]
     });
     const data = rows.map((data: StateModel) => {
       return <IStateList>{
         stateId: data.stateId,
         state: data.state,
+        country: data.country.country,
+        countryId: data.countryId,
         active: data.active,
         createdAt: data.createdAt,
         createdBy: data.createdBy,

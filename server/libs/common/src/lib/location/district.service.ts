@@ -33,11 +33,15 @@ export class DistrictService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[['stateId','asc'],['district','asc']]
     });
     const data = rows.map((data: DistrictModel) => {
       return <IDistrictList>{
         districtId: data.districtId,
         district: data.district,
+        state: data.state.state,
+        stateId: data.stateId,
+        country: data.state.country.country,
         active: data.active,
         createdAt: data.createdAt,
         createdBy: data.createdBy,

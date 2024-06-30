@@ -36,7 +36,7 @@ export interface IState extends IBaseState, ICommonTable {
 }
 
 export interface IStateList extends IState {
-  country: ICountry;
+  country: string;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }
@@ -56,8 +56,8 @@ export interface IDistrict extends IBaseDistrict, ICommonTable {
 }
 
 export interface IDistrictList extends IDistrict {
-  state: IState;
-  country: ICountry;
+  state: string;
+  country: string;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }
@@ -79,9 +79,9 @@ export interface ICityVillage extends IBaseCityVillage, ICommonTable {
 }
 
 export interface ICityVillageList extends ICityVillage {
-  district: IDistrict;
-  state: IState;
-  country: ICountry;
+  district: string;
+  state: string;
+  country: string;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }

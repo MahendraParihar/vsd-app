@@ -33,6 +33,7 @@ export class FaqCategoryService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["faqCategory","asc"]],
     });
     const data = rows.map((data: FaqCategoryModel) => {
       return <IFaqCategoryList>{

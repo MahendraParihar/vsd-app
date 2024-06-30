@@ -33,6 +33,7 @@ export class BusinessService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["business","asc"]],
     });
     const data = rows.map((data: BusinessModel) => {
       return <IBusinessList>{

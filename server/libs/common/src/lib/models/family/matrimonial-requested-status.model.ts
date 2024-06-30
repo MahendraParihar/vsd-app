@@ -27,20 +27,20 @@ import { AdminUserModel } from '../admin';
 }))
 export class MatrimonialRequestedStatusModel extends Model<MatrimonialRequestedStatusModel> {
   @Column({
-    field: 'requested_status_id',
+    field: 'matrimonial_requested_status_id',
     allowNull: false,
     type: DataType.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   })
-  requestedStatusId: number;
+  matrimonialRequestedStatusId: number;
 
   @Column({
-    field: 'status',
+    field: 'matrimonial_requested_status',
     allowNull: false,
     type: DataType.STRING(50),
   })
-  status: string;
+  matrimonialRequestedStatus: string;
 
   @Column({
     field: 'image_path',

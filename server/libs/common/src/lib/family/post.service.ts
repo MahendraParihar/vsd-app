@@ -25,7 +25,7 @@ export class PostService {
     if (payload.search) {
       Object.assign(where, {
         [Op.iLike]: {
-          postName: `%${payload.search}%`,
+          post: `%${payload.search}%`,
         },
       });
     }
@@ -33,11 +33,12 @@ export class PostService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["post","asc"]],
     });
     const data = rows.map((data: PostModel) => {
       return <IPostList>{
         postId: data.postId,
-        postName: data.postName,
+        post: data.post,
         imagePath: data.imagePath,
         active: data.active,
         createdAt: data.createdAt,
@@ -78,7 +79,7 @@ export class PostService {
 
     return <IPostList>{
       postId: data.postId,
-      postName: data.postName,
+      post: data.post,
       imagePath: data.imagePath,
       active: data.active,
       createdAt: data.createdAt,
@@ -98,7 +99,7 @@ export class PostService {
 
   async manage(obj: IManagePost, userId: number) {
     const dataObj = {
-      postName: obj.postName,
+      post: obj.post,
       modifiedBy: userId,
     };
     if (obj.imagePath) {

@@ -1,7 +1,7 @@
 <div class="data-table">
   <div class="title-section">
     <div class="search-section">
-      <vsd-ui-label [class]="'title'" [label]="labelService.getLabel(this.labelKeys.SIDE_MENU_ADDICTION)"></vsd-ui-label>
+      <vsd-ui-label [class]="'title'" [label]="title"></vsd-ui-label>
       <mat-form-field>
         <button matPrefix mat-icon-button aria-label="Clear">
           <mat-icon>search</mat-icon>
@@ -14,48 +14,55 @@
       </mat-form-field>
     </div>
     <div>
-      <vsd-ui-button [prefixIcon]="true" [prefixIconName]="'add'" [label]="labelService.getLabel(this.labelKeys.SIDE_MENU_ADDICTION)"></vsd-ui-button>
+      <vsd-ui-button [prefixIcon]="true" [prefixIconName]="'add'" [label]="title"
+                     (actionBtnClicked)="add()"></vsd-ui-button>
     </div>
   </div>
 
   <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="seqNo">
-      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-      <mat-cell *matCellDef="let d; let i = index;">{{i + 1}}</mat-cell>
+    <ng-container *ngFor="let t of displayedColumns" matColumnDef="{{t}}">
+      <ng-container>
+        <mat-header-cell *matHeaderCellDef>{{labelService.getLabel(t)}}</mat-header-cell>
+        <mat-cell *matCellDef="let d; let i = index;">
+          @switch (t) {
+            @case ("seqNo"){
+              {{i + 1}}
+            }
+            @case ("createdAt"){
+              {{d[t] | appDateTime: 'dateTime'}}
+            }
+            @case ("updatedAt"){
+              {{d[t] | appDateTime: 'dateTime'}}
+            }
+            @case ("createdByUser"){
+              {{d[t] | appCreatedByUser}}
+            }
+            @case ("updatedByUser"){
+              {{d[t] | appCreatedByUser}}
+            }
+            @case ("active"){
+              {{d[t]}}
+            }
+            @case ("action"){
+              <vsd-ui-status-change-button
+                [negativeBtnLabel]="labelService.getLabel(labelKeys.ACTION_NO)"
+                [positiveBtnLabel]="labelService.getLabel(labelKeys.ACTION_YES)"
+                [title]="labelService.getLabel(labelKeys.ACTION_CHANGE_STATUS_TITLE)"
+                [description]="labelService.getLabel(labelKeys.ACTION_CHANGE_STATUS_DESCRIPTION)"
+                [status]="d.active"
+                (positiveActionBtnClicked)="changeStatus($event, i, d)"></vsd-ui-status-change-button>
+              <button mat-icon-button (click)="edit(d)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
+            @default{
+              {{d[t]}}
+            }
+          }
+        </mat-cell>
+      </ng-container>
     </ng-container>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Addiction</mat-header-cell>
-      <mat-cell *matCellDef="let d;">{{d.addiction}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-      <mat-cell *matCellDef="let d; let i = index">
-        {{d.active ? 'Active' : 'In Active'}}
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="createdBy">
-      <mat-header-cell *matHeaderCellDef>Created By</mat-header-cell>
-      <mat-cell *matCellDef="let d;">{{d.createdByUser | appCreatedByUser}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="createdAt">
-      <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
-      <mat-cell *matCellDef="let d;">{{d.createdAt | appDateTime:'dateTime'}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="updatedBy">
-      <mat-header-cell *matHeaderCellDef>Updated By</mat-header-cell>
-      <mat-cell *matCellDef="let d;">{{d.createdByUser | appCreatedByUser }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="updatedAt">
-      <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
-      <mat-cell *matCellDef="let d;">{{d.updatedAt | appDateTime:'dateTime'}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
-      <mat-cell *matCellDef="let d; let i = index">
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>

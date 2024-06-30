@@ -6,7 +6,7 @@ import {
   MASTER_PAGE_SIZE,
   NavigationPathEnum,
   NavigationService,
-  PAGE_SIZE_LIST,
+  PAGE_SIZE_LIST, SnackBarService,
 } from '@vsd-frontend/core-lib';
 import { MatPaginator } from '@angular/material/paginator';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
@@ -52,11 +52,12 @@ export class CountryComponent implements OnInit, AfterViewInit {
     public labelService: LabelService,
     private pageTitle: Title,
     private service: CountryService,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private snackbarService: SnackBarService
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_COUNTRY);
     this.pageTitle.setTitle(this.title);
-    this.dataSource = new TableDataDatasource(httpService);
+    this.dataSource = new TableDataDatasource(this.httpService);
     this.dataSource.totalCount.subscribe(
       (count: number) => (this.totalCount = count)
     );
@@ -92,6 +93,7 @@ export class CountryComponent implements OnInit, AfterViewInit {
 
   async changeStatus(status: boolean, index: number, obj: ICountryList) {
     await this.service.changeStatus(obj.countryId, !obj.active);
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
     await this.loadDataSet();
   }
 

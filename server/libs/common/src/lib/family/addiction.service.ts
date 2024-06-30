@@ -33,6 +33,7 @@ export class AddictionService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["addiction","asc"]],
     });
     const data = rows.map((data: AddictionModel) => {
       return <IAddictionList>{

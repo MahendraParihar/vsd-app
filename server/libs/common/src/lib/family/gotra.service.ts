@@ -33,6 +33,7 @@ export class GotraService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["gotra","asc"]],
     });
     const data = rows.map((data: GotraModel) => {
       return <IGotraList>{

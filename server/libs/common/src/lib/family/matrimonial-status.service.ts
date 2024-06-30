@@ -33,6 +33,7 @@ export class MatrimonialStatusService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["status","asc"]],
     });
     const data = rows.map((data: MatrimonialStatusModel) => {
       return <IMatrimonialStatusList>{

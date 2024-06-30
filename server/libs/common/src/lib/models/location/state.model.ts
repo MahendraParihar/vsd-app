@@ -9,8 +9,8 @@ import {
   Table,
   UpdatedAt,
 } from 'sequelize-typescript';
-import { CountryModel } from './country.model';
-import { AdminUserModel } from '../admin';
+import {CountryModel} from './country.model';
+import {AdminUserModel} from '../admin';
 
 @Table({
   tableName: 'mst_state',
@@ -21,6 +21,11 @@ import { AdminUserModel } from '../admin';
 @Scopes(() => ({
   list: {
     include: [
+      {
+        attributes: ['countryId', 'country'],
+        model: CountryModel,
+        required: true,
+      },
       {
         attributes: ['adminUserId', 'firstName', 'lastName'],
         model: AdminUserModel,
@@ -122,12 +127,12 @@ export class StateModel extends Model<StateModel> {
   })
   modifiedIp: string;
 
-  // @BelongsTo(() => CountryModel, { foreignKey: 'countryId', targetKey: 'countryId' })
-  // country: CountryModel;
+  @BelongsTo(() => CountryModel, {foreignKey: 'countryId', targetKey: 'countryId'})
+  country: CountryModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, {as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId'})
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, {as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId'})
   updatedByUser: AdminUserModel;
 }

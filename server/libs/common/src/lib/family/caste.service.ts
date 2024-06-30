@@ -33,6 +33,7 @@ export class CasteService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["caste","asc"]],
     });
     const data = rows.map((data: CasteModel) => {
       return <ICasteList>{

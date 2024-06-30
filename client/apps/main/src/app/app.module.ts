@@ -99,6 +99,12 @@ import { AuthService } from './auth/auth.service';
               loadChildren: () =>
                 import('lov/Module').then((m) => m.RemoteEntryModule),
             },
+            {
+              path: 'job',
+              canActivate: [AuthGuard],
+              loadChildren: () =>
+                import('job/Module').then((m) => m.RemoteEntryModule),
+            },
           ],
         },
         {

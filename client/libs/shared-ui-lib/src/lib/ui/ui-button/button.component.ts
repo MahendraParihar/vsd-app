@@ -22,6 +22,7 @@ export class ButtonComponent {
     | 'green'
     | 'success'
     | 'warning'
+    | 'negative'
     | 'error' = 'regular';
   @Input() tooltip!: string;
   @Input() disabled = false;
@@ -56,6 +57,8 @@ export class ButtonComponent {
         return 'btn green-gradient-btn';
       case 'success':
         return 'btn success-btn';
+      case 'negative':
+        return 'negative-btn';
       case 'warning':
       case 'error':
         return 'btn warning-btn';

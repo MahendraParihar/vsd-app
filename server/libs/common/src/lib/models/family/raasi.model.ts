@@ -2,7 +2,7 @@ import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, Scopes, BelongsTo
 import { AdminUserModel } from '../admin';
 
 @Table({
-  tableName: 'mst_gotra',
+  tableName: 'mst_raasi',
   schema: 'public',
   freezeTableName: true,
   timestamps: true,

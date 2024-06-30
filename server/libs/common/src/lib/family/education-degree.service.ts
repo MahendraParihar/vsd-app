@@ -33,6 +33,7 @@ export class EducationDegreeService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["degree","asc"]],
     });
     const data = rows.map((data: EducationDegreeModel) => {
       return <IEducationDegreeList>{

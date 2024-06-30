@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-event-entry',
-  template: `<app-nx-welcome></app-nx-welcome>`,
+  template: `<router-outlet></router-outlet>`,
 })
 export class RemoteEntryComponent {}

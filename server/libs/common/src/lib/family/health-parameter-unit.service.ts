@@ -35,6 +35,7 @@ export class HealthParameterUnitService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["healthParameterUnit","asc"]],
     });
     const data = rows.map((data: HealthParameterUnitModel) => {
       return <IHealthParameterUnitList>{

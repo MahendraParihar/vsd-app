@@ -1,7 +1,7 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
 
 export interface IBasePost {
-  postName: string;
+  post: string;
   imagePath: object;
 }
 

@@ -28,7 +28,7 @@ export class MatrimonialRequestedStatusService {
     if (payload.search) {
       Object.assign(where, {
         [Op.iLike]: {
-          status: `%${payload.search}%`,
+          matrimonialRequestedStatus: `%${payload.search}%`,
         },
       });
     }
@@ -36,11 +36,12 @@ export class MatrimonialRequestedStatusService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["matrimonialRequestedStatus","asc"]],
     });
     const data = rows.map((data: MatrimonialRequestedStatusModel) => {
       return <IMatrimonialRequestedStatusList>{
-        matrimonialRequestedStatusId: data.requestedStatusId,
-        matrimonialRequestedStatus: data.status,
+        matrimonialRequestedStatusId: data.matrimonialRequestedStatusId,
+        matrimonialRequestedStatus: data.matrimonialRequestedStatus,
         imagePath: data.imagePath,
         active: data.active,
         createdAt: data.createdAt,
@@ -64,13 +65,13 @@ export class MatrimonialRequestedStatusService {
   }
 
   async getById(id: number): Promise<IMatrimonialRequestedStatus> {
-    const obj = await this.matrimonialRequestedStatusModel.findOne({ where: { requestedStatusId: id } });
+    const obj = await this.matrimonialRequestedStatusModel.findOne({ where: { matrimonialRequestedStatusId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MATRIMONIAL_REQUESTED_STATUS));
     }
     return <IMatrimonialRequestedStatus>{
-      matrimonialRequestedStatusId: obj.requestedStatusId,
-      matrimonialRequestedStatus: obj.status,
+      matrimonialRequestedStatusId: obj.matrimonialRequestedStatusId,
+      matrimonialRequestedStatus: obj.matrimonialRequestedStatus,
       ...obj,
       updatedBy: obj.modifiedBy,
     };
@@ -78,11 +79,11 @@ export class MatrimonialRequestedStatusService {
 
   async loadDetailById(id: number): Promise<IMatrimonialRequestedStatusList> {
     const data = await this.matrimonialRequestedStatusModel.scope('list').findOne({
-      where: { requestedStatusId: id },
+      where: { matrimonialRequestedStatusId: id },
     });
     return <IMatrimonialRequestedStatusList>{
-      matrimonialRequestedStatusId: data.requestedStatusId,
-      matrimonialRequestedStatus: data.status,
+      matrimonialRequestedStatusId: data.matrimonialRequestedStatusId,
+      matrimonialRequestedStatus: data.matrimonialRequestedStatus,
       imagePath: data.imagePath,
       active: data.active,
       createdAt: data.createdAt,
@@ -102,11 +103,11 @@ export class MatrimonialRequestedStatusService {
 
   async manage(obj: IManageMatrimonialRequestedStatus, userId: number) {
     const dataObj = {
-      status: obj.matrimonialRequestedStatus,
+      matrimonialRequestedStatus: obj.matrimonialRequestedStatus,
       modifiedBy: userId,
     };
     if (obj.matrimonialRequestedStatusId) {
-      await this.matrimonialRequestedStatusModel.update(dataObj, { where: { requestedStatusId: obj.matrimonialRequestedStatusId } });
+      await this.matrimonialRequestedStatusModel.update(dataObj, { where: { matrimonialRequestedStatusId: obj.matrimonialRequestedStatusId } });
     } else {
       Object.assign(dataObj, { createdBy: userId });
       await this.matrimonialRequestedStatusModel.create(dataObj);
@@ -114,7 +115,7 @@ export class MatrimonialRequestedStatusService {
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.matrimonialRequestedStatusModel.findOne({ where: { requestedStatusId: id } });
+    const obj = await this.matrimonialRequestedStatusModel.findOne({ where: { matrimonialRequestedStatusId: id } });
     obj.active = body.status;
     obj.modifiedBy = userId;
     await obj.save();

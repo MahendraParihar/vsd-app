@@ -38,6 +38,9 @@ export class CityVillageService {
       return <ICityVillageList>{
         cityVillageId: data.cityVillageId,
         cityVillage: data.cityVillage,
+        district: data.district.district,
+        state: data.district.state.state,
+        country: data.district.state.country.country,
         active: data.active,
         createdAt: data.createdAt,
         createdBy: data.createdBy,

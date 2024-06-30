@@ -33,6 +33,7 @@ export class JobTypeService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order:[["jobType","asc"]],
     });
     const data = rows.map((data: JobTypeModel) => {
       return <IJobTypeList>{

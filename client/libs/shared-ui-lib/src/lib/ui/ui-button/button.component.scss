@@ -79,3 +79,9 @@
   color: white !important;
   @extend .btn;
 }
+
+.negative-btn {
+  background: #ffffff !important;
+  @extend .waves-effect;
+  color: black !important;
+}

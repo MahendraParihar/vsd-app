@@ -9,8 +9,10 @@ import {
   BelongsTo,
   Scopes,
 } from 'sequelize-typescript';
-import { DistrictModel } from './district.model';
-import { AdminUserModel } from '../admin';
+import {DistrictModel} from './district.model';
+import {AdminUserModel} from '../admin';
+import {StateModel} from "./state.model";
+import {CountryModel} from "./country.model";
 
 @Table({
   tableName: 'mst_city_village',
@@ -21,6 +23,21 @@ import { AdminUserModel } from '../admin';
 @Scopes(() => ({
   list: {
     include: [
+      {
+        attributes: ['districtId', 'district'],
+        model: DistrictModel,
+        required: true,
+        include: [{
+          attributes: ['stateId', 'state'],
+          model: StateModel,
+          required: true,
+          include: [{
+            model: CountryModel,
+            attributes: ['countryId', 'country'],
+            required: true,
+          }]
+        }]
+      },
       {
         attributes: ['adminUserId', 'firstName', 'lastName'],
         model: AdminUserModel,
@@ -129,12 +146,12 @@ export class CityVillageModel extends Model<CityVillageModel> {
   })
   modifiedIp: string;
 
-  // @BelongsTo(() => DistrictModel, { targetKey: 'districtId', foreignKey: 'districtId' })
-  // district: DistrictModel;
+  @BelongsTo(() => DistrictModel, {targetKey: 'districtId', foreignKey: 'districtId'})
+  district: DistrictModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, {as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId'})
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, {as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId'})
   updatedByUser: AdminUserModel;
 }

@@ -9,7 +9,7 @@ export class PostDto implements IManagePost {
   @IsNotEmpty()
   @IsString()
   @MaxLength(50)
-  postName: string;
+  post: string;
 
   @IsOptional()
   @IsObject()

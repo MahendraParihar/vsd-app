@@ -11,6 +11,7 @@ import {
 } from 'sequelize-typescript';
 import { StateModel } from './state.model';
 import { AdminUserModel } from '../admin';
+import {CountryModel} from "./country.model";
 
 @Table({
   tableName: 'mst_district',
@@ -21,6 +22,16 @@ import { AdminUserModel } from '../admin';
 @Scopes(() => ({
   list: {
     include: [
+      {
+        attributes: ['stateId', 'state'],
+        model: StateModel,
+        required: true,
+        include: [{
+          model: CountryModel,
+          attributes: ['countryId', 'country'],
+          required: true,
+        }]
+      },
       {
         attributes: ['adminUserId', 'firstName', 'lastName'],
         model: AdminUserModel,
@@ -115,8 +126,8 @@ export class DistrictModel extends Model<DistrictModel> {
   })
   modifiedIp: string;
 
-  // @BelongsTo(() => StateModel, { foreignKey: 'stateId', targetKey: 'stateId' })
-  // state: StateModel;
+  @BelongsTo(() => StateModel, { foreignKey: 'stateId', targetKey: 'stateId' })
+  state: StateModel;
 
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
