@@ -1,5 +1,15 @@
-import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import { AddressModel, AdminUserModel } from '@server/common';
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  ForeignKey,
+  Model,
+  Scopes,
+  Table,
+  UpdatedAt
+} from 'sequelize-typescript';
+import {AddressModel, AdminUserModel} from '@server/common';
 
 @Table({
   tableName: 'mst_temple',
@@ -7,6 +17,29 @@ import { AddressModel, AdminUserModel } from '@server/common';
   freezeTableName: true,
   timestamps: true,
 })
+@Scopes(() => ({
+  list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+    ],
+  },
+}))
 export class TempleModel extends Model<TempleModel> {
   @Column({
     field: 'temple_id',

@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { TableListDto, StatusChangeDto } from '@server/common';
 import { INewsList, ITableList } from '@vsd-common/lib';
+import {NewsDto} from "./dto/news.dto";
 
 @Controller('news')
 export class NewsController {
@@ -19,27 +20,27 @@ export class NewsController {
   }
 
   @Get(':id')
-  loadNews() {
+  loadNews(@Param('id') id: number) {
     try {
-      return this.newsService.getById();
+      return this.newsService.getById(id);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Get('details/:id')
-  loadNewsDetail() {
+  loadNewsDetail(@Param('id') id: number) {
     try {
-      return this.newsService.loadDetailById();
+      return this.newsService.loadDetailById(id);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post()
-  manageNews() {
+  manageNews(@Body() body: NewsDto, userId: number) {
     try {
-      return this.newsService.manage();
+      return this.newsService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

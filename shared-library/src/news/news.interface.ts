@@ -10,11 +10,11 @@ export interface IBaseNews {
   tags: string[];
   visitedCount: number;
   imagePath: object;
+  approvedBy: number;
 }
 
 export interface IManageNews extends IBaseNews {
   currentAffairId?: number;
-  approvedBy: number;
 }
 
 export interface INews extends IBaseNews, ICommonTable {

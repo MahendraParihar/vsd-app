@@ -121,8 +121,8 @@ import {
     CoreLibModule,
     MatPaginatorModule,
     MatTableModule,
-    SharedUiLibModule,
     FormsModule,
+    SharedUiLibModule,
   ],
   providers: [CountryService],
   exports: [

@@ -1,20 +1,56 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { StatusChangeDto } from '@server/common';
+import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
+import {StatusChangeDto, TableListDto} from '@server/common';
+import {IEventList, ITableList} from "@vsd-common/lib";
+import {EventService} from "./event.service";
+import {EventDto} from "./dto/event.dto";
 
 @Controller('event')
 export class EventController {
-  @Get()
-  loadEvents() {}
+  constructor(private eventService: EventService) {
+  }
+
+  @Post()
+  loadEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
+    try {
+      return this.eventService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 
   @Get(':id')
-  loadEvent() {}
+  loadEvent(@Param('id') id: number) {
+    try {
+      return this.eventService.getById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 
   @Get('details/:id')
-  loadEventDetail() {}
+  loadEventDetail(@Param('id') id: number) {
+    try {
+      return this.eventService.loadDetailById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 
-  @Post('')
-  manageEvent() {}
+  @Post()
+  manageEvent(@Body() body: EventDto, userId: number) {
+    try {
+      return this.eventService.manage(body, userId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 
   @Put('status/:id')
-  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {}
+  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+    try {
+      return this.eventService.updateStatus(id, statusChange, 1);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 }

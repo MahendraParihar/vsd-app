@@ -13,3 +13,4 @@ export * from './lib/api-urls';
 export * from './lib/constants/constants';
 export * from './lib/pipes/date-time.pipe';
 export * from './lib/pipes/created-by-user.pipe';
+export * from './lib/utility/table-data.datasource';
