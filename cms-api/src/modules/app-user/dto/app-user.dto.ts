@@ -1,9 +1,0 @@
-import {BasicSearchDto} from '../../../common-dto/basic-input.dto';
-
-export class AppUserSearchDto extends BasicSearchDto {
-  name?: string;
-}
-
-export class CreateAppUserDto {
-
-}

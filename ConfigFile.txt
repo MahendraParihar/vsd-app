@@ -1,7 +1,0 @@
-DB_User : postgres
-DB_Password: postgres
-
-Video links:-
-https://support.lenovo.com/in/en/videos/vid500094 
-
-https://support.lenovo.com/in/en/videos/vid100788
