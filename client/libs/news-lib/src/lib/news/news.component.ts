@@ -1,0 +1,8 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'lib-news',
+  templateUrl: './news.component.html',
+  styleUrl: './news.component.scss',
+})
+export class NewsComponent {}

@@ -1,0 +1,14 @@
+<button mat-raised-button
+        type="button"
+        [ngClass]="findClass()"
+        #btnEle
+        (click)="onActionBtnClick($event)"
+        (mousedown)="$event.preventDefault()"
+        [disabled]="disabled"
+        [disableRipple]="disableRipple"
+        [matTooltip]="tooltip"
+        tabindex="{{ tabIndex }}"
+        (keydown.enter)="$event.stopPropagation()">
+  <mat-icon *ngIf="prefixIcon" class="material-icons-outlined">{{prefixIconName}}</mat-icon>
+  {{ label }}
+</button>

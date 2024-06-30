@@ -1,0 +1,24 @@
+{
+  "name": "matrimonial",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/matrimonial/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "matrimonial:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "matrimonial:build:development"
+        },
+        "production": {
+          "buildTarget": "matrimonial:build:production"
+        }
+      }
+    }
+  }
+}

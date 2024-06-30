@@ -1,0 +1,20 @@
+import { IBaseAdminUser, ICommonTable } from "../base.interface";
+
+export interface IBaseGender {
+  gender: string;
+  imagePath: object;
+}
+
+export interface IManageGender extends IBaseGender {
+  genderId?: number;
+}
+
+export interface IGender extends IBaseGender, ICommonTable {
+  genderId: number;
+  active: boolean;
+}
+
+export interface IGenderList extends IGender {
+  createdByUser: IBaseAdminUser;
+  updatedByUser: IBaseAdminUser;
+}

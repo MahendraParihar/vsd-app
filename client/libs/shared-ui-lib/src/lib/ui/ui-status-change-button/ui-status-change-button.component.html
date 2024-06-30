@@ -1,0 +1,10 @@
+<mat-menu #appMenu="matMenu">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="onPositiveClick()">{{positiveBtnLabel}}</button>
+    <button mat-menu-item (click)="onNegativeClick()">{{negativeBtnLabel}}</button>
+  </ng-template>
+</mat-menu>
+<button mat-icon-button [matMenuTriggerFor]="appMenu">
+  <mat-icon color="accent" *ngIf="status">close</mat-icon>
+  <mat-icon color="primary" *ngIf="!status">check</mat-icon>
+</button>

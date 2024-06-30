@@ -1,0 +1,98 @@
+
+$blue: #4CDAF3;
+$yellow: #F6C45A;
+$orange: #FA8547;
+$green: #40CC3A;
+$m-green: #81BE66;
+$l-green: #9CD592;
+$red: #F84141;
+$black: #000000;
+$white: #FFFFFF;
+
+$primary-text-color: #393939;
+$secondary-text-color: #797979;
+$tertiary-text-color: #B9B9B9;
+
+$border-color: #EBECEF;
+$primary-text-color: #393939;
+$secondary-text-color: #797979;
+$tertiary-text-color: #B9B9B9;
+$hover-color: #44444436;
+
+$warning-icon-color: #f8bb86;
+$error-icon-color: #f27474;
+$success-icon-color: #a5dc86;
+$info-icon-color: #c9dae1;
+$help-icon-color: #c9dae1;
+
+:root,
+::after,
+::before {
+  // ------------------------- Primary Colors ------------------------- //
+  --primary-a: #4cba87;
+  --primary-b: #ffffff;
+  --primary-c: #213f80;
+
+  // ------------------------- Primary A Color Variants ------------------------- //
+  --primary-a-v1: var(--primary-a);
+  --primary-a-v2: #dbf1e7;
+  --primary-a-v3: #e9f4ef;
+
+  // ------------------------- Primary B Color Variants ------------------------- //
+  --primary-b-v1: var(--primary-b);
+
+  // ------------------------- Primary C Color Variants ------------------------- //
+  --primary-c-v1: var(--primary-c);
+  --primary-c-v2: #0f2b67;
+  --primary-c-v3: #a6b2cc;
+  --primary-c-v4: #c7cfdf;
+  --primary-c-v5: #d9dfec;
+  --primary-c-v6: #e9ecf3;
+  --primary-c-v7: #eff1f4;
+
+  // ------------------------- Secondary A Color Variants ------------------------- //
+  --secondary-a-v1: #272b3e;
+  --secondary-a-v2: #525761;
+  --secondary-a-v3: #94969e;
+  --secondary-a-v4: #d6d9de;
+  --secondary-a-v5: #ebecef;
+  --secondary-a-v6: #f7f7f9;
+
+  // ------------------------- Secondary B Color Variants ------------------------- //
+  --secondary-b-v1: #ff5e4d;
+  --secondary-b-v2: #ff7667;
+  --secondary-b-v3: #e60000;
+
+  // ------------------------- Secondary C Color Variants ------------------------- //
+  --secondary-c-v1: #52d4dd;
+  --secondary-c-v2: #d9eff1;
+  --secondary-c-v3: #86e1e7;
+  --secondary-c-v4: #a8e9ee;
+  --secondary-c-v5: #eef9f3;
+
+  // ------------------------- Secondary D Color Variants ------------------------- //
+  --secondary-d-v1: #d82323;
+  --secondary-d-v2: #fbdddd;
+
+  // ------------------------- Tertiary Color Variants ------------------------- //
+  --tertiary-v1: #623a8d;
+  --tertiary-v2: #f1ecf6;
+  --tertiary-v3: #f2c94c;
+  --tertiary-v4: #e4e1d5;
+  --tertiary-v5: #f6f5ef;
+  --tertiary-v6: #f4f5f3;
+  --tertiary-v7: #eee9f2;
+  --tertiary-v8: #f4f5f9;
+  --tertiary-v9: #edf8f3;
+  --tertiary-v10: #f9f9fb;
+  --tertiary-v11: #89783b;
+  --tertiary-v12: #fcf4db;
+  --tertiary-v13: #82522b;
+  --tertiary-v14: #faff19;
+
+  // ------------------------- Icon Color Variants --------------------------- //
+
+  --linkedin-icon-color: #0a66c2;
+  --filter-icon-color: #292d32;
+  --interaction-card: #cadfd2;
+}

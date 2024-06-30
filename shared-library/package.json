@@ -1,0 +1,20 @@
+{
+  "name": "vsd-shared-library",
+  "version": "0.0.0",
+  "license": "private",
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --build --watch",
+    "lint": "eslint . --ext .ts"
+  },
+  "private": true,
+  "devDependencies": {
+    "@nrwl/node": "^19.0.4",
+    "@nx/eslint": "^19.0.4",
+    "@nx/js": "19.0.4",
+    "@nx/workspace": "19.0.4",
+    "eslint": "~8.57.0",
+    "nx": "19.0.4"
+  },
+  "dependencies": {}
+}

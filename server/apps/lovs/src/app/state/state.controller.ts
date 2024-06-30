@@ -1,0 +1,55 @@
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { StateService, TableListDto, StatusChangeDto } from '@server/common';
+import { IStateList, IState, ITableList } from '@vsd-common/lib';
+import { StateDto } from './dto/state.dto';
+
+@Controller('state')
+export class StateController {
+  constructor(private stateService: StateService) {
+  }
+
+  @Post()
+  loadStates(@Body() payload: TableListDto): Promise<ITableList<IStateList>> {
+    try {
+      return this.stateService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Get(':id')
+  loadState(@Param('id') id: number): Promise<IState> {
+    try {
+      return this.stateService.getById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Get('details/:id')
+  loadStateDetail(@Param('id') id: number): Promise<IStateList> {
+    try {
+      return this.stateService.loadDetailById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Post()
+  manageState(@Body() body: StateDto, userId: number) {
+    try {
+      return this.stateService.manage(body, userId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Put('status/:id')
+  updateStateStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+    try {
+      return this.stateService.updateStatus(id, statusChange, 1);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+}

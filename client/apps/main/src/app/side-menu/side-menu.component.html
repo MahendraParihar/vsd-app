@@ -1,0 +1,25 @@
+<mat-list-item
+  (click)="onMenuClick(item)"
+  [ngStyle]="{'padding-left': (depth * 12) + 'px'}">
+  <mat-icon matListItemIcon class="material-icons-outlined">{{item.iconName}}</mat-icon>
+  <span>{{item.title}}</span>
+  <span class="twistie-separator" fxflex></span>
+  <span *ngIf="item.children && item.children.length">
+    <mat-icon *ngIf="!expanded">
+      expand_more
+    </mat-icon>
+    <mat-icon *ngIf="expanded">
+          expand_less
+        </mat-icon>
+  </span>
+</mat-list-item>
+<div *ngIf="expanded && item.children">
+  <vsd-side-menu *ngFor="let child of item.children"
+                 [depth]="depth+1" [item]="child" class="menu-child"></vsd-side-menu>
+</div>
+
+
+<!--<mat-list-item (click)="onMenuClick(item)">-->
+<!--  <mat-icon class="material-icons-outlined" matListItemIcon>{{item.iconName}}</mat-icon>-->
+<!--  <div matListItemTitle>{{item.title}}</div>-->
+<!--</mat-list-item>-->
