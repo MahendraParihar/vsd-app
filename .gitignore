@@ -18,3 +18,4 @@ cms/package-lock.json
 /.idea/vcs.xml
 /.idea/vsd-app.iml
 /.idea/inspectionProfiles/Project_Default.xml
+migrations/.DS_Store
