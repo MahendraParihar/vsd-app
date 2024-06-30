@@ -1,5 +1,15 @@
-import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, ForeignKey } from 'sequelize-typescript';
-import { AdminUserModel } from '@server/common';
+import {
+  Column,
+  DataType,
+  Table,
+  Model,
+  UpdatedAt,
+  CreatedAt,
+  ForeignKey,
+  BelongsTo,
+  Scopes
+} from 'sequelize-typescript';
+import {AddressModel, AdminUserModel} from '@server/common';
 
 @Table({
   tableName: 'txn_job',
@@ -7,6 +17,30 @@ import { AdminUserModel } from '@server/common';
   freezeTableName: true,
   timestamps: true,
 })
+@Scopes(() => ({
+  list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'approvedByUser',
+      },
+    ],
+  },
+}))
 export class JobModel extends Model<JobModel> {
   @Column({
     field: 'job_id',
@@ -96,6 +130,14 @@ export class JobModel extends Model<JobModel> {
   visitedCount: number;
 
   @Column({
+    field: 'no_of_position',
+    allowNull: false,
+    defaultValue: 0,
+    type: DataType.NUMBER,
+  })
+  noOfPosition: number;
+
+  @Column({
     field: 'active',
     allowNull: false,
     defaultValue: true,
@@ -144,4 +186,13 @@ export class JobModel extends Model<JobModel> {
     type: DataType.STRING(50),
   })
   modifiedIp: string;
+
+  @BelongsTo(() => AdminUserModel, {as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId'})
+  createdByUser: AdminUserModel;
+
+  @BelongsTo(() => AdminUserModel, {as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId'})
+  updatedByUser: AdminUserModel;
+
+  @BelongsTo(() => AdminUserModel, {as: 'approvedByUser', foreignKey: 'approvedBy', targetKey: 'adminUserId'})
+  approvedByUser: AdminUserModel;
 }

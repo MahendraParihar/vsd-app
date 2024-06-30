@@ -27,7 +27,7 @@ export class TempleModel extends Model<TempleModel> {
       key: 'address_id',
     },
   })
-  addressId: string;
+  addressId: number;
 
   @Column({
     field: 'temple_name',

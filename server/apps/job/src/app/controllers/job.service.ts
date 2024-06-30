@@ -2,44 +2,43 @@ import {Injectable} from '@nestjs/common';
 import {InjectModel} from '@nestjs/sequelize';
 import {
   IBaseAdminUser,
-  IManageTemple,
+  IJob,
+  IJobList,
+  IManageJob,
   IStatusChange,
   ITableList,
   ITableListFilter,
-  ITemple,
-  ITempleList,
   LabelKey
 } from '@vsd-common/lib';
-import {TempleModel} from '../models/temple.model';
 import {Op} from 'sequelize';
+import {JobModel} from "../models/job.model";
 import {LabelService} from "@server/common";
 
 @Injectable()
-export class TempleService {
-  constructor(@InjectModel(TempleModel) private templeModel: typeof TempleModel,
+export class JobService {
+  constructor(@InjectModel(JobModel) private jobModel: typeof JobModel,
               private labelService: LabelService) {
   }
 
-  async load(payload: ITableListFilter): Promise<ITableList<ITempleList>> {
+  async load(payload: ITableListFilter): Promise<ITableList<IJobList>> {
     const where = {};
     if (payload.search) {
       Object.assign(where, {
         [Op.iLike]: {
-          templeName: `%${payload.search}%`,
+          title: `%${payload.search}%`,
         },
       });
     }
-    const {rows, count} = await this.templeModel.scope('list').findAndCountAll({
+    const {rows, count} = await this.jobModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order: [['templeName', 'asc']]
+      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']]
     });
-    const data = rows.map((data: TempleModel) => {
-      return <ITempleList>{
-        templeId: data.templeId,
-        templeName: data.templeName,
-        imagePath: data.imagePath,
+    const data = rows.map((data: JobModel) => {
+      return <IJobList>{
+        jobId: data.jobId,
+        title: data.title,
         active: data.active,
         createdAt: data.createdAt,
         createdBy: data.createdBy,
@@ -55,32 +54,30 @@ export class TempleService {
         },
       };
     });
-    return <ITableList<ITempleList>>{
+    return <ITableList<IJobList>>{
       data: data,
       count: count,
     };
   }
 
-  async getById(id: number): Promise<ITemple> {
-    const obj = await this.templeModel.findOne({where: {templeId: id}});
+  async getById(id: number): Promise<IJob> {
+    const obj = await this.jobModel.findOne({where: {jobId: id}});
     if (!obj) {
-      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_TEMPLE));
+      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_JOB));
     }
-    return <ITemple>{
+    return <IJob>{
       ...obj,
       updatedBy: obj.modifiedBy,
     };
   }
 
-  async loadDetailById(id: number): Promise<ITempleList> {
-    const data = await this.templeModel.scope('list').findOne({
-      where: {templeId: id}
+  async loadDetailById(id: number) {
+    const data = await this.jobModel.scope('list').findOne({
+      where: {jobId: id}
     });
-
-    return <ITempleList>{
-      templeId: data.templeId,
-      templeName: data.templeName,
-      imagePath: data.imagePath,
+    return <IJobList>{
+      jobId: data.jobId,
+      title: data.title,
       active: data.active,
       createdAt: data.createdAt,
       createdBy: data.createdBy,
@@ -97,24 +94,24 @@ export class TempleService {
     };
   }
 
-  async manage(obj: IManageTemple, userId: number) {
+  async manage(obj: IManageJob, userId: number) {
     const dataObj = {
-      templeName: obj.templeName,
+      title: obj.title,
       modifiedBy: userId,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, {imagePath: obj.imagePath});
     }
-    if (obj.templeId) {
-      await this.templeModel.update(dataObj, {where: {templeId: obj.templeId}});
+    if (obj.jobId) {
+      await this.jobModel.update(dataObj, {where: {jobId: obj.jobId}});
     } else {
       Object.assign(dataObj, {createdBy: userId});
-      await this.templeModel.create(dataObj);
+      await this.jobModel.create(dataObj);
     }
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.templeModel.findOne({where: {templeId: id}});
+    const obj = await this.jobModel.findOne({where: {jobId: id}});
     obj.active = body.status;
     obj.modifiedBy = userId;
     await obj.save();

@@ -22,3 +22,4 @@ export interface ITempleList extends ITemple {
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }
+

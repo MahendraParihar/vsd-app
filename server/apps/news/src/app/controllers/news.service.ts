@@ -1,12 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { INewsList, IBaseAdminUser,IStatusChange, ITableListFilter, ITableList } from '@vsd-common/lib';
-import { Op } from 'sequelize';
-import { CurrentAffairModel } from '../models/current-affair.model';
+import {Injectable} from '@nestjs/common';
+import {InjectModel} from '@nestjs/sequelize';
+import {
+  IBaseAdminUser,
+  IManageNews,
+  INews,
+  INewsList,
+  IStatusChange,
+  ITableList,
+  ITableListFilter,
+  LabelKey
+} from '@vsd-common/lib';
+import {Op} from 'sequelize';
+import {CurrentAffairModel} from '../models/current-affair.model';
+import {LabelService} from "@server/common";
 
 @Injectable()
 export class NewsService {
-  constructor(@InjectModel(CurrentAffairModel) private currentAffairModel: typeof CurrentAffairModel) {
+  constructor(@InjectModel(CurrentAffairModel) private currentAffairModel: typeof CurrentAffairModel,
+              private labelService: LabelService) {
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<INewsList>> {
@@ -18,10 +29,11 @@ export class NewsService {
         },
       });
     }
-    const { rows, count } = await this.currentAffairModel.scope('list').findAndCountAll({
+    const {rows, count} = await this.currentAffairModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
+      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']]
     });
     const data = rows.map((data: CurrentAffairModel) => {
       return <INewsList>{
@@ -60,17 +72,38 @@ export class NewsService {
     };
   }
 
-  async getById() {
+  async getById(id: number): Promise<INews> {
+    const obj = await this.currentAffairModel.findOne({where: {currentAffairId: id}});
+    if (!obj) {
+      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_NEWS));
+    }
+    return <INews>{
+      ...obj,
+      updatedBy: obj.modifiedBy,
+    };
   }
 
   async loadDetailById(id: number) {
   }
 
-  async manage() {
+  async manage(obj: IManageNews, userId: number) {
+    const dataObj = {
+      title: obj.title,
+      modifiedBy: userId,
+    };
+    if (obj.imagePath) {
+      Object.assign(dataObj, {imagePath: obj.imagePath});
+    }
+    if (obj.currentAffairId) {
+      await this.currentAffairModel.update(dataObj, {where: {currentAffairId: obj.currentAffairId}});
+    } else {
+      Object.assign(dataObj, {createdBy: userId});
+      await this.currentAffairModel.create(dataObj);
+    }
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.currentAffairModel.findOne({ where: { currentAffairId: id } });
+    const obj = await this.currentAffairModel.findOne({where: {currentAffairId: id}});
     obj.active = body.status;
     obj.modifiedBy = userId;
     await obj.save();

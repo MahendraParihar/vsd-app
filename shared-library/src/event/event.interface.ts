@@ -6,15 +6,15 @@ export interface IBaseEvent {
   date: Date;
   time: Date;
   imagePath: object;
-  visitedCount: object;
+  visitedCount: number;
 }
 
 export interface IManageEvent extends IBaseEvent {
-  EventId?: number;
+  eventId?: number;
 }
 
 export interface IEvent extends IBaseEvent, ICommonTable {
-  EventId: number;
+  eventId: number;
   active: boolean;
 }
 

@@ -7,6 +7,7 @@ import { EventModel } from './models/event.model';
 import { EventCoordinatorModel } from './models/event-coordinator.model';
 import { EventInterestedModel } from './models/event-interested.model';
 import { EventController } from './controllers/event.controller';
+import {EventService} from "./controllers/event.service";
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { EventController } from './controllers/event.controller';
     LabelModule.asyncRegister(['admin'])
   ],
   controllers: [AppController, EventController],
-  providers: [AppService],
+  providers: [AppService, EventService],
 })
 export class AppModule {}

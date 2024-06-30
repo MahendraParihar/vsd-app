@@ -1,5 +1,15 @@
-import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, ForeignKey } from 'sequelize-typescript';
-import { AddressModel } from '@server/common';
+import {
+  Column,
+  DataType,
+  Table,
+  Model,
+  UpdatedAt,
+  CreatedAt,
+  ForeignKey,
+  Scopes,
+  BelongsTo
+} from 'sequelize-typescript';
+import {AddressModel, AdminUserModel} from '@server/common';
 
 @Table({
   tableName: 'txn_event',
@@ -7,6 +17,24 @@ import { AddressModel } from '@server/common';
   freezeTableName: true,
   timestamps: true,
 })
+@Scopes(() => ({
+  list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+    ],
+  },
+}))
 export class EventModel extends Model<EventModel> {
   @Column({
     field: 'event_id',
@@ -149,4 +177,13 @@ export class EventModel extends Model<EventModel> {
     type: DataType.STRING(50),
   })
   modifiedIp: string;
+
+  @BelongsTo(() => AdminUserModel, {as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId'})
+  createdByUser: AdminUserModel;
+
+  @BelongsTo(() => AdminUserModel, {as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId'})
+  updatedByUser: AdminUserModel;
+
+  @BelongsTo(() => AddressModel, {as: 'address', foreignKey: 'addressId', targetKey: 'addressId'})
+  address: AddressModel;
 }
