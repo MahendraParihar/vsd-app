@@ -19,3 +19,14 @@ cms/package-lock.json
 /.idea/vsd-app.iml
 /.idea/inspectionProfiles/Project_Default.xml
 migrations/.DS_Store
+.vs/slnx.sqlite
+.vs/slnx.sqlite-journal
+.vs/vsd-app/config/applicationhost.config
+.vs/vsd-app/FileContentIndex/17f1ccab-cf1f-40e8-9a0a-ea460bf360ae.vsidx
+.vs/vsd-app/v17/.wsuo
+.vs/vsd-app/v17/DocumentLayout.json
+.vs/vsd-app/v17/workspaceFileList.bin
+.vs/VSWorkspaceState.json
+client/package-lock.json
+server/package-lock.json
+shared-library/package-lock.json
