@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@server/common": ["libs/common/src/index.ts"],
-      "@vsd-common/lib": ["../shared-library/dist"]
+      "@vsd-common/lib": ["../shared-library/dist"],
+      "@server/common": ["libs/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

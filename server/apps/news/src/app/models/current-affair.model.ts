@@ -1,5 +1,15 @@
-import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import { AdminUserModel } from '@server/common';
+import {
+  Column,
+  DataType,
+  Table,
+  Model,
+  UpdatedAt,
+  CreatedAt,
+  ForeignKey,
+  BelongsTo,
+  Scopes
+} from 'sequelize-typescript';
+import {AddressModel, AdminUserModel} from '@server/common';
 
 @Table({
   tableName: 'txn_current_affair',
@@ -7,6 +17,30 @@ import { AdminUserModel } from '@server/common';
   freezeTableName: true,
   timestamps: true,
 })
+@Scopes(() => ({
+  list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: false,
+        as: 'approvedByUser',
+      },
+    ],
+  },
+}))
 export class CurrentAffairModel extends Model<CurrentAffairModel> {
   @Column({
     field: 'current_affair_id',

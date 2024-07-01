@@ -27,7 +27,7 @@ export class MandalComponent implements OnInit, AfterViewInit {
   displayedColumns = [
     'seqNo',
     'imagePath',
-    'title',
+    'mandalName',
     'active',
     'createdByUser',
     'createdAt',

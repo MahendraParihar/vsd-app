@@ -1,4 +1,14 @@
-import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  ForeignKey,
+  Model,
+  Scopes,
+  Table,
+  UpdatedAt
+} from 'sequelize-typescript';
 import { AddressModel, AdminUserModel } from '@server/common';
 
 @Table({
@@ -7,6 +17,29 @@ import { AddressModel, AdminUserModel } from '@server/common';
   freezeTableName: true,
   timestamps: true,
 })
+@Scopes(() => ({
+  list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+    ],
+  },
+}))
 export class MandalModel extends Model<MandalModel> {
   @Column({
     field: 'mandal_id',

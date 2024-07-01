@@ -35,7 +35,7 @@ import {AddressModel, AdminUserModel} from '@server/common';
       {
         attributes: ['adminUserId', 'firstName', 'lastName'],
         model: AdminUserModel,
-        required: true,
+        required: false,
         as: 'approvedByUser',
       },
     ],

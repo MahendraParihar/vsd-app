@@ -27,7 +27,7 @@ export class TempleComponent implements OnInit, AfterViewInit {
   displayedColumns = [
     'seqNo',
     'imagePath',
-    'title',
+    'templeName',
     'active',
     'createdByUser',
     'createdAt',
