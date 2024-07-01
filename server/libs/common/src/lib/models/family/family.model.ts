@@ -1,4 +1,4 @@
-import { BelongsTo, Column, CreatedAt, DataType, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import {BelongsTo, Column, CreatedAt, DataType, Model, Scopes, Table, UpdatedAt} from 'sequelize-typescript';
 import { AdminUserModel } from '../admin';
 
 @Table({
@@ -7,6 +7,24 @@ import { AdminUserModel } from '../admin';
   freezeTableName: true,
   timestamps: true,
 })
+@Scopes(() => ({
+  list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+    ],
+  },
+}))
 export class FamilyModel extends Model<FamilyModel> {
   @Column({
     field: 'family_id',

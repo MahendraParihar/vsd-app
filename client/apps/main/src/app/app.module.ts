@@ -1,4 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NgModule,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -19,11 +23,18 @@ import { PageNotFountComponent } from './page-not-fount/page-not-fount.component
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SideMenuComponent } from './side-menu/side-menu.component';
-import { AuthGuard, AuthGuardService, CoreLibModule, HttpService } from '@vsd-frontend/core-lib';
+import {
+  AuthGuard,
+  AuthGuardService,
+  CoreLibModule,
+  HttpService,
+} from '@vsd-frontend/core-lib';
 import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from './auth/auth.service';
+import { FaqComponent } from './faq/faq.component';
+import { ManageFaqComponent } from './faq/manage-faq/manage-faq.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +48,8 @@ import { AuthService } from './auth/auth.service';
     SideMenuComponent,
     ErrorComponent,
     PageNotFountComponent,
+    FaqComponent,
+    ManageFaqComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -105,6 +118,21 @@ import { AuthService } from './auth/auth.service';
               loadChildren: () =>
                 import('job/Module').then((m) => m.RemoteEntryModule),
             },
+            {
+              path: 'faq',
+              component: FaqComponent,
+              canActivate: [AuthGuard],
+            },
+            {
+              path: 'faq/manage',
+              component: ManageFaqComponent,
+              canActivate: [AuthGuard],
+            },
+            {
+              path: 'faq/manage/:id',
+              component: ManageFaqComponent,
+              canActivate: [AuthGuard],
+            },
           ],
         },
         {
@@ -125,7 +153,7 @@ import { AuthService } from './auth/auth.service';
           component: PageNotFountComponent,
         },
       ],
-      { initialNavigation: 'enabledBlocking' },
+      { initialNavigation: 'enabledBlocking' }
     ),
     CoreLibModule,
     CommonModule,

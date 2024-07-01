@@ -8,6 +8,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {SharedUiLibModule} from "@vsd-frontend/shared-ui-lib";
+import {FamilyService} from "./family.service";
 
 @NgModule({
   imports: [CommonModule,
@@ -18,5 +19,6 @@ import {SharedUiLibModule} from "@vsd-frontend/shared-ui-lib";
     SharedUiLibModule,],
   declarations: [FamilyDetailComponent, FamilyComponent, ManageFamilyComponent],
   exports: [FamilyDetailComponent, FamilyComponent, ManageFamilyComponent],
+  providers:[FamilyService]
 })
 export class FamilyLibModule {}

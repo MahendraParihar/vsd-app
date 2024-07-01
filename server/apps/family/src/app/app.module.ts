@@ -11,6 +11,7 @@ import { FamilyEducationModel } from './models/family-education.model';
 import { FamilyRelationshipMappingModel } from './models/family-relationship-mapping.model';
 import { FamilyServiceMappingModel } from './models/family-service-mapping.model';
 import { FamilyController } from './controllers/family.controller';
+import {FamilyService} from "./controllers/family.service";
 
 @Module({
   imports: [
@@ -29,6 +30,6 @@ import { FamilyController } from './controllers/family.controller';
     LabelModule.asyncRegister(['admin']),
   ],
   controllers: [AppController, FamilyController],
-  providers: [AppService],
+  providers: [AppService, FamilyService],
 })
 export class AppModule {}
