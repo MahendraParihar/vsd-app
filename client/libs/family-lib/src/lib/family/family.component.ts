@@ -28,7 +28,9 @@ export class FamilyComponent implements OnInit, AfterViewInit {
   displayedColumns = [
     'seqNo',
     'imagePath',
-    'title',
+    'firstName',
+    'middleName',
+    'lastName',
     'active',
     'createdByUser',
     'createdAt',
