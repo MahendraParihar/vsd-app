@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+@import "./fonts";
+@import "./colors";
+@import "./spacing";
+@import "./strokes-and-radius";
+@import "./variables";
+@import "./typography";
+
+@include mat.core();
+
+$html-font-size: 16px;
+@function stripUnit($value) {
+  @return calc($value / ($value * 0 + 1px));
+}
+
+@function rem($pxValue) {
+  @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
+}
+
+/* ======== Angular material custom themes ======== */
+$light-primary: mat.m2-define-palette($primary-platter);
+$light-accent: mat.m2-define-palette($accent-platter);
+$light-warn: mat.m2-define-palette($custom-brand-warn);
+$vsd-light-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn,
+  ),
+  typography:$vsd-typography
+));
+
+@include mat.all-component-themes($vsd-light-theme);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 16px;
+  font-weight: 400;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}

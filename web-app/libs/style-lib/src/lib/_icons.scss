@@ -1,0 +1,57 @@
+@import "./colors";
+
+$icon-size-small: (12px 'small');
+$icon-size-regular: (16px 'regular');
+$icon-size-medium: (20px 'medium');
+$icon-size-large: (24px 'large');
+$default-icon-color: var(--default-icon-color);
+
+$icon-lists: (
+  //add: (
+  //  $icon-size-small,
+  //  $icon-size-regular,
+  //  $icon-size-medium,
+  //  $icon-size-large,
+  //),
+  header-logo:(
+    $icon-size-large,
+  ),
+  logo:(
+    $icon-size-large,
+  )
+);
+
+@each $key, $list in $icon-lists {
+  @each $size in $list {
+    .icon-#{$key}-#{nth($size,2)} {
+      -webkit-mask: url('../assets/images/icons/#{nth($size,2)}/#{$key}.svg') no-repeat center;
+      mask: url('../assets/images/icons/#{nth($size,2)}/#{$key}.svg') no-repeat center;
+      mask-image: url('../assets/images/icons/#{nth($size,2)}/#{$key}.svg') no-repeat center;
+      background-color: $default-icon-color;
+    }
+  }
+}
+
+.header-logo {
+  background: url('../assets/images/icons/large/header-logo.svg') no-repeat center;
+}
+
+.logo {
+  background: url('../assets/images/icons/large/logo.svg') no-repeat center;
+}
+
+//.icon-info-filled-color-large {
+//  background: url('../assets/images/icons/large/info-filled-color.svg') no-repeat center;
+//}
+//
+//.icon-info-filled-color-medium {
+//  background: url('../assets/images/icons/medium/info-filled-color.svg') no-repeat center;
+//}
+//
+//.icon-info-filled-color-regular {
+//  background: url('../assets/images/icons/regular/info-filled-color.svg') no-repeat center;
+//}
+//
+//.icon-info-filled-color-small {
+//  background: url('../assets/images/icons/small/info-filled-color.svg') no-repeat center;
+//}

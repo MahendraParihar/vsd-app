@@ -1,0 +1,61 @@
+:root,
+::after,
+::before {
+
+  $html-font-size: 16px;
+  @function stripUnit($value) {
+    @return calc($value / ($value * 0 + 1px));
+  }
+  @function rem($pxValue) {
+    @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
+  }
+
+  //Font variables
+  --font-size-40: #{rem(40px)};
+  --font-size-36: #{rem(36px)};
+  --font-size-32: #{rem(32px)};
+  --font-size-24: #{rem(24px)};
+  --font-size-20: #{rem(20px)};
+  --font-size-18: #{rem(18px)};
+  --font-size-17: #{rem(17px)};
+  --font-size-16: #{rem(16px)};
+  --font-size-14: #{rem(14px)};
+  --font-size-12: #{rem(12px)};
+  --font-size-11: 11px;
+  --font-size-10: 10px;
+
+  --font-weight-lighter: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+
+  --font-spacing--1: 0.01em; // 1%
+  --font-spacing-1: -0.01em; // -1%
+  --font-spacing-2: -0.02em; // -2%
+  --font-spacing-1-0: 0.1em; // 10%
+  --font-spacing-0: 0em; //0%
+
+  // line height
+  --line-height-base: 8px;
+  --line-height-40: #{rem(40px)};
+  --line-height-48: #{rem(48px)};
+  --line-height-32: #{rem(32px)};
+  --line-height-26: #{rem(26px)};
+  --line-height-28: #{rem(28px)};
+  --line-height-24: #{rem(24px)};
+  --line-height-22: #{rem(22px)};
+  --line-height-20: #{rem(20px)};
+  --line-height-18: #{rem(18px)};
+  --line-height-17: #{rem(17px)};
+  --line-height-16: #{rem(16px)};
+  --line-height-14: #{rem(14px)};
+  --line-height-12: #{rem(12px)};
+  --line-height-10: 10px;
+
+  // icon
+  --default-icon-color: var(--icon-color);
+}

@@ -1,0 +1,31 @@
+$html-font-size: 16px;
+@function stripUnit($value) {
+  @return calc($value / ($value * 0 + 1px));
+}
+@function rem($pxValue) {
+  @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
+}
+
+.mat-icon {
+  display: flex;
+}
+
+.small {
+  height: 12px;
+  width: 12px;
+}
+
+.regular {
+  height: #{rem(16px)};
+  width: #{rem(16px)};
+}
+
+.medium {
+  height: #{rem(20px)};
+  width: #{rem(20px)};
+}
+
+.large {
+  height: #{rem(24px)};
+  width: #{rem(24px)};
+}
