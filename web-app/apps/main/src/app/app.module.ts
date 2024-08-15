@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { BaseLayoutComponent } from './base-layout/base-layout.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -31,7 +30,6 @@ import { MatListModule } from '@angular/material/list';
   declarations: [
     AppComponent,
     BaseLayoutComponent,
-    HeaderComponent,
     FooterComponent,
     HomeComponent,
     AboutUsComponent,
