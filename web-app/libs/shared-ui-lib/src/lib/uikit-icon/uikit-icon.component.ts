@@ -1,7 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-
-export type IconNameType = 'header-logo' | 'logo';
-export type IconSizeType = 'none' | 'small' | 'medium' | 'regular' | 'large';
+import { IconNameType, IconSizeType } from '@vsd-common/lib';
 
 @Component({
   selector: 'shared-ui-lib-uikit-icon',
@@ -9,26 +7,28 @@ export type IconSizeType = 'none' | 'small' | 'medium' | 'regular' | 'large';
   styleUrl: './uikit-icon.component.scss',
 })
 export class UikitIconComponent implements OnChanges {
-  private _name: IconNameType | '' = '';
-  private _size: IconSizeType = 'regular';
   class = '';
   iconSize = 'regular';
-
   @Input() label = '';
   @Input() tooltipText = this.label;
   @Input() showTooltip = false;
+  @Input() color: 'primary' | 'warn' | 'accent' = 'primary';
 
-  @Input() set size(input: IconSizeType) {
-    this._size = input;
+  constructor() {
     this.setClass();
   }
+
+  private _name: IconNameType | '' = '';
 
   @Input() set name(input: IconNameType) {
     this._name = input;
     this.setClass();
   }
 
-  constructor() {
+  private _size: IconSizeType = 'regular';
+
+  @Input() set size(input: IconSizeType) {
+    this._size = input;
     this.setClass();
   }
 
@@ -38,8 +38,7 @@ export class UikitIconComponent implements OnChanges {
 
   private setClass() {
     if (this._name !== '') {
-      this.class =
-        this.valueToClass(this._name) + '-' + this.sizeToClass(this._size);
+      this.class = this.valueToClass(this._name) + '-' + this.sizeToClass(this._size);
     }
   }
 

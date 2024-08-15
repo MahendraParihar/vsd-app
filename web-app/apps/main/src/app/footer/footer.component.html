@@ -1,1 +1,60 @@
-<p>footer works!</p>
+<div class="footer">
+  <div class="left">
+    <div class="app-name-footer">
+      <mat-icon class="logo header-logo"></mat-icon>
+      <div class="header-title">
+        <shared-ui-lib-uikit-label [hasHtmlContent]="true"
+                                   [label]="'श्री विश्वकर्मा वंश - सुथार समाज<br>गोडवाड - पट्टा - मालवा'"></shared-ui-lib-uikit-label>
+      </div>
+    </div>
+    <hr>
+    <div class="address-section">
+      <div class="address">
+        <shared-ui-lib-uikit-icon [name]="'address'" [size]="'medium'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+        <shared-ui-lib-uikit-label [class]="['mat-headline-1']" [hasHtmlContent]="true"
+                                   [label]="'श्री विश्वकर्मा मंदिर, बड़वा, बाया-बाली,<br> जिला पाली , राजस्थान 306706'"></shared-ui-lib-uikit-label>
+      </div>
+    </div>
+  </div>
+  <div class="center">
+    <shared-ui-lib-uikit-label [label]="'त्वरित संपर्क'"></shared-ui-lib-uikit-label>
+    <ul>
+      <li>
+        <shared-ui-lib-uikit-button [type]="'regular'" [label]="'आयोजन'"></shared-ui-lib-uikit-button>
+      </li>
+      <li>
+        <shared-ui-lib-uikit-button [type]="'regular'" [label]="'मंडल'"></shared-ui-lib-uikit-button>
+      </li>
+      <li>
+        <shared-ui-lib-uikit-button [type]="'regular'" [label]="'मंदिर'"></shared-ui-lib-uikit-button>
+      </li>
+      <li>
+        <shared-ui-lib-uikit-button [type]="'regular'" [label]="'हमसे संपर्क करें'"></shared-ui-lib-uikit-button>
+      </li>
+      <li>
+        <shared-ui-lib-uikit-button [type]="'regular'" [label]="'ट्रस्टी'"></shared-ui-lib-uikit-button>
+      </li>
+      <li>
+        <shared-ui-lib-uikit-button [type]="'regular'" [label]="'गोपनीयता नीति'"></shared-ui-lib-uikit-button>
+      </li>
+    </ul>
+  </div>
+  <div class="right">
+    <shared-ui-lib-uikit-label [label]="'Follow Us'"></shared-ui-lib-uikit-label>
+    <div class="social-link-section">
+      <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
+                                  [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
+      <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
+                                  [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
+      <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
+                                  [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
+    </div>
+    <div class="map-section">
+
+    </div>
+  </div>
+</div>
+<div class="copy-right">
+  <shared-ui-lib-uikit-label
+    [label]="'कॉपीराइट ©2024 श्री विश्वकर्मा वंश सुथार समाज, बारवा द्वारा निर्मित'"></shared-ui-lib-uikit-label>
+</div>

@@ -58,4 +58,13 @@
 
   // icon
   --default-icon-color: var(--icon-color);
+
+  // Header
+  --header-hight: #{rem(90px)};
+  --header-logo-width: #{rem(70px)};
+  --header-logo-height: #{rem(70px)};
+
+  // Footer
+  --footer-logo-width: #{rem(90px)};
+  --footer-logo-height: #{rem(90px)};
 }

@@ -1,0 +1,51 @@
+//.main-container{
+// display: flex;
+//  flex-direction: row;
+//}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: var(--header-hight) !important;
+}
+
+
+//mat-toolbar {
+//  height: var(--header-hight) !important;
+//}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.btn-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+}
+
+.header-logo-section {
+  display: flex;
+}
+
+.header-logo {
+  display: block;
+  height: var(--header-logo-height);
+  width: var(--header-logo-width);
+  background-size: cover;
+}

@@ -7,12 +7,48 @@ $icon-size-large: (24px 'large');
 $default-icon-color: var(--default-icon-color);
 
 $icon-lists: (
-  //add: (
-  //  $icon-size-small,
-  //  $icon-size-regular,
-  //  $icon-size-medium,
-  //  $icon-size-large,
-  //),
+  address: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
+  calendar: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
+  event: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
+  schedule: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
+  call: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
+  mail: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
+  share: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+  ),
   header-logo:(
     $icon-size-large,
   ),
@@ -40,18 +76,121 @@ $icon-lists: (
   background: url('../assets/images/icons/large/logo.svg') no-repeat center;
 }
 
-//.icon-info-filled-color-large {
-//  background: url('../assets/images/icons/large/info-filled-color.svg') no-repeat center;
-//}
-//
-//.icon-info-filled-color-medium {
-//  background: url('../assets/images/icons/medium/info-filled-color.svg') no-repeat center;
-//}
-//
-//.icon-info-filled-color-regular {
-//  background: url('../assets/images/icons/regular/info-filled-color.svg') no-repeat center;
-//}
-//
-//.icon-info-filled-color-small {
-//  background: url('../assets/images/icons/small/info-filled-color.svg') no-repeat center;
-//}
+//---------------------- Address --------------------------
+.icon-address-large {
+  background: url('../assets/images/icons/large/address.svg') no-repeat center;
+}
+
+.icon-address-medium {
+  background: url('../assets/images/icons/medium/address.svg') no-repeat center;
+}
+
+.icon-address-regular {
+  background: url('../assets/images/icons/regular/address.svg') no-repeat center;
+}
+
+.icon-address-small {
+  background: url('../assets/images/icons/small/address.svg') no-repeat center;
+}
+
+//---------------------- Calendar --------------------------
+.icon-calendar-large {
+  background: url('../assets/images/icons/large/calendar.svg') no-repeat center;
+}
+
+.icon-calendar-medium {
+  background: url('../assets/images/icons/medium/calendar.svg') no-repeat center;
+}
+
+.icon-calendar-regular {
+  background: url('../assets/images/icons/regular/calendar.svg') no-repeat center;
+}
+
+.icon-calendar-small {
+  background: url('../assets/images/icons/small/calendar.svg') no-repeat center;
+}
+
+//---------------------- Event --------------------------
+.icon-event-large {
+  background: url('../assets/images/icons/large/event.svg') no-repeat center;
+}
+
+.icon-event-medium {
+  background: url('../assets/images/icons/medium/event.svg') no-repeat center;
+}
+
+.icon-event-regular {
+  background: url('../assets/images/icons/regular/event.svg') no-repeat center;
+}
+
+.icon-event-small {
+  background: url('../assets/images/icons/small/event.svg') no-repeat center;
+}
+
+//---------------------- Schedule --------------------------
+.icon-schedule-large {
+  background: url('../assets/images/icons/large/schedule.svg') no-repeat center;
+}
+
+.icon-schedule-medium {
+  background: url('../assets/images/icons/medium/schedule.svg') no-repeat center;
+}
+
+.icon-schedule-regular {
+  background: url('../assets/images/icons/regular/schedule.svg') no-repeat center;
+}
+
+.icon-schedule-small {
+  background: url('../assets/images/icons/small/schedule.svg') no-repeat center;
+}
+
+//---------------------- Call --------------------------
+.icon-call-large {
+  background: url('../assets/images/icons/large/call.svg') no-repeat center;
+}
+
+.icon-call-medium {
+  background: url('../assets/images/icons/medium/call.svg') no-repeat center;
+}
+
+.icon-call-regular {
+  background: url('../assets/images/icons/regular/call.svg') no-repeat center;
+}
+
+.icon-call-small {
+  background: url('../assets/images/icons/small/call.svg') no-repeat center;
+}
+
+//---------------------- mail --------------------------
+.icon-schedule-large {
+  background: url('../assets/images/icons/large/mail.svg') no-repeat center;
+}
+
+.icon-schedule-medium {
+  background: url('../assets/images/icons/medium/mail.svg') no-repeat center;
+}
+
+.icon-schedule-regular {
+  background: url('../assets/images/icons/regular/mail.svg') no-repeat center;
+}
+
+.icon-schedule-small {
+  background: url('../assets/images/icons/small/mail.svg') no-repeat center;
+}
+
+//---------------------- share --------------------------
+.icon-schedule-large {
+  background: url('../assets/images/icons/large/share.svg') no-repeat center;
+}
+
+.icon-schedule-medium {
+  background: url('../assets/images/icons/medium/share.svg') no-repeat center;
+}
+
+.icon-schedule-regular {
+  background: url('../assets/images/icons/regular/share.svg') no-repeat center;
+}
+
+.icon-schedule-small {
+  background: url('../assets/images/icons/small/share.svg') no-repeat center;
+}

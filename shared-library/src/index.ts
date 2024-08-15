@@ -13,3 +13,4 @@ export * from "./enum/label-key.enum";
 export * from "./faq/index";
 export * from "./utils/index";
 export * from "./gallery/index";
+export * from "./constants/ui.constants";

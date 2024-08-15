@@ -1,0 +1,2 @@
+<span *ngIf="!hasHtmlContent" [ngClass]="generateClass()" [matTooltip]="tooltip">{{label}}</span>
+<span *ngIf="hasHtmlContent" [ngClass]="generateClass()" [matTooltip]="tooltip" [innerHTML]="label"></span>

@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/main",
         "index": "apps/main/src/index.html",
         "main": "apps/main/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/main/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -29,7 +33,10 @@
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/main/webpack.config.ts"
-        }
+        },
+        "allowedCommonJsDependencies": [
+          "@vsd-common/lib"
+        ]
       },
       "configurations": {
         "production": {
@@ -85,7 +92,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/main/jest.config.ts"
       }

@@ -1,0 +1,22 @@
+<ng-container [ngSwitch]="type">
+  <ng-container *ngSwitchCase="'regular'">
+    <button (mousedown)="$event.preventDefault()" (click)="onClick($event)" mat-button>{{label}}</button>
+  </ng-container>
+  <ng-container *ngSwitchCase="'raised'">
+    <button (mousedown)="$event.preventDefault()" (click)="onClick($event)" mat-raised-button>{{label}}</button>
+  </ng-container>
+  <ng-container *ngSwitchCase="'stroked'">
+    <button (mousedown)="$event.preventDefault()" (click)="onClick($event)" mat-stroked-button>{{label}}</button>
+  </ng-container>
+  <ng-container *ngSwitchCase="'flat'">
+    <button (mousedown)="$event.preventDefault()" (click)="onClick($event)" mat-flat-button>{{label}}</button>
+  </ng-container>
+  <ng-container *ngSwitchCase="'link'">
+    <button (mousedown)="$event.preventDefault()" (click)="onClick($event)" mat-button>{{label}}</button>
+  </ng-container>
+  <ng-container *ngSwitchCase="'icon-only'">
+    <button (mousedown)="$event.preventDefault()" (click)="onClick($event)" mat-icon-button>
+      <shared-ui-lib-uikit-icon [name]="prefixIcon" [size]="prefixIconSize"></shared-ui-lib-uikit-icon>
+    </button>
+  </ng-container>
+</ng-container>
