@@ -1,0 +1,17 @@
+.history-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  shared-ui-lib-uikit-banner {
+    width: 100%;
+  }
+
+  .history-content{
+    margin-top: var(--spacing-48);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-32);
+  }
+}

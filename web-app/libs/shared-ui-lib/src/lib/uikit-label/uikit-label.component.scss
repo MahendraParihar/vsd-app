@@ -5,6 +5,12 @@
   text-align: left;
 }
 
+.section-title-large {
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-48);
+  text-align: center;
+}
 
 .title-large {
   font-size: var(--font-size-24);
@@ -13,7 +19,7 @@
   text-align: left;
 }
 
-.body{
+.body {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-20);

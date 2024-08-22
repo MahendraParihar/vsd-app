@@ -8,10 +8,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { UikitIconComponent } from './uikit-icon/uikit-icon.component';
 import { UikitLabelComponent } from './uikit-label/uikit-label.component';
 import { UikitButtonComponent } from './uikit-button/uikit-button.component';
+import { UikitBannerComponent } from './uikit-banner/uikit-banner/uikit-banner.component';
 
 @NgModule({
   imports: [MatButtonModule, MatTooltipModule, MatIconModule, MatMenuModule, CommonModule],
-  exports: [MatToolbarModule, UikitIconComponent, UikitButtonComponent, UikitLabelComponent],
-  declarations: [UikitIconComponent, UikitLabelComponent, UikitButtonComponent],
+  exports: [MatToolbarModule, UikitIconComponent, UikitButtonComponent, UikitLabelComponent, UikitBannerComponent],
+  declarations: [UikitIconComponent, UikitLabelComponent, UikitButtonComponent, UikitBannerComponent],
 })
 export class SharedUiLibModule {}
