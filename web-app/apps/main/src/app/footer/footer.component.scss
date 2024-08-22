@@ -48,13 +48,12 @@
   }
 
   .center {
-    ui {
-      li {
+    .nav {
+      ::ng-deep {
         shared-ui-lib-uikit-button {
-          ::ng-deep {
-            button .mat-mdc-button {
-              justify-content: flex-start !important;
-            }
+          .mdc-button {
+            justify-content: flex-start !important;
+            min-width: var(--footer-nav-btn-width) !important;
           }
         }
       }
