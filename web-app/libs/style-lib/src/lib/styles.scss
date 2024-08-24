@@ -32,6 +32,7 @@ $vsd-light-theme: mat.m2-define-light-theme((
 ));
 
 @include mat.all-component-themes($vsd-light-theme);
+@include mat.typography-hierarchy($vsd-typography);
 
 * {
   padding: 0;
@@ -41,8 +42,8 @@ $vsd-light-theme: mat.m2-define-light-theme((
 
 html,
 body {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
   height: 100%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

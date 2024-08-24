@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class UikitLabelComponent {
   @Input() label!: string;
-  @Input() class: string[] = ['body'];
+  @Input() class: string[] = ['mat-body-2'];
   @Input() tooltip!: string;
   @Input() hasHtmlContent: boolean = false;
 

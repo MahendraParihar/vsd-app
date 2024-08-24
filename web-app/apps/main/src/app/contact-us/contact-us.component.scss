@@ -47,7 +47,8 @@
             grid-template-columns: 40px 1fr;
           }
         }
-        .social-icons{
+
+        .social-icons {
           gap: var(--spacing-16);
           display: flex;
           flex-direction: row;
@@ -55,7 +56,15 @@
       }
 
       .form-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
     }
   }

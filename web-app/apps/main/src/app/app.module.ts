@@ -25,6 +25,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StyleLibModule } from '@web-app/style-lib';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { CoreModule } from '@web-core/lib';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     RouterModule.forRoot(appRoutes),
     SharedUiLibModule,
     StyleLibModule,
@@ -55,6 +59,10 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
