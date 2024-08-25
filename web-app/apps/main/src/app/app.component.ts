@@ -1,6 +1,6 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { LabelService, SharedService } from '@web-core/lib';
 import { Subscription } from 'rxjs';
+import { LabelService, SharedService } from '@vsd-web-app-core/lib';
 
 @Component({
   selector: 'vsd-web-app-root',

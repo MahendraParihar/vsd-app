@@ -14,7 +14,6 @@ import { TempleDetailComponent } from './temple/temple-detail/temple-detail.comp
 import { TempleListComponent } from './temple/temple-list/temple-list.component';
 import { EventDetailComponent } from './event/event-detail/event-detail.component';
 import { EventListComponent } from './event/event-list/event-list.component';
-import { SharedUiLibModule } from '@web-app/shared-ui-lib';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,12 +21,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
-import { StyleLibModule } from '@web-app/style-lib';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { CoreModule } from '@web-core/lib';
+import { CoreModule } from '@vsd-web-app-core/lib';
+import { SharedUiLibModule } from '@vsd-web-app/shared-ui-lib';
+import { StyleLibModule } from '@vsd-web-app/style-lib';
 
 @NgModule({
   declarations: [
