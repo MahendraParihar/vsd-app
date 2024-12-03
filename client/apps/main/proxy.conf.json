@@ -1,45 +1,46 @@
 {
-  "/api/event/*": {
+  "/api/event/**": {
     "target": "http://localhost:3331",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/family/*": {
+  "/api/family/**": {
     "target": "http://localhost:3332",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/job/*": {
+  "/api/job/**": {
     "target": "http://localhost:3333",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/lov/*": {
+  "/api/lov/**": {
     "target": "http://localhost:3334",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/core/*": {
+  "/api/core/**": {
     "target": "http://localhost:3330",
     "secure": false,
-    "changeOrigin": true
+    "changeOrigin": true,
+    "logLevel": "debug"
   },
-  "/api/mandal/*": {
+  "/api/mandal/**": {
     "target": "http://localhost:3335",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/matrimonial/*": {
+  "/api/matrimonial/**": {
     "target": "http://localhost:3336",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/news/*": {
+  "/api/news/**": {
     "target": "http://localhost:3337",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/temple/*": {
+  "/api/temple/**": {
     "target": "http://localhost:3338",
     "secure": false,
     "changeOrigin": true
