@@ -61,7 +61,6 @@ import { StyleLibModule } from '@vsd-web-app/style-lib';
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    FormsModule,
     MatInputModule,
   ],
   providers: [],

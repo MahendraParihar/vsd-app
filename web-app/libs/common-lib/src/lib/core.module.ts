@@ -19,7 +19,7 @@ export function appLabelInitialize(appLabelService: LabelService) {
     HttpService,
     StorageService,
     { provide: APP_INITIALIZER, useFactory: appLabelInitialize, deps: [LabelService], multi: true },
-    provideHttpClient()
+    provideHttpClient(),
   ],
   exports: [],
 })
