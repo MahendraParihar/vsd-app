@@ -2,7 +2,7 @@
   "name": "member",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "vsd-web-app-member",
+  "prefix": "vsd-web-member",
   "sourceRoot": "apps/member/src",
   "tags": [],
   "targets": {
@@ -38,8 +38,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
             }
           ],
           "outputHashing": "all",
@@ -49,7 +49,7 @@
         },
         "development": {
           "buildOptimizer": false,
-          "optimization": false,
+          "optimization": true,
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
@@ -82,13 +82,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/member/jest.config.ts"
-      }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",

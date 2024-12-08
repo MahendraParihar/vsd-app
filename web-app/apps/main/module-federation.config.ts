@@ -1,4 +1,4 @@
-import { ModuleFederationConfig } from '@nx/webpack';
+import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
   name: 'main',
@@ -14,7 +14,10 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
-  remotes: [],
+  remotes: ['member'],
 };
 
+/**
+ * Nx requires a default export of the config to allow correct resolution of the module federation graph.
+ **/
 export default config;

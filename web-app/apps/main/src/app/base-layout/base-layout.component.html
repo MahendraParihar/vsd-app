@@ -1,8 +1,3 @@
-<!--<vsd-web-app-header></vsd-web-app-header>-->
-<!--<ng-container class="main-container">-->
-<!--  <router-outlet></router-outlet>-->
-<!--  <vsd-web-app-footer></vsd-web-app-footer>-->
-<!--</ng-container>-->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -13,24 +8,21 @@
                                  [label]="'श्री विश्वकर्मा वंश - सुथार समाज'"></shared-ui-lib-uikit-label>
     </mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let btn of btnList; let i = index" mat-list-item (click)="onClick(i, btn)">{{btn.label}}</a>
+      <a *ngFor="let btn of btnList; let i = index" mat-list-item (click)="onClick(i, btn)">{{ btn.label }}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       @if (isHandset$ | async) {
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+        <shared-ui-lib-uikit-button
+          aria-label="Toggle sidenav"
+          (click)="drawer.toggle()">
+        </shared-ui-lib-uikit-button>
       }
       <ng-container *ngIf="(isHandset$ | async) === false">
         <div class="fill-remaining-space">
           <div class="header-logo-section">
-            <mat-icon class="logo header-logo"></mat-icon>
+            <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
             <div class="header-title">
               <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
                                          [label]="'श्री विश्वकर्मा वंश - सुथार समाज</br>गोडवाड - पट्टा - मालवा'"></shared-ui-lib-uikit-label>

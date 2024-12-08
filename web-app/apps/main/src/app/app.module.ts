@@ -1,70 +1,61 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
-import { BaseLayoutComponent } from './base-layout/base-layout.component';
-import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { HistoryComponent } from './history/history.component';
-import { MandalListComponent } from './mandal/mandal-list/mandal-list.component';
-import { MandalDetailComponent } from './mandal/mandal-detail/mandal-detail.component';
-import { TempleDetailComponent } from './temple/temple-detail/temple-detail.component';
-import { TempleListComponent } from './temple/temple-list/temple-list.component';
-import { EventDetailComponent } from './event/event-detail/event-detail.component';
-import { EventListComponent } from './event/event-list/event-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { BrowserModule } from '@angular/platform-browser';
+import { CoreLibModule } from '@core-lib';
+import { HomeComponent } from './home/home.component';
+import { BaseLayoutComponent } from './base-layout/base-layout.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { EventComponent } from './event/event.component';
+import { EventDetailComponent } from './event/details/event-detail.component';
+import { HistoryComponent } from './history/history.component';
+import { MandalComponent } from './mandal/mandal.component';
+import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
+import { TempleComponent } from './temple/temple.component';
+import { TempleDetailComponent } from './temple/details/temple-detail.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { SharedUiLibModule } from '@shared-ui-lib';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { CoreModule } from '@vsd-web-app-core/lib';
-import { SharedUiLibModule } from '@vsd-web-app/shared-ui-lib';
-import { StyleLibModule } from '@vsd-web-app/style-lib';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BaseLayoutComponent,
-    FooterComponent,
     HomeComponent,
+    BaseLayoutComponent,
+    HeaderComponent,
+    FooterComponent,
     AboutUsComponent,
     ContactUsComponent,
-    HistoryComponent,
-    MandalListComponent,
-    MandalDetailComponent,
-    TempleDetailComponent,
-    TempleListComponent,
+    EventComponent,
     EventDetailComponent,
-    EventListComponent,
+    HistoryComponent,
+    MandalComponent,
+    MandalDetailComponent,
+    TempleComponent,
+    TempleDetailComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CoreModule,
     RouterModule.forRoot(appRoutes),
-    SharedUiLibModule,
-    StyleLibModule,
     CommonModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
+    SharedUiLibModule,
+    CoreLibModule,
     MatSidenavModule,
+    MatToolbarModule,
     MatListModule,
-    FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

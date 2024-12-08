@@ -1,16 +1,15 @@
 import { Route } from '@angular/router';
-import { loadRemoteModule } from '@nx/angular/mf';
 import { BaseLayoutComponent } from './base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HistoryComponent } from './history/history.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { EventListComponent } from './event/event-list/event-list.component';
-import { EventDetailComponent } from './event/event-detail/event-detail.component';
-import { TempleListComponent } from './temple/temple-list/temple-list.component';
-import { TempleDetailComponent } from './temple/temple-detail/temple-detail.component';
-import { MandalListComponent } from './mandal/mandal-list/mandal-list.component';
-import { MandalDetailComponent } from './mandal/mandal-detail/mandal-detail.component';
+import { EventDetailComponent } from './event/details/event-detail.component';
+import { TempleDetailComponent } from './temple/details/temple-detail.component';
+import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
+import { MandalComponent } from './mandal/mandal.component';
+import { TempleComponent } from './temple/temple.component';
+import { EventComponent } from './event/event.component';
 
 export const appRoutes: Route[] = [
   {
@@ -19,49 +18,44 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: HomeComponent
       },
       {
         path: 'about-us',
-        component: AboutUsComponent,
+        component: AboutUsComponent
       },
       {
         path: 'history',
-        component: HistoryComponent,
+        component: HistoryComponent
       },
       {
         path: 'contact-us',
-        component: ContactUsComponent,
+        component: ContactUsComponent
       },
       {
         path: 'event',
-        component: EventListComponent,
+        component: EventComponent
       },
       {
         path: 'event/:url',
-        component: EventDetailComponent,
+        component: EventDetailComponent
       },
       {
         path: 'temple',
-        component: TempleListComponent,
+        component: TempleComponent
       },
       {
         path: 'temple/:url',
-        component: TempleDetailComponent,
+        component: TempleDetailComponent
       },
       {
         path: 'mandal',
-        component: MandalListComponent,
+        component: MandalComponent
       },
       {
         path: 'mandal/:url',
-        component: MandalDetailComponent,
-      },
-    ],
-  },
-  {
-    path: 'member',
-    loadChildren: () =>
-      loadRemoteModule('member', './Module').then((m) => m.RemoteEntryModule),
-  },
+        component: MandalDetailComponent
+      }
+    ]
+  }
 ];

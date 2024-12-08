@@ -1,16 +1,16 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LabelService, SharedService } from '@vsd-web-app-core/lib';
+import { LabelService, SharedService } from '@core-lib';
 
 @Component({
   selector: 'vsd-web-app-root',
   templateUrl: './app.component.html',
+  standalone: false,
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnDestroy, AfterContentChecked, OnInit {
   loader = false;
   loaderSubscription!: Subscription;
-  title = 'main';
 
   constructor(private labelService: LabelService,
               private sharedService: SharedService,

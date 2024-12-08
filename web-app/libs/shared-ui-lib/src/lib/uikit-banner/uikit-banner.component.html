@@ -1,0 +1,8 @@
+<ng-container *ngIf="banner">
+  <div *ngIf="banner.length === 0" class="single-banner">
+    <img [src]="banner[0]" alt=""/>
+  </div>
+  <div *ngIf="banner.length > 0" class="multi-banner">
+    <img [src]="banner[0]" alt=""/>
+  </div>
+</ng-container>

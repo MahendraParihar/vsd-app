@@ -4,6 +4,7 @@ import { IconNameType, IconSizeType } from '@vsd-common/lib';
 @Component({
   selector: 'shared-ui-lib-uikit-icon',
   templateUrl: './uikit-icon.component.html',
+  standalone: false,
   styleUrl: './uikit-icon.component.scss',
 })
 export class UikitIconComponent implements OnChanges {

@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'shared-ui-lib-uikit-label',
   templateUrl: './uikit-label.component.html',
+  standalone: false,
   styleUrl: './uikit-label.component.scss',
 })
 export class UikitLabelComponent {

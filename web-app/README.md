@@ -21,11 +21,15 @@ nx g @nx/angular:host apps/employee --remotes=login --dynamic
 Add New Remote Project
 ```
 nx g @nx/angular:remote apps/todo --host=main --standalone=false  --prefix=vsd
+nx g @nx/angular:remote apps/member --prefix=vsd-web-member --host=main --standalone=false
 ```
 
 Add New Lib Project
 ```
-nx g @nx/angular:library shared-ui-lib --directory=libs --standalone=false  --prefix=shared-ui-lib
+nx g @nx/angular:lib libs/shared-ui-lib --standalone=false  --prefix=shared-ui-lib
+nx g @nx/angular:lib libs/member-lib --standalone=false  --prefix=member-lib
+nx g @nx/angular:lib libs/style-lib --standalone=false  --prefix=style-lib
+nx g @nx/angular:lib libs/common-lib --standalone=false  --prefix=common-lib
 ```
 Generate component
 ```
