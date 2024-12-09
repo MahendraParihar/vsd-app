@@ -30,6 +30,7 @@ import { MandalService } from './mandal/services/mandal.service';
 import { CommonService } from './common.service';
 import { EventService } from './event/services/event.service';
 import { TempleService } from './temple/services/temple.service';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { TempleService } from './temple/services/temple.service';
     MapAdvancedMarker,
     MapMarker,
     MapInfoWindow,
+    MatCardModule,
   ],
   providers: [
     MandalService,

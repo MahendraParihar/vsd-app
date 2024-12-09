@@ -29,6 +29,16 @@ export class TempleController {
     }
   }
 
+  @Public()
+  @Post('public/:id')
+  loadPublicTempleDetail(@Param() id: number): Promise<ITempleList> {
+    try {
+      return this.templeService.loadDetailById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
   @Get(':id')
   loadTemple(@Param('id') id: number) {
     try {

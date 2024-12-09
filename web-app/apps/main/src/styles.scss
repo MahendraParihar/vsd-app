@@ -41,6 +41,7 @@ html {
     }
   }
 }
+
 @media only screen and (min-width: 1920px) {
   .mat-icon {
     background-size: cover !important;
@@ -52,12 +53,14 @@ body {
   line-height: inherit;
   margin: 0;
 }
+
 h1,
 h2,
 p,
 pre {
   margin: 0;
 }
+
 *,
 ::before,
 ::after {
@@ -66,15 +69,18 @@ pre {
   border-style: solid;
   border-color: currentColor;
 }
+
 h1,
 h2 {
   font-size: inherit;
   font-weight: inherit;
 }
+
 a {
   color: inherit;
   text-decoration: inherit;
 }
+
 svg {
   display: block;
   vertical-align: middle;
@@ -84,6 +90,7 @@ svg {
   shape-rendering: auto;
   text-rendering: optimizeLegibility;
 }
+
 pre {
   background-color: rgba(55, 65, 81, 1);
   border-radius: 0.25rem;
@@ -91,4 +98,20 @@ pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   overflow: scroll;
   padding: 0.5rem 0.75rem;
+}
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-16);
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .grid-item {
+
+  }
 }

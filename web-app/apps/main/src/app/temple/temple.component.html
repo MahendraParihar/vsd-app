@@ -4,8 +4,13 @@
   <div class="temple-list-content">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
-    <div class="grid-list">
-
+    <div class="grid-list" *ngIf="dataSet && dataSet.data">
+      <mat-card class="grid-item" appearance="outlined" *ngFor="let item of dataSet.data">
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-actions>
+          <mat-card-title>{{ item.templeName }}</mat-card-title>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>

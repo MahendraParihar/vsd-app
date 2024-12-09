@@ -1,5 +1,5 @@
-import {IManageEvent} from '@vsd-common/lib';
-import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { IManageEvent, IManageAddress } from '@vsd-common/lib';
+import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class EventDto implements IManageEvent {
   @IsOptional()
@@ -20,4 +20,5 @@ export class EventDto implements IManageEvent {
   time: Date;
   visitedCount: number;
 
+  address: IManageAddress;
 }

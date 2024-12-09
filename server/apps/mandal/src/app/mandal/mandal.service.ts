@@ -32,30 +32,14 @@ export class MandalService {
         },
       });
     }
-    const { rows, count } = await this.mandalModel.scope('list').findAndCountAll({
+    const { rows, count } = await this.mandalModel.scope('details').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
       order: [['mandalName', 'asc']],
     });
     const data = rows.map((data: MandalModel) => {
-      return <IMandalList>{
-        mandalId: data.mandalId,
-        mandalName: data.mandalName,
-        active: data.active,
-        createdAt: data.createdAt,
-        createdBy: data.createdBy,
-        updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
-        createdByUser: <IBaseAdminUser>{
-          firstName: data.createdByUser.firstName,
-          lastName: data.createdByUser.lastName,
-        },
-        updatedByUser: <IBaseAdminUser>{
-          firstName: data.updatedByUser.firstName,
-          lastName: data.updatedByUser.lastName,
-        },
-      };
+      return this.formatMandal(data);
     });
     return <ITableList<IMandalList>>{
       data: data,
@@ -83,6 +67,37 @@ export class MandalService {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
 
+    return this.formatMandal(data);
+  }
+
+  async manage(obj: IManageMandal, userId: number) {
+    const dataObj = {
+      mandalName: obj.mandalName,
+      modifiedBy: userId,
+    };
+    if (obj.imagePath) {
+      Object.assign(dataObj, { imagePath: obj.imagePath });
+    }
+    if (obj.mandalId) {
+      await this.mandalModel.update(dataObj, { where: { mandalId: obj.mandalId } });
+    } else {
+      Object.assign(dataObj, { createdBy: userId });
+      await this.mandalModel.create(dataObj);
+    }
+  }
+
+  async updateStatus(id: number, body: IStatusChange, userId: number) {
+    const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
+    obj.active = body.status;
+    obj.modifiedBy = userId;
+    await obj.save();
+  }
+
+  async loadPrimaryMandalInfo(): Promise<IMandalDetail> {
+    return await this.loadDetailById(12);
+  }
+
+  private formatMandal(data: MandalModel) {
     return <IMandalDetail>{
       mandalId: data.mandalId,
       mandalName: data.mandalName,
@@ -113,30 +128,4 @@ export class MandalService {
     };
   }
 
-  async manage(obj: IManageMandal, userId: number) {
-    const dataObj = {
-      mandalName: obj.mandalName,
-      modifiedBy: userId,
-    };
-    if (obj.imagePath) {
-      Object.assign(dataObj, { imagePath: obj.imagePath });
-    }
-    if (obj.mandalId) {
-      await this.mandalModel.update(dataObj, { where: { mandalId: obj.mandalId } });
-    } else {
-      Object.assign(dataObj, { createdBy: userId });
-      await this.mandalModel.create(dataObj);
-    }
-  }
-
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
-    obj.active = body.status;
-    obj.modifiedBy = userId;
-    await obj.save();
-  }
-
-  async loadPrimaryMandalInfo(): Promise<IMandalDetail> {
-    return await this.loadDetailById(12);
-  }
 }

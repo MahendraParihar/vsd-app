@@ -1,5 +1,5 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
-import { IAddressList, IManageAddress } from "../location";
+import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseTemple {
   templeName: string;
@@ -18,7 +18,7 @@ export interface ITemple extends IBaseTemple, ICommonTable {
 }
 
 export interface ITempleList extends ITemple {
-  address: IAddressList;
+  address: IAddressDetail;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }

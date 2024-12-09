@@ -1,4 +1,5 @@
 import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseEvent {
   title: string;
@@ -11,6 +12,7 @@ export interface IBaseEvent {
 
 export interface IManageEvent extends IBaseEvent {
   eventId?: number;
+  address: IManageAddress;
 }
 
 export interface IEvent extends IBaseEvent, ICommonTable {
@@ -19,6 +21,7 @@ export interface IEvent extends IBaseEvent, ICommonTable {
 }
 
 export interface IEventList extends IEvent {
+  address: IAddressDetail;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }
