@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
+import { UikitInputErrorComponent } from './uikit-input-error/uikit-input-error.component';
+import { MatError } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -14,18 +16,21 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatError,
   ],
   declarations: [
     UikitIconComponent,
     UikitLabelComponent,
     UikitButtonComponent,
     UikitBannerComponent,
+    UikitInputErrorComponent,
   ],
   exports: [
     UikitIconComponent,
     UikitButtonComponent,
     UikitLabelComponent,
-    UikitBannerComponent
-  ]
+    UikitBannerComponent,
+    UikitInputErrorComponent,
+  ],
 })
 export class SharedUiLibModule {}

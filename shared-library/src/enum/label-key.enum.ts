@@ -97,4 +97,17 @@ export enum LabelKey {
   LOGIN_PAGE_TITLE = 'login_page_title',
   LOGIN_SUB_TITLE = 'login_sub_title',
   SUCCESS_STATUS_CHANGE = 'success_status_change',
+
+  ERROR_IN_VALID_DATE = 'error_invalid_date',
+  ERROR_IN_VALID_NUMBER = 'error_invalid_number',
+  ERROR_IN_VALID_MAX_LENGTH = 'error_max_length',
+  ERROR_IN_VALID_MAX_VALUE = 'error_max_value',
+  ERROR_IN_VALID_MIN_LENGTH = 'error_min_length',
+  ERROR_IN_VALID_MIN_VALUE = 'error_min_value',
+  ERROR_REQUIRED = 'error_required',
+
+  FORM_NAME = 'form_name',
+  FORM_EMAIL_ID = 'form_email_id',
+  FORM_PHONE_NUMBER = 'form_phone_number',
+  FORM_MESSAGE = 'form_message',
 }

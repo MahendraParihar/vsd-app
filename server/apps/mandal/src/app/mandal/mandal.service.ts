@@ -1,18 +1,21 @@
-import {Injectable} from '@nestjs/common';
-import {InjectModel} from '@nestjs/sequelize';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import {
+  IAddressDetail,
   IBaseAdminUser,
   IManageMandal,
   IMandal,
+  IMandalAdditionalInfo,
+  IMandalDetail,
   IMandalList,
   IStatusChange,
   ITableList,
   ITableListFilter,
-  LabelKey
+  LabelKey,
 } from '@vsd-common/lib';
-import {MandalModel} from '../models/mandal.model';
-import {Op} from 'sequelize';
-import {LabelService} from "@server/common";
+import { MandalModel } from '../models/mandal.model';
+import { Op } from 'sequelize';
+import { LabelService } from '@server/common';
 
 @Injectable()
 export class MandalService {
@@ -29,11 +32,11 @@ export class MandalService {
         },
       });
     }
-    const {rows, count} = await this.mandalModel.scope('list').findAndCountAll({
+    const { rows, count } = await this.mandalModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[['mandalName', 'asc']]
+      order: [['mandalName', 'asc']],
     });
     const data = rows.map((data: MandalModel) => {
       return <IMandalList>{
@@ -61,7 +64,7 @@ export class MandalService {
   }
 
   async getById(id: number): Promise<IMandal> {
-    const obj = await this.mandalModel.findOne({where: {mandalId: id}});
+    const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
@@ -71,12 +74,17 @@ export class MandalService {
     };
   }
 
-  async loadDetailById(id: number): Promise<IMandalList> {
-    const data = await this.mandalModel.scope('list').findOne({
-      where: {mandalId: id}
+  async loadDetailById(id: number): Promise<IMandalDetail> {
+    console.log('-------------------------', id);
+    const data = await this.mandalModel.scope('details').findOne({
+      where: { mandalId: id },
     });
 
-    return <IMandalList>{
+    if (!data) {
+      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
+    }
+
+    return <IMandalDetail>{
       mandalId: data.mandalId,
       mandalName: data.mandalName,
       active: data.active,
@@ -92,6 +100,17 @@ export class MandalService {
         firstName: data.updatedByUser.firstName,
         lastName: data.updatedByUser.lastName,
       },
+      address: <IAddressDetail>{
+        address: data.address.address,
+        pinCode: data.address.pinCode,
+        latitude: data.address.latitude,
+        longitude: data.address.longitude,
+        country: data.address.country.country,
+        state: data.address.state.state,
+        district: data.address.district.district,
+        cityVillage: data.address.cityVillage.cityVillage,
+      },
+      additionalInfo: data.additionalInfo as IMandalAdditionalInfo,
     };
   }
 
@@ -101,20 +120,24 @@ export class MandalService {
       modifiedBy: userId,
     };
     if (obj.imagePath) {
-      Object.assign(dataObj, {imagePath: obj.imagePath});
+      Object.assign(dataObj, { imagePath: obj.imagePath });
     }
     if (obj.mandalId) {
-      await this.mandalModel.update(dataObj, {where: {mandalId: obj.mandalId}});
+      await this.mandalModel.update(dataObj, { where: { mandalId: obj.mandalId } });
     } else {
-      Object.assign(dataObj, {createdBy: userId});
+      Object.assign(dataObj, { createdBy: userId });
       await this.mandalModel.create(dataObj);
     }
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.mandalModel.findOne({where: {mandalId: id}});
+    const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
     obj.active = body.status;
     obj.modifiedBy = userId;
     await obj.save();
+  }
+
+  async loadPrimaryMandalInfo(): Promise<IMandalDetail> {
+    return await this.loadDetailById(12);
   }
 }

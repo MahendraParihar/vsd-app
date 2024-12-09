@@ -6,7 +6,10 @@
     <div class="details">
       <div class="address-section">
         <div class="map-section">
-
+          <google-map [options]="mapOptions" height="100%" width="100%">
+            <map-marker [position]="marker.position"></map-marker>
+            <map-info-window>{{ infoContent }}</map-info-window>
+          </google-map>
         </div>
         <div class="address-title">
           <shared-ui-lib-uikit-label [class]="['mat-headline-1']"
@@ -54,12 +57,50 @@
       </div>
       <div class="form-section">
         <shared-ui-lib-uikit-label [class]="['mat-headline-5']"
-                                   [label]="'हमसे संपर्क करने में संकोच न करें'">
-          <form [formGroup]="formGroup" class="form-group">
-            <label>Name</label>
-            <input formControlName="name" required type="text">
-          </form>
-        </shared-ui-lib-uikit-label>
+                                   [label]="'हमसे संपर्क करने में संकोच न करें'"></shared-ui-lib-uikit-label>
+        <form [formGroup]="formGroup" class="form-group">
+          <div class="form-item">
+            <label for="name">{{ labelService.labels.get(labelKeys.FORM_NAME) }}</label>
+            <mat-form-field>
+              <input id="name" matInput formControlName="name" placeholder="">
+            </mat-form-field>
+            <app-input-error [controlName]="labelService.labels.get(labelKeys.FORM_NAME)"
+                             [labels]="labelService.labels"
+                             [control]="formGroup.get('name')"></app-input-error>
+          </div>
+          <div class="form-item">
+            <label for="email">{{ labelService.labels.get(labelKeys.FORM_EMAIL_ID) }}</label>
+            <mat-form-field>
+              <input id="email" type="email" matInput formControlName="emailId" placeholder="">
+            </mat-form-field>
+
+            <app-input-error [controlName]="labelService.labels.get(labelKeys.FORM_EMAIL_ID)"
+                             [labels]="labelService.labels"
+                             [control]="formGroup.get('emailId')"></app-input-error>
+          </div>
+          <div class="form-item">
+            <label for="phoneNumber">{{ labelService.labels.get(labelKeys.FORM_PHONE_NUMBER) }}</label>
+            <mat-form-field>
+              <input id="phoneNumber" type="text" matInput formControlName="phoneNumber" placeholder="">
+            </mat-form-field>
+
+            <app-input-error [controlName]="labelService.labels.get(labelKeys.FORM_PHONE_NUMBER)"
+                             [labels]="labelService.labels"
+                             [control]="formGroup.get('phoneNumber')"></app-input-error>
+          </div>
+          <div class="form-item">
+            <label for="message">{{ labelService.labels.get(labelKeys.FORM_MESSAGE) }}</label>
+            <mat-form-field>
+            <textarea matInput formControlName="message" id="message" rows="3"
+                      placeholder=""></textarea>
+            </mat-form-field>
+
+            <app-input-error [controlName]="labelService.labels.get(labelKeys.FORM_MESSAGE)"
+                             [labels]="labelService.labels"
+                             [control]="formGroup.get('message')"></app-input-error>
+
+          </div>
+        </form>
       </div>
     </div>
   </div>

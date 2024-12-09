@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IBaseAdminUser, ICommonTable } from '../base.interface';
 
 export interface IBaseCountry {
   country: string;
@@ -114,4 +114,15 @@ export interface IAddressList extends IAddress {
   country: ICountry;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
+}
+
+export interface IAddressDetail {
+  address: string;
+  pinCode: string;
+  latitude: string;
+  longitude: string;
+  country: string;
+  state: string;
+  district: string;
+  cityVillage: string;
 }

@@ -8,4 +8,18 @@ import { Component, Input } from '@angular/core';
 })
 export class UikitBannerComponent {
   @Input() banner!: string[];
+
+  slideIndex: number = 0;
+
+  nextSlide() {
+    if (this.slideIndex < this.banner.length - 1) {
+      this.slideIndex++;
+    }
+  }
+
+  previousSlide() {
+    if (this.slideIndex > 0) {
+      this.slideIndex--;
+    }
+  }
 }

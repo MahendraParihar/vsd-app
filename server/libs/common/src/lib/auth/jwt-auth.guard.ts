@@ -10,7 +10,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
   canActivate(context: ExecutionContext) {
     const scope = this.reflector.getAllAndOverride<string>(AUTH_SCOPE, [context.getHandler(), context.getClass()]);
-    if (scope === PUBLIC_API) {
+    if (!scope || scope === PUBLIC_API) {
       return true;
     }
     // Add your custom authentication logic here

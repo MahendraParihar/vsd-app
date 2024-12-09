@@ -1,0 +1,82 @@
+.contact-us-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  shared-ui-lib-uikit-banner {
+    width: 100%;
+  }
+
+  .contact-us-content {
+    margin-top: var(--spacing-48);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-32);
+
+    .details {
+      gap: var(--spacing-24);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      .address-section {
+
+        display: flex;
+        gap: var(--spacing-16);
+        flex-direction: column;
+        align-items: flex-start;
+
+        .map-section {
+          width: 100%;
+          height: 400px;
+        }
+
+        .address-title {
+          gap: var(--spacing-4);
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .address-info {
+          gap: var(--spacing-16);
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          .address-item {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+          }
+        }
+
+        .social-icons {
+          gap: var(--spacing-16);
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      .form-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .form-group {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--spacing-16);
+        }
+
+        .form-item {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

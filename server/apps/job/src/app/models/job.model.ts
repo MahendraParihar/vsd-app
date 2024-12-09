@@ -1,15 +1,15 @@
 import {
-  Column,
-  DataType,
-  Table,
-  Model,
-  UpdatedAt,
-  CreatedAt,
-  ForeignKey,
   BelongsTo,
-  Scopes
+  Column,
+  CreatedAt,
+  DataType,
+  ForeignKey,
+  Model,
+  Scopes,
+  Table,
+  UpdatedAt,
 } from 'sequelize-typescript';
-import {AddressModel, AdminUserModel} from '@server/common';
+import { AdminUserModel } from '@server/common';
 
 @Table({
   tableName: 'txn_job',

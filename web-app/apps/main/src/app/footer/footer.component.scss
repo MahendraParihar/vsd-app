@@ -14,8 +14,10 @@
   color: var(--black) !important;
 
   .header-logo {
-    height: var(--footer-logo-height);
-    width: var(--footer-logo-width);
+    display: block;
+    height: var(--header-logo-height);
+    width: var(--header-logo-width);
+    background-size: cover;
   }
 
   .left {

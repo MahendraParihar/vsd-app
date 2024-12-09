@@ -1,5 +1,5 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
-import { IAddressList, IManageAddress } from "../location";
+import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseMandal {
   mandalName: string;
@@ -18,7 +18,18 @@ export interface IMandal extends IBaseMandal, ICommonTable {
 }
 
 export interface IMandalList extends IMandal {
-  address: IAddressList;
+  address: IAddressDetail;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
+}
+
+export interface IMandalAdditionalInfo {
+  regNo?: string;
+  emailId?: string;
+  phoneNumber?: string;
+  socialSiteLink?: { label: string, link: string, icon: string }[];
+}
+
+export interface IMandalDetail extends IMandalList {
+  additionalInfo?: IMandalAdditionalInfo;
 }

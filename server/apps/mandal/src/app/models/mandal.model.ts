@@ -7,9 +7,17 @@ import {
   Model,
   Scopes,
   Table,
-  UpdatedAt
+  UpdatedAt,
 } from 'sequelize-typescript';
-import { AddressModel, AdminUserModel } from '@server/common';
+import {
+  AddressModel,
+  AdminUserModel,
+  CityVillageModel,
+  CountryModel,
+  DistrictModel,
+  StateModel,
+} from '@server/common';
+import { IMandalAdditionalInfo } from '@vsd-common/lib';
 
 @Table({
   tableName: 'mst_mandal',
@@ -36,6 +44,42 @@ import { AddressModel, AdminUserModel } from '@server/common';
         model: AddressModel,
         required: true,
         as: 'address',
+      },
+    ],
+  },
+  details: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+        include: [
+          {
+            required: true,
+            model: CountryModel,
+          }, {
+            required: true,
+            model: StateModel,
+          }, {
+            required: true,
+            model: DistrictModel,
+          }, {
+            required: true,
+            model: CityVillageModel,
+          },
+        ],
       },
     ],
   },
@@ -75,6 +119,13 @@ export class MandalModel extends Model<MandalModel> {
     type: DataType.JSONB,
   })
   imagePath: object;
+
+  @Column({
+    field: 'additional_info',
+    allowNull: true,
+    type: DataType.JSONB,
+  })
+  additionalInfo: IMandalAdditionalInfo;
 
   @Column({
     field: 'active',

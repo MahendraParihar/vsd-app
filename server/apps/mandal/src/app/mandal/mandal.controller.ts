@@ -1,54 +1,74 @@
-import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
-import {StatusChangeDto, TableListDto} from '@server/common';
-import {IMandalList, ITableList} from '@vsd-common/lib';
-import {MandalService} from './mandal.service';
-import {MandalDto} from "./dto/mandal.dto";
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Public, StatusChangeDto, TableListDto } from '@server/common';
+import { IMandalList, ITableList } from '@vsd-common/lib';
+import { MandalService } from './mandal.service';
+import { MandalDto } from './dto/mandal.dto';
 
-@Controller('mandal')
+@Controller()
 export class MandalController {
   constructor(private mandalService: MandalService) {
   }
 
-  @Post()
-  loadMandals(@Body() payload: TableListDto): Promise<ITableList<IMandalList>> {
+  @Public()
+  @Post('public')
+  async loadPublicMandals(@Body() payload: TableListDto): Promise<ITableList<IMandalList>> {
     try {
-      return this.mandalService.load(payload);
+      return await this.mandalService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Post()
+  async loadMandals(@Body() payload: TableListDto): Promise<ITableList<IMandalList>> {
+    try {
+      return await this.mandalService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Public()
+  @Get('public')
+  async loadPrimaryMandal() {
+    try {
+      return await this.mandalService.loadPrimaryMandalInfo();
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Get(':id')
-  loadMandal(@Param('id') id: number) {
+  async loadMandal(@Param('id') id: number) {
     try {
-      return this.mandalService.getById(id);
+      return await this.mandalService.getById(id);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Get('details/:id')
-  loadMandalDetail(@Param('id') id: number) {
+  async loadMandalDetail(@Param('id') id: number) {
     try {
-      return this.mandalService.loadDetailById(id);
+      return await this.mandalService.loadDetailById(id);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post()
-  manageMandal(@Body() body: MandalDto, userId: number) {
+  async manageMandal(@Body() body: MandalDto, userId: number) {
     try {
-      return this.mandalService.manage(body, userId);
+      return await this.mandalService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateMandalStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  async updateMandalStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
     try {
-      return this.mandalService.updateStatus(id, statusChange, 1);
+      return await this.mandalService.updateStatus(id, statusChange, 1);
     } catch (e) {
       throw new Error(e);
     }
