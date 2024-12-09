@@ -1,12 +1,8 @@
-<div class="history-section">
-  <shared-ui-lib-uikit-banner [banner]="['https://as1.ftcdn.net/v2/jpg/04/01/42/38/1000_F_401423804_tLq8txQQjVPLid3vFkXz9JnulsL3lexU.jpg']"></shared-ui-lib-uikit-banner>
+<div class="history-section" *ngIf="legalPage">
+  <shared-ui-lib-uikit-banner
+    [banner]="['https://as1.ftcdn.net/v2/jpg/04/01/42/38/1000_F_401423804_tLq8txQQjVPLid3vFkXz9JnulsL3lexU.jpg']"></shared-ui-lib-uikit-banner>
   <div class="history-content">
-    <shared-ui-lib-uikit-label [class]="['mat-headline-3']" [label]="'इतिहास'"></shared-ui-lib-uikit-label>
-    <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="'Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet.\n'+
-'\n'+
-'Minim diam at ipsum tempor. Augue feugait luptatum in lorem tincidunt sed eros elitr aliquip suscipit. Diam molestie sanctus ut. Sadipscing iriure dolor rebum et justo diam nonumy dolore ut sit ipsum ut lorem. No nihil eu lorem sea.\n'+
-'\n'+
-'Erat no euismod diam elitr diam erat velit. Diam kasd ipsum sit est laoreet diam commodo laoreet exerci congue hendrerit in vel et takimata accusam est. Elitr sanctus volutpat id at clita kasd et ut sit te et gubergren sadipscing eos takimata sadipscing.\n'+
-'Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua at vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren no sea takimata sanctus est lorem ipsum dolor sit amet.'"></shared-ui-lib-uikit-label>
+    <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']" [label]="pageTitle"></shared-ui-lib-uikit-label>
+    <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="legalPage.details"></shared-ui-lib-uikit-label>
   </div>
 </div>

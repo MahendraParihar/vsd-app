@@ -83,6 +83,8 @@ import { CountryService } from './location';
 import { DistrictService } from './location';
 import { StateService } from './location';
 import { MediaTypeService } from './gallery';
+import { LegalPagesModel } from './models/legal-pages.model';
+import { PagesService } from './common/pages.service';
 
 const commonModels = [
   LabelModel,
@@ -127,6 +129,7 @@ const commonModels = [
   TableModel,
   LogErrorModel,
   AppConfigModel,
+  LegalPagesModel,
 ];
 
 export class CommonModule {
@@ -175,6 +178,7 @@ export class CommonModule {
         StateService,
         FaqCategoryService,
         LabelDataService,
+        PagesService,
         {
           provide: APP_GUARD,
           useClass: JwtAuthGuard,
@@ -239,6 +243,7 @@ export class CommonModule {
         FaqCategoryService,
         LabelDataService,
         LabelModule,
+        PagesService,
       ],
     };
   }

@@ -75,7 +75,6 @@ export class MandalService {
   }
 
   async loadDetailById(id: number): Promise<IMandalDetail> {
-    console.log('-------------------------', id);
     const data = await this.mandalModel.scope('details').findOne({
       where: { mandalId: id },
     });

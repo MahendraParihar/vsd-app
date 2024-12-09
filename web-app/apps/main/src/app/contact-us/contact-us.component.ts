@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LabelService } from '@core-lib';
-import { IMandalDetail, LabelKey } from '@vsd-common/lib';
+import { IMandalDetail, LabelKey, convertAddress } from '@vsd-common/lib';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { MandalService } from '../mandal/services/mandal.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'vsd-web-app-contact-us',
@@ -12,6 +13,7 @@ import { MandalService } from '../mandal/services/mandal.service';
   styleUrl: './contact-us.component.scss',
 })
 export class ContactUsComponent implements OnInit, AfterViewInit {
+  pageTitle!:string | undefined;
   labelKeys = LabelKey;
 
   mapOptions: google.maps.MapOptions = {
@@ -39,7 +41,12 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   @ViewChild(GoogleMap) map!: GoogleMap;
 
   constructor(public labelService: LabelService,
-              private mandalService: MandalService) {
+              private mandalService: MandalService,
+              private title: Title) {
+    this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_CONTACT_US);
+    if (this.pageTitle) {
+      this.title.setTitle(this.pageTitle);
+    }
   }
 
   async ngOnInit() {
@@ -55,5 +62,18 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
 
   async loadPrimaryMandal() {
     this.primaryMandal = await this.mandalService.loadPrimaryMandalDetails();
+  }
+
+  get address() {
+    if (this.primaryMandal)
+      return convertAddress(this.primaryMandal.address);
+    else return '';
+  }
+
+  submitForm() {
+    if (!this.formGroup.valid) {
+      return;
+    }
+
   }
 }

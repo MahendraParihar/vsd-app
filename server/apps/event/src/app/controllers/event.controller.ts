@@ -1,12 +1,22 @@
-import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
-import {StatusChangeDto, TableListDto} from '@server/common';
-import {IEventList, ITableList} from "@vsd-common/lib";
-import {EventService} from "./event.service";
-import {EventDto} from "./dto/event.dto";
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Public, StatusChangeDto, TableListDto } from '@server/common';
+import { IEventList, ITableList } from '@vsd-common/lib';
+import { EventService } from './event.service';
+import { EventDto } from './dto/event.dto';
 
-@Controller('event')
+@Controller()
 export class EventController {
   constructor(private eventService: EventService) {
+  }
+
+  @Public()
+  @Post('public')
+  loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
+    try {
+      return this.eventService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   @Post()

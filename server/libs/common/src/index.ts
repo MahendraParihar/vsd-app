@@ -25,6 +25,7 @@ export * from './lib/auth/user.decorator';
 
 export * from './lib/common/log-error.service';
 export * from './lib/common/contact-type.service';
+export * from './lib/common/pages.service';
 export * from './lib/common/dto/table-list.dto';
 export * from './lib/common/dto/status-change.dto';
 

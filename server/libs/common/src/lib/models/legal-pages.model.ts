@@ -1,8 +1,8 @@
 import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, Scopes, BelongsTo } from 'sequelize-typescript';
-import { AdminUserModel } from '../admin';
+import { AdminUserModel } from './admin/admin-user.model';
 
 @Table({
-  tableName: 'mst_gender',
+  tableName: 'mst_legal_page',
   schema: 'public',
   freezeTableName: true,
   timestamps: true,
@@ -25,22 +25,29 @@ import { AdminUserModel } from '../admin';
     ],
   },
 }))
-export class GenderModel extends Model<GenderModel> {
+export class LegalPagesModel extends Model<LegalPagesModel> {
   @Column({
-    field: 'gender_id',
+    field: 'legal_pages_id',
     allowNull: false,
     type: DataType.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   })
-  genderId: number;
+  legalPageId: number;
 
   @Column({
-    field: 'gender',
+    field: 'title',
     allowNull: false,
     type: DataType.STRING(50),
   })
-  gender: string;
+  title: string;
+
+  @Column({
+    field: 'details',
+    allowNull: false,
+    type: DataType.TEXT,
+  })
+  details: string;
 
   @Column({
     field: 'image_path',
@@ -84,20 +91,6 @@ export class GenderModel extends Model<GenderModel> {
     type: DataType.INTEGER,
   })
   modifiedBy: number;
-
-  @Column({
-    field: 'created_ip',
-    allowNull: true,
-    type: DataType.STRING(50),
-  })
-  createdIp: string;
-
-  @Column({
-    field: 'modified_ip',
-    allowNull: true,
-    type: DataType.STRING(50),
-  })
-  modifiedIp: string;
 
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;

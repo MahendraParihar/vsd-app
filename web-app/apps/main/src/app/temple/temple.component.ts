@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TempleService } from './services/temple.service';
+import { ITableList, ITempleList, LabelKey } from '@vsd-common/lib';
+import { LabelService } from '@core-lib';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'vsd-web-app-temple',
@@ -6,4 +10,24 @@ import { Component } from '@angular/core';
   templateUrl: './temple.component.html',
   styleUrl: './temple.component.scss',
 })
-export class TempleComponent {}
+export class TempleComponent implements OnInit {
+  dataSet!: ITableList<ITempleList>;
+  pageTitle!:string | undefined;
+
+  constructor(private templeService: TempleService,
+              private labelService: LabelService,
+              private title: Title) {
+    this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_TEMPLE);
+    if (this.pageTitle) {
+      this.title.setTitle(this.pageTitle);
+    }
+  }
+
+  async ngOnInit() {
+    await this.loadData();
+  }
+
+  async loadData() {
+    this.dataSet = await this.templeService.loadTemples(0);
+  }
+}

@@ -3,6 +3,7 @@ import { IBaseAdminUser, ICommonTable } from "../base.interface";
 export interface IBaseLegalPage {
   title: string;
   details: string;
+  imagePath: object;
 }
 
 export interface IManageLegalPage extends IBaseLegalPage {

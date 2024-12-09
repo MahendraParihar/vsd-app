@@ -1,13 +1,23 @@
 import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
 import {ITableList, ITempleList} from '@vsd-common/lib';
 import {TempleService} from './temple.service';
-import {StatusChangeDto, TableListDto} from '@server/common';
+import { Public, StatusChangeDto, TableListDto } from '@server/common';
 import {TempleDto} from "./dto/temple.dto";
 
-@Controller('temple')
+@Controller()
 export class TempleController {
 
   constructor(private templeService: TempleService) {
+  }
+
+  @Public()
+  @Post('public')
+  loadPublicTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
+    try {
+      return this.templeService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   @Post()

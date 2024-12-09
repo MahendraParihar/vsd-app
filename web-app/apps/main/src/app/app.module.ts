@@ -23,10 +23,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedUiLibModule } from '@shared-ui-lib';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { GoogleMap, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { MandalService } from './mandal/services/mandal.service';
+import { CommonService } from './common.service';
+import { EventService } from './event/services/event.service';
+import { TempleService } from './temple/services/temple.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { MandalService } from './mandal/services/mandal.service';
   ],
   providers: [
     MandalService,
+    CommonService,
+    EventService,
+    TempleService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
     },

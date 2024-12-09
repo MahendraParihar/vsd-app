@@ -1,8 +1,9 @@
-<div class="contact-us-section">
+<div class="contact-us-section" *ngIf="primaryMandal">
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
   <div class="contact-us-content">
-    <shared-ui-lib-uikit-label [class]="['mat-headline-3']" [label]="'संपर्क करें'"></shared-ui-lib-uikit-label>
+    <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
+                               [label]="pageTitle"></shared-ui-lib-uikit-label>
     <div class="details">
       <div class="address-section">
         <div class="map-section">
@@ -13,9 +14,10 @@
         </div>
         <div class="address-title">
           <shared-ui-lib-uikit-label [class]="['mat-headline-1']"
-                                     [label]="'श्री विश्वकर्मा वंश-सुथार सेवा संस्थान'"></shared-ui-lib-uikit-label>
+                                     [label]="this.primaryMandal.mandalName"></shared-ui-lib-uikit-label>
           <shared-ui-lib-uikit-label [class]="['mat-headline-5']"
-                                     [label]="'रजि. क्रमांक: पाली/134/2006-07'"></shared-ui-lib-uikit-label>
+                                     *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.regNo"
+                                     [label]="this.primaryMandal.additionalInfo.regNo"></shared-ui-lib-uikit-label>
         </div>
         <hr>
         <div class="address-info">
@@ -24,34 +26,34 @@
               <shared-ui-lib-uikit-icon [name]="'address'" [size]="'medium'"
                                         [color]="'primary'"></shared-ui-lib-uikit-icon>
             </div>
-            <shared-ui-lib-uikit-label [label]="'श्री विश्वकर्मा मंदिर, बड़वा, बाया-बाली, जिला पाली, राजस्थान 306706'"
+            <shared-ui-lib-uikit-label [label]="address"
                                        [class]="['mat-subtitle-2']"></shared-ui-lib-uikit-label>
           </div>
-          <div class="address-item">
+          <div class="address-item"
+               *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.emailId">
             <div class="icon_email_img">
               <shared-ui-lib-uikit-icon [name]="'mail'" [size]="'medium'"
                                         [color]="'primary'"></shared-ui-lib-uikit-icon>
             </div>
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
-                                       [label]="'mahendra.pgmail.com'"></shared-ui-lib-uikit-label>
+                                       [label]="this.primaryMandal.additionalInfo.emailId"></shared-ui-lib-uikit-label>
           </div>
-          <div class="address-item">
+          <div class="address-item"
+               *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.phoneNumber">
             <div class="icon_email_img">
               <shared-ui-lib-uikit-icon [name]="'call'" [size]="'medium'"
                                         [color]="'primary'"></shared-ui-lib-uikit-icon>
             </div>
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
-                                       [label]="'+91-9845564433'"></shared-ui-lib-uikit-label>
+                                       [label]="this.primaryMandal.additionalInfo.phoneNumber"></shared-ui-lib-uikit-label>
           </div>
         </div>
         <hr>
-        <div class="social-icons">
-          <shared-ui-lib-uikit-button [type]="'icon-only'"
-                                      [prefixIcon]="'address'"
-                                      [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
-          <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
-                                      [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
-          <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
+        <div class="social-icons"
+             *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.socialSiteLink">
+          <shared-ui-lib-uikit-button *ngFor="let item of this.primaryMandal.additionalInfo.socialSiteLink"
+                                      [type]="'icon-only'"
+                                      [prefixIcon]="item.icon"
                                       [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
         </div>
       </div>
@@ -99,6 +101,10 @@
                              [labels]="labelService.labels"
                              [control]="formGroup.get('message')"></app-input-error>
 
+          </div>
+          <div class="form-item">
+            <shared-ui-lib-uikit-button (buttonClicked)="submitForm()" [type]="'raised'"
+                                        [label]="'submit'"></shared-ui-lib-uikit-button>
           </div>
         </form>
       </div>

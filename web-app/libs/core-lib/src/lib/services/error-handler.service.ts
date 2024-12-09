@@ -1,5 +1,6 @@
 import {ErrorHandler, Injectable, Injector} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +96,7 @@ export class ErrorHandlerService implements ErrorHandler {
 
   handleError(error: Error | HttpErrorResponse): void {
     const logger = this.injector.get(ErrorHandlerService);
-    // const notifier = this.injector.get(SnackBarService);
+    const notifier = this.injector.get(SnackBarService);
     // const navigation = this.injector.get(NavigationService);
 
     let type;
@@ -111,7 +112,7 @@ export class ErrorHandlerService implements ErrorHandler {
       status = error.status;
 
       if (status === 401) {
-        // notifier.showError(message, false);
+        notifier.showError(message, false);
         // navigation.navigateToLogin();
         return;
       }
@@ -121,7 +122,7 @@ export class ErrorHandlerService implements ErrorHandler {
         // TODO navigate to offline system page
         return;
       } else {
-        // notifier.showError(message, false);
+        notifier.showError(message, false);
         // navigation.navigateToLogin();
       }
     } else {

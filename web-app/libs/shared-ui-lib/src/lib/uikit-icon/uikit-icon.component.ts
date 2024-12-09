@@ -21,8 +21,8 @@ export class UikitIconComponent implements OnChanges {
 
   private _name: IconNameType | '' = '';
 
-  @Input() set name(input: IconNameType) {
-    this._name = input;
+  @Input() set name(input: IconNameType | string) {
+    this._name = input as IconNameType;
     this.setClass();
   }
 

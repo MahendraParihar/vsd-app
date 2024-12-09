@@ -38,6 +38,9 @@ export enum LabelKey {
   SIDE_MENU_MEDIA_TYPE = 'side_menu_media_type',
   SIDE_MENU_MEDIA_SRC = 'side_menu_media_src',
   SIDE_MENU_HEALTH_PARAMETER = 'side_menu_health_parameter',
+  SIDE_MENU_ABOUT_US = 'side_menu_about_us',
+  SIDE_MENU_CONTACT_US = 'side_menu_contact_us',
+  SIDE_MENU_HISTORY = 'side_menu_history',
 
   ITEM_NOT_FOUND_TEMPLE = 'item_not_found_temple',
   ITEM_NOT_FOUND_STATE = 'item_not_found_state',
@@ -77,7 +80,7 @@ export enum LabelKey {
   ITEM_NOT_FOUND_MATRIMONIAL_REQUESTED_STATUS = 'item_not_found_matrimonial_requested_status',
   ITEM_NOT_FOUND_HEALTH_PARAMETER = 'item_not_found_health_parameter',
   ITEM_NOT_FOUND_MANDAL = 'item_not_found_mandal',
-
+  ITEM_NOT_FOUND_PAGE = 'item_not_found_page',
 
   APP_NAME = 'app_name',
   ERROR_NOT_FOUND_ADMIN = 'error_not_found_admin',
