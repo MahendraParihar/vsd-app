@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @import "colors";
 
-$my-custom-level: mat.m2-define-typography-level(
+$my-custom-level: mat.define-typography-level(
   $font-family: Roboto,
   $font-weight: 400,
   $font-size: 1rem,
@@ -25,7 +25,7 @@ $help-icon-color: #c9dae1;
 $profile-section-height: 75px;
 $member-detail-layout-height: calc(100vh - 295px);
 
-$my-custom-level: mat.m2-define-typography-level(
+$my-custom-level: mat.define-typography-level(
   $font-family: Roboto,
   $font-weight: 400,
   $font-size: 1rem,

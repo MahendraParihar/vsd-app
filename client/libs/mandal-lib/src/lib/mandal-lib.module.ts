@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {SharedUiLibModule} from "@vsd-frontend/shared-ui-lib";
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [CommonModule,
@@ -16,7 +17,7 @@ import {SharedUiLibModule} from "@vsd-frontend/shared-ui-lib";
     MatPaginatorModule,
     MatTableModule,
     FormsModule,
-    SharedUiLibModule,],
+    SharedUiLibModule, MatCardModule],
   declarations: [ManageMandalComponent, MandalComponent, MandalDetailComponent],
   exports: [ManageMandalComponent, MandalComponent, MandalDetailComponent],
   providers: [MandalService]

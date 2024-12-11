@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {ErrorHandlerService, HttpService} from '@vsd-frontend/core-lib';
-import {IStatusChange} from '@vsd-common/lib';
-import {MandalApiUrl} from "./api-url";
+import { Injectable } from '@angular/core';
+import { HttpService } from '@vsd-frontend/core-lib';
+import { IMandal, IResponse, IStatusChange } from '@vsd-common/lib';
+import { MandalApiUrl } from './api-url';
 
 @Injectable()
 export class MandalService {
-  constructor(private httpService: HttpService,
-              private errorHandlerService: ErrorHandlerService) {
+  constructor(private httpService: HttpService) {
   }
 
   async changeStatus(id: number, status: boolean): Promise<void> {
@@ -15,5 +14,10 @@ export class MandalService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IMandal> {
+    const res = await this.httpService.getRequest<IResponse<IMandal>>(MandalApiUrl.MANDAL + '/' + id);
+    return res.data as IMandal;
   }
 }

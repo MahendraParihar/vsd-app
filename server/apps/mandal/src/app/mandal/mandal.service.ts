@@ -48,7 +48,7 @@ export class MandalService {
   }
 
   async getById(id: number): Promise<IMandal> {
-    const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
+    const obj = await this.mandalModel.findOne({ where: { mandalId: id }, raw: true, nest: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
