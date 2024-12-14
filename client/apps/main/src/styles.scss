@@ -74,6 +74,11 @@ body.dark-theme {
     width: 100%;
   }
 
+  .form-container-box {
+    height: calc(100vh - 180px) !important;
+    overflow-y: auto !important;
+  }
+
   .form-group {
     display: flex;
     flex-direction: column;
@@ -82,7 +87,35 @@ body.dark-theme {
     flex-grow: 1;
   }
 
-  .file-upload-box{
+  .file-upload-box {
     width: 100%;
+  }
+
+  .editor {
+    width: 100%;
+    border: var(--stroke-thick) solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-small);
+
+    .NgxEditor__MenuBar {
+      border-top-left-radius: var(--border-radius-small);
+      border-top-right-radius: var(--border-radius-small);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .NgxEditor {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border: none;
+    }
+
+    .CodeMirror {
+      border: var(--stroke-thin) solid #eee;
+      height: auto;
+      margin-bottom: 0.7rem;
+
+      pre {
+        white-space: pre !important;
+      }
+    }
   }
 }

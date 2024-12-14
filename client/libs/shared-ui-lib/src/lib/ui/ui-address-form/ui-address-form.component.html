@@ -1,14 +1,120 @@
-<div class="address-box">
-  <div class="form-row">
-    <div class="form-group">
-      <mat-label>{{ 'Address' }}</mat-label>
-      <mat-form-field>
-        <input #address formControlName="address" matInput required [maxlength]="100">
-        <mat-hint align="end">{{ address.value.length || 0 }}/100</mat-hint>
-      </mat-form-field>
-      <vsd-ui-input-error [labels]="'Address'"
-                          [controlName]="'address'"
-                          [control]="'address'"></vsd-ui-input-error>
+<form *ngIf="formGroup && masterData" [formGroup]="addressFormGroup" class="m-t-medium">
+  <div class="address-box">
+    <div class="form-row">
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.ADDRESS_TYPE)"></vsd-ui-label>
+        <mat-form-field>
+          <mat-select formControlName="addressTypeId">
+            <mat-option>None</mat-option>
+            @for (state of masterData.addressTypes; track state) {
+              <mat-option [value]="state.id">{{ state.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.ADDRESS_TYPE)"
+                            [control]="addressFormGroup.get('addressTypeId')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.ADDRESS)"></vsd-ui-label>
+        <mat-form-field>
+          <input #address formControlName="address" matInput required [maxlength]="100">
+          <mat-hint align="end">{{ address.value.length || 0 }}/100</mat-hint>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.ADDRESS)"
+                            [control]="addressFormGroup.get('address')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.COUNTRY)"></vsd-ui-label>
+        <mat-form-field>
+          <mat-select formControlName="countryId">
+            <mat-option>None</mat-option>
+            @for (state of masterData.countries; track state) {
+              <mat-option [value]="state.id">{{ state.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.COUNTRY)"
+                            [control]="addressFormGroup.get('countryId')"></vsd-ui-input-error>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.STATE)"></vsd-ui-label>
+        <mat-form-field>
+          <mat-select formControlName="stateId">
+            <mat-option>None</mat-option>
+            @for (state of findStates(); track state) {
+              <mat-option [value]="state.id">{{ state.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.STATE)"
+                            [control]="addressFormGroup.get('stateId')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.DISTRICT)"></vsd-ui-label>
+        <mat-form-field>
+          <mat-select formControlName="districtId">
+            <mat-option>None</mat-option>
+            @for (state of findDistricts(); track state) {
+              <mat-option [value]="state.id">{{ state.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.DISTRICT)"
+                            [control]="addressFormGroup.get('districtId')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.CITY_VILLAGE)"></vsd-ui-label>
+        <mat-form-field>
+          <mat-select formControlName="cityVillageId">
+            <mat-option>None</mat-option>
+            @for (state of findCityVillages(); track state) {
+              <mat-option [value]="state.id">{{ state.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.CITY_VILLAGE)"
+                            [control]="addressFormGroup.get('cityVillageId')"></vsd-ui-input-error>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.PIN_CODE)"></vsd-ui-label>
+        <mat-form-field>
+          <input #pinCode formControlName="pinCode" matInput required [maxlength]="100">
+          <mat-hint align="end">{{ pinCode.value.length || 0 }}/10</mat-hint>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.PIN_CODE)"
+                            [control]="addressFormGroup.get('pinCode')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.LATITUDE)"></vsd-ui-label>
+        <mat-form-field>
+          <input #latitude formControlName="latitude" matInput required [maxlength]="50">
+          <mat-hint align="end">{{ latitude.value.length || 0 }}/50</mat-hint>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.LATITUDE)"
+                            [control]="addressFormGroup.get('latitude')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-label [label]="labels.get(labelKeys.LONGITUDE)"></vsd-ui-label>
+        <mat-form-field>
+          <input #longitude formControlName="longitude" matInput required [maxlength]="50">
+          <mat-hint align="end">{{ longitude.value.length || 0 }}/50</mat-hint>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labels"
+                            [controlName]="labels.get(labelKeys.LONGITUDE)"
+                            [control]="addressFormGroup.get('longitude')"></vsd-ui-input-error>
+      </div>
     </div>
   </div>
-</div>
+</form>

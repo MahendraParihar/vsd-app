@@ -3,6 +3,7 @@ import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseTemple {
   templeName: string;
+  description: string;
   addressId: number;
   imagePath: object;
 }

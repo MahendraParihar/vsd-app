@@ -8,8 +8,12 @@ export class MandalDto implements IManageMandal {
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(50)
+  @MaxLength(150)
   mandalName: string;
+
+  @IsOptional()
+  @IsString()
+  description: string;
 
   @IsOptional()
   @IsObject()

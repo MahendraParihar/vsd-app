@@ -53,8 +53,7 @@ export class MandalService {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
     return <IMandal>{
-      ...obj,
-      updatedBy: obj.updatedBy,
+      ...obj
     };
   }
 
@@ -73,6 +72,7 @@ export class MandalService {
   async manage(obj: IManageMandal, userId: number) {
     const dataObj = {
       mandalName: obj.mandalName,
+      description: obj.description,
       updatedBy: userId,
     };
     if (obj.imagePath) {

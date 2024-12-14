@@ -2,7 +2,6 @@ import { DynamicModule } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { databaseConfig } from './db-config';
 import { ModelCtor } from 'sequelize-typescript';
-import { HttpModule } from '@nestjs/axios';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule } from '@nestjs/config';
 import { PermissionsModel } from './models/admin/permissions.model';
@@ -194,7 +193,6 @@ export class CommonModule {
         LabelModule.asyncRegister(['admin']),
         AppConfigModule.asyncRegister(modulesList),
         SequelizeModule.forFeature(modelsList),
-        HttpModule,
         PassportModule.register({ defaultStrategy: 'jwt' }),
         JwtModule.register({
           secret: jwtConstants.secret,

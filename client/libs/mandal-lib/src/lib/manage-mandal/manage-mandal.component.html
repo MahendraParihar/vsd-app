@@ -1,25 +1,56 @@
-<mat-card>
+<mat-card class='form'>
   <mat-card-header>
     <mat-card-title>{{ pageTitle }}</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <form class="form" [formGroup]="formGroup">
-      <div class="form-row">
-        <div class="form-group">
-          <mat-label>{{ labelService.getLabel(labelKeys.SIDE_MENU_MANDAL) }}</mat-label>
+  <mat-card-content class='form-container-box'>
+    <form [formGroup]='formGroup'>
+      <div class='form-row'>
+        <div class='form-group'>
+          <vsd-ui-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'></vsd-ui-label>
           <mat-form-field>
-            <input #mandalName formControlName="mandalName" matInput required [maxlength]="150">
-            <mat-hint align="end">{{ mandalName.value.length || 0 }}/150</mat-hint>
+            <input #mandalName formControlName='mandalName' matInput required [maxlength]='150'>
+            <mat-hint align='end'>{{ mandalName.value.length || 0 }}/150</mat-hint>
           </mat-form-field>
-          <vsd-ui-input-error [labels]="labelService.labels"
-                              [controlName]="labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)"
+          <vsd-ui-input-error [labels]='labelService.labels'
+                              [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'
                               [control]="formGroup.get('mandalName')"></vsd-ui-input-error>
         </div>
       </div>
+      <div class='form-row'>
+        <div class='form-group'>
+          <vsd-ui-label [label]='labelService.getLabel(labelKeys.FORM_DESCRIPTION)'></vsd-ui-label>
+          <div class='editor'>
+            <ngx-editor-menu [editor]='editor' [toolbar]='toolbar'>
+            </ngx-editor-menu>
+            <ngx-editor [editor]='editor' formControlName='description'>
+            </ngx-editor>
+          </div>
+          <vsd-ui-input-error [labels]='labelService.labels'
+                              [controlName]='labelService.getLabel(labelKeys.FORM_DESCRIPTION)'
+                              [control]="formGroup.get('description')"></vsd-ui-input-error>
+        </div>
+      </div>
+      <div class='form-row'>
+        <vsd-ui-address-form class='address-box' [formGroup]='formGroup' [masterData]='addressMaster'
+                             [labels]='labelService.labels'></vsd-ui-address-form>
+      </div>
+      <div class='form-row'>
+        <vsd-ui-upload-form class='file-upload-box' [controlName]="'uploadFiles'" [formGroup]='formGroup'
+                            [labels]='labelService.labels'
+                            [isMultiFile]='false'
+                            [isRequired]='true'
+                            [mediaFor]='mediaForEnum.MANDAL'
+                            [mediaType]='fileTypeEnum.IMAGE'
+                            [uploadedMediaList]='[]'></vsd-ui-upload-form>
+      </div>
     </form>
   </mat-card-content>
-  <mat-card-actions>
-    <vsd-ui-button (actionBtnClicked)='updateDetails()'
-                   [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></vsd-ui-button>
+  <mat-card-actions align='end'>
+    <vsd-ui-button
+      type='red'
+      [label]='labelService.getLabel(labelKeys.ACTION_CANCEL)'
+      (actionBtnClicked)='onCancel()'></vsd-ui-button>
+    <vsd-ui-button type='success' (actionBtnClicked)='updateDetails()'
+                   [label]='labelService.getLabel(labelKeys.ACTION_SUBMIT)'></vsd-ui-button>
   </mat-card-actions>
 </mat-card>

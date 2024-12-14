@@ -113,6 +113,13 @@ export class TempleModel extends Model<TempleModel> {
   templeName: string;
 
   @Column({
+    field: 'description',
+    allowNull: true,
+    type: DataType.TEXT,
+  })
+  description: string;
+
+  @Column({
     field: 'image_path',
     allowNull: false,
     type: DataType.JSONB,

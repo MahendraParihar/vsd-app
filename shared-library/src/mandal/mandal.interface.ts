@@ -3,6 +3,7 @@ import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseMandal {
   mandalName: string;
+  description: string;
   addressId: number;
   imagePath: object;
 }

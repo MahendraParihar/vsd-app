@@ -101,6 +101,13 @@ export class MandalModel extends Model<MandalModel> {
   })
   mandalName: string;
 
+  @Column({
+    field: 'description',
+    allowNull: true,
+    type: DataType.TEXT,
+  })
+  description: string;
+
   @ForeignKey(() => AddressModel)
   @Column({
     field: 'address_id',

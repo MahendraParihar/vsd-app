@@ -12,6 +12,10 @@ export class TempleDto implements IManageTemple {
   templeName: string;
 
   @IsOptional()
+  @IsString()
+  description: string;
+
+  @IsOptional()
   @IsObject()
   imagePath: object;
 

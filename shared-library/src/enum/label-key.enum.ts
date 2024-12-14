@@ -82,17 +82,12 @@ export enum LabelKey {
   ITEM_NOT_FOUND_MANDAL = 'item_not_found_mandal',
   ITEM_NOT_FOUND_PAGE = 'item_not_found_page',
 
-  ADD_MANDAL = 'add_mandal',
-  EDIT_MANDAL = 'edit_mandal',
-
-  ADD_TEMPLE = 'add_temple',
-  EDIT_TEMPLE = 'edit_temple',
-
   APP_NAME = 'app_name',
   ERROR_NOT_FOUND_ADMIN = 'error_not_found_admin',
 
   ACTION_SUBMIT = 'action_submit',
   ACTION_EDIT = 'action_edit',
+  ACTION_CANCEL = 'action_cancel',
   ACTION_LOGIN = 'action_login',
   ACTION_LOGOUT = 'action_logout',
   ACTION_CHANGE_PASSWORD = 'action_change_password',
@@ -100,6 +95,7 @@ export enum LabelKey {
   ACTION_NO = 'action_no',
   ACTION_CHANGE_STATUS_TITLE = 'action_change_status_title',
   ACTION_CHANGE_STATUS_DESCRIPTION = 'action_change_status_description',
+  ACTION_OK = 'action_ok',
 
   INPUT_USER_NAME = 'input_user_name',
   INPUT_PASSWORD = 'input_password',
@@ -120,4 +116,34 @@ export enum LabelKey {
   FORM_EMAIL_ID = 'form_email_id',
   FORM_PHONE_NUMBER = 'form_phone_number',
   FORM_MESSAGE = 'form_message',
+  FORM_DESCRIPTION = 'form_description',
+
+  ADD_MANDAL = 'add_mandal',
+  EDIT_MANDAL = 'edit_mandal',
+
+  ADD_TEMPLE = 'add_temple',
+  EDIT_TEMPLE = 'edit_temple',
+
+  ADDRESS = 'address',
+  STATE = 'state',
+  DISTRICT = 'district',
+  COUNTRY = 'country',
+  CITY_VILLAGE = 'city_village',
+  ADDRESS_TYPE = 'address_type',
+  PIN_CODE = 'pin_code',
+  LATITUDE = 'latitude',
+  LONGITUDE = 'longitude',
+
+  ALERT = 'alert',
+  ARE_YOU_SURE = 'are_you_sure',
+
+  SINGLE_MEDIA_FILE_ALERT = 'alert_single_file',
+  DRAG_DROP_IMAGE_FILE = 'drag_drop_image',
+  DRAG_DROP_PDF_FILE = 'drag_drop_pdf',
+  CHOOSE_FILE = 'choose_file',
+  CHOOSE_ATTACHMENT = 'choose_attachment',
+
+  SUCCESS_FILE_UPLOADED = 'success_file_upload',
+  SUCCESS_FILE_ERROR = 'error_file_upload',
+  SUCCESS_FILE_PROGRESS = 'progress_file_upload',
 }

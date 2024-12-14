@@ -1,4 +1,12 @@
-import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  ParseFilePipeBuilder,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import fs from 'fs';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
@@ -9,8 +17,10 @@ import { MediaForEnum } from '@vsd-common/lib';
 import { diskStorage } from 'multer';
 import { MediaDto } from './dto/media-for.dto';
 import { CommonUtil } from '../common.util';
+import { Express } from 'express';
 
 const mv = promisify(fs.rename);
+const VALID_UPLOADS_MIME_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 
 @Controller('media')
 export class MediaController {
@@ -25,7 +35,11 @@ export class MediaController {
       }),
     }),
   )
-  async uploadFile(@Body() mediaDto: MediaDto, @UploadedFile() file: Express.Multer.File, a: MulterOptions) {
+  async uploadFile(@Body() mediaDto: MediaDto, @UploadedFile(
+    new ParseFilePipeBuilder()
+      .addMaxSizeValidator({ maxSize: 5 * 1024 * 1024 })
+      .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+  ) file: Express.Multer.File, a: MulterOptions) {
     const currentPath = `${file.destination}/${file.filename}`;
     const destinationFolderPath = `${CommonUtil.getMediaFolderPath()}/${mediaDto.mediaFor}`;
     const destinationPath = `${destinationFolderPath}/${file.filename}`;
