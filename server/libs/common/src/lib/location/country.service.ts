@@ -21,17 +21,11 @@ export class CountryService {
   }
 
   async loadAll(): Promise<ICountry[]> {
-    try {
-      return (await this.countryModel.findAll({
-        where: { active: true },
-        raw: true,
-        nest: true,
-      })).map((obj: CountryModel) => {
-        return <ICountry>obj;
-      });
-    } catch (error) {
-      throw error;
-    }
+    return (await this.countryModel.findAll({
+      where: { active: true },
+      raw: true,
+      nest: true,
+    })) as ICountry[];
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<ICountryList>> {

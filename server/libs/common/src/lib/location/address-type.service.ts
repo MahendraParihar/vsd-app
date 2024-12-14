@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { AddressTypeModel } from '../models/location';
 import {
+  IAddressType,
   IAddressTypeList,
   IBaseAdminUser,
   IManageAddressType,
-  IAddressType,
   IStatusChange,
   ITableList,
   ITableListFilter,
@@ -18,6 +18,14 @@ import { LabelService } from '../label';
 export class AddressTypeService {
   constructor(@InjectModel(AddressTypeModel) private addressTypeModel: typeof AddressTypeModel,
               private labelService: LabelService) {
+  }
+
+  async loadAll(): Promise<IAddressType[]> {
+    return (await this.addressTypeModel.findAll({
+      where: { active: true },
+      raw: true,
+      nest: true,
+    })) as IAddressType[];
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IAddressTypeList>> {

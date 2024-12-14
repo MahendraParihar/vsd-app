@@ -8,6 +8,7 @@ export * from './lib/guard/child-auth.guard';
 export * from './lib/interfaces/breadcrumb-item';
 export * from './lib/interfaces/alert-dialog-data.interface';
 export * from './lib/interfaces/nav-item';
+export * from './lib/interfaces/file-handle.interface';
 export * from './lib/utility/crypto-aes';
 export * from './lib/api-urls';
 export * from './lib/constants/constants';

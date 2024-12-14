@@ -7,4 +7,6 @@ export * from './lib/ui/ui-warning-dialog/ui-warning-dialog.component';
 export * from './lib/ui/ui-confirmation-menu/ui-confirmation-menu.component';
 export * from './lib/ui/ui-status-change-button/ui-status-change-button.component';
 export * from './lib/ui/ui-address-form/ui-address-form.component';
+export * from './lib/ui/ui-upload-form/ui-upload-form.component';
+export * from './lib/ui/ui-upload-form/directive/image-drag.directive';
 export * from './lib/util/validation.util';

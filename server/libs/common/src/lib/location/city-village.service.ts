@@ -3,13 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CityVillageModel } from '../models/location';
 import {
   IBaseAdminUser,
-  ICityVillageList,
-  ITableListFilter,
-  ITableList,
-  LabelKey,
-  IStatusChange,
-  IManageCityVillage,
   ICityVillage,
+  ICityVillageList,
+  IManageCityVillage,
+  IStatusChange,
+  ITableList,
+  ITableListFilter,
+  LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
 import { LabelService } from '../label';
@@ -18,6 +18,14 @@ import { LabelService } from '../label';
 export class CityVillageService {
   constructor(@InjectModel(CityVillageModel) private cityVillageModel: typeof CityVillageModel,
               private labelService: LabelService) {
+  }
+
+  async loadAll(): Promise<ICityVillage[]> {
+    return (await this.cityVillageModel.findAll({
+      where: { active: true },
+      raw: true,
+      nest: true,
+    })) as ICityVillage[];
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<ICityVillageList>> {

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { ErrorHandlerService } from './error-handler.service';
@@ -101,6 +101,14 @@ export class HttpService {
     return url;
   }
 
+  public uploadMedia(url: string, formData: FormData): Observable<HttpEvent<any>> {
+    const headerIn = {
+      'Content-Type': 'multipart/form-data',
+      'enctype': 'multipart/form-data',
+    };
+    return this.postRequestObservable(url, formData, headerIn);
+  }
+
   getRequestObservable<T>(
     url: string,
     paramObj?: Map<string, string>,
@@ -115,6 +123,7 @@ export class HttpService {
   postRequestObservable<T>(url: string, payload: unknown, header?: { [key: string]: string }): Observable<T> {
     return this.httpClient.post<T>(url, payload, {
       headers: new HttpHeaders(header),
+      responseType: 'json',
     });
   }
 }

@@ -21,20 +21,11 @@ export class StateService {
   }
 
   async loadAll(): Promise<IState[]> {
-    try {
-      return (await this.stateModel.findAll({
-        where: { active: true },
-        raw: true,
-        nest: true,
-      })).map((obj: StateModel) => {
-        return <IState>{
-          ...obj,
-          updatedBy: obj.updatedBy,
-        };
-      });
-    } catch (error) {
-      throw error;
-    }
+    return (await this.stateModel.findAll({
+      where: { active: true },
+      raw: true,
+      nest: true,
+    })) as IState[];
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IStateList>> {

@@ -4,6 +4,6 @@ export interface AlertDialogDataInterface {
   title: string;
   message: string;
   positiveBtnTxt: string;
-  negativeBtnTxt: string;
+  negativeBtnTxt: string | null;
   alertType: AlertTypeEnum;
 }

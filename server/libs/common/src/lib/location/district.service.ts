@@ -3,12 +3,12 @@ import { InjectModel } from '@nestjs/sequelize';
 import { DistrictModel } from '../models/location';
 import {
   IBaseAdminUser,
+  IDistrict,
   IDistrictList,
   IManageDistrict,
   IStatusChange,
   ITableList,
   ITableListFilter,
-  IDistrict,
   LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
@@ -18,6 +18,14 @@ import { LabelService } from '../label';
 export class DistrictService {
   constructor(@InjectModel(DistrictModel) private districtModel: typeof DistrictModel,
               private labelService: LabelService) {
+  }
+
+  async loadAll(): Promise<IDistrict[]> {
+    return (await this.districtModel.findAll({
+      where: { active: true },
+      raw: true,
+      nest: true,
+    })) as IDistrict[];
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IDistrictList>> {
@@ -33,7 +41,7 @@ export class DistrictService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[['stateId','asc'],['district','asc']]
+      order: [['stateId', 'asc'], ['district', 'asc']],
     });
     const data = rows.map((data: DistrictModel) => {
       return <IDistrictList>{

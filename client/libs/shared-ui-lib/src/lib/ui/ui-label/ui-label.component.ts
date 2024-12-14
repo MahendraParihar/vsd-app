@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class LabelComponent {
   @Input() class: 'body' | 'title' = 'body';
-  @Input() label!: string;
+  @Input() label!: string | undefined;
   @Input() toolTip!: string;
 }

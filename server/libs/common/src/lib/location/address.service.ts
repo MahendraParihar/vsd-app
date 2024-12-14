@@ -1,33 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { AddressModel } from '../models/location';
-import { LabelService } from '../label';
-import { IAddressMaster, ICountry, IOption } from '@vsd-common/lib';
+import { IAddressMaster, IAddressType, ICityVillage, ICountry, IDistrict, IOption, IState } from '@vsd-common/lib';
 import { CountryService } from './country.service';
 import { StateService } from './state.service';
 import { DistrictService } from './district.service';
 import { CityVillageService } from './city-village.service';
+import { AddressTypeService } from './address-type.service';
 
 @Injectable()
 export class AddressService {
   constructor(@InjectModel(AddressModel) private addressModel: typeof AddressModel,
-              private countries: CountryService,
-              private states: StateService,
-              private district: DistrictService,
-              private cityVillage: CityVillageService,
-              private labelService: LabelService) {
+              private countryService: CountryService,
+              private stateService: StateService,
+              private districtService: DistrictService,
+              private cityVillageService: CityVillageService,
+              private addressTypeService: AddressTypeService) {
   }
 
   async loadMasterData(): Promise<IAddressMaster> {
-    try {
-      return <IAddressMaster>{
-        countries: (await this.countries.loadAll()).map((p: ICountry) => {
-          return <IOption>{ id: p.countryId, title: p.country };
-        }),
-      };
-    } catch (e) {
-      throw e;
-    }
+    return <IAddressMaster>{
+      countries: (await this.countryService.loadAll()).map((p: ICountry) => {
+        return <IOption>{ id: p.countryId, title: p.country };
+      }),
+      states: (await this.stateService.loadAll()).map((p: IState) => {
+        return <IOption>{ id: p.stateId, title: p.state, parentId: p.countryId };
+      }),
+      districts: (await this.districtService.loadAll()).map((p: IDistrict) => {
+        return <IOption>{ id: p.districtId, title: p.district, parentId: p.stateId };
+      }),
+      cityVillages: (await this.cityVillageService.loadAll()).map((p: ICityVillage) => {
+        return <IOption>{ id: p.cityVillageId, title: p.cityVillage, parentId: p.districtId };
+      }),
+      addressTypes: (await this.addressTypeService.loadAll()).map((p: IAddressType) => {
+        return <IOption>{ id: p.addressTypeId, title: p.addressType };
+      }),
+    };
   }
 
   async load() {

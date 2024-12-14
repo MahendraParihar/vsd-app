@@ -16,6 +16,11 @@ import { UiAlertDialogComponent } from './ui/ui-alert-dialog/ui-alert-dialog.com
 import { UiWarningDialogComponent } from './ui/ui-warning-dialog/ui-warning-dialog.component';
 import { UiStatusChangeButtonComponent } from './ui/ui-status-change-button/ui-status-change-button.component';
 import { UiAddressFormComponent } from './ui/ui-address-form/ui-address-form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { UiUploadFormComponent } from './ui/ui-upload-form/ui-upload-form.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CoreLibModule } from '@vsd-frontend/core-lib';
+import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { UiAddressFormComponent } from './ui/ui-address-form/ui-address-form.com
     UiAlertDialogComponent,
     UiWarningDialogComponent,
     UiStatusChangeButtonComponent,
+    UiUploadFormComponent,
     UiAddressFormComponent,
+    ImageDragDirective,
   ],
   imports: [
     CommonModule,
@@ -38,6 +45,9 @@ import { UiAddressFormComponent } from './ui/ui-address-form/ui-address-form.com
     ReactiveFormsModule,
     MatInputModule,
     NgIf,
+    MatSelectModule,
+    MatProgressBarModule,
+    CoreLibModule,
   ],
   exports: [
     MatButtonModule,
@@ -54,7 +64,9 @@ import { UiAddressFormComponent } from './ui/ui-address-form/ui-address-form.com
     UiAlertDialogComponent,
     UiWarningDialogComponent,
     UiStatusChangeButtonComponent,
+    UiUploadFormComponent,
     UiAddressFormComponent,
+    ImageDragDirective
   ],
   providers: [
     {
