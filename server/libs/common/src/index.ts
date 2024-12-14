@@ -33,3 +33,7 @@ export * from './lib/faq/faq-category.service';
 export * from './lib/label/label.module';
 export * from './lib/filters/validation.filter';
 export * from './lib/filters/validation.exception';
+export * from './lib/filters/validation.filter';
+export * from './lib/filters/validation.exception';
+export * from './lib/filters/validation.filter';
+export * from './lib/filters/validation.exception';
