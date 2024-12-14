@@ -80,10 +80,10 @@ export class PostModel extends Model<PostModel> {
   updatedAt: Date;
 
   @Column({
-    field: 'modified_by',
+    field: 'updated_by',
     type: DataType.INTEGER,
   })
-  modifiedBy: number;
+  updatedBy: number;
 
   @Column({
     field: 'created_ip',
@@ -102,6 +102,6 @@ export class PostModel extends Model<PostModel> {
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
 }

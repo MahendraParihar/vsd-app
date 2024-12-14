@@ -1,65 +1,65 @@
 -- Dashboard
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (1, 'Home', 0, 'home-page', 'dashboard', 1, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`id`, `role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`id`, `role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 1, 1, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
 
 -- Admin Users
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (2, 'Users', 0, 'list-admin', 'users', 2, 1, '0', 0, '0', 0, '2017-04-05 15:51:00', '2017-04-05 15:51:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 2, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Application User
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (3, 'Application Users', 0, 'app-user-list', 'user', 3, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 3, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Family
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (4, 'Family', 0, 'family-list', 'users', 4, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 4, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Event
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (5, 'Events', 0, 'event-list', 'calendar', 5, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 5, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- News
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (6, 'News', 0, 'news-list', 'rss', 6, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 6, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Gallery
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (7, 'Gallery', 0, 'gallery-list', 'picture-o', 7, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 7, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Banners
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (8, 'Banners', 0, 'banner-list', 'home', 8, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 8, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Adds
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (9, 'Adds', 0, 'adds-list', 'home', 9, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 9, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Member Post
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (10, 'Member Post', 0, 'member-post-list', 'home', 10, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
-INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_at`, `updated_at`) VALUES
   (1, 10, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');
 
 -- Trustee
-INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_date`, `updated_date`) VALUES
+INSERT INTO `mst_menus` (`id`, `menu_name`, `parent`, `path`, `icon`, `sequence`, `active`, `created_ip`, `created_by`, `modified_ip`, `updated_by`, `created_date`, `updated_date`) VALUES
   (11, 'Trustee', 0, 'trustee-list', 'home', 11, 1, '', 0, '', 0, '2014-09-04 00:00:00', '2014-09-04 00:00:00');
 INSERT INTO `mst_roles_permission` (`role_id`, `menu_id`, `active`, `created_ip`, `created_by`, `modified_ip`, `modified_by`, `created_at`, `updated_at`) VALUES
   (1, 11, 1, '0', 0, '0', 0, '2017-04-05 00:00:00', '2017-04-05 00:00:00');

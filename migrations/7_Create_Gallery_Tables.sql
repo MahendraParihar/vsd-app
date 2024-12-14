@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS txn_gallery (
   created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by  INT          NOT NULL,
-  modified_by INT          NOT NULL
+  updated_by INT          NOT NULL
 );
 
 

@@ -4,11 +4,11 @@ import { StateModel } from '../models/location';
 import {
   IBaseAdminUser,
   IManageState,
+  IState,
   IStateList,
   IStatusChange,
   ITableList,
   ITableListFilter,
-  IState,
   LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
@@ -18,6 +18,23 @@ import { LabelService } from '../label';
 export class StateService {
   constructor(@InjectModel(StateModel) private stateModel: typeof StateModel,
               private labelService: LabelService) {
+  }
+
+  async loadAll(): Promise<IState[]> {
+    try {
+      return (await this.stateModel.findAll({
+        where: { active: true },
+        raw: true,
+        nest: true,
+      })).map((obj: StateModel) => {
+        return <IState>{
+          ...obj,
+          updatedBy: obj.updatedBy,
+        };
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IStateList>> {
@@ -33,7 +50,7 @@ export class StateService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[['countryId','asc'],['state','asc']]
+      order: [['countryId', 'asc'], ['state', 'asc']],
     });
     const data = rows.map((data: StateModel) => {
       return <IStateList>{
@@ -45,7 +62,7 @@ export class StateService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -69,7 +86,7 @@ export class StateService {
     }
     return <IState>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -85,7 +102,7 @@ export class StateService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -102,7 +119,7 @@ export class StateService {
       state: obj.state,
       countryId: obj.countryId,
       code: obj.code,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.stateId) {
       await this.stateModel.update(dataObj, { where: { stateId: obj.stateId } });
@@ -115,7 +132,7 @@ export class StateService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.stateModel.findOne({ where: { stateId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

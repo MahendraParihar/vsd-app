@@ -1,5 +1,20 @@
 import { IBaseAdminUser, ICommonTable } from '../base.interface';
 
+export interface IOption {
+  id: number;
+  title: string;
+  subTitle?: string;
+  parentId?: number;
+}
+
+export interface IAddressMaster {
+  countries: IOption[];
+  states: IOption[];
+  districts: IOption[];
+  cityVillages: IOption[];
+  addressTypes: IOption[];
+}
+
 export interface IBaseCountry {
   country: string;
   countryCode: string;

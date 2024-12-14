@@ -20,20 +20,34 @@ export class CountryService {
               private labelService: LabelService) {
   }
 
+  async loadAll(): Promise<ICountry[]> {
+    try {
+      return (await this.countryModel.findAll({
+        where: { active: true },
+        raw: true,
+        nest: true,
+      })).map((obj: CountryModel) => {
+        return <ICountry>obj;
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async load(payload: ITableListFilter): Promise<ITableList<ICountryList>> {
     const where = {};
     if (payload.search) {
       Object.assign(where, {
-        country:{
-          [Op.iLike]:`%${payload.search}%`,
-        }
+        country: {
+          [Op.iLike]: `%${payload.search}%`,
+        },
       });
     }
     const { rows, count } = await this.countryModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[['country','asc']]
+      order: [['country', 'asc']],
     });
     const data = rows.map((data: CountryModel) => {
       return <ICountryList>{
@@ -45,7 +59,7 @@ export class CountryService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -70,7 +84,7 @@ export class CountryService {
     }
     return <ICountry>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -87,7 +101,7 @@ export class CountryService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -104,7 +118,7 @@ export class CountryService {
       country: obj.country,
       phoneNumberCode: obj.phoneNumberCode,
       countryCode: obj.countryCode,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.countryId) {
       await this.countryModel.update(dataObj, { where: { countryId: obj.countryId } });
@@ -117,7 +131,7 @@ export class CountryService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.countryModel.findOne({ where: { countryId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

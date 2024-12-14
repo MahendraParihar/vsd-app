@@ -112,6 +112,6 @@ export class FamilyProfileModel extends Model<FamilyProfileModel> {
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
 }

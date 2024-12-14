@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS txn_current_affair (
                                                 created_at         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                 updated_at         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                 created_by         INT         NOT NULL,
-                                                modified_by        INT         NOT NULL
+                                                updated_by        INT         NOT NULL
 );
 
 -- ------------------------------------------ EVENT ---------------------------------------------
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS txn_event (
                                        created_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                        updated_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                        created_by    INT         NOT NULL,
-                                       modified_by   INT         NOT NULL,
+                                       updated_by   INT         NOT NULL,
                                        CONSTRAINT te_address_id_fk FOREIGN KEY (address_id) REFERENCES txn_address (address_id)
 );
 CREATE INDEX ix_event_address_id
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS txn_event_coordinator (
                                                    created_at                     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                    updated_at                     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                    created_by                     INT          NOT NULL,
-                                                   modified_by                    INT          NOT NULL,
+                                                   updated_by                    INT          NOT NULL,
                                                    CONSTRAINT tecn_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
                                                    CONSTRAINT tecn_event_id_fk FOREIGN KEY (event_id) REFERENCES txn_event (event_id)
 );
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS txn_banner (
                                         created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                         updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                         created_by  INT          NOT NULL,
-                                        modified_by INT          NOT NULL
+                                        updated_by INT          NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS txn_email_status (
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS txn_email_status (
                                               created_at        TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                               updated_at        TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                               created_by        INT           NOT NULL,
-                                              modified_by       INT           NOT NULL,
+                                              updated_by       INT           NOT NULL,
                                               CONSTRAINT tes_mst_email_template_id_fk FOREIGN KEY (email_template_id) REFERENCES mst_email_template (email_template_id),
                                               CONSTRAINT tes_mst_app_user_id_fk FOREIGN KEY (app_user_id) REFERENCES txn_app_user (app_user_id)
 );
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS txn_inquiry
   created_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by   INT         NOT NULL,
-  modified_by  INT         NOT NULL,
+  updated_by  INT         NOT NULL,
   CONSTRAINT ti_mst_app_user_id_fk FOREIGN KEY (app_user_id) REFERENCES txn_app_user (app_user_id)
 );
 

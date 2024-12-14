@@ -79,10 +79,10 @@ export class FamilyEducationModel extends Model<FamilyEducationModel> {
   updatedAt: Date;
 
   @Column({
-    field: 'modified_by',
+    field: 'updated_by',
     type: DataType.INTEGER,
   })
-  modifiedBy: number;
+  updatedBy: number;
 
   @Column({
     field: 'created_ip',

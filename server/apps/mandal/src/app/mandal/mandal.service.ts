@@ -54,7 +54,7 @@ export class MandalService {
     }
     return <IMandal>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -73,7 +73,7 @@ export class MandalService {
   async manage(obj: IManageMandal, userId: number) {
     const dataObj = {
       mandalName: obj.mandalName,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -89,7 +89,7 @@ export class MandalService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 
@@ -105,7 +105,7 @@ export class MandalService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,

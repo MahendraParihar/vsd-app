@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS txn_family
     created_at    TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by    INT          NOT NULL,
-    modified_by   INT          NOT NULL,
+    updated_by   INT          NOT NULL,
     CONSTRAINT tf_mst_app_user_id_fk FOREIGN KEY (app_user_id) REFERENCES txn_app_user (app_user_id)
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS txn_family_relationship_mapping
     created_at                     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at                     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by                     INT         NOT NULL,
-    modified_by                    INT         NOT NULL,
+    updated_by                    INT         NOT NULL,
     CONSTRAINT tfcvm_family_id_fk FOREIGN KEY (relationship_id) REFERENCES mst_relationship (relationship_id),
     CONSTRAINT tfrm_parent_id_fk FOREIGN KEY (parent_id) REFERENCES txn_family (family_id),
     CONSTRAINT tfrm_child_id_fk FOREIGN KEY (child_id) REFERENCES txn_family (family_id)
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS txn_family_contact_number
     created_at               TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at               TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by               INT         NOT NULL,
-    modified_by              INT         NOT NULL,
+    updated_by              INT         NOT NULL,
     CONSTRAINT tfcn_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
     CONSTRAINT tfcn_contact_type_id_fk FOREIGN KEY (contact_type_id) REFERENCES mst_contact_type (contact_type_id)
 );
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS txn_family_business
     created_at         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by         INT          NOT NULL,
-    modified_by        INT          NOT NULL,
+    updated_by        INT          NOT NULL,
     CONSTRAINT tfbm_business_id_fk FOREIGN KEY (business_id) REFERENCES mst_business (business_id),
     CONSTRAINT tfbm_address_id_fk FOREIGN KEY (address_id) REFERENCES txn_address (address_id)
 );
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS txn_family_business_mapping
     created_at                 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at                 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by                 INT         NOT NULL,
-    modified_by                INT         NOT NULL,
+    updated_by                INT         NOT NULL,
     CONSTRAINT tfbm_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
     CONSTRAINT tfbm_family_business_id_fk FOREIGN KEY (family_business_id) REFERENCES txn_family_business (family_business_id)
 );
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS txn_family_service_mapping
     created_at                TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at                TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by                INT          NOT NULL,
-    modified_by               INT          NOT NULL,
+    updated_by               INT          NOT NULL,
     CONSTRAINT tfsm_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
     CONSTRAINT tfsm_service_id_fk FOREIGN KEY (service_id) REFERENCES mst_service (service_id)
 );
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS txn_family_education
     created_at           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by           INT         NOT NULL DEFAULT 0,
-    modified_by          INT         NOT NULL DEFAULT 0,
+    updated_by          INT         NOT NULL DEFAULT 0,
     CONSTRAINT tmps_matrimonial_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
     CONSTRAINT tmps_edu_degree_id_fk FOREIGN KEY (education_degree_id) REFERENCES mst_education_degree (education_degree_id)
 );
@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS txn_family_addiction_mapping
     created_at           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by           INT         NOT NULL DEFAULT 0,
-    modified_by          INT         NOT NULL DEFAULT 0,
+    updated_by          INT         NOT NULL DEFAULT 0,
     CONSTRAINT tmam_matrimonial_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
     CONSTRAINT tmam_addiction_id_fk FOREIGN KEY (addiction_id) REFERENCES mst_addiction (addiction_id)
 );
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS txn_mandal_member
     created_at     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by     INT         NOT NULL,
-    modified_by    INT         NOT NULL,
+    updated_by    INT         NOT NULL,
     CONSTRAINT tmp_txn_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
     CONSTRAINT tmp_mst_post_id_fk FOREIGN KEY (post_id) REFERENCES mst_post (post_id),
     CONSTRAINT tmp_mst_mandal_id_fk FOREIGN KEY (mandal_id) REFERENCES mst_mandal (mandal_id)
@@ -240,6 +240,6 @@ CREATE TABLE IF NOT EXISTS txn_trustee
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     CONSTRAINT txn_trustee_txn_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id)
 );

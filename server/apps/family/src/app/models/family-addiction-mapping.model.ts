@@ -143,10 +143,10 @@ export class FamilyAddictionMappingModel extends Model<FamilyAddictionMappingMod
   updatedAt: Date;
 
   @Column({
-    field: 'modified_by',
+    field: 'updated_by',
     type: DataType.INTEGER,
   })
-  modifiedBy: number;
+  updatedBy: number;
 
   @Column({
     field: 'created_ip',

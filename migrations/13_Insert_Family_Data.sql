@@ -1,30 +1,30 @@
 -- ------------------------------------------ FAMILY ---------------------------------------------
-INSERT INTO txn_family (family_id, first_name, middle_name, last_name, created_ip, modified_ip, active, created_at, created_by, updated_at, modified_by, gender_id, email_id)
+INSERT INTO txn_family (family_id, first_name, middle_name, last_name, created_ip, modified_ip, active, created_at, created_by, updated_at, modified_by, email_id)
 VALUES
-  (1, 'Mohanlal', 'Gamnaji', 'Parihar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (2, 'Shankarlal', 'Dhiraji', 'Gehlot', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (3, 'Achalachand', 'Farasaji', 'Tarapasa', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (4, 'Rikabchand', 'Mupaji', 'Sehua', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (5, 'Mangilal', 'Kalaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (6, 'Ganpat', 'Ramaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (7, 'Jayantilal', 'Nemaji', 'Sehua', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (8, 'Mohanlal', 'Magaji', 'Chauhan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (9, 'Hastimal', 'Dipaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (10, 'Visharam', 'Bhubaji', 'Paramar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (11, 'Sheshmal', 'Savaji', 'Chuahan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (12, 'Hiralalji', 'Kanaji', 'Sehua', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (13, 'Shivlal', 'Khangarji', 'Voseta', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (14, 'Narsingh', 'Daulaji', 'Gehlot', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (15, 'Narayanlal', 'Manaji', 'Chauhan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (16, 'Chogmal', 'Punmaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (17, 'Narsinghram', 'Daulaji', 'Gehlot', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (18, 'Mohabbatram', 'Bheraji', 'Parihar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (19, 'Ghisulal', 'Nathaji', 'Sodesa', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (20, 'Kanhaiyalal', 'Jasaji', 'Parmar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (21, 'Lacchiram', 'Kapurji', 'Vocheta', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
-  (22, 'Pukhraj', 'Gulabji', 'Tripasa', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id');
+  (1, 'Mohanlal', 'Gamnaji', 'Parihar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (2, 'Shankarlal', 'Dhiraji', 'Gehlot', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (3, 'Achalachand', 'Farasaji', 'Tarapasa', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (4, 'Rikabchand', 'Mupaji', 'Sehua', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (5, 'Mangilal', 'Kalaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (6, 'Ganpat', 'Ramaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (7, 'Jayantilal', 'Nemaji', 'Sehua', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (8, 'Mohanlal', 'Magaji', 'Chauhan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (9, 'Hastimal', 'Dipaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (10, 'Visharam', 'Bhubaji', 'Paramar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (11, 'Sheshmal', 'Savaji', 'Chuahan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (12, 'Hiralalji', 'Kanaji', 'Sehua', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (13, 'Shivlal', 'Khangarji', 'Voseta', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (14, 'Narsingh', 'Daulaji', 'Gehlot', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (15, 'Narayanlal', 'Manaji', 'Chauhan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (16, 'Chogmal', 'Punmaji', 'Solanki', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (17, 'Narsinghram', 'Daulaji', 'Gehlot', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (18, 'Mohabbatram', 'Bheraji', 'Parihar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (19, 'Ghisulal', 'Nathaji', 'Sodesa', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (20, 'Kanhaiyalal', 'Jasaji', 'Parmar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (21, 'Lacchiram', 'Kapurji', 'Vocheta', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id'),
+  (22, 'Pukhraj', 'Gulabji', 'Tripasa', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1,  'email_id');
 
-INSERT INTO txn_family (family_id, first_name, middle_name, last_name, created_ip, modified_ip, active, created_at, created_by, updated_at, modified_by, gender_id, email_id)
+INSERT INTO txn_family (family_id, first_name, middle_name, last_name, created_ip, modified_ip, active, created_at, created_by, updated_at, modified_by, email_id)
 VALUES
   (23, 'Kanaram', 'Vaga', 'Parmar', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),
   (24, 'Dinesh', 'Mulchand', 'Chouhan', '0:0:0:0', '0:0:0:0', TRUE, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, 1, 1, 'email_id'),

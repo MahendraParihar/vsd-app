@@ -45,7 +45,7 @@ export class CityVillageService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -70,7 +70,7 @@ export class CityVillageService {
     }
     return <ICityVillage>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -85,7 +85,7 @@ export class CityVillageService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -101,7 +101,7 @@ export class CityVillageService {
     const dataObj = {
       addiction: obj.cityVillage,
       districtId: obj.districtId,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.cityVillageId) {
       await this.cityVillageModel.update(dataObj, { where: { cityVillageId: obj.cityVillageId } });
@@ -114,7 +114,7 @@ export class CityVillageService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.cityVillageModel.findOne({ where: { cityVillageId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

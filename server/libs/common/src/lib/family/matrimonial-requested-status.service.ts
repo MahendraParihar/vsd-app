@@ -47,7 +47,7 @@ export class MatrimonialRequestedStatusService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -73,7 +73,7 @@ export class MatrimonialRequestedStatusService {
       matrimonialRequestedStatusId: obj.matrimonialRequestedStatusId,
       matrimonialRequestedStatus: obj.matrimonialRequestedStatus,
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -89,7 +89,7 @@ export class MatrimonialRequestedStatusService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -104,7 +104,7 @@ export class MatrimonialRequestedStatusService {
   async manage(obj: IManageMatrimonialRequestedStatus, userId: number) {
     const dataObj = {
       matrimonialRequestedStatus: obj.matrimonialRequestedStatus,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.matrimonialRequestedStatusId) {
       await this.matrimonialRequestedStatusModel.update(dataObj, { where: { matrimonialRequestedStatusId: obj.matrimonialRequestedStatusId } });
@@ -117,7 +117,7 @@ export class MatrimonialRequestedStatusService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.matrimonialRequestedStatusModel.findOne({ where: { matrimonialRequestedStatusId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

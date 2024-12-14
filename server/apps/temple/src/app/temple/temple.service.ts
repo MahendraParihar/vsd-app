@@ -52,7 +52,7 @@ export class TempleService {
     }
     return <ITemple>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -67,7 +67,7 @@ export class TempleService {
   async manage(obj: IManageTemple, userId: number) {
     const dataObj = {
       templeName: obj.templeName,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -83,7 +83,7 @@ export class TempleService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.templeModel.findOne({ where: { templeId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 
@@ -96,7 +96,7 @@ export class TempleService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,

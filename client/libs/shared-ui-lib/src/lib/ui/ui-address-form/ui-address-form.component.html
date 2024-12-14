@@ -1,0 +1,14 @@
+<div class="address-box">
+  <div class="form-row">
+    <div class="form-group">
+      <mat-label>{{ 'Address' }}</mat-label>
+      <mat-form-field>
+        <input #address formControlName="address" matInput required [maxlength]="100">
+        <mat-hint align="end">{{ address.value.length || 0 }}/100</mat-hint>
+      </mat-form-field>
+      <vsd-ui-input-error [labels]="'Address'"
+                          [controlName]="'address'"
+                          [control]="'address'"></vsd-ui-input-error>
+    </div>
+  </div>
+</div>

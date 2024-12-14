@@ -1,6 +1,6 @@
 -- ------------------------------------------ BUSINESS ---------------------------------------------
 insert into mst_business
-(business_id, business, active, created_at, created_by, updated_at, modified_by)
+(business_id, business, active, created_at, created_by, updated_at, updated_by)
 VALUES (1, 'Furnishing', TRUE, current_timestamp, 1, current_timestamp, 1),
        (2, 'Ad', TRUE, current_timestamp, 1, current_timestamp, 1),
        (3, 'Beautiy Parlour', TRUE, current_timestamp, 1, current_timestamp, 1),
@@ -88,7 +88,7 @@ VALUES (1, 'Furnishing', TRUE, current_timestamp, 1, current_timestamp, 1),
        (85, 'Shoes', TRUE, current_timestamp, 1, current_timestamp, 1);
 
 -- ------------------------------------------- SERVICES ---------------------------------------------
-insert into mst_service (service_id, service, active, created_at, created_by, updated_at, modified_by)
+insert into mst_service (service_id, service, active, created_at, created_by, updated_at, updated_by)
 VALUES (1, 'Software Engineer', TRUE, current_timestamp, 1, current_timestamp, 1),
        (2, 'Interior Decorator', TRUE, current_timestamp, 1, current_timestamp, 1),
        (3, 'Computer Operator', TRUE, current_timestamp, 1, current_timestamp, 1),
@@ -131,14 +131,14 @@ VALUES (1, 'Software Engineer', TRUE, current_timestamp, 1, current_timestamp, 1
        (40, 'Singer', TRUE, current_timestamp, 1, current_timestamp, 1);
 
 -- ------------------------------------------- GENDER ---------------------------------------------
-insert into mst_gender(gender_id, gender, active, created_at, created_by, updated_at, modified_by, created_ip,
+insert into mst_gender(gender_id, gender, active, created_at, created_by, updated_at, updated_by, created_ip,
                        modified_ip)
 VALUES (1, 'Male', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0'),
        (2, 'Female', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0');
 
 -- ------------------------------------------- MARITAL STATUS -------------------------------------
 insert into mst_marital_status (marital_status_id, marital_status, active, created_at, created_by, updated_at,
-                                modified_by)
+                                updated_by)
 VALUES (1, 'Single', TRUE, current_timestamp, 1, current_timestamp, 1),
        (2, 'Married', TRUE, current_timestamp, 1, current_timestamp, 1),
        (3, 'Divorced', TRUE, current_timestamp, 1, current_timestamp, 1),
@@ -156,7 +156,7 @@ VALUES (1, 'Father', TRUE, current_timestamp, 1, current_timestamp, 1),
 
 -- ------------------------------------------- COUNTRY ---------------------------------------------
 insert into mst_country (country_id, country, country_code, active, created_at,
-                         updated_at, created_by, modified_by, created_ip, modified_ip)
+                         updated_at, created_by, updated_by, created_ip, modified_ip)
 VALUES (1, 'Afghanistan', NULL, TRUE, current_timestamp, current_timestamp, 1, 1, ':0', ':0'),
        (2, 'Albania', NULL, TRUE, current_timestamp, current_timestamp, 1, 1, ':0', ':0'),
        (3, 'Algeria', NULL, TRUE, current_timestamp, current_timestamp, 1, 1, ':0', ':0'),
@@ -805,7 +805,7 @@ VALUES (333, 1, 'Ringnod', 13, '457336', NULL, TRUE, current_timestamp, 1, curre
 
 
 -- ------------------------------------------- POST ---------------------------------------------
-insert into mst_post (post_id, post_name, active, created_at, created_by, updated_at, modified_by, created_ip,
+insert into mst_post (post_id, post, active, created_at, created_by, updated_at, modified_by, created_ip,
                       modified_ip)
 VALUES (1, 'Guardian', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0'),
        (2, 'Chairman', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0'),
@@ -858,7 +858,7 @@ insert into mst_caste (caste_id, caste, active, created_at, created_by, updated_
 VALUES (1, 'Suthar', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0');
 
 -- ------------------------------------------- Request Status ---------------------------------------------
-insert into mst_matrimonial_requested_status (requested_status_id, status, active, created_at, created_by, updated_at,
+insert into mst_matrimonial_requested_status (matrimonial_requested_status_id, matrimonial_requested_status, active, created_at, created_by, updated_at,
                                               modified_by, created_ip, modified_ip)
 VALUES (1, 'Accepted', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0'),
        (2, 'Rejected', TRUE, current_timestamp, 1, current_timestamp, 1, ':0', ':0'),

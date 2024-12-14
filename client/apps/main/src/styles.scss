@@ -4,6 +4,7 @@ $html-font-size: 16px;
 @function stripUnit($value) {
   @return calc($value / ($value * 0 + 1px));
 }
+
 @function rem($pxValue) {
   @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
 }
@@ -57,3 +58,16 @@ body.dark-theme {
 
 @include mat.all-component-themes($light-theme);
 
+.form {
+  .form-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-8);
+  }
+}

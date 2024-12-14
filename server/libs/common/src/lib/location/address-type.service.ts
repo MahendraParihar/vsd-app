@@ -43,7 +43,7 @@ export class AddressTypeService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -67,7 +67,7 @@ export class AddressTypeService {
     }
     return <IAddressType>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -83,7 +83,7 @@ export class AddressTypeService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -98,7 +98,7 @@ export class AddressTypeService {
   async manage(obj: IManageAddressType, userId: number) {
     const dataObj = {
       addressType: obj.addressType,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -114,7 +114,7 @@ export class AddressTypeService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.addressTypeModel.findOne({ where: { addressTypeId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

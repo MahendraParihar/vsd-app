@@ -1,11 +1,25 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Edit Mandal</mat-card-title>
+    <mat-card-title>{{ pageTitle }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-
+    <form class="form" [formGroup]="formGroup">
+      <div class="form-row">
+        <div class="form-group">
+          <mat-label>{{ labelService.getLabel(labelKeys.SIDE_MENU_MANDAL) }}</mat-label>
+          <mat-form-field>
+            <input #mandalName formControlName="mandalName" matInput required [maxlength]="150">
+            <mat-hint align="end">{{ mandalName.value.length || 0 }}/150</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)"
+                              [control]="formGroup.get('mandalName')"></vsd-ui-input-error>
+        </div>
+      </div>
+    </form>
   </mat-card-content>
   <mat-card-actions>
-    <vsd-ui-button (actionBtnClicked)='updateDetails()' [label]="'submit'"></vsd-ui-button>
+    <vsd-ui-button (actionBtnClicked)='updateDetails()'
+                   [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></vsd-ui-button>
   </mat-card-actions>
 </mat-card>

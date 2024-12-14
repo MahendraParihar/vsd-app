@@ -10,6 +10,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {SharedUiLibModule} from "@vsd-frontend/shared-ui-lib";
 import { MatCardModule } from '@angular/material/card';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   imports: [CommonModule,
@@ -20,7 +21,9 @@ import { MatCardModule } from '@angular/material/card';
     SharedUiLibModule, MatCardModule],
   declarations: [ManageMandalComponent, MandalComponent, MandalDetailComponent],
   exports: [ManageMandalComponent, MandalComponent, MandalDetailComponent],
-  providers: [MandalService]
+  providers: [MandalService, {
+    provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+  }]
 })
 export class MandalLibModule {
 }

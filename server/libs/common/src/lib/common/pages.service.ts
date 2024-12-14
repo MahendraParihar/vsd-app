@@ -29,7 +29,7 @@ export class PagesService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -62,7 +62,7 @@ export class PagesService {
     }
     return <ILegalPage>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -79,7 +79,7 @@ export class PagesService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -95,7 +95,7 @@ export class PagesService {
     const dataObj = {
       title: obj.title,
       details: obj.details,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.legalPageId) {
       await this.legalPagesModel.update(dataObj, { where: { legalPageId: obj.legalPageId } });
@@ -108,7 +108,7 @@ export class PagesService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.legalPagesModel.findOne({ where: { legalPageId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

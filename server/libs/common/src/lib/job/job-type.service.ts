@@ -44,7 +44,7 @@ export class JobTypeService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -68,7 +68,7 @@ export class JobTypeService {
     }
     return <IJobType>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -85,7 +85,7 @@ export class JobTypeService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -100,7 +100,7 @@ export class JobTypeService {
   async manage(obj: IManageJobType, userId: number) {
     const dataObj = {
       jobType: obj.jobType,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -116,7 +116,7 @@ export class JobTypeService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.jobTypeModel.findOne({ where: { jobTypeId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

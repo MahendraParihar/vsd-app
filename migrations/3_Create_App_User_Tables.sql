@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS txn_app_user (
   created_at         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by         INT         NOT NULL DEFAULT 0,
-  modified_by        INT         NOT NULL DEFAULT 0,
+  updated_by        INT         NOT NULL DEFAULT 0,
   CONSTRAINT mau_city_village_id_fk FOREIGN KEY (city_village_id) REFERENCES mst_city_village (city_village_id)
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS txn_app_user_device (
   created_at         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by         INT          NOT NULL,
-  modified_by        INT          NOT NULL,
+  updated_by        INT          NOT NULL,
   CONSTRAINT mai_app_user_id_fk FOREIGN KEY (app_user_id) REFERENCES txn_app_user (app_user_id)
 );
 

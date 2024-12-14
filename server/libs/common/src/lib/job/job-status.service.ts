@@ -43,7 +43,7 @@ export class JobStatusService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -67,7 +67,7 @@ export class JobStatusService {
     }
     return <IJobStatus>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -83,7 +83,7 @@ export class JobStatusService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -98,7 +98,7 @@ export class JobStatusService {
   async manage(obj: IManageJobStatus, userId: number) {
     const dataObj = {
       jobStatus: obj.jobStatus,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.jobStatusId) {
       await this.jobStatusModel.update(dataObj, { where: { jobStatusId: obj.jobStatusId } });
@@ -111,7 +111,7 @@ export class JobStatusService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.jobStatusModel.findOne({ where: { jobStatusId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

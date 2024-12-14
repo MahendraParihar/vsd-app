@@ -44,7 +44,7 @@ export class FaqCategoryService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -68,7 +68,7 @@ export class FaqCategoryService {
     }
     return <IFaqCategory>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -84,7 +84,7 @@ export class FaqCategoryService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -99,7 +99,7 @@ export class FaqCategoryService {
   async manage(obj: IManageFaqCategory, userId: number) {
     const dataObj = {
       faqCategory: obj.faqCategory,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.faqCategoryId) {
       await this.faqCategoryModel.update(dataObj, { where: { faqCategoryId: obj.faqCategoryId } });
@@ -112,7 +112,7 @@ export class FaqCategoryService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.faqCategoryModel.findOne({ where: { faqCategoryId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

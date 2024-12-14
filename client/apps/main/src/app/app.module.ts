@@ -35,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from './auth/auth.service';
 import { FaqComponent } from './faq/faq.component';
 import { ManageFaqComponent } from './faq/manage-faq/manage-faq.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -153,7 +154,7 @@ import { ManageFaqComponent } from './faq/manage-faq/manage-faq.component';
           component: PageNotFountComponent,
         },
       ],
-      { initialNavigation: 'enabledBlocking' }
+      { initialNavigation: 'enabledBlocking' },
     ),
     CoreLibModule,
     CommonModule,
@@ -169,7 +170,10 @@ import { ManageFaqComponent } from './faq/manage-faq/manage-faq.component';
     MatInputModule,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
-  providers: [HttpService, AuthService, AuthGuardService],
+  providers: [HttpService, AuthService, AuthGuardService,
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

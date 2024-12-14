@@ -42,7 +42,7 @@ export class MediaSrcService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -66,7 +66,7 @@ export class MediaSrcService {
     }
     return <IMediaSrc>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -82,7 +82,7 @@ export class MediaSrcService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -97,7 +97,7 @@ export class MediaSrcService {
   async manage(obj: IManageMediaSrc, userId: number) {
     const dataObj = {
       mediaSrc: obj.mediaSrc,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.mediaSrcId) {
       await this.mediaSrcModel.update(dataObj, { where: { mediaSrcId: obj.mediaSrcId } });
@@ -110,7 +110,7 @@ export class MediaSrcService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.mediaSrcModel.findOne({ where: { mediaSrcId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

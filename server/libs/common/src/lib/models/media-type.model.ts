@@ -73,14 +73,14 @@ export class MediaTypeModel extends Model<MediaTypeModel> {
   updatedAt: Date;
 
   @Column({
-    field: 'modified_by',
+    field: 'updated_by',
     type: DataType.INTEGER,
   })
-  modifiedBy: number;
+  updatedBy: number;
 
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
 }

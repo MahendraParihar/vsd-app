@@ -42,7 +42,7 @@ export class ContactTypeService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -66,7 +66,7 @@ export class ContactTypeService {
     }
     return <IContactType>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -82,7 +82,7 @@ export class ContactTypeService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -97,7 +97,7 @@ export class ContactTypeService {
   async manage(obj: IManageContactType, userId: number) {
     const dataObj = {
       contactType: obj.contactType,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.contactTypeId) {
       await this.contactTypeModel.update(dataObj, { where: { contactTypeId: obj.contactTypeId } });
@@ -110,7 +110,7 @@ export class ContactTypeService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.contactTypeModel.findOne({ where: { contactTypeId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

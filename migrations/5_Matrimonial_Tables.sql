@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS txn_matrimonial_profile_requested (
   created_at           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by           INT         NOT NULL DEFAULT 0,
-  modified_by          INT         NOT NULL DEFAULT 0,
+  updated_by          INT         NOT NULL DEFAULT 0,
   status_id            INT         NOT NULL DEFAULT 0,
   CONSTRAINT tmpreq_from_id_fk FOREIGN KEY (requested_from_id) REFERENCES txn_matrimonial_profile (matrimonial_id),
   CONSTRAINT tmpreq_to_id_fk FOREIGN KEY (requested_to_id) REFERENCES txn_matrimonial_profile (matrimonial_id),
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS txn_matrimonial_profile_shortlisted (
   created_at             TIMESTAMP   NOT NULL           DEFAULT CURRENT_TIMESTAMP,
   updated_at             TIMESTAMP   NOT NULL           DEFAULT CURRENT_TIMESTAMP,
   created_by             INT         NOT NULL           DEFAULT 0,
-  modified_by            INT         NOT NULL           DEFAULT 0,
+  updated_by            INT         NOT NULL           DEFAULT 0,
   CONSTRAINT tmpshort_matrimonial_id_fk FOREIGN KEY (matrimonial_id) REFERENCES txn_matrimonial_profile (matrimonial_id),
   CONSTRAINT tmpshort_shortlisted_id_fk FOREIGN KEY (shortlisted_id) REFERENCES txn_matrimonial_profile (matrimonial_id)
 );

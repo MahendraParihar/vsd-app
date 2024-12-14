@@ -46,7 +46,7 @@ export class DistrictService {
         createdAt: data.createdAt,
         createdBy: data.createdBy,
         updatedAt: data.updatedAt,
-        updatedBy: data.modifiedBy,
+        updatedBy: data.updatedBy,
         createdByUser: <IBaseAdminUser>{
           firstName: data.createdByUser.firstName,
           lastName: data.createdByUser.lastName,
@@ -71,7 +71,7 @@ export class DistrictService {
     }
     return <IDistrict>{
       ...obj,
-      updatedBy: obj.modifiedBy,
+      updatedBy: obj.updatedBy,
     };
   }
 
@@ -86,7 +86,7 @@ export class DistrictService {
       createdAt: data.createdAt,
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
-      updatedBy: data.modifiedBy,
+      updatedBy: data.updatedBy,
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
@@ -102,7 +102,7 @@ export class DistrictService {
     const dataObj = {
       district: obj.district,
       stateId: obj.stateId,
-      modifiedBy: userId,
+      updatedBy: userId,
     };
     if (obj.districtId) {
       await this.districtModel.update(dataObj, { where: { districtId: obj.districtId } });
@@ -115,7 +115,7 @@ export class DistrictService {
   async updateStatus(id: number, body: IStatusChange, userId: number) {
     const obj = await this.districtModel.findOne({ where: { districtId: id } });
     obj.active = body.status;
-    obj.modifiedBy = userId;
+    obj.updatedBy = userId;
     await obj.save();
   }
 }

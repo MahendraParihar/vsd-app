@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, AbstractControlDirective } from '@angular/forms';
+import { LabelKey } from '@vsd-common/lib';
 
 @Component({
   selector: 'vsd-ui-input-error',
@@ -9,15 +10,14 @@ import { AbstractControl, AbstractControlDirective } from '@angular/forms';
 export class UiInputErrorComponent {
   @Input()
   public control?: AbstractControlDirective | AbstractControl | null;
-
   @Input()
   public controlName?: string;
+  @Input()
+  public labels: Map<string, string> = new Map<string, string>();
 
   shouldShowErrors(): boolean | null {
     if (this.control) {
-      return (
-        this.control.errors && (this.control.dirty || this.control.touched)
-      );
+      return this.control.errors && (this.control.dirty || this.control.touched);
     } else {
       return false;
     }
@@ -36,30 +36,22 @@ export class UiInputErrorComponent {
     switch (type) {
       case 'required':
         if (this.controlName) {
-          return this.controlName + ' is required';
+          return this.controlName + ' ' + this.labels.get(LabelKey.ERROR_REQUIRED);
         } else {
-          return 'requried';
+          return this.labels.get(LabelKey.ERROR_REQUIRED);
         }
       case 'invalidNumber':
         return 'Invalid number';
       case 'matDatepickerParse':
-        return 'Invalid date';
+        return this.labels.get(LabelKey.ERROR_IN_VALID_DATE);
       case 'maxlength':
-        return 'Invalid max length' + params.requiredLength;
+        return this.labels.get(LabelKey.ERROR_IN_VALID_MAX_LENGTH) + params.requiredLength;
       case 'minlength':
-        return 'Invalid min length' + params.requiredLength;
-      case 'invalidWeight':
-        return 'Invalid weight';
-      case 'invalidHeight':
-        return 'Invalid height';
+        return this.labels.get(LabelKey.ERROR_IN_VALID_MIN_LENGTH) + params.requiredLength;
       case 'min':
-        return 'Invalid min value' + params.min;
+        return this.labels.get(LabelKey.ERROR_IN_VALID_MIN_VALUE) + params.min;
       case 'max':
-        return 'Invalid max value' + params.max;
-      case 'invalidLatitude':
-        return 'Invalid latitude';
-      case 'invalidLongitude':
-        return 'Invalid longitude';
+        return this.labels.get(LabelKey.ERROR_IN_VALID_MAX_VALUE) + params.max;
       default:
         return null;
     }

@@ -82,9 +82,16 @@ export enum LabelKey {
   ITEM_NOT_FOUND_MANDAL = 'item_not_found_mandal',
   ITEM_NOT_FOUND_PAGE = 'item_not_found_page',
 
+  ADD_MANDAL = 'add_mandal',
+  EDIT_MANDAL = 'edit_mandal',
+
+  ADD_TEMPLE = 'add_temple',
+  EDIT_TEMPLE = 'edit_temple',
+
   APP_NAME = 'app_name',
   ERROR_NOT_FOUND_ADMIN = 'error_not_found_admin',
 
+  ACTION_SUBMIT = 'action_submit',
   ACTION_EDIT = 'action_edit',
   ACTION_LOGIN = 'action_login',
   ACTION_LOGOUT = 'action_logout',

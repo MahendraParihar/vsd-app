@@ -7,9 +7,9 @@ CREATE TABLE IF NOT EXISTS mst_address_type
     created_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT         NOT NULL,
     updated_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by     INT         NOT NULL,
+    updated_by     INT         NOT NULL,
     CONSTRAINT fk_mst_address_type_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_address_type_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_address_type_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_payment_mode;
@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS mst_payment_mode
     created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT          NOT NULL,
     updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by     INT          NOT NULL,
+    updated_by     INT          NOT NULL,
     CONSTRAINT fk_mst_payment_mode_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_payment_mode_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_payment_mode_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_health_parameter_unit;
@@ -35,11 +35,11 @@ CREATE TABLE IF NOT EXISTS mst_health_parameter_unit
     created_at               TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by               INT         NOT NULL,
     updated_at               TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by              INT         NOT NULL,
+    updated_by              INT         NOT NULL,
     created_ip               VARCHAR(50) NOT NULL,
     modified_ip              VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_health_parameters_unit_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_health_parameters_unit_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_health_parameters_unit_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_media_src;
@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS mst_media_src
     created_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by   INT         NOT NULL,
     updated_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by  INT         NOT NULL,
+    updated_by  INT         NOT NULL,
     CONSTRAINT fk_mst_media_src_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_media_src_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_media_src_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_table;
@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS mst_table
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NOT NULL,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT          NOT NULL,
+    updated_by INT          NOT NULL,
     CONSTRAINT fk_mst_table_src_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_table_src_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_table_src_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_media_type;
@@ -79,9 +79,9 @@ CREATE TABLE IF NOT EXISTS mst_media_type
     created_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by    INT         NOT NULL,
     updated_at    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by   INT         NOT NULL,
+    updated_by   INT         NOT NULL,
     CONSTRAINT fk_mst_media_type_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_media_type_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_media_type_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_legal_page;
@@ -94,11 +94,11 @@ CREATE TABLE IF NOT EXISTS mst_legal_page
     created_at     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by     INT         NOT NULL,
     updated_at     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by    INT         NOT NULL,
+    updated_by    INT         NOT NULL,
     created_ip     VARCHAR(50) NOT NULL,
     modified_ip    VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_legal_page_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_legal_page_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_legal_page_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_gender;
@@ -110,11 +110,11 @@ CREATE TABLE IF NOT EXISTS mst_gender
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     created_ip  VARCHAR(50) NOT NULL,
     modified_ip VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_gender_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_gender_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_gender_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 -- ------------------------------------------ DIRECTORY ---------------------------------------------
 
@@ -128,9 +128,9 @@ CREATE TABLE IF NOT EXISTS mst_business
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NOT NULL,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT          NOT NULL,
+    updated_by INT          NOT NULL,
     CONSTRAINT fk_mst_business_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_business_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_business_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_service;
@@ -143,9 +143,9 @@ CREATE TABLE IF NOT EXISTS mst_service
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NOT NULL,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT          NOT NULL,
+    updated_by INT          NOT NULL,
     CONSTRAINT fk_mst_service_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_service_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_service_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_marital_status;
@@ -157,9 +157,9 @@ CREATE TABLE IF NOT EXISTS mst_marital_status
     created_at        TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by        INT         NOT NULL,
     updated_at        TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by       INT         NOT NULL,
+    updated_by       INT         NOT NULL,
     CONSTRAINT fk_mst_marital_status_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_marital_status_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_marital_status_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_relationship;
@@ -171,9 +171,9 @@ CREATE TABLE IF NOT EXISTS mst_relationship
     created_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT         NOT NULL,
     updated_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by     INT         NOT NULL,
+    updated_by     INT         NOT NULL,
     CONSTRAINT fk_mst_relationship_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_relationship_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_relationship_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_religion;
@@ -185,9 +185,9 @@ CREATE TABLE IF NOT EXISTS mst_religion
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     CONSTRAINT fk_mst_religion_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_religion_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_religion_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_gotra;
@@ -199,9 +199,9 @@ CREATE TABLE IF NOT EXISTS mst_gotra
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     CONSTRAINT fk_mst_gotra_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_gotra_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_gotra_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_addiction;
@@ -213,9 +213,9 @@ CREATE TABLE IF NOT EXISTS mst_addiction
     created_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by   INT         NOT NULL,
     updated_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by  INT         NOT NULL,
+    updated_by  INT         NOT NULL,
     CONSTRAINT fk_mst_addiction_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_addiction_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_addiction_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_country;
@@ -229,11 +229,11 @@ CREATE TABLE IF NOT EXISTS mst_country
     created_at        TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by        INT          NOT NULL,
     updated_at        TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by       INT          NOT NULL,
+    updated_by       INT          NOT NULL,
     created_ip        VARCHAR(50)  NOT NULL,
     modified_ip       VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_mst_country_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_country_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_country_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_state;
@@ -247,11 +247,11 @@ CREATE TABLE IF NOT EXISTS mst_state
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NOT NULL,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT          NOT NULL,
+    updated_by INT          NOT NULL,
     created_ip  VARCHAR(50)  NOT NULL,
     modified_ip VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_mst_state_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_state_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id),
+    CONSTRAINT fk_mst_state_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id),
     CONSTRAINT fk_mst_state_mst_countries_country_id FOREIGN KEY (country_id) REFERENCES mst_country (country_id)
 );
 
@@ -265,11 +265,11 @@ CREATE TABLE mst_district
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NULL,
-    modified_by INT          NULL,
+    updated_by INT          NULL,
     created_ip  VARCHAR(50)  NOT NULL,
     modified_ip VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_mst_district_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_district_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id),
+    CONSTRAINT fk_mst_district_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id),
     CONSTRAINT md_mst_state_id_fk FOREIGN KEY (state_id) REFERENCES mst_state (state_id)
         ON DELETE CASCADE
 );
@@ -292,11 +292,11 @@ CREATE TABLE IF NOT EXISTS mst_city_village
     created_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT         NOT NULL,
-    modified_by     INT         NOT NULL,
+    updated_by     INT         NOT NULL,
     created_ip      VARCHAR(50) NOT NULL,
     modified_ip     VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_city_villages_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_city_villages_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id),
+    CONSTRAINT fk_mst_city_villages_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id),
     CONSTRAINT mcv_district_id_fk FOREIGN KEY (district_id) REFERENCES mst_district (district_id)
         ON DELETE CASCADE
 );
@@ -316,11 +316,11 @@ CREATE TABLE IF NOT EXISTS mst_post
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     created_ip  VARCHAR(50) NOT NULL,
     modified_ip VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_post_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_post_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_post_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 -- ------------------------------------------ MANDAL ---------------------------------------------
@@ -335,11 +335,11 @@ CREATE TABLE IF NOT EXISTS mst_mandal
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NOT NULL,
-    modified_by INT          NOT NULL,
+    updated_by INT          NOT NULL,
     created_ip  VARCHAR(50)  NOT NULL,
     modified_ip VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_mst_mandal_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_mandal_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_mandal_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 -- ------------------------------------------ Contact Type ---------------------------------------------
@@ -353,11 +353,11 @@ CREATE TABLE IF NOT EXISTS mst_contact_type
     created_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT         NOT NULL,
-    modified_by     INT         NOT NULL,
+    updated_by     INT         NOT NULL,
     created_ip      VARCHAR(50) NOT NULL,
     modified_ip     VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_contact_type_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_contact_type_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_contact_type_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 -- ------------------------------------------ ADDRESS ---------------------------------------------
@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS txn_address
     created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT          NOT NULL,
-    modified_by     INT          NOT NULL,
+    updated_by     INT          NOT NULL,
     CONSTRAINT tf_address_type_id_fk FOREIGN KEY (address_type_id) REFERENCES mst_address_type (address_type_id)
 );
 
@@ -398,7 +398,7 @@ CREATE TABLE IF NOT EXISTS mst_notification
     created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT          NOT NULL,
-    modified_by     INT          NOT NULL
+    updated_by     INT          NOT NULL
 );
 
 DROP TABLE IF EXISTS mst_faq_category;
@@ -411,11 +411,11 @@ CREATE TABLE IF NOT EXISTS mst_faq_category
     created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT          NOT NULL,
     updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by     INT          NOT NULL,
+    updated_by     INT          NOT NULL,
     created_ip      VARCHAR(50)  NOT NULL,
     modified_ip     VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_mst_faq_category_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_faq_category_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_faq_category_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS txn_faq;
@@ -429,11 +429,11 @@ CREATE TABLE IF NOT EXISTS txn_faq
     created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT          NOT NULL,
     updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modified_by     INT          NOT NULL,
+    updated_by     INT          NOT NULL,
     created_ip      VARCHAR(50)  NOT NULL,
     modified_ip     VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_txn_faq_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_txn_faq_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id),
+    CONSTRAINT fk_txn_faq_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id),
     CONSTRAINT fk_txn_faq_mst_faq_category_faq_category_id FOREIGN KEY (faq_category_id) REFERENCES mst_faq_category (faq_category_id)
 );
 
@@ -451,11 +451,11 @@ CREATE TABLE IF NOT EXISTS mst_email_template
     created_at           TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at           TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by           INT           NOT NULL,
-    modified_by          INT           NOT NULL,
+    updated_by          INT           NOT NULL,
     created_ip           VARCHAR(50)   NOT NULL,
     modified_ip          VARCHAR(50)   NOT NULL,
     CONSTRAINT fk_mst_email_template_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_email_template_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_email_template_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 -- ------------------------------------------ Matrimonial ---------------------------------------------
@@ -468,11 +468,11 @@ CREATE TABLE IF NOT EXISTS mst_education_degree
     created_at          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by          INT         NOT NULL,
-    modified_by         INT         NOT NULL,
+    updated_by         INT         NOT NULL,
     created_ip          VARCHAR(50) NOT NULL,
     modified_ip         VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_education_degree_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_education_degree_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_education_degree_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_matrimonial_requested_status;
@@ -484,11 +484,11 @@ CREATE TABLE IF NOT EXISTS mst_matrimonial_requested_status
     created_at          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by          INT         NOT NULL,
-    modified_by         INT         NOT NULL,
+    updated_by         INT         NOT NULL,
     created_ip          VARCHAR(50) NOT NULL,
     modified_ip         VARCHAR(50) NOT NULL,
     CONSTRAINT fk_matrimonial_requested_statuses_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_matrimonial_requested_statuses_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_matrimonial_requested_statuses_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_matrimonial_status;
@@ -500,11 +500,11 @@ CREATE TABLE IF NOT EXISTS mst_matrimonial_status
     created_at            TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by            INT         NOT NULL,
-    modified_by           INT         NOT NULL,
+    updated_by           INT         NOT NULL,
     created_ip            VARCHAR(50) NOT NULL,
     modified_ip           VARCHAR(50) NOT NULL,
     CONSTRAINT fk_matrimonial_status_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_matrimonial_status_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_matrimonial_status_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_raasi;
@@ -516,11 +516,11 @@ CREATE TABLE IF NOT EXISTS mst_raasi
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     created_ip  VARCHAR(50) NOT NULL,
     modified_ip VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_raasi_faqs_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_raasi_faqs_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_raasi_faqs_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_caste;
@@ -532,11 +532,11 @@ CREATE TABLE IF NOT EXISTS mst_caste
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     created_ip  VARCHAR(50) NOT NULL,
     modified_ip VARCHAR(50) NOT NULL,
     CONSTRAINT fk_mst_caste_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_mst_caste_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_mst_caste_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 -- ------------------------------------------ Job ---------------------------------------------
@@ -550,11 +550,11 @@ CREATE TABLE IF NOT EXISTS mst_job_status
     created_at    TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by    INT          NOT NULL,
-    modified_by   INT          NOT NULL,
+    updated_by   INT          NOT NULL,
     created_ip    VARCHAR(50)  NOT NULL,
     modified_ip   VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_job_status_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_job_status_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_job_status_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_job_type;
@@ -566,11 +566,11 @@ CREATE TABLE IF NOT EXISTS mst_job_type
     created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT          NOT NULL,
-    modified_by INT          NOT NULL,
+    updated_by INT          NOT NULL,
     created_ip  VARCHAR(50)  NOT NULL,
     modified_ip VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_job_type_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_job_type_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_job_type_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_job_category;
@@ -582,11 +582,11 @@ CREATE TABLE IF NOT EXISTS mst_job_category
     created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by      INT          NOT NULL,
-    modified_by     INT          NOT NULL,
+    updated_by     INT          NOT NULL,
     created_ip      VARCHAR(50)  NOT NULL,
     modified_ip     VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_job_category_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_job_category_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id)
+    CONSTRAINT fk_job_category_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id)
 );
 
 DROP TABLE IF EXISTS mst_email_template;
@@ -599,11 +599,11 @@ CREATE TABLE IF NOT EXISTS mst_job_sub_category
     created_at          TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at          TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by          INT          NOT NULL,
-    modified_by         INT          NOT NULL,
+    updated_by         INT          NOT NULL,
     created_ip          VARCHAR(50)  NOT NULL,
     modified_ip         VARCHAR(50)  NOT NULL,
     CONSTRAINT fk_job_sub_category_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_job_sub_category_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id),
+    CONSTRAINT fk_job_sub_category_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id),
     CONSTRAINT mst_job_category_id_fk FOREIGN KEY (job_category_id) REFERENCES mst_job_category (job_category_id)
 );
 
@@ -624,7 +624,7 @@ CREATE TABLE IF NOT EXISTS txn_media
     created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT       NOT NULL,
-    modified_by INT       NOT NULL,
+    updated_by INT       NOT NULL,
     CONSTRAINT tm_table_id_fk FOREIGN KEY (table_id) REFERENCES mst_table (table_id)
 );
 
@@ -644,8 +644,8 @@ CREATE TABLE IF NOT EXISTS mst_temple
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by  INT         NOT NULL,
-    modified_by INT         NOT NULL,
+    updated_by INT         NOT NULL,
     CONSTRAINT fk_temple_mst_admin_created_by FOREIGN KEY (created_by) REFERENCES mst_admin_user (admin_user_id),
-    CONSTRAINT fk_temple_mst_admin_modified_by FOREIGN KEY (modified_by) REFERENCES mst_admin_user (admin_user_id),
+    CONSTRAINT fk_temple_mst_admin_updated_by FOREIGN KEY (updated_by) REFERENCES mst_admin_user (admin_user_id),
     CONSTRAINT tt_address_id_fk FOREIGN KEY (address_id) REFERENCES txn_address (address_id)
 );

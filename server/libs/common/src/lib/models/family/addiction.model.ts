@@ -96,14 +96,14 @@ export class AddictionModel extends Model<AddictionModel> {
 
   @ForeignKey(() => AdminUserModel)
   @Column({
-    field: 'modified_by',
+    field: 'updated_by',
     type: DataType.INTEGER,
     references: {
       model: 'AdminModel',
       key: 'adminUserId',
     },
   })
-  modifiedBy: number;
+  updatedBy: number;
 
   @Column({
     field: 'created_ip',
@@ -122,6 +122,6 @@ export class AddictionModel extends Model<AddictionModel> {
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'modifiedBy', targetKey: 'adminUserId' })
+  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
 }

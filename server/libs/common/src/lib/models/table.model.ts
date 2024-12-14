@@ -54,8 +54,8 @@ export class TableModel extends Model<TableModel> {
   updatedAt: Date;
 
   @Column({
-    field: 'modified_by',
+    field: 'updated_by',
     type: DataType.INTEGER,
   })
-  modifiedBy: number;
+  updatedBy: number;
 }
