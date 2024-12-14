@@ -28,6 +28,7 @@ export * from './lib/common/contact-type.service';
 export * from './lib/common/pages.service';
 export * from './lib/common/dto/table-list.dto';
 export * from './lib/common/dto/status-change.dto';
+export * from './lib/common/dto/address.dto';
 
 export * from './lib/faq/faq-category.service';
 export * from './lib/label/label.module';

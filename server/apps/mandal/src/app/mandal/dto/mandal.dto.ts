@@ -1,5 +1,6 @@
-import {IManageAddress, IManageMandal} from '@vsd-common/lib';
-import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { IManageMandal } from '@vsd-common/lib';
+import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { AddressDto } from '@server/common';
 
 export class MandalDto implements IManageMandal {
   @IsOptional()
@@ -19,8 +20,11 @@ export class MandalDto implements IManageMandal {
   @IsObject()
   imagePath: object;
 
-  addressId: number;
+  @IsOptional()
+  @IsNumber()
+  addressId?: number;
 
-  address: IManageAddress;
+  @IsNotEmpty()
+  address: AddressDto;
 
 }

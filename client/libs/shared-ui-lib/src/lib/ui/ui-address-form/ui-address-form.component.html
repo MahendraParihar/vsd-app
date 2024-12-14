@@ -18,8 +18,8 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.ADDRESS)"></vsd-ui-label>
         <mat-form-field>
-          <input #address formControlName="address" matInput required [maxlength]="100">
-          <mat-hint align="end">{{ address.value.length || 0 }}/100</mat-hint>
+          <input #address formControlName="address" matInput required [maxlength]="inputLength.MAX_ADDRESS">
+          <mat-hint align="end">{{ address.value.length || 0 }}/{{ inputLength.MAX_ADDRESS }}</mat-hint>
         </mat-form-field>
         <vsd-ui-input-error [labels]="labels"
                             [controlName]="labels.get(labelKeys.ADDRESS)"
@@ -88,8 +88,8 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.PIN_CODE)"></vsd-ui-label>
         <mat-form-field>
-          <input #pinCode formControlName="pinCode" matInput required [maxlength]="100">
-          <mat-hint align="end">{{ pinCode.value.length || 0 }}/10</mat-hint>
+          <input #pinCode formControlName="pinCode" matInput required [maxlength]="inputLength.CHAR_10">
+          <mat-hint align="end">{{ pinCode.value.length || 0 }}/{{ inputLength.CHAR_10 }}</mat-hint>
         </mat-form-field>
         <vsd-ui-input-error [labels]="labels"
                             [controlName]="labels.get(labelKeys.PIN_CODE)"
@@ -98,8 +98,8 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.LATITUDE)"></vsd-ui-label>
         <mat-form-field>
-          <input #latitude formControlName="latitude" matInput required [maxlength]="50">
-          <mat-hint align="end">{{ latitude.value.length || 0 }}/50</mat-hint>
+          <input #latitude formControlName="latitude" matInput required [maxlength]="inputLength.CHAR_50">
+          <mat-hint align="end">{{ latitude.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
         </mat-form-field>
         <vsd-ui-input-error [labels]="labels"
                             [controlName]="labels.get(labelKeys.LATITUDE)"
@@ -108,8 +108,8 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.LONGITUDE)"></vsd-ui-label>
         <mat-form-field>
-          <input #longitude formControlName="longitude" matInput required [maxlength]="50">
-          <mat-hint align="end">{{ longitude.value.length || 0 }}/50</mat-hint>
+          <input #longitude formControlName="longitude" matInput required [maxlength]="inputLength.CHAR_50">
+          <mat-hint align="end">{{ longitude.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
         </mat-form-field>
         <vsd-ui-input-error [labels]="labels"
                             [controlName]="labels.get(labelKeys.LONGITUDE)"

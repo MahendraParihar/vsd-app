@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
-import { IMandal, IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageMandal, IMandal, IResponse, IStatusChange } from '@vsd-common/lib';
 import { MandalApiUrl } from './api-url';
 
 @Injectable()
@@ -18,6 +18,11 @@ export class MandalService {
 
   async loadDetails(id: number): Promise<IMandal> {
     const res = await this.httpService.getRequest<IResponse<IMandal>>(MandalApiUrl.MANDAL + '/' + id);
+    return res.data as IMandal;
+  }
+
+  async manageMandal(payload: IManageMandal): Promise<IMandal> {
+    const res = await this.httpService.postRequest<IResponse<IMandal>>(MandalApiUrl.MANDAL, payload);
     return res.data as IMandal;
   }
 }

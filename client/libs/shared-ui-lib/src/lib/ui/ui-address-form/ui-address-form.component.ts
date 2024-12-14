@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IAddressMaster, LabelKey } from '@vsd-common/lib';
+import { IAddressMaster, InputLength, LabelKey } from '@vsd-common/lib';
 
 @Component({
   selector: 'vsd-ui-address-form',
@@ -10,6 +10,7 @@ import { IAddressMaster, LabelKey } from '@vsd-common/lib';
 export class UiAddressFormComponent implements OnInit {
 
   labelKeys = LabelKey;
+  inputLength = InputLength;
 
   @Input()
   formGroup!: FormGroup;
@@ -22,10 +23,10 @@ export class UiAddressFormComponent implements OnInit {
 
   addressFormGroup: FormGroup = new FormGroup({
     addressTypeId: new FormControl(null, [Validators.required]),
-    address: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
-    pinCode: new FormControl(null, [Validators.required, Validators.maxLength(10)]),
-    latitude: new FormControl(null, [Validators.maxLength(50)]),
-    longitude: new FormControl(null, [Validators.maxLength(50)]),
+    address: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.MAX_ADDRESS)]),
+    pinCode: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_10)]),
+    latitude: new FormControl(null, [Validators.maxLength(InputLength.CHAR_50)]),
+    longitude: new FormControl(null, [Validators.maxLength(InputLength.CHAR_50)]),
     countryId: new FormControl(null, [Validators.required]),
     stateId: new FormControl(null, [Validators.required]),
     districtId: new FormControl(null, [Validators.required]),

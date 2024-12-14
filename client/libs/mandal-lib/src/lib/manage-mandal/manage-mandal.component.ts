@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MandalService } from '../mandal.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddressService, LabelService } from '@vsd-frontend/core-lib';
-import { FileTypeEnum, IAddressMaster, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import { FileTypeEnum, IAddressMaster, IManageMandal, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { Editor, Toolbar } from 'ngx-editor';
@@ -75,5 +75,13 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) {
       return;
     }
+    const payload:IManageMandal = {
+      mandalName: this.formGroup.value.mandalName,
+      description: this.formGroup.value.description,
+      imagePath: this.formGroup.value.uploadFiles,
+      address: this.formGroup.value.addressFormGroup,
+      addressId: this.formGroup.value.addressFormGroup.addressId
+    }
+    await this.mandalService.manageMandal(payload);
   }
 }
