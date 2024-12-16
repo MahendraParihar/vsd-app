@@ -61,14 +61,11 @@ export class JobStatusService {
   }
 
   async getById(id: number): Promise<IJobStatus> {
-    const obj = await this.jobStatusModel.findOne({ where: { jobStatusId: id } });
+    const obj = await this.jobStatusModel.findOne({ where: { jobStatusId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_JOB_STATUS));
     }
-    return <IJobStatus>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IJobStatus>obj;
   }
 
   async loadDetailById(id: number): Promise<IJobStatusList> {

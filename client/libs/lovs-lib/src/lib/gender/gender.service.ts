@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageGender, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class GenderService {
@@ -14,5 +14,15 @@ export class GenderService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageGender> {
+    const res = await this.httpService.getRequest<IResponse<IManageGender>>(LovApiUrl.GENDER + '/' + id);
+    return res as IManageGender;
+  }
+
+  async manageGender(payload: IManageGender): Promise<IManageGender> {
+    const res = await this.httpService.postRequest<IResponse<IManageGender>>(LovApiUrl.MANAGE_GENDER, payload);
+    return res as IManageGender;
   }
 }

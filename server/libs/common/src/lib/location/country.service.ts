@@ -72,14 +72,11 @@ export class CountryService {
   }
 
   async getById(id: number): Promise<ICountry> {
-    const obj = await this.countryModel.findOne({ where: { countryId: id } });
+    const obj = await this.countryModel.findOne({ where: { countryId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_COUNTRY));
     }
-    return <ICountry>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <ICountry>obj;
   }
 
   async loadDetailById(id: number) {

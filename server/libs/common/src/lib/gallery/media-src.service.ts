@@ -60,14 +60,14 @@ export class MediaSrcService {
   }
 
   async getById(id: number): Promise<IMediaSrc> {
-    const obj = await this.mediaSrcModel.findOne({ where: { mediaSrcId: id } });
+    const obj = await this.mediaSrcModel.findOne({
+      where: { mediaSrcId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MEDIA_SRC));
     }
-    return <IMediaSrc>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IMediaSrc>obj;
   }
 
   async loadDetailById(id: number): Promise<IMediaSrcList> {

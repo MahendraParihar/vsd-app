@@ -33,7 +33,7 @@ export class GenderService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["gender","asc"]],
+      order: [['gender', 'asc']],
     });
     const data = rows.map((data: GenderModel) => {
       return <IGenderList>{
@@ -62,14 +62,11 @@ export class GenderService {
   }
 
   async getById(id: number): Promise<IGender> {
-    const obj = await this.genderModel.findOne({ where: { genderId: id } });
+    const obj = await this.genderModel.findOne({ where: { genderId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_GENDER));
     }
-    return <IGender>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IGender>obj;
   }
 
   async loadDetailById(id: number): Promise<IGenderList> {

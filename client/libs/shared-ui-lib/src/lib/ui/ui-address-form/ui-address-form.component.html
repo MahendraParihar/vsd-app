@@ -28,7 +28,7 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.COUNTRY)"></vsd-ui-label>
         <mat-form-field>
-          <mat-select formControlName="countryId">
+          <mat-select formControlName="countryId" (selectionChange)="findStates($event.value)">
             <mat-option>None</mat-option>
             @for (state of masterData.countries; track state) {
               <mat-option [value]="state.id">{{ state.title }}</mat-option>
@@ -44,9 +44,9 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.STATE)"></vsd-ui-label>
         <mat-form-field>
-          <mat-select formControlName="stateId">
+          <mat-select formControlName="stateId" (selectionChange)="findDistricts($event.value)">
             <mat-option>None</mat-option>
-            @for (state of findStates(); track state) {
+            @for (state of stateList; track state) {
               <mat-option [value]="state.id">{{ state.title }}</mat-option>
             }
           </mat-select>
@@ -58,9 +58,9 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.DISTRICT)"></vsd-ui-label>
         <mat-form-field>
-          <mat-select formControlName="districtId">
+          <mat-select formControlName="districtId"  (selectionChange)="findCityVillages($event.value)">
             <mat-option>None</mat-option>
-            @for (state of findDistricts(); track state) {
+            @for (state of districtList; track state) {
               <mat-option [value]="state.id">{{ state.title }}</mat-option>
             }
           </mat-select>
@@ -74,7 +74,7 @@
         <mat-form-field>
           <mat-select formControlName="cityVillageId">
             <mat-option>None</mat-option>
-            @for (state of findCityVillages(); track state) {
+            @for (state of cityVillageList; track state) {
               <mat-option [value]="state.id">{{ state.title }}</mat-option>
             }
           </mat-select>
@@ -98,7 +98,7 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.LATITUDE)"></vsd-ui-label>
         <mat-form-field>
-          <input #latitude formControlName="latitude" matInput required [maxlength]="inputLength.CHAR_50">
+          <input #latitude formControlName="latitude" matInput [maxlength]="inputLength.CHAR_50">
           <mat-hint align="end">{{ latitude.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
         </mat-form-field>
         <vsd-ui-input-error [labels]="labels"
@@ -108,7 +108,7 @@
       <div class="form-group">
         <vsd-ui-label [label]="labels.get(labelKeys.LONGITUDE)"></vsd-ui-label>
         <mat-form-field>
-          <input #longitude formControlName="longitude" matInput required [maxlength]="inputLength.CHAR_50">
+          <input #longitude formControlName="longitude" matInput [maxlength]="inputLength.CHAR_50">
           <mat-hint align="end">{{ longitude.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
         </mat-form-field>
         <vsd-ui-input-error [labels]="labels"

@@ -35,7 +35,7 @@ export class PostController {
     }
   }
 
-  @Post()
+  @Post('manage')
   managePost(@Body() body: PostDto, userId: number) {
     try {
       return this.postService.manage(body, userId);

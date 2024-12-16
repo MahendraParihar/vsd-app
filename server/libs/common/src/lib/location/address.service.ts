@@ -1,12 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { AddressModel } from '../models/location';
-import { IAddressMaster, IAddressType, ICityVillage, ICountry, IDistrict, IOption, IState } from '@vsd-common/lib';
+import {
+  IAddressMaster,
+  IAddressType,
+  ICityVillage,
+  ICountry,
+  IDistrict,
+  IManageAddress,
+  IOption,
+  IState,
+} from '@vsd-common/lib';
 import { CountryService } from './country.service';
 import { StateService } from './state.service';
 import { DistrictService } from './district.service';
 import { CityVillageService } from './city-village.service';
 import { AddressTypeService } from './address-type.service';
+import { Transaction } from 'sequelize';
 
 @Injectable()
 export class AddressService {
@@ -47,7 +57,17 @@ export class AddressService {
   async loadDetailById(id: number) {
   }
 
-  async manage() {
+  async manage(obj: IManageAddress, transaction: Transaction): Promise<IManageAddress> {
+    if (obj.addressId) {
+      const [rows, dataSet] = await this.addressModel.update(obj, {
+        where: { addressId: obj.addressId },
+        transaction: transaction,
+        returning: true,
+      });
+      return dataSet[0] as IManageAddress;
+    } else {
+      return await this.addressModel.create(obj, { transaction: transaction });
+    }
   }
 
   async updateStatus() {

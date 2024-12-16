@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageRelationship, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class RelationshipService {
@@ -14,5 +14,15 @@ export class RelationshipService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageRelationship> {
+    const res = await this.httpService.getRequest<IResponse<IManageRelationship>>(LovApiUrl.RELATIONSHIP + '/' + id);
+    return res as IManageRelationship;
+  }
+
+  async manageRelationship(payload: IManageRelationship): Promise<IManageRelationship> {
+    const res = await this.httpService.postRequest<IResponse<IManageRelationship>>(LovApiUrl.MANAGE_RELATIONSHIP, payload);
+    return res as IManageRelationship;
   }
 }

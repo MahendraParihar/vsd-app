@@ -72,14 +72,11 @@ export class CityVillageService {
   }
 
   async getById(id: number) {
-    const obj = await this.cityVillageModel.findOne({ where: { cityVillageId: id } });
+    const obj = await this.cityVillageModel.findOne({ where: { cityVillageId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_ADDICTION));
     }
-    return <ICityVillage>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <ICityVillage>obj;
   }
 
   async loadDetailById(id: number) {

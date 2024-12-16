@@ -13,12 +13,15 @@ import {
 } from '@vsd-common/lib';
 import { TempleModel } from '../models/temple.model';
 import { Op } from 'sequelize';
-import { LabelService } from '@server/common';
+import { AddressService, LabelService } from '@server/common';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class TempleService {
   constructor(@InjectModel(TempleModel) private templeModel: typeof TempleModel,
-              private labelService: LabelService) {
+              private labelService: LabelService,
+              private sequelize: Sequelize,
+              private addressService: AddressService) {
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<ITempleList>> {
@@ -46,14 +49,11 @@ export class TempleService {
   }
 
   async getById(id: number): Promise<ITemple> {
-    const obj = await this.templeModel.findOne({ where: { templeId: id } });
+    const obj = await this.templeModel.scope('list').findOne({ where: { templeId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_TEMPLE));
     }
-    return <ITemple>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <ITemple>obj;
   }
 
   async loadDetailById(id: number): Promise<ITempleList> {
@@ -64,19 +64,31 @@ export class TempleService {
     return this.formatObj(data);
   }
 
-  async manage(obj: IManageTemple, userId: number) {
-    const dataObj = {
-      templeName: obj.templeName,
-      updatedBy: userId,
-    };
-    if (obj.imagePath) {
-      Object.assign(dataObj, { imagePath: obj.imagePath });
-    }
-    if (obj.templeId) {
-      await this.templeModel.update(dataObj, { where: { templeId: obj.templeId } });
-    } else {
-      Object.assign(dataObj, { createdBy: userId });
-      await this.templeModel.create(dataObj);
+  async manage(obj: IManageTemple, userId: number): Promise<IManageTemple> {
+    const transaction = await this.sequelize.transaction();
+    try {
+      const dataObj = {
+        templeName: obj.templeName,
+        description: obj.description,
+        updatedBy: userId,
+      };
+      if (obj.imagePath) {
+        Object.assign(dataObj, { imagePath: obj.imagePath });
+      }
+      let res;
+      const address = await this.addressService.manage(obj.address, transaction);
+      obj.addressId = address.addressId;
+      if (obj.templeId) {
+        res = await this.templeModel.update(dataObj, { where: { templeId: obj.templeId }, transaction: transaction });
+      } else {
+        Object.assign(dataObj, { createdBy: userId });
+        res = await this.templeModel.create(dataObj, { transaction: transaction });
+      }
+      await transaction.commit();
+      return res;
+    } catch (e) {
+      await transaction.rollback();
+      throw e;
     }
   }
 

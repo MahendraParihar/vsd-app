@@ -62,14 +62,11 @@ export class FaqCategoryService {
   }
 
   async getById(id: number): Promise<IFaqCategory> {
-    const obj = await this.faqCategoryModel.findOne({ where: { faqCategoryId: id } });
+    const obj = await this.faqCategoryModel.findOne({ where: { faqCategoryId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_FAQ_CATEGORY));
     }
-    return <IFaqCategory>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IFaqCategory>obj;
   }
 
   async loadDetailById(id: number): Promise<IFaqCategoryList> {

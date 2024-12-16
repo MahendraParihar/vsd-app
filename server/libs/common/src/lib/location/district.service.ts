@@ -73,14 +73,11 @@ export class DistrictService {
   }
 
   async getById(id: number): Promise<IDistrict> {
-    const obj = await this.districtModel.findOne({ where: { districtId: id } });
+    const obj = await this.districtModel.findOne({ where: { districtId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_DISTRICT));
     }
-    return <IDistrict>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IDistrict>obj;
   }
 
   async loadDetailById(id: number): Promise<IDistrictList> {

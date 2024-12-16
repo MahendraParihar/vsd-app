@@ -35,7 +35,7 @@ export class JobSubCategoryController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageJobSubCategory(@Body() body: JobSubCategoryDto, userId: number) {
     try {
       return this.jobSubCategoryService.manage(body, userId);

@@ -65,14 +65,11 @@ export class FamilyService {
   }
 
   async getById(id: number): Promise<IFamily> {
-    const obj = await this.familyModel.findOne({ where: { familyId: id } });
+    const obj = await this.familyModel.findOne({ where: { familyId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_FAMILY));
     }
-    return <IFamily>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IFamily>obj;
   }
 
   async loadDetailById(id: number): Promise<IFamilyList> {

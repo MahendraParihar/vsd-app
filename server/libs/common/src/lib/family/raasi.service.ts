@@ -33,7 +33,7 @@ export class RaasiService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["raasi","asc"]],
+      order: [['raasi', 'asc']],
     });
     const data = rows.map((data: RaasiModel) => {
       return <IRaasiList>{
@@ -62,14 +62,14 @@ export class RaasiService {
   }
 
   async getById(id: number): Promise<IRaasi> {
-    const obj = await this.raasiModel.findOne({ where: { raasiId: id } });
+    const obj = await this.raasiModel.findOne({
+      where: { raasiId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_RAASI));
     }
-    return <IRaasi>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IRaasi>obj;
   }
 
   async loadDetailById(id: number): Promise<IRaasiList> {

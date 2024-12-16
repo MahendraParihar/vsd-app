@@ -28,6 +28,7 @@ export class TempleComponent implements OnInit, AfterViewInit {
     'seqNo',
     'imagePath',
     'templeName',
+    'cityVillage',
     'active',
     'createdByUser',
     'createdAt',
@@ -90,7 +91,7 @@ export class TempleComponent implements OnInit, AfterViewInit {
     this.navigationService.navigateToById(NavigationPathEnum.TEMPLE_MANAGE, obj.templeId);
   }
 
-  async changeStatus(status: boolean, index: number, obj: ITempleList) {
+  async changeStatus(obj: ITempleList) {
     await this.service.changeStatus(obj.templeId, !obj.active);
     this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
     await this.loadDataSet();

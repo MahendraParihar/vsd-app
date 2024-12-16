@@ -35,7 +35,7 @@ export class RaasiController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageRaasi(@Body() body: RaasiDto, userId: number) {
     try {
       return this.raasiService.manage(body, userId);

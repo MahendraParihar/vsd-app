@@ -35,7 +35,7 @@ export class BusinessController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageBusiness(@Body() body: BusinessDto, userId: number) {
     try {
       return this.businessService.manage(body, userId);

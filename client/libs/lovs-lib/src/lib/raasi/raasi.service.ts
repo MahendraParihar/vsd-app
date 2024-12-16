@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageRaasi, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class RaasiService {
@@ -14,5 +14,15 @@ export class RaasiService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageRaasi> {
+    const res = await this.httpService.getRequest<IResponse<IManageRaasi>>(LovApiUrl.RAASI + '/' + id);
+    return res as IManageRaasi;
+  }
+
+  async manageRaasi(payload: IManageRaasi): Promise<IManageRaasi> {
+    const res = await this.httpService.postRequest<IResponse<IManageRaasi>>(LovApiUrl.MANAGE_RAASI, payload);
+    return res as IManageRaasi;
   }
 }

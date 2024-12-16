@@ -36,7 +36,7 @@ export class MatrimonialRequestedStatusService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["matrimonialRequestedStatus","asc"]],
+      order: [['matrimonialRequestedStatus', 'asc']],
     });
     const data = rows.map((data: MatrimonialRequestedStatusModel) => {
       return <IMatrimonialRequestedStatusList>{
@@ -65,7 +65,11 @@ export class MatrimonialRequestedStatusService {
   }
 
   async getById(id: number): Promise<IMatrimonialRequestedStatus> {
-    const obj = await this.matrimonialRequestedStatusModel.findOne({ where: { matrimonialRequestedStatusId: id } });
+    const obj = await this.matrimonialRequestedStatusModel.findOne({
+      where: { matrimonialRequestedStatusId: id },
+      nest: true,
+      raw: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MATRIMONIAL_REQUESTED_STATUS));
     }
@@ -73,7 +77,6 @@ export class MatrimonialRequestedStatusService {
       matrimonialRequestedStatusId: obj.matrimonialRequestedStatusId,
       matrimonialRequestedStatus: obj.matrimonialRequestedStatus,
       ...obj,
-      updatedBy: obj.updatedBy,
     };
   }
 

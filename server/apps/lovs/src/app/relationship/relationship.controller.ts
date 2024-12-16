@@ -35,7 +35,7 @@ export class RelationshipController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageRelationship(@Body() body: RelationshipDto, userId: number) {
     try {
       return this.relationshipService.manage(body, userId);

@@ -15,12 +15,15 @@ import {
 } from '@vsd-common/lib';
 import { MandalModel } from '../models/mandal.model';
 import { Op } from 'sequelize';
-import { LabelService } from '@server/common';
+import { AddressService, LabelService } from '@server/common';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class MandalService {
   constructor(@InjectModel(MandalModel) private mandalModel: typeof MandalModel,
-              private labelService: LabelService) {
+              private labelService: LabelService,
+              private addressService: AddressService,
+              private sequelize: Sequelize) {
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IMandalList>> {
@@ -48,12 +51,12 @@ export class MandalService {
   }
 
   async getById(id: number): Promise<IMandal> {
-    const obj = await this.mandalModel.findOne({ where: { mandalId: id }, raw: true, nest: true });
+    const obj = await this.mandalModel.scope('list').findOne({ where: { mandalId: id }, raw: true, nest: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
     return <IMandal>{
-      ...obj
+      ...obj,
     };
   }
 
@@ -69,20 +72,31 @@ export class MandalService {
     return this.formatMandal(data);
   }
 
-  async manage(obj: IManageMandal, userId: number) {
-    const dataObj = {
-      mandalName: obj.mandalName,
-      description: obj.description,
-      updatedBy: userId,
-    };
-    if (obj.imagePath) {
-      Object.assign(dataObj, { imagePath: obj.imagePath });
-    }
-    if (obj.mandalId) {
-      await this.mandalModel.update(dataObj, { where: { mandalId: obj.mandalId } });
-    } else {
-      Object.assign(dataObj, { createdBy: userId });
-      await this.mandalModel.create(dataObj);
+  async manage(obj: IManageMandal, userId: number): Promise<IManageMandal> {
+    const transaction = await this.sequelize.transaction();
+    try {
+      const dataObj = {
+        mandalName: obj.mandalName,
+        description: obj.description,
+        updatedBy: userId,
+      };
+      if (obj.imagePath) {
+        Object.assign(dataObj, { imagePath: obj.imagePath });
+      }
+      const address = await this.addressService.manage(obj.address, transaction);
+      obj.addressId = address.addressId;
+      let res;
+      if (obj.mandalId) {
+        res = await this.mandalModel.update(dataObj, { where: { mandalId: obj.mandalId }, transaction: transaction });
+      } else {
+        Object.assign(dataObj, { createdBy: userId });
+        res = await this.mandalModel.create(dataObj, { transaction: transaction });
+      }
+      await transaction.commit();
+      return res;
+    } catch (e) {
+      await transaction.rollback();
+      throw e;
     }
   }
 

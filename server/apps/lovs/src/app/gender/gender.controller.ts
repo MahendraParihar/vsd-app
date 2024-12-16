@@ -35,7 +35,7 @@ export class GenderController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageGender(@Body() body: GenderDto, userId: number) {
     try {
       return this.genderService.manage(body, userId);

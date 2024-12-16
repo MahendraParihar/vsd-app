@@ -35,7 +35,7 @@ export class DistrictController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageDistrict(@Body() body: DistrictDto, userId: number) {
     try {
       return this.districtService.manage(body, userId);

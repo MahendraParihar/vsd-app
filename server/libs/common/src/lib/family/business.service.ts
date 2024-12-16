@@ -33,7 +33,7 @@ export class BusinessService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["business","asc"]],
+      order: [['business', 'asc']],
     });
     const data = rows.map((data: BusinessModel) => {
       return <IBusinessList>{
@@ -62,14 +62,11 @@ export class BusinessService {
   }
 
   async getById(id: number): Promise<IBusiness> {
-    const obj = await this.businessModel.findOne({ where: { businessId: id } });
+    const obj = await this.businessModel.findOne({ where: { businessId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_BUSINESS));
     }
-    return <IBusiness>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IBusiness>obj;
   }
 
   async loadDetailById(id: number) {

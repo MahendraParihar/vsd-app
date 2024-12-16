@@ -33,7 +33,7 @@ export class PostService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["post","asc"]],
+      order: [['post', 'asc']],
     });
     const data = rows.map((data: PostModel) => {
       return <IPostList>{
@@ -62,14 +62,14 @@ export class PostService {
   }
 
   async getById(id: number) {
-    const obj = await this.postModel.findOne({ where: { postId: id } });
+    const obj = await this.postModel.findOne({
+      where: { postId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_POST));
     }
-    return <IPost>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IPost>obj;
   }
 
   async loadDetailById(id: number): Promise<IPostList> {

@@ -1,5 +1,5 @@
 import { IManageTemple } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 import { AddressDto } from '@server/common';
 
 export class TempleDto implements IManageTemple {
@@ -17,7 +17,7 @@ export class TempleDto implements IManageTemple {
   description: string;
 
   @IsOptional()
-  @IsObject()
+  @IsArray()
   imagePath: object;
 
   @IsOptional()

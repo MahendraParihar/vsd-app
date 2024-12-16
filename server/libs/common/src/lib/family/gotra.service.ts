@@ -33,7 +33,7 @@ export class GotraService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["gotra","asc"]],
+      order: [['gotra', 'asc']],
     });
     const data = rows.map((data: GotraModel) => {
       return <IGotraList>{
@@ -62,14 +62,11 @@ export class GotraService {
   }
 
   async getById(id: number): Promise<IGotra> {
-    const obj = await this.gotraModel.findOne({ where: { gotraId: id } });
+    const obj = await this.gotraModel.findOne({ where: { gotraId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_GOTRA));
     }
-    return <IGotra>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IGotra>obj;
   }
 
   async loadDetailById(id: number): Promise<IGotraList> {

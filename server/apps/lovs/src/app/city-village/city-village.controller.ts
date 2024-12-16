@@ -35,7 +35,7 @@ export class CityVillageController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageCityVillage(@Body() body: CityVillageDto, userId: number) {
     try {
       return this.cityVillageService.manage(body, userId);

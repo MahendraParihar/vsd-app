@@ -60,14 +60,11 @@ export class ContactTypeService {
   }
 
   async getById(id: number): Promise<IContactType> {
-    const obj = await this.contactTypeModel.findOne({ where: { contactTypeId: id } });
+    const obj = await this.contactTypeModel.findOne({ where: { contactTypeId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_CONTACT_TYPE));
     }
-    return <IContactType>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IContactType>obj;
   }
 
   async loadDetailById(id: number) {

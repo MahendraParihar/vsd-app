@@ -35,7 +35,7 @@ export class CountryController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageCountry(@Body() body: CountryDto, userId: number) {
     try {
       return this.countryService.manage(body, userId);

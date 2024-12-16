@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageContactType, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class ContactTypeService {
@@ -14,5 +14,15 @@ export class ContactTypeService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageContactType> {
+    const res = await this.httpService.getRequest<IResponse<IManageContactType>>(LovApiUrl.CONTACT_TYPE + '/' + id);
+    return res as IManageContactType;
+  }
+
+  async manageContactType(payload: IManageContactType): Promise<IManageContactType> {
+    const res = await this.httpService.postRequest<IResponse<IManageContactType>>(LovApiUrl.MANAGE_CONTACT_TYPE, payload);
+    return res as IManageContactType;
   }
 }

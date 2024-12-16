@@ -62,14 +62,11 @@ export class AddictionService {
   }
 
   async getById(id: number): Promise<IAddiction> {
-    const obj = await this.addictionModel.findOne({ where: { addictionId: id } });
+    const obj = await this.addictionModel.findOne({ where: { addictionId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_ADDICTION));
     }
-    return <IAddiction>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IAddiction>obj;
   }
 
   async loadDetailById(id: number): Promise<IAddictionList> {

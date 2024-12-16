@@ -33,7 +33,7 @@ export class ServiceService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["service","asc"]],
+      order: [['service', 'asc']],
     });
     const data = rows.map((data: ServiceModel) => {
       return <IServiceList>{
@@ -62,14 +62,14 @@ export class ServiceService {
   }
 
   async getById(id: number): Promise<IService> {
-    const obj = await this.serviceModel.findOne({ where: { serviceId: id } });
+    const obj = await this.serviceModel.findOne({
+      where: { serviceId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_SERVICE));
     }
-    return <IService>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IService>obj;
   }
 
   async loadDetailById(id: number): Promise<IServiceList> {

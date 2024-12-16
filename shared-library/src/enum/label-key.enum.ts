@@ -111,6 +111,7 @@ export enum LabelKey {
   ERROR_IN_VALID_MIN_LENGTH = 'error_min_length',
   ERROR_IN_VALID_MIN_VALUE = 'error_min_value',
   ERROR_REQUIRED = 'error_required',
+  ERROR_SOMETHING_WENT_WRONG = 'error_something_went_wrong',
 
   FORM_NAME = 'form_name',
   FORM_EMAIL_ID = 'form_email_id',
@@ -146,4 +147,6 @@ export enum LabelKey {
   SUCCESS_FILE_UPLOADED = 'success_file_upload',
   SUCCESS_FILE_ERROR = 'error_file_upload',
   SUCCESS_FILE_PROGRESS = 'progress_file_upload',
+  SUCCESS_DATA_UPDATED = 'success_data_updated',
+  SUCCESS_DATA_ADDED = 'success_data_added',
 }

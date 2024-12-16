@@ -35,7 +35,7 @@ export class CasteController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageCaste(@Body() body: CasteDto, userId: number) {
     try {
       return this.casteService.manage(body, userId);

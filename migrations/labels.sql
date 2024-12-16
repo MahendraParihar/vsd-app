@@ -1,147 +1,177 @@
-insert into mst_label (label_key, label, applicability)
-values ('action_submit', 'Submit', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('app_name', 'श्री विश्वकर्मा वंश सुथार समाज, बारवा', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_news', 'समाचार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_state', 'राज्य', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_job_sub_category', 'नौकरी उपश्रेणी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_education_degree', 'शिक्षा की डिग्री', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_gender', 'लिंग', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_home', 'घर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_religion', 'धर्म', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_family', 'परिवार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_job_category', 'कार्य श्रेणी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_marital_status', 'वैवाहिक स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_matrimonial', 'वैवाहिक', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_addiction', 'लत', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_country', 'देश', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_faq_category', 'सामान्य प्रश्न श्रेणी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_job', 'काम', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_city_village', 'शहर गाँव', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_temple', 'मंदिर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_event', 'आयोजन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_job_type', 'कार्य का प्रकार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_relationship', 'संबंध', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_district', 'ज़िला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_caste', 'जाति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_job_status', 'कार्य स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_gotra', 'गोत्र', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_service', 'सेवा', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'side_menu_faq', 'सामान्य प्रश्न', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_business', 'व्यापार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES 'invalid_login', 'अमान्य लॉगिन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_raasi', 'राशि', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_contact_type', 'संपर्क प्रकार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_address_type', 'पता मुद्रलेख', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_not_found_admin', 'Admin not found', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('createdByUser', 'निर्माता', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('updatedByUser', 'अपडेटर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('country', 'देश', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('countryCode', 'कंट्री कोड', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('phoneNumberCode', 'फ़ोन कोड', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_post', 'पद', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('active', 'स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action', 'कार्रवाई', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_edit', 'अपडेटर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_logout', 'लॉग आउट', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_change_password', 'पासवर्ड बदलें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('login_page_title', 'वापसी पर स्वागत है', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('login_sub_title', 'नीचे अपने क्रेडेंशियल के साथ साइन इन करें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('input_user_name', 'उपयोगकर्ता नाम', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('input_password', 'पासवर्ड', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_login', 'लॉग इन करें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_login', 'लॉग इन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_yes', 'हाँ', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_no', 'नहीं', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_change_status_title', 'अवस्था बदलो', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_change_status_description', 'क्या आप निश्चित हैं?, आप इस आइटम की स्थिति बदलना चाहते हैं?', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_addiction', 'लत नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_address_type', 'पता मुद्रलेख नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_business', 'व्यापार नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_caste', 'जाति नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_city_village', 'शहर गाँव नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_contact_type', 'संपर्क प्रकार नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_country', 'देश नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_district', 'ज़िला नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_education_degree', 'शिक्षा की डिग्री नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_event', 'आयोजन नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_family', 'परिवार नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_faq', 'सामान्य प्रश्न नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_faq_category', 'सामान्य प्रश्न श्रेणी नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_gender', 'लिंग नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_gotra', 'गोत्र नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_home', 'घर नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_job', 'काम नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_job_category', 'कार्य श्रेणी नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_job_status', 'कार्य स्थिति नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_job_sub_category', 'नौकरी उपश्रेणी नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_job_type', 'कार्य का प्रकार नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_login', 'लॉग इन नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_marital_status', 'वैवाहिक स्थिति नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_matrimonial', 'वैवाहिक नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_news', 'समाचार नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_post', 'पद नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_raasi', 'राशि नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('seqNo', 'अनु.', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_relationship', 'संबंध नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_religion', 'धर्म नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_service', 'सेवा नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_state', 'राज्य नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_temple', 'मंदिर नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_matrimonial_status', 'वैवाहिक स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_matrimonial_status', 'वैवाहिक स्थिति नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_media_type', 'मीडिया प्रकार नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_media_src', 'मीडिया स्रोत नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_media_type', 'मीडिया प्रकार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_media_src', 'मीडिया स्रोत', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_matrimonial_requested_status', 'वैवाहिक अनुरोध स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_matrimonial_requested_status', 'वैवाहिक अनुरोध स्थिति नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_health_parameter', 'स्वास्थ्य पैरामीटर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_health_parameter', 'स्वास्थ्य पैरामीटर नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('item_not_found_mandal', 'संगठन नहीं मिला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_mandal', 'संगठन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('success_status_change', 'स्थिति परिवर्तन सफलतापूर्वक', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('updatedAt', 'अद्यतन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('createdAt', 'बनाया', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('jobCategory', 'कार्य श्रेणी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('imagePath', 'चित्र', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('jobSubCategory', 'नौकरी उपश्रेणी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('addressType', 'पता मुद्रलेख', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('business', 'व्यापार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('caste', 'जाति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('cityVillage', 'शहर गाँव', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('ContactType', 'संपर्क प्रकार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('gender', 'लिंग', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('gotra', 'गोत्र', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('healthParameter', 'स्वास्थ्य पैरामीटर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('jobType', 'कार्य का प्रकार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('jobStatus', 'कार्य स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('faq', 'सामान्य प्रश्न', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('faqCategory', 'सामान्य प्रश्न श्रेणी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('service', 'सेवा', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('district', 'ज़िला', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('state', 'राज्य', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('addiction', 'लत', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('degree', 'शिक्षा की डिग्री', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('relationship', 'संबंध', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('religion', 'धर्म', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('raasi', 'राशि', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('post', 'पद', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('contactType', 'संपर्क प्रकार', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('maritalStatus', 'वैवाहिक स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('matrimonialRequestedStatus', 'वैवाहिक अनुरोध स्थिति', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('matrimonialStatus', 'वैवाहिक स्थिति नहीं मिली', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('templeName', 'मंदिर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('mandalName', 'संगठन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('title', 'शीर्षक', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_max_length', 'अधिकतम लंबाई', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_invalid_number', 'अमान्य संख्या', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_min_length', 'न्यूनतम लंबाई', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_required', 'आवश्यक', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_invalid_date', 'अमान्य दिनांक', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_max_value', 'अधिकतम मूल्य', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_min_value', 'न्यूनतम मूल्य', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('form_email_id', 'ईमेल आईडी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('form_phone_number', 'फ़ोन नंबर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('form_message', 'संदेश', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('form_name', 'नाम', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_contact_us', 'संपर्क करें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_about_us', 'हमारे बारे में', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('side_menu_history', 'इतिहास', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('longitude', 'देशान्तर', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('choose_file', 'फाइलें चुनें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('address_type', 'पता मुद्रलेख', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('city_village', 'शहर/गांव', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_cancel', 'रद्द करें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('pin_code', 'पिन कोड', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('are_you_sure', 'क्या आपको यकीन है?', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('edit_temple', 'मंदिर संपादित करें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('edit_mandal', 'मंडल संपादित करें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('add_temple', 'मंदिर जोड़ें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('add_mandal', 'मंडल जोड़ें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('progress_file_upload', 'फ़ाइल अपलोड प्रगति पर है', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('address', 'पता', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('choose_attachment', 'फाइलें चुनें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('alert', 'चेतावनी', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('drag_drop_image', 'छवि फ़ाइल को यहां खींचें और छोड़ें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('alert_single_file', 'केवल एकल फ़ाइल अपलोड की अनुमति है, नई फ़ाइल अपलोड करने के लिए कृपया पुरानी फ़ाइल हटा दें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('action_ok', 'ठीक है', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('success_file_upload', 'फ़ाइल सफलतापूर्वक अपलोड की गई', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('drag_drop_pdf', 'पीडीएफ फाइल को यहां खींचें और छोड़ें', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('latitude', 'अक्षांश', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('error_file_upload', 'फ़ाइल अपलोड विफल,  कृपया पुन', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability) VALUES ('form_description', 'विवरण', 'admin');
 
-insert into mst_label (label_key, label, applicability)
-values
-('invalid_login','invalid_login','admin'),
-('side_menu_home','side_menu_home','admin'),
-('side_menu_news','side_menu_news','admin'),
-('side_menu_family','side_menu_family','admin'),
-('side_menu_temple','side_menu_temple','admin'),
-('side_menu_event','side_menu_event','admin'),
-('side_menu_job','side_menu_job','admin'),
-('side_menu_mandal','side_menu_mandal','admin'),
-('side_menu_matrimonial','side_menu_matrimonial','admin'),
-('side_menu_matrimonial_status','side_menu_matrimonial_status','admin'),
-('side_menu_matrimonial_requested_status','side_menu_matrimonial_requested_status','admin'),
-('side_menu_faq','side_menu_faq','admin'),
-('side_menu_job_category','side_menu_job_category','admin'),
-('side_menu_job_sub_category','side_menu_job_sub_category','admin'),
-('side_menu_job_type','side_menu_job_type','admin'),
-('side_menu_job_status','side_menu_job_status','admin'),
-('side_menu_faq_category','side_menu_faq_category','admin'),
-('side_menu_business','side_menu_business','admin'),
-('side_menu_service','side_menu_service','admin'),
-('side_menu_city_village','side_menu_city_village','admin'),
-('side_menu_state','side_menu_state','admin'),
-('side_menu_district','side_menu_district','admin'),
-('side_menu_country','side_menu_country','admin'),
-('side_menu_addiction','side_menu_addiction','admin'),
-('side_menu_education_degree','side_menu_education_degree','admin'),
-('side_menu_gender','side_menu_gender','admin'),
-('side_menu_caste','side_menu_caste','admin'),
-('side_menu_relationship','side_menu_relationship','admin'),
-('side_menu_religion','side_menu_religion','admin'),
-('side_menu_gotra','side_menu_gotra','admin'),
-('side_menu_marital_status','side_menu_marital_status','admin'),
-('side_menu_raasi','side_menu_raasi','admin'),
-('side_menu_post','side_menu_post','admin'),
-('side_menu_address_type','side_menu_address_type','admin'),
-('side_menu_contact_type','side_menu_contact_type','admin'),
-('side_menu_login','side_menu_login','admin'),
-('side_menu_media_type','side_menu_media_type','admin'),
-('side_menu_media_src','side_menu_media_src','admin'),
-('side_menu_health_parameter','side_menu_health_parameter','admin'),
-('side_menu_about_us','side_menu_about_us','admin'),
-('side_menu_contact_us','side_menu_contact_us','admin'),
-('side_menu_history','side_menu_history','admin'),
-('item_not_found_temple','item_not_found_temple','admin'),
-('item_not_found_state','item_not_found_state','admin'),
-('item_not_found_service','item_not_found_service','admin'),
-('item_not_found_religion','item_not_found_religion','admin'),
-('item_not_found_relationship','item_not_found_relationship','admin'),
-('item_not_found_raasi','item_not_found_raasi','admin'),
-('item_not_found_post','item_not_found_post','admin'),
-('item_not_found_news','item_not_found_news','admin'),
-('item_not_found_matrimonial','item_not_found_matrimonial','admin'),
-('item_not_found_matrimonial_status','item_not_found_matrimonial_status','admin'),
-('item_not_found_marital_status','item_not_found_marital_status','admin'),
-('item_not_found_login','item_not_found_login','admin'),
-('item_not_found_job_type','item_not_found_job_type','admin'),
-('item_not_found_job_sub_category','item_not_found_job_sub_category','admin'),
-('item_not_found_job_status','item_not_found_job_status','admin'),
-('item_not_found_job_category','item_not_found_job_category','admin'),
-('item_not_found_job','item_not_found_job','admin'),
-('item_not_found_home','item_not_found_home','admin'),
-('item_not_found_gotra','item_not_found_gotra','admin'),
-('item_not_found_gender','item_not_found_gender','admin'),
-('item_not_found_faq_category','item_not_found_faq_category','admin'),
-('item_not_found_faq','item_not_found_faq','admin'),
-('item_not_found_family','item_not_found_family','admin'),
-('item_not_found_event','item_not_found_event','admin'),
-('item_not_found_education_degree','item_not_found_education_degree','admin'),
-('item_not_found_district','item_not_found_district','admin'),
-('item_not_found_country','item_not_found_country','admin'),
-('item_not_found_contact_type','item_not_found_contact_type','admin'),
-('item_not_found_city_village','item_not_found_city_village','admin'),
-('item_not_found_caste','item_not_found_caste','admin'),
-('item_not_found_business','item_not_found_business','admin'),
-('item_not_found_address_type','item_not_found_address_type','admin'),
-('item_not_found_addiction','item_not_found_addiction','admin'),
-('item_not_found_media_type','item_not_found_media_type','admin'),
-('item_not_found_media_src','item_not_found_media_src','admin'),
-('item_not_found_matrimonial_requested_status','item_not_found_matrimonial_requested_status','admin'),
-('item_not_found_health_parameter','item_not_found_health_parameter','admin'),
-('item_not_found_mandal','item_not_found_mandal','admin'),
-('item_not_found_page','item_not_found_page','admin'),
-('add_mandal','add_mandal','admin'),
-('edit_mandal','edit_mandal','admin'),
-('add_temple','add_temple','admin'),
-('edit_temple','edit_temple','admin'),
-('address','address','admin'),
-('state','state','admin'),
-('district','district','admin'),
-('country','country','admin'),
-('city_village','city_village','admin'),
-('address_type','address_type','admin'),
-('app_name','app_name','admin'),
-('error_not_found_admin','error_not_found_admin','admin'),
-('action_edit','action_edit','admin'),
-('action_login','action_login','admin'),
-('action_logout','action_logout','admin'),
-('action_change_password','action_change_password','admin'),
-('action_yes','action_yes','admin'),
-('action_no','action_no','admin'),
-('action_change_status_title','action_change_status_title','admin'),
-('action_change_status_description','action_change_status_description','admin'),
-('input_user_name','input_user_name','admin'),
-('input_password','input_password','admin'),
-('login_page_title','login_page_title','admin'),
-('login_sub_title','login_sub_title','admin'),
-('success_status_change','success_status_change','admin'),
-('error_invalid_date','error_invalid_date','admin'),
-('error_invalid_number','error_invalid_number','admin'),
-('error_max_length','error_max_length','admin'),
-('error_max_value','error_max_value','admin'),
-('error_min_length','error_min_length','admin'),
-('error_min_value','error_min_value','admin'),
-('error_required','error_required','admin'),
-('form_name','form_name','admin'),
-('form_email_id','form_email_id','admin'),
-('form_phone_number','form_phone_number','admin'),
-('form_message','form_message','admin');
+INSERT INTO public.mst_label (label_key, label, applicability)
+VALUES ('success_data_updated', 'डेटा सफलतापूर्वक अपडेट किया गया', 'admin'),
+       ('success_data_added', 'डेटा सफलतापूर्वक जोड़ा गया', 'admin');
 
-insert into mst_label (label_key, label, applicability)
-values ('pin_code', 'pin_code', 'admin'),
-('latitude', 'latitude', 'admin'),
-('longitude', 'longitude', 'admin');
-
-insert into mst_label (label_key, label, applicability)
-values ('action_cancel', 'action_cancel', 'admin');
-
-insert into mst_label (label_key, label, applicability)
-values 
-('alert', 'Alert', 'admin'),
-('are_you_sure', 'Are you sure?', 'admin'),
-('action_ok', 'ok', 'admin'),
-('alert_single_file', 'Only single file upload allow, please delete old one for upload new file', 'admin'),
-('drag_drop_image', 'Drag and drop image file here', 'admin'),
-('drag_drop_pdf', 'Drag and drop pdf file here', 'admin'),
-('choose_file', 'Choose file', 'admin'),
-('choose_attachment', 'Choose Attachment', 'admin');
-
-insert into mst_label (label_key, label, applicability)
-values 
-('success_file_upload', 'file uploaded successfully', 'admin'),
-('error_file_upload', 'file upload failed, please again', 'admin'),
-('progress_file_upload', 'file upload in progress', 'admin');
+INSERT INTO public.mst_label (label_key, label, applicability)
+VALUES ('error_something_went_wrong', 'त्रुटि कुछ गलत हो गया', 'admin');

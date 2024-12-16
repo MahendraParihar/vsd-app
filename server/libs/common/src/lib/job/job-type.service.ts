@@ -62,14 +62,11 @@ export class JobTypeService {
   }
 
   async getById(id: number): Promise<IJobType> {
-    const obj = await this.jobTypeModel.findOne({ where: { jobTypeId: id } });
+    const obj = await this.jobTypeModel.findOne({ where: { jobTypeId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_ADDICTION));
     }
-    return <IJobType>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IJobType>obj;
   }
 
   async loadDetailById(id: number): Promise<IJobTypeList> {

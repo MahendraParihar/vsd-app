@@ -69,14 +69,11 @@ export class AddressTypeService {
   }
 
   async getById(id: number) {
-    const obj = await this.addressTypeModel.findOne({ where: { addressTypeId: id } });
+    const obj = await this.addressTypeModel.findOne({ where: { addressTypeId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_ADDRESS_TYPE));
     }
-    return <IAddressType>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IAddressType>obj;
   }
 
   async loadDetailById(id: number) {

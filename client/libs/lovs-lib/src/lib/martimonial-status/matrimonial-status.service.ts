@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageMatrimonialStatus, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class MatrimonialStatusService {
@@ -14,5 +14,15 @@ export class MatrimonialStatusService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageMatrimonialStatus> {
+    const res = await this.httpService.getRequest<IResponse<IManageMatrimonialStatus>>(LovApiUrl.MATRIMONIAL_STATUS + '/' + id);
+    return res as IManageMatrimonialStatus;
+  }
+
+  async manageMatrimonialStatus(payload: IManageMatrimonialStatus): Promise<IManageMatrimonialStatus> {
+    const res = await this.httpService.postRequest<IResponse<IManageMatrimonialStatus>>(LovApiUrl.MANAGE_MATRIMONIAL_STATUS, payload);
+    return res as IManageMatrimonialStatus;
   }
 }

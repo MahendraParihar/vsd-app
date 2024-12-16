@@ -33,7 +33,7 @@ export class JobSubCategoryService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["jobCategoryId","asc"],["jobSubCategory","asc"]],
+      order: [['jobCategoryId', 'asc'], ['jobSubCategory', 'asc']],
     });
     const data = rows.map((data: JobSubCategoryModel) => {
       return <IJobSubCategoryList>{
@@ -62,14 +62,11 @@ export class JobSubCategoryService {
   }
 
   async getById(id: number): Promise<IJobSubCategory> {
-    const obj = await this.jobSubCategoryModel.findOne({ where: { jobSubCategoryId: id } });
+    const obj = await this.jobSubCategoryModel.findOne({ where: { jobSubCategoryId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_JOB_SUB_CATEGORY));
     }
-    return <IJobSubCategory>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IJobSubCategory>obj;
   }
 
   async loadDetailById(id: number): Promise<IJobSubCategoryList> {

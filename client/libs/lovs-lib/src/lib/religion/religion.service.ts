@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageReligion, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class ReligionService {
@@ -14,5 +14,15 @@ export class ReligionService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageReligion> {
+    const res = await this.httpService.getRequest<IResponse<IManageReligion>>(LovApiUrl.RELIGION + '/' + id);
+    return res as IManageReligion;
+  }
+
+  async manageReligion(payload: IManageReligion): Promise<IManageReligion> {
+    const res = await this.httpService.postRequest<IResponse<IManageReligion>>(LovApiUrl.MANAGE_RELIGION, payload);
+    return res as IManageReligion;
   }
 }

@@ -35,7 +35,7 @@ export class EducationDegreeController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageEducationDegree(@Body() body: EducationDegreeDto, userId: number) {
     try {
       return this.educationDegreeService.manage(body, userId);

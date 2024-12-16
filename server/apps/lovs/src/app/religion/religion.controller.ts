@@ -35,7 +35,7 @@ export class ReligionController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageReligion(@Body() body: ReligionDto, userId: number) {
     try {
       return this.religionService.manage(body, userId);

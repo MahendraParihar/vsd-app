@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IAddressMaster, InputLength, LabelKey } from '@vsd-common/lib';
+import { IAddressMaster, IManageAddress, InputLength, IOption, LabelKey } from '@vsd-common/lib';
 
 @Component({
   selector: 'vsd-ui-address-form',
@@ -11,6 +11,10 @@ export class UiAddressFormComponent implements OnInit {
 
   labelKeys = LabelKey;
   inputLength = InputLength;
+  stateList: IOption[] = [];
+  districtList: IOption[] = [];
+  cityVillageList: IOption[] = [];
+  _address!: IManageAddress;
 
   @Input()
   formGroup!: FormGroup;
@@ -18,10 +22,16 @@ export class UiAddressFormComponent implements OnInit {
   @Input()
   masterData!: IAddressMaster;
 
+  @Input() set address(tempAddress: IManageAddress) {
+    this._address = tempAddress;
+    this.bindAddress();
+  }
+
   @Input()
   labels!: Map<string, string>;
 
   addressFormGroup: FormGroup = new FormGroup({
+    addressId: new FormControl(null),
     addressTypeId: new FormControl(null, [Validators.required]),
     address: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.MAX_ADDRESS)]),
     pinCode: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_10)]),
@@ -35,35 +45,45 @@ export class UiAddressFormComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup.addControl('address', this.addressFormGroup);
+    this.bindAddress();
   }
 
-  findStates() {
-    const countryId = this.addressFormGroup.value.countryId;
-    if (!countryId) {
-      return [];
+  bindAddress() {
+    if (!this._address) {
+      return;
     }
-    return this.masterData.states.filter((p) => {
-      return p.parentId = countryId;
+    this.findStates(this._address.countryId);
+    this.findDistricts(this._address.stateId);
+    this.findCityVillages(this._address.districtId);
+    this.addressFormGroup.patchValue({
+      addressId: this._address.addressId,
+      addressTypeId: this._address.addressTypeId,
+      address: this._address.address,
+      pinCode: this._address.pinCode,
+      latitude: this._address.latitude,
+      longitude: this._address.longitude,
+      countryId: this._address.countryId,
+      stateId: this._address.stateId,
+      districtId: this._address.districtId,
+      cityVillageId: this._address.cityVillageId,
     });
   }
 
-  findDistricts() {
-    const stateId = this.addressFormGroup.value.stateId;
-    if (!stateId) {
-      return [];
-    }
-    return this.masterData.districts.filter((p) => {
-      return p.parentId = stateId;
+  findStates(countryId: number | IOption) {
+    this.stateList = this.masterData.states.filter((p) => {
+      return p.parentId = typeof countryId === 'number' ? countryId : countryId.id;
     });
   }
 
-  findCityVillages() {
-    const districtId = this.addressFormGroup.value.districtId;
-    if (!districtId) {
-      return [];
-    }
-    return this.masterData.cityVillages.filter((p) => {
-      return p.parentId = districtId;
+  findDistricts(stateId: number | IOption) {
+    this.districtList = this.masterData.districts.filter((p) => {
+      return p.parentId = typeof stateId === 'number' ? stateId : stateId.id;
+    });
+  }
+
+  findCityVillages(districtId: number | IOption) {
+    this.cityVillageList = this.masterData.cityVillages.filter((p) => {
+      return p.parentId = typeof districtId === 'number' ? districtId : districtId.id;
     });
   }
 }

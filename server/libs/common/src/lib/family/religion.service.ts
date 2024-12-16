@@ -33,7 +33,7 @@ export class ReligionService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["religion","asc"]],
+      order: [['religion', 'asc']],
     });
     const data = rows.map((data: ReligionModel) => {
       return <IReligionList>{
@@ -62,14 +62,14 @@ export class ReligionService {
   }
 
   async getById(id: number): Promise<IReligion> {
-    const obj = await this.religionModel.findOne({ where: { religionId: id } });
+    const obj = await this.religionModel.findOne({
+      where: { religionId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_RELIGION));
     }
-    return <IReligion>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IReligion>obj;
   }
 
   async loadDetailById(id: number): Promise<IReligionList> {

@@ -35,7 +35,7 @@ export class ServiceController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageService(@Body() body: ServiceDto, userId: number) {
     try {
       return this.serviceService.manage(body, userId);

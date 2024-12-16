@@ -35,7 +35,7 @@ export class MaritalStatusController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageJobType(@Body() body: MaritalStatusDto, userId: number) {
     try {
       return this.maritalStatusService.manage(body, userId);

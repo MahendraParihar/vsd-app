@@ -35,7 +35,7 @@ export class AddictionController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageAddiction(@Body() body: AddictionDto, userId: number) {
     try {
       return this.addictionService.manage(body, userId);

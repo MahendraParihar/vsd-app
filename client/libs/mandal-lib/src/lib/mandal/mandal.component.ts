@@ -28,6 +28,7 @@ export class MandalComponent implements OnInit, AfterViewInit {
     'seqNo',
     'imagePath',
     'mandalName',
+    'cityVillage',
     'active',
     'createdByUser',
     'createdAt',
@@ -90,7 +91,7 @@ export class MandalComponent implements OnInit, AfterViewInit {
     this.navigationService.navigateToById(NavigationPathEnum.MANDAL_MANAGE, obj.mandalId);
   }
 
-  async changeStatus(status: boolean, index: number, obj: IMandalList) {
+  async changeStatus(obj: IMandalList) {
     await this.service.changeStatus(obj.mandalId, !obj.active);
     this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
     await this.loadDataSet();

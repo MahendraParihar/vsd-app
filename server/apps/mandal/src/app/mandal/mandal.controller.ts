@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Public, StatusChangeDto, TableListDto } from '@server/common';
-import { IMandalList, ITableList } from '@vsd-common/lib';
+import { IManageMandal, IMandalList, ITableList } from '@vsd-common/lib';
 import { MandalService } from './mandal.service';
 import { MandalDto } from './dto/mandal.dto';
 
@@ -56,8 +56,8 @@ export class MandalController {
     }
   }
 
-  @Post()
-  async manageMandal(@Body() body: MandalDto, userId: number) {
+  @Post('manage')
+  async manageMandal(@Body() body: MandalDto, userId: number): Promise<IManageMandal> {
     try {
       return await this.mandalService.manage(body, userId);
     } catch (e) {

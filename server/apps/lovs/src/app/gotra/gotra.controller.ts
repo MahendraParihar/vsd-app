@@ -35,7 +35,7 @@ export class GotraController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageGotra(@Body() body: GotraDto, userId: number) {
     try {
       return this.gotraService.manage(body, userId);

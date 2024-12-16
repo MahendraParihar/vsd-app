@@ -28,6 +28,9 @@
             @case ("seqNo"){
               {{i + 1}}
             }
+            @case ("cityVillage"){
+              {{d.address.cityVillage}}, {{d.address.district}}, {{d.address.state}}
+            }
             @case ("createdAt"){
               {{d[t] | appDateTime: 'dateTime'}}
             }
@@ -50,7 +53,7 @@
                 [title]="labelService.getLabel(labelKeys.ACTION_CHANGE_STATUS_TITLE)"
                 [description]="labelService.getLabel(labelKeys.ACTION_CHANGE_STATUS_DESCRIPTION)"
                 [status]="d.active"
-                (positiveActionBtnClicked)="changeStatus($event, i, d)"></vsd-ui-status-change-button>
+                (positiveActionBtnClicked)="changeStatus(d)"></vsd-ui-status-change-button>
               <button mat-icon-button (click)="edit(d)">
                 <mat-icon>edit</mat-icon>
               </button>

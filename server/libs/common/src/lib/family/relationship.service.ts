@@ -33,7 +33,7 @@ export class RelationshipService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["relationship","asc"]],
+      order: [['relationship', 'asc']],
     });
     const data = rows.map((data: RelationshipModel) => {
       return <IRelationshipList>{
@@ -62,14 +62,14 @@ export class RelationshipService {
   }
 
   async getById(id: number): Promise<IRelationship> {
-    const obj = await this.relationshipModel.findOne({ where: { relationshipId: id } });
+    const obj = await this.relationshipModel.findOne({
+      where: { relationshipId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_RELATIONSHIP));
     }
-    return <IRelationship>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IRelationship>obj;
   }
 
   async loadDetailById(id: number): Promise<IRelationshipList> {

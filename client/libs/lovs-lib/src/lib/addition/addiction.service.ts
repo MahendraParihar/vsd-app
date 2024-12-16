@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ErrorHandlerService, HttpService } from '@vsd-frontend/core-lib';
+import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageAddiction, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class AddictionService {
-  constructor(private httpService: HttpService,
-              private errorHandlerService: ErrorHandlerService) {
+  constructor(private httpService: HttpService) {
   }
 
   async changeStatus(id: number, status: boolean): Promise<void> {
@@ -15,5 +14,15 @@ export class AddictionService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageAddiction> {
+    const res = await this.httpService.getRequest<IResponse<IManageAddiction>>(LovApiUrl.ADDICTION + '/' + id);
+    return res as IManageAddiction;
+  }
+
+  async manageAddiction(payload: IManageAddiction): Promise<IManageAddiction> {
+    const res = await this.httpService.postRequest<IResponse<IManageAddiction>>(LovApiUrl.MANAGE_ADDICTION, payload);
+    return res as IManageAddiction;
   }
 }

@@ -35,7 +35,7 @@ export class HealthParameterUnitService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["healthParameterUnit","asc"]],
+      order: [['healthParameterUnit', 'asc']],
     });
     const data = rows.map((data: HealthParameterUnitModel) => {
       return <IHealthParameterUnitList>{
@@ -64,14 +64,15 @@ export class HealthParameterUnitService {
   }
 
   async getById(id: number): Promise<IHealthParameterUnit> {
-    const obj = await this.healthParameterUnitModel.findOne({ where: { healthParameterUnitId: id } });
+    const obj = await this.healthParameterUnitModel.findOne({
+      where: { healthParameterUnitId: id },
+      nest: true,
+      raw: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_HEALTH_PARAMETER));
     }
-    return <IHealthParameterUnit>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IHealthParameterUnit>obj;
   }
 
   async loadDetailById(id: number): Promise<IHealthParameterUnitList> {

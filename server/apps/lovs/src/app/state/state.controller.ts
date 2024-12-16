@@ -35,7 +35,7 @@ export class StateController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageState(@Body() body: StateDto, userId: number) {
     try {
       return this.stateService.manage(body, userId);

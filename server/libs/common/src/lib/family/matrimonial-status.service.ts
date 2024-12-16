@@ -33,7 +33,7 @@ export class MatrimonialStatusService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["status","asc"]],
+      order: [['status', 'asc']],
     });
     const data = rows.map((data: MatrimonialStatusModel) => {
       return <IMatrimonialStatusList>{
@@ -62,7 +62,11 @@ export class MatrimonialStatusService {
   }
 
   async getById(id: number): Promise<IMatrimonialStatus> {
-    const obj = await this.matrimonialStatusModel.findOne({ where: { matrimonialStatusId: id } });
+    const obj = await this.matrimonialStatusModel.findOne({
+      where: { matrimonialStatusId: id },
+      raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MATRIMONIAL_STATUS));
     }
@@ -70,7 +74,6 @@ export class MatrimonialStatusService {
       matrimonialStatusId: obj.matrimonialStatusId,
       matrimonialStatus: obj.status,
       ...obj,
-      updatedBy: obj.updatedBy,
     };
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageEducationDegree, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class EducationDegreeService {
@@ -14,5 +14,15 @@ export class EducationDegreeService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageEducationDegree> {
+    const res = await this.httpService.getRequest<IResponse<IManageEducationDegree>>(LovApiUrl.EDUCATION_DEGREE + '/' + id);
+    return res as IManageEducationDegree;
+  }
+
+  async manageEducationDegree(payload: IManageEducationDegree): Promise<IManageEducationDegree> {
+    const res = await this.httpService.postRequest<IResponse<IManageEducationDegree>>(LovApiUrl.MANAGE_EDUCATION_DEGREE, payload);
+    return res as IManageEducationDegree;
   }
 }

@@ -1,6 +1,7 @@
-const BASE_URL = '/api/mandal/';
+const BASE_URL = '/api/mandal';
 
 export enum MandalApiUrl {
   MANDAL = `${BASE_URL}`,
-  MANDAL_STATUS = `${BASE_URL}status`,
+  MANAGE_MANDAL = `${BASE_URL}/manage`,
+  MANDAL_STATUS = `${BASE_URL}/status`,
 }

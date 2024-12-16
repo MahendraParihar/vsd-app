@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManagePost, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class PostService {
@@ -14,5 +14,15 @@ export class PostService {
       >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManagePost> {
+    const res = await this.httpService.getRequest<IResponse<IManagePost>>(LovApiUrl.POST_STATUS + '/' + id);
+    return res as IManagePost;
+  }
+
+  async managePost(payload: IManagePost): Promise<IManagePost> {
+    const res = await this.httpService.postRequest<IResponse<IManagePost>>(LovApiUrl.MANAGE_POST, payload);
+    return res as IManagePost;
   }
 }

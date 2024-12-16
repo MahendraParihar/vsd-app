@@ -34,7 +34,9 @@ import { ManageFaqCategoryComponent } from './faq-category/manage-faq-category/m
 import { ManageGenderComponent } from './gender/manage-gender/manage-gender.component';
 import { ManageGotraComponent } from './gotra/manage-gotra/manage-gotra.component';
 import { ManageJobStatusComponent } from './job-status/manage-job-status/manage-job-status.component';
-import { ManageJobSubCategoryComponent } from './job-sub-category/manage-job-sub-category/manage-job-sub-category.component';
+import {
+  ManageJobSubCategoryComponent,
+} from './job-sub-category/manage-job-sub-category/manage-job-sub-category.component';
 import { ManageJobTypeComponent } from './job-type/manage-job-type/manage-job-type.component';
 import { ManageMaritalStatusComponent } from './marital-status/manage-marital-status/manage-marital-status.component';
 import { ManagePostComponent } from './post/manage-post/manage-post.component';
@@ -44,7 +46,9 @@ import { ManageReligionComponent } from './religion/manage-religion/manage-relig
 import { ManageServiceComponent } from './service/manage-service/manage-service.component';
 import { ManageStateComponent } from './state/manage-state/manage-state.component';
 import { EducationDegreeComponent } from './education-degree/education-degree.component';
-import { ManageEducationDegreeComponent } from './education-degree/manage-education-degree/manage-education-degree.component';
+import {
+  ManageEducationDegreeComponent,
+} from './education-degree/manage-education-degree/manage-education-degree.component';
 import { ManageContactTypeComponent } from './contact-type/manage-contact-type/manage-contact-type.component';
 import { CoreLibModule } from '@vsd-frontend/core-lib';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -52,16 +56,41 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { FormsModule } from '@angular/forms';
 import { CountryService } from './country/country.service';
-import { MatrimonialStatusComponent } from "./martimonial-status/matrimonial-status.component";
+import { MatrimonialStatusComponent } from './martimonial-status/matrimonial-status.component';
 import {
-  ManageMatrimonialStatusComponent
-} from "./martimonial-status/manage-matrimonial-status/manage-matrimonial-status.component";
+  ManageMatrimonialStatusComponent,
+} from './martimonial-status/manage-matrimonial-status/manage-matrimonial-status.component';
 import {
-  MatrimonialRequestedStatusComponent
-} from "./martimonial-requested-status/matrimonial-requested-status.component";
+  MatrimonialRequestedStatusComponent,
+} from './martimonial-requested-status/matrimonial-requested-status.component';
 import {
-  ManageMatrimonialRequestedStatusComponent
-} from "./martimonial-requested-status/manage-matrimonial-requested-status/manage-matrimonial-requested-status.component";
+  ManageMatrimonialRequestedStatusComponent,
+} from './martimonial-requested-status/manage-matrimonial-requested-status/manage-matrimonial-requested-status.component';
+import { MatCardModule } from '@angular/material/card';
+import { AddictionService } from './addition/addiction.service';
+import { AddressTypeService } from './address-type/address-type.service';
+import { BusinessService } from './business/business.service';
+import { CasteService } from './caste/caste.service';
+import { CityVillageService } from './city-village/city-village.service';
+import { ContactTypeService } from './contact-type/contact-type.service';
+import { DistrictService } from './district/district.service';
+import { EducationDegreeService } from './education-degree/education-degree.service';
+import { FaqCategoryService } from './faq-category/faq-category.service';
+import { GenderService } from './gender/gender.service';
+import { GotraService } from './gotra/gotra.service';
+import { JobCategoryService } from './job-category/job-category.service';
+import { JobStatusService } from './job-status/job-status.service';
+import { JobSubCategoryService } from './job-sub-category/job-sub-category.service';
+import { JobTypeService } from './job-type/job-type.service';
+import { MaritalStatusService } from './marital-status/marital-status.service';
+import { MatrimonialRequestedStatusService } from './martimonial-requested-status/matrimonial-requested-status.service';
+import { MatrimonialStatusService } from './martimonial-status/matrimonial-status.service';
+import { PostService } from './post/post.service';
+import { RaasiService } from './raasi/raasi.service';
+import { RelationshipService } from './relationship/relationship.service';
+import { ReligionService } from './religion/religion.service';
+import { ServiceService } from './service/service.service';
+import { StateService } from './state/state.service';
 
 @NgModule({
   declarations: [
@@ -114,7 +143,7 @@ import {
     MatrimonialStatusComponent,
     ManageMatrimonialStatusComponent,
     MatrimonialRequestedStatusComponent,
-    ManageMatrimonialRequestedStatusComponent
+    ManageMatrimonialRequestedStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -123,8 +152,34 @@ import {
     MatTableModule,
     FormsModule,
     SharedUiLibModule,
+    MatCardModule,
   ],
-  providers: [CountryService],
+  providers: [
+    AddictionService,
+    AddressTypeService,
+    BusinessService,
+    CasteService,
+    CityVillageService,
+    ContactTypeService,
+    CountryService,
+    DistrictService,
+    EducationDegreeService,
+    FaqCategoryService,
+    GenderService,
+    GotraService,
+    JobCategoryService,
+    JobStatusService,
+    JobSubCategoryService,
+    JobTypeService,
+    MaritalStatusService,
+    MatrimonialRequestedStatusService,
+    MatrimonialStatusService,
+    PostService,
+    RaasiService,
+    RelationshipService,
+    ReligionService,
+    ServiceService,
+    StateService],
   exports: [
     AdditionComponent,
     ManageAdditionComponent,
@@ -175,7 +230,7 @@ import {
     MatrimonialStatusComponent,
     ManageMatrimonialStatusComponent,
     MatrimonialRequestedStatusComponent,
-    ManageMatrimonialRequestedStatusComponent
+    ManageMatrimonialRequestedStatusComponent,
   ],
 })
 export class LovsLibModule {}

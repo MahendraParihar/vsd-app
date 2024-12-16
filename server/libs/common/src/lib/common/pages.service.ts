@@ -60,10 +60,7 @@ export class PagesService {
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_PAGE));
     }
-    return <ILegalPage>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <ILegalPage>obj;
   }
 
   async loadDetailById(id: number) {

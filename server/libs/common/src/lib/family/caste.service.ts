@@ -62,14 +62,11 @@ export class CasteService {
   }
 
   async getById(id: number): Promise<ICaste> {
-    const obj = await this.casteModel.findOne({ where: { casteId: id } });
+    const obj = await this.casteModel.findOne({ where: { casteId: id }, nest:true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_CASTE));
     }
-    return <ICaste>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <ICaste>obj;
   }
 
   async loadDetailById(id: number) {

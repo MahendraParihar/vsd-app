@@ -35,7 +35,7 @@ export class ContactTypeController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageContactType(@Body() body: ContactTypeDto, userId: number) {
     try {
       return this.contactTypeService.manage(body, userId);

@@ -35,7 +35,7 @@ export class MatrimonialStatusController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageMatrimonialStatus(@Body() body: MatrimonialStatusDto, userId: number) {
     try {
       return this.matrimonialStatusService.manage(body, userId);

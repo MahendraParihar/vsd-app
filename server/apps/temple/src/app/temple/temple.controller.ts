@@ -57,7 +57,7 @@ export class TempleController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageTemple(@Body() body: TempleDto, userId: number) {
     try {
       return this.templeService.manage(body, userId);

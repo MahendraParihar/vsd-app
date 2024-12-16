@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MandalService } from '../mandal.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AddressService, LabelService } from '@vsd-frontend/core-lib';
+import { AddressService, LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { FileTypeEnum, IAddressMaster, IManageMandal, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
-import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
+import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { Editor, Toolbar } from 'ngx-editor';
 
 @Component({
@@ -21,6 +21,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
   addressMaster!: IAddressMaster;
   fileTypeEnum = FileTypeEnum;
   mediaForEnum = MediaForEnum;
+  mandal!: IManageMandal;
   editor!: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -38,9 +39,13 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     description: new FormControl(null),
   });
 
+  @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
+
   constructor(private activatedRoute: ActivatedRoute, private mandalService: MandalService,
               public labelService: LabelService, private title: Title,
-              private addressService: AddressService) {
+              private addressService: AddressService,
+              private snackBarService: SnackBarService,
+              private navigation: NavigationService) {
     console.log(this.activatedRoute.snapshot);
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -59,15 +64,29 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     if (!this.id) {
       return;
     }
-    await this.mandalService.loadDetails(this.id);
+    this.mandal = await this.mandalService.loadDetails(this.id);
+    this.bindData();
   }
 
   ngOnDestroy(): void {
     this.editor.destroy();
   }
 
-  onCancel() {
+  bindData() {
+    if (!this.mandal) {
+      return;
+    }
+    this.formGroup.patchValue({
+      mandalName: this.mandal.mandalName,
+      description: this.mandal.description,
+    });
+    if (this.mandal.address) {
+      this.addressComponent.address = this.mandal.address;
+    }
+  }
 
+  onCancel() {
+    this.navigation.back();
   }
 
   async updateDetails() {
@@ -75,13 +94,25 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) {
       return;
     }
-    const payload:IManageMandal = {
+    console.log(this.formGroup);
+    const payload: IManageMandal = {
       mandalName: this.formGroup.value.mandalName,
       description: this.formGroup.value.description,
       imagePath: this.formGroup.value.uploadFiles,
-      address: this.formGroup.value.addressFormGroup,
-      addressId: this.formGroup.value.addressFormGroup.addressId
+      address: this.formGroup.value.address,
+    };
+    if (this.formGroup.value.address.addressId) {
+      payload.addressId = this.formGroup.value.address.addressId;
     }
-    await this.mandalService.manageMandal(payload);
+    if (this.id) {
+      payload.mandalId = this.id;
+    }
+    try {
+      await this.mandalService.manageMandal(payload);
+      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.onCancel();
+    } catch (e) {
+      this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));
+    }
   }
 }

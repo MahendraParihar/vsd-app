@@ -33,7 +33,7 @@ export class EducationDegreeService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["degree","asc"]],
+      order: [['degree', 'asc']],
     });
     const data = rows.map((data: EducationDegreeModel) => {
       return <IEducationDegreeList>{
@@ -62,14 +62,11 @@ export class EducationDegreeService {
   }
 
   async getById(id: number): Promise<IEducationDegree> {
-    const obj = await this.educationDegreeModel.findOne({ where: { educationDegreeId: id } });
+    const obj = await this.educationDegreeModel.findOne({ where: { educationDegreeId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_EDUCATION_DEGREE));
     }
-    return <IEducationDegree>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IEducationDegree>obj;
   }
 
   async loadDetailById(id: number): Promise<IEducationDegreeList> {

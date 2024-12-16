@@ -35,7 +35,7 @@ export class FaqCategoryController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageFaqCategory(@Body() body: FaqCategoryDto, userId: number) {
     try {
       return this.faqCategoryService.manage(body, userId);

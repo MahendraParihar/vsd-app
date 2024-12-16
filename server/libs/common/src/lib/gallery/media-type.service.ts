@@ -60,14 +60,14 @@ export class MediaTypeService {
   }
 
   async getById(id: number): Promise<IMediaType> {
-    const obj = await this.mediaTypeModel.findOne({ where: { mediaTypeId: id } });
+    const obj = await this.mediaTypeModel.findOne({
+      where: { mediaTypeId: id }, raw: true,
+      nest: true,
+    });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MEDIA_TYPE));
     }
-    return <IMediaType>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IMediaType>obj;
   }
 
   async loadDetailById(id: number): Promise<IMediaTypeList> {

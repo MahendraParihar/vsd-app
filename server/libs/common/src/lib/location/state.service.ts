@@ -71,14 +71,11 @@ export class StateService {
   }
 
   async getById(id: number): Promise<IState> {
-    const obj = await this.stateModel.findOne({ where: { stateId: id } });
+    const obj = await this.stateModel.findOne({ where: { stateId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_STATE));
     }
-    return <IState>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IState>obj;
   }
 
   async loadDetailById(id: number): Promise<IStateList> {

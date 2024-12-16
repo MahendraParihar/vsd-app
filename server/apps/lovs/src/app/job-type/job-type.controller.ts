@@ -35,7 +35,7 @@ export class JobTypeController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageJobType(@Body() body: JobTypeDto, userId: number) {
     try {
       return this.jobTypeService.manage(body, userId);

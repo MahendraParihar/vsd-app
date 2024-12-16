@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IResponse, IStatusChange } from '@vsd-common/lib';
+import { IManageCountry, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class CountryService {
@@ -13,5 +13,15 @@ export class CountryService {
     >{
       status: status,
     });
+  }
+
+  async loadDetails(id: number): Promise<IManageCountry> {
+    const res = await this.httpService.getRequest<IResponse<IManageCountry>>(LovApiUrl.COUNTRY + '/' + id);
+    return res as IManageCountry;
+  }
+
+  async manageCountry(payload: IManageCountry): Promise<IManageCountry> {
+    const res = await this.httpService.postRequest<IResponse<IManageCountry>>(LovApiUrl.MANAGE_COUNTRY, payload);
+    return res as IManageCountry;
   }
 }
