@@ -32,7 +32,7 @@ export class ManageJobStatusComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     }
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MANDAL : this.labelKeys.ADD_MANDAL);
+    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_JOB_STATUS : this.labelKeys.ADD_JOB_STATUS);
     this.title.setTitle(this.pageTitle);
   }
 
@@ -68,6 +68,7 @@ export class ManageJobStatusComponent implements OnInit {
     }
     const payload: IManageJobStatus = {
       jobStatus: this.formGroup.value.jobStatus,
+      imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
       payload.jobStatusId = this.id;

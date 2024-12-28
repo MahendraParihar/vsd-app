@@ -1,5 +1,5 @@
-import { IManageCaste } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageCaste, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CasteDto implements IManageCaste {
   @IsOptional()
@@ -12,7 +12,7 @@ export class CasteDto implements IManageCaste {
   caste: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

@@ -5,7 +5,7 @@ import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-
 import { ActivatedRoute } from '@angular/router';
 import { AddressService, LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
-import { FileTypeEnum, IAddressMaster, IManageTemple, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import { FileTypeEnum, IAddressMaster, ICommonSEO, IManageTemple, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { TempleService } from '../temple.service';
 
 @Component({
@@ -68,6 +68,18 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
     this.bindData();
   }
 
+  get SEOObj() {
+    if (this.temple) {
+      return <ICommonSEO>{
+        tags: this.temple.tags ? this.temple.tags : [],
+        metaTitle: this.temple.metaTitle,
+        metaDescription: this.temple.metaDescription,
+        url: this.temple.url,
+      };
+    }
+    return <ICommonSEO>{};
+  }
+
   ngOnDestroy(): void {
     this.editor.destroy();
   }
@@ -100,6 +112,7 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
       description: this.formGroup.value.description,
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
+      ...this.formGroup.value.seo,
     };
     if (this.formGroup.value.address.addressId) {
       payload.addressId = this.formGroup.value.address.addressId;

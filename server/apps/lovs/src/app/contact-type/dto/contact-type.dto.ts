@@ -1,5 +1,5 @@
-import { IManageContactType } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageContactType, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class ContactTypeDto implements IManageContactType {
   @IsOptional()
@@ -12,7 +12,7 @@ export class ContactTypeDto implements IManageContactType {
   contactType: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

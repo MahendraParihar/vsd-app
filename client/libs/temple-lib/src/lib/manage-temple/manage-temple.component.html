@@ -40,11 +40,11 @@
                             [labels]='labelService.labels'
                             [isMultiFile]='false'
                             [isRequired]='true'
-                            [uploadedMediaList]="temple ? temple.imagePath : []"
+                            [uploadedMediaList]='temple ? temple.imagePath : []'
                             [mediaFor]='mediaForEnum.TEMPLE'
                             [mediaType]='fileTypeEnum.IMAGE'></vsd-ui-upload-form>
       </div>
-      <vsd-ui-seo-form [formGroup]='formGroup'></vsd-ui-seo-form>
+      <vsd-ui-seo-form [seo]='SEOObj' [formGroup]='formGroup'></vsd-ui-seo-form>
     </form>
   </mat-card-content>
   <mat-card-actions align='end'>

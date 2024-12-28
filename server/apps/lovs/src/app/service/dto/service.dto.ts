@@ -1,5 +1,5 @@
-import { IManageService } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageService, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class ServiceDto implements IManageService {
   @IsOptional()
@@ -12,7 +12,7 @@ export class ServiceDto implements IManageService {
   service: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

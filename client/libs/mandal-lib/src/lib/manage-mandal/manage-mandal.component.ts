@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MandalService } from '../mandal.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddressService, LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
-import { FileTypeEnum, IAddressMaster, IManageMandal, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import { FileTypeEnum, IAddressMaster, ICommonSEO, IManageMandal, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
 import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { Editor, Toolbar } from 'ngx-editor';
@@ -66,6 +66,18 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     }
     this.mandal = await this.mandalService.loadDetails(this.id);
     this.bindData();
+  }
+
+  get SEOObj() {
+    if (this.mandal) {
+      return <ICommonSEO>{
+        tags: this.mandal.tags ? this.mandal.tags : [],
+        metaTitle: this.mandal.metaTitle,
+        metaDescription: this.mandal.metaDescription,
+        url: this.mandal.url,
+      };
+    }
+    return <ICommonSEO>{};
   }
 
   ngOnDestroy(): void {

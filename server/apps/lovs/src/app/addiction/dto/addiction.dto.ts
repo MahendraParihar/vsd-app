@@ -1,5 +1,5 @@
-import { IManageAddiction } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageAddiction, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class AddictionDto implements IManageAddiction {
   @IsOptional()
@@ -12,7 +12,7 @@ export class AddictionDto implements IManageAddiction {
   addiction: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

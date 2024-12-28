@@ -1,5 +1,5 @@
-import { IManageMatrimonialRequestedStatus } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageMatrimonialRequestedStatus, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class MatrimonialRequestedStatusDto implements IManageMatrimonialRequestedStatus {
   @IsOptional()
@@ -12,7 +12,7 @@ export class MatrimonialRequestedStatusDto implements IManageMatrimonialRequeste
   matrimonialRequestedStatus: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

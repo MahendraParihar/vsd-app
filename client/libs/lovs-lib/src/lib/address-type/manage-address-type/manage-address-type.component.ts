@@ -33,7 +33,7 @@ export class ManageAddressTypeComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     }
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MANDAL : this.labelKeys.ADD_MANDAL);
+    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_ADDRESS_TYPE : this.labelKeys.ADD_ADDRESS_TYPE);
     this.title.setTitle(this.pageTitle);
   }
 

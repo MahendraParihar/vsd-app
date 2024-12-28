@@ -1,4 +1,4 @@
-import { IManageTemple } from '@vsd-common/lib';
+import { IManageTemple, IMediaUpload } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 import { AddressDto, SeoDto } from '@server/common';
 
@@ -18,7 +18,7 @@ export class TempleDto extends SeoDto implements IManageTemple {
 
   @IsOptional()
   @IsArray()
-  imagePath: object[];
+  imagePath: IMediaUpload[];
 
   @IsOptional()
   @IsNumber()

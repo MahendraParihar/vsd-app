@@ -1,5 +1,5 @@
 import { IManageDistrict } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class DistrictDto implements IManageDistrict {
   @IsOptional()
@@ -14,9 +14,5 @@ export class DistrictDto implements IManageDistrict {
   @IsNotEmpty()
   @IsNumber()
   stateId: number;
-
-  @IsOptional()
-  @IsObject()
-  imagePath: object;
 
 }

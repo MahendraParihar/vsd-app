@@ -71,6 +71,10 @@ export class TempleService {
         templeName: obj.templeName,
         description: obj.description,
         updatedBy: userId,
+        tags: obj.tags,
+        metaTitle: obj.metaTitle,
+        metaDescription: obj.metaDescription,
+        url: obj.url,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -87,6 +91,7 @@ export class TempleService {
       await transaction.commit();
       return res;
     } catch (e) {
+      console.log(e);
       await transaction.rollback();
       throw e;
     }
@@ -104,6 +109,10 @@ export class TempleService {
       templeId: data.templeId,
       templeName: data.templeName,
       imagePath: data.imagePath,
+      tags: data.tags,
+      metaTitle: data.metaTitle,
+      metaDescription: data.metaDescription,
+      url: data.url,
       active: data.active,
       createdAt: data.createdAt,
       createdBy: data.createdBy,

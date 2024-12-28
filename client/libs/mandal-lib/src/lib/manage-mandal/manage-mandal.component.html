@@ -44,7 +44,7 @@
                             [mediaType]='fileTypeEnum.IMAGE'
                             [uploadedMediaList]="mandal ? mandal.imagePath : []"></vsd-ui-upload-form>
       </div>
-      <vsd-ui-seo-form [formGroup]='formGroup'></vsd-ui-seo-form>
+      <vsd-ui-seo-form [seo]='SEOObj' [formGroup]='formGroup'></vsd-ui-seo-form>
     </form>
   </mat-card-content>
   <mat-card-actions align='end'>

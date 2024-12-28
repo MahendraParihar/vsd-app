@@ -1,5 +1,5 @@
-import { IManageGotra } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageGotra, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class GotraDto implements IManageGotra {
   @IsOptional()
@@ -12,7 +12,7 @@ export class GotraDto implements IManageGotra {
   gotra: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

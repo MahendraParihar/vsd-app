@@ -32,7 +32,7 @@ export class ManageMatrimonialRequestedStatusComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     }
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MANDAL : this.labelKeys.ADD_MANDAL);
+    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MATRIMONIAL_REQUESTED_STATUS : this.labelKeys.ADD_MATRIMONIAL_REQUESTED_STATUS);
     this.title.setTitle(this.pageTitle);
   }
 
@@ -68,6 +68,7 @@ export class ManageMatrimonialRequestedStatusComponent implements OnInit {
     }
     const payload: IManageMatrimonialRequestedStatus = {
       matrimonialRequestedStatus: this.formGroup.value.matrimonialRequestedStatus,
+      imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
       payload.matrimonialRequestedStatusId = this.id;

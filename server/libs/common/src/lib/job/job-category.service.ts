@@ -33,7 +33,7 @@ export class JobCategoryService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["jobCategory","asc"]],
+      order: [['jobCategory', 'asc']],
     });
     const data = rows.map((data: JobCategoryModel) => {
       return <IJobCategoryList>{
@@ -62,7 +62,7 @@ export class JobCategoryService {
   }
 
   async getById(id: number): Promise<IJobCategory> {
-    const obj = await this.jobCategoryModel.findOne({ where: { jobCategoryId: id }, nest:true, raw: true });
+    const obj = await this.jobCategoryModel.findOne({ where: { jobCategoryId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_JOB_CATEGORY));
     }

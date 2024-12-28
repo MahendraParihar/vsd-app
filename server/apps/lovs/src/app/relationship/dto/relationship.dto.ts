@@ -1,5 +1,5 @@
-import { IManageRelationship } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageRelationship, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class RelationshipDto implements IManageRelationship {
   @IsOptional()
@@ -12,7 +12,7 @@ export class RelationshipDto implements IManageRelationship {
   relationship: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

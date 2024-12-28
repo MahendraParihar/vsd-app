@@ -32,7 +32,7 @@ export class ManageGotraComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     }
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MANDAL : this.labelKeys.ADD_MANDAL);
+    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_GOTRA : this.labelKeys.ADD_GOTRA);
     this.title.setTitle(this.pageTitle);
   }
 

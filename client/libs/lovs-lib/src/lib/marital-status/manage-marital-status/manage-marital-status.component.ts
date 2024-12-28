@@ -32,7 +32,7 @@ export class ManageMaritalStatusComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     }
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MANDAL : this.labelKeys.ADD_MANDAL);
+    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MARITAL_STATUS : this.labelKeys.ADD_MARITAL_STATUS);
     this.title.setTitle(this.pageTitle);
   }
 
@@ -69,6 +69,7 @@ export class ManageMaritalStatusComponent implements OnInit {
     console.log(this.formGroup);
     const payload: IManageMaritalStatus = {
       maritalStatus: this.formGroup.value.maritalStatus,
+      imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
       payload.maritalStatusId = this.id;

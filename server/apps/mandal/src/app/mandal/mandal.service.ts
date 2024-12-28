@@ -79,6 +79,10 @@ export class MandalService {
         mandalName: obj.mandalName,
         description: obj.description,
         updatedBy: userId,
+        tags: obj.tags,
+        metaTitle: obj.metaTitle,
+        metaDescription: obj.metaDescription,
+        url: obj.url
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -115,6 +119,10 @@ export class MandalService {
     return <IMandalDetail>{
       mandalId: data.mandalId,
       mandalName: data.mandalName,
+      tags: data.tags,
+      metaTitle: data.metaTitle,
+      metaDescription: data.metaDescription,
+      url: data.url,
       active: data.active,
       createdAt: data.createdAt,
       createdBy: data.createdBy,

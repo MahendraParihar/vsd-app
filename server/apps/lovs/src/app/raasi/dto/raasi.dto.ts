@@ -1,5 +1,5 @@
-import { IManageRaasi } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageRaasi, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class RaasiDto implements IManageRaasi {
   @IsOptional()
@@ -12,7 +12,7 @@ export class RaasiDto implements IManageRaasi {
   raasi: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

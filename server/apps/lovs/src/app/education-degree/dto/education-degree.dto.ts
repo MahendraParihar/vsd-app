@@ -1,5 +1,5 @@
-import { IManageEducationDegree } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageEducationDegree, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class EducationDegreeDto implements IManageEducationDegree {
   @IsOptional()
@@ -12,7 +12,7 @@ export class EducationDegreeDto implements IManageEducationDegree {
   degree: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

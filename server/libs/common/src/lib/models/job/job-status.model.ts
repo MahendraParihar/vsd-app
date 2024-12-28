@@ -43,6 +43,13 @@ export class JobStatusModel extends Model<JobStatusModel> {
   jobStatus: string;
 
   @Column({
+    field: 'image_path',
+    allowNull: false,
+    type: DataType.JSONB,
+  })
+  imagePath: object;
+
+  @Column({
     field: 'active',
     allowNull: false,
     defaultValue: true,

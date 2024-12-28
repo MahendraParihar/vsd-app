@@ -1,5 +1,5 @@
-import {IManageNews} from '@vsd-common/lib';
-import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { IManageNews, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 import { SeoDto } from '@server/common';
 
 export class NewsDto extends SeoDto implements IManageNews {
@@ -13,8 +13,8 @@ export class NewsDto extends SeoDto implements IManageNews {
   title: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
   description: string;
   date: Date;

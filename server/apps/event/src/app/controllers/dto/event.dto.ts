@@ -1,6 +1,6 @@
-import { IManageEvent, IManageAddress } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
-import { SeoDto } from '@server/common';
+import { IManageEvent, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+import { AddressDto, SeoDto } from '@server/common';
 
 export class EventDto extends SeoDto implements IManageEvent {
   @IsOptional()
@@ -13,13 +13,25 @@ export class EventDto extends SeoDto implements IManageEvent {
   title: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
+  @IsNotEmpty()
+  @IsString()
   description: string;
+
+  @IsNotEmpty()
+  @IsDateString()
   date: Date;
+
+  @IsNotEmpty()
+  @IsDateString()
   time: Date;
+
+  @IsOptional()
+  @IsNumber()
   visitedCount: number;
 
-  address: IManageAddress;
+  @IsNotEmpty()
+  address: AddressDto;
 }

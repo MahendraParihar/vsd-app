@@ -1,5 +1,5 @@
-import { IManageFaqCategory } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageFaqCategory, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class FaqCategoryDto implements IManageFaqCategory {
   @IsOptional()
@@ -17,7 +17,7 @@ export class FaqCategoryDto implements IManageFaqCategory {
   url: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

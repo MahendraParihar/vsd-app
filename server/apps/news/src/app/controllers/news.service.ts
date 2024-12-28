@@ -90,6 +90,10 @@ export class NewsService {
     const dataObj = {
       title: obj.title,
       updatedBy: userId,
+      tags: obj.tags,
+      metaTitle: obj.metaTitle,
+      metaDescription: obj.metaDescription,
+      url: obj.url
     };
     if (obj.imagePath) {
       Object.assign(dataObj, {imagePath: obj.imagePath});

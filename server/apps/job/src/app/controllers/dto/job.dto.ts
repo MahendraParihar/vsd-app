@@ -1,5 +1,5 @@
-import {IManageJob} from '@vsd-common/lib';
-import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { IManageJob, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 import { SeoDto } from '@server/common';
 
 export class JobDto extends SeoDto implements IManageJob {
@@ -13,8 +13,8 @@ export class JobDto extends SeoDto implements IManageJob {
   title: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
   description: string;
   date: Date;

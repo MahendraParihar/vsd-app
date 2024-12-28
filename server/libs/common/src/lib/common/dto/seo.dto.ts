@@ -1,20 +1,20 @@
-import { IsArray, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 import { ICommonSEO } from '@vsd-common/lib';
 
 export class SeoDto implements ICommonSEO {
   @IsArray()
-  @IsOptional()
-  tags?: string[];
+  @IsNotEmpty()
+  tags: string[];
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  metaTitle?: string;
+  metaTitle: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  metaDescription?: string;
+  metaDescription: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  url?: string;
+  url: string;
 }

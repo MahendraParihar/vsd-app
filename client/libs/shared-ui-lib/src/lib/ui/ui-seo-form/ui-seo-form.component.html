@@ -4,7 +4,7 @@
       <div class='form-group'>
         <vsd-ui-label [label]='labelService.getLabel(labelKeys.SEO_META_TAGS)'></vsd-ui-label>
         <mat-form-field>
-          <mat-chip-grid #chipList formControlName='tags'>
+          <mat-chip-grid #chipList formControlName='tags' required>
             <mat-chip (removed)='remove(tags)' *ngFor='let tags of tagsList'>
               {{ tags }}
               <button matChipRemove>
@@ -36,6 +36,7 @@
         <vsd-ui-label [label]='labelService.getLabel(labelKeys.SEO_META_DESCRIPTION)'></vsd-ui-label>
         <mat-form-field>
           <input #metaDescription formControlName='metaDescription' matInput
+                 required
                  [maxlength]='inputLength.MAX_META_DESCRIPTION'>
           <mat-hint align='end'>{{ metaDescription.value.length || 0 }}/{{ inputLength.MAX_META_DESCRIPTION }}
           </mat-hint>

@@ -1,5 +1,5 @@
-import { IManageReligion } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageReligion, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class ReligionDto implements IManageReligion {
   @IsOptional()
@@ -12,7 +12,7 @@ export class ReligionDto implements IManageReligion {
   religion: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }

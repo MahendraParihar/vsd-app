@@ -28,9 +28,9 @@ export class UiSeoFormComponent implements OnInit {
   }
 
   seoFormGroup: FormGroup = new FormGroup({
-    tags: new FormControl(null),
-    metaTitle: new FormControl(null, [Validators.maxLength(InputLength.MAX_META_TITLE)]),
-    metaDescription: new FormControl(null, [Validators.maxLength(InputLength.MAX_META_DESCRIPTION)]),
+    tags: new FormControl(null, [Validators.required]),
+    metaTitle: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.MAX_META_TITLE)]),
+    metaDescription: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.MAX_META_DESCRIPTION)]),
   });
 
   constructor(public labelService: LabelService) {
@@ -71,7 +71,7 @@ export class UiSeoFormComponent implements OnInit {
       return;
     }
     this.seoFormGroup.patchValue({
-      tags: this._seo.tags,
+      tags: this._seo.tags ? this._seo.tags.join(',') : '',
       metaTitle: this._seo.metaTitle,
       metaDescription: this._seo.metaDescription,
     });

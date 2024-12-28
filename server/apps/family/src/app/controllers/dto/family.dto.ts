@@ -1,5 +1,5 @@
-import {IManageFamily} from '@vsd-common/lib';
-import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { IManageFamily, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class FamilyDto implements IManageFamily {
   @IsOptional()
@@ -27,8 +27,8 @@ export class FamilyDto implements IManageFamily {
   emailId: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
   description: string;
   date: Date;

@@ -1,5 +1,6 @@
 import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, Scopes, BelongsTo } from 'sequelize-typescript';
 import { AdminUserModel } from '../admin';
+import { IMediaUpload } from '@vsd-common/lib';
 
 @Table({
   tableName: 'mst_religion',
@@ -47,7 +48,7 @@ export class ReligionModel extends Model<ReligionModel> {
     allowNull: true,
     type: DataType.JSONB,
   })
-  imagePath: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'active',

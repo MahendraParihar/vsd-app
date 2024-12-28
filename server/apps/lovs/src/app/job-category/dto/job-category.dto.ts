@@ -1,5 +1,5 @@
-import { IManageJobCategory } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IManageJobCategory, IMediaUpload } from '@vsd-common/lib';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class JobCategoryDto implements IManageJobCategory {
   @IsOptional()
@@ -12,7 +12,7 @@ export class JobCategoryDto implements IManageJobCategory {
   jobCategory: string;
 
   @IsOptional()
-  @IsObject()
-  imagePath: object;
+  @IsArray()
+  imagePath: IMediaUpload[];
 
 }
