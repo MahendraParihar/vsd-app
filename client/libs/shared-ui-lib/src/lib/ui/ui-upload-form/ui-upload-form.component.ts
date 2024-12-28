@@ -9,10 +9,18 @@ import {
 } from '@angular/forms';
 import { FileTypeEnum, IMediaUpload, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlertDialogDataInterface, AlertTypeEnum, ApiUrls, FileHandle, HttpService } from '@vsd-frontend/core-lib';
+import {
+  AlertDialogDataInterface,
+  AlertTypeEnum,
+  ApiUrls,
+  FileHandle,
+  HttpService,
+  LabelService,
+  SnackBarService,
+} from '@vsd-frontend/core-lib';
 import { MatDialog } from '@angular/material/dialog';
 import { UiAlertDialogComponent } from '../ui-alert-dialog/ui-alert-dialog.component';
-import { HttpEventType, HttpResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'vsd-ui-upload-form',
@@ -43,6 +51,8 @@ export class UiUploadFormComponent implements OnInit, OnChanges {
               private httpService: HttpService,
               private differs: IterableDiffers,
               private cdr: ChangeDetectorRef,
+              private snackbarService: SnackBarService,
+              private labelService: LabelService,
               public dialog: MatDialog) {
     this.differ = this.differs;
   }
@@ -171,46 +181,36 @@ export class UiUploadFormComponent implements OnInit, OnChanges {
         formData.append('mediaFor', this.mediaFor);
         formData.append('mediaType', this.mediaType);
         f.progress = 0;
-        this.httpService.uploadMedia(ApiUrls.MEDIA_UPLOAD, formData).subscribe((event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              f.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              if (event.status === HttpStatusCode.Created) {
-                // const res = event.body;
-                // switch (res.code) {
-                //   case ServerResponseEnum.SUCCESS:
-                //     f.fileUpdateStatus = 1;
-                //     const mediaResponse = MediaUploadResponseModel.fromJson(res.data);
-                //     this.addFile(mediaResponse);
-                //     break;
-                //   case ServerResponseEnum.WARNING:
-                //     f.progress = 0;
-                //     f.fileUpdateStatus = -1;
-                //     break;
-                //   case ServerResponseEnum.ERROR:
-                //     f.progress = 0;
-                //     f.fileUpdateStatus = -1;
-                //     break;
-                // }
-              } else {
-                f.progress = 0;
-                f.fileUpdateStatus = -1;
-              }
-            }
+        this.httpService.uploadMedia(ApiUrls.MEDIA_UPLOAD, formData).subscribe({
+          next: (res: HttpResponse<any>) => {
+            f.fileUpdateStatus = 1;
+            f.progress = 100;
+            const mediaResponse = <IMediaUpload>{
+              fieldName: res.body.fileName,
+              originalName: res.body.originalName,
+              encoding: res.body.encoding,
+              mimetype: res.body.mimetype,
+              fileName: res.body.fileName,
+              size: res.body.size,
+              webUrl: res.body.webUrl,
+            };
+            this.addFile(mediaResponse);
           },
-          (err: any) => {
+          error: (v) => {
             f.progress = 0;
             f.fileUpdateStatus = -1;
-          });
+            this.snackbarService.showError(v);
+          },
+        });
       }
     }
   }
 
   showAlertDialog(): void {
     const dialogData: AlertDialogDataInterface = {
-      title: this.labels.get(this.labelKeys.ALERT) || 'alert',
-      message: this.labels.get(this.labelKeys.SINGLE_MEDIA_FILE_ALERT) || 'single file only',
-      positiveBtnTxt: this.labels.get(this.labelKeys.ACTION_OK) || 'ok',
+      title: this.labelService.getLabel(this.labelKeys.ALERT),
+      message: this.labelService.getLabel(this.labelKeys.SINGLE_MEDIA_FILE_ALERT),
+      positiveBtnTxt: this.labelService.getLabel(this.labelKeys.ACTION_OK),
       negativeBtnTxt: null,
       alertType: AlertTypeEnum.WARNING,
     };

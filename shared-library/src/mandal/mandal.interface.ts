@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseMandal {
@@ -8,12 +8,12 @@ export interface IBaseMandal {
   imagePath: object;
 }
 
-export interface IManageMandal extends IBaseMandal {
+export interface IManageMandal extends IBaseMandal, ICommonSEO {
   mandalId?: number;
   address: IManageAddress;
 }
 
-export interface IMandal extends IBaseMandal, ICommonTable {
+export interface IMandal extends IBaseMandal, ICommonTable, ICommonSEO {
   mandalId: number;
   active: boolean;
 }

@@ -23,9 +23,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', `Bearer ${authToken}`),
       });
     }
-    request = request.clone({
-      headers: request.headers.set('Accept', 'application/json').set('Content-Type', 'application/json; charset=utf-8'),
-    });
     return await lastValueFrom(next.handle(request).pipe(
         tap((event) => {
           if (event instanceof HttpResponse) {

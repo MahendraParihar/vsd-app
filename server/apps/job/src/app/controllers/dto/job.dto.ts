@@ -1,7 +1,8 @@
 import {IManageJob} from '@vsd-common/lib';
 import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { SeoDto } from '@server/common';
 
-export class JobDto implements IManageJob {
+export class JobDto extends SeoDto implements IManageJob {
   @IsOptional()
   @IsNumber()
   jobId?: number;

@@ -29,7 +29,7 @@ export class MediaController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: (req: any, file: any, cb: any) => {
-          cb(null, `${CommonUtil.getMediaFolderPath()}/${MediaForEnum.UPLOADS}`);
+          cb(null, `${CommonUtil.getMediaFolderPath}/${MediaForEnum.UPLOADS}`);
         },
         filename: FileHelper.customFileName,
       }),
@@ -41,7 +41,7 @@ export class MediaController {
       .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
   ) file: Express.Multer.File, a: MulterOptions) {
     const currentPath = `${file.destination}/${file.filename}`;
-    const destinationFolderPath = `${CommonUtil.getMediaFolderPath()}/${mediaDto.mediaFor}`;
+    const destinationFolderPath = `${CommonUtil.getMediaFolderPath}/${mediaDto.mediaFor}`;
     const destinationPath = `${destinationFolderPath}/${file.filename}`;
 
     //CREATE DIRECTORY IF NOT EXISTS

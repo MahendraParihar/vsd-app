@@ -7,6 +7,7 @@ import { AuthGuardService } from './guard/auth.guard';
 import { LabelService } from './label/label.service';
 import { DateTimePipe } from './pipes/date-time.pipe';
 import { CreatedByUserPipe } from './pipes/created-by-user.pipe';
+import { LoaderInterceptor } from './guard/loader.interceptor';
 
 export function appLabelInitialize(appLabelService: LabelService) {
   return (): Promise<any> => {
@@ -28,11 +29,8 @@ export function appLabelInitialize(appLabelService: LabelService) {
     LabelService,
     AddressService,
     { provide: APP_INITIALIZER, useFactory: appLabelInitialize, deps: [LabelService], multi: true },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpConfigInterceptor,
-      multi: true,
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
   exports: [
     DateTimePipe,

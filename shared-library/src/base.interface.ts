@@ -1,12 +1,19 @@
-export interface IBaseAdminUser{
+export interface IBaseAdminUser {
   firstName: string;
   lastName: string;
 }
 
-export interface ICommonTable{
+export interface ICommonTable {
   active: boolean;
   createdBy: number;
   createdAt: Date;
   updatedBy: number;
   updatedAt: Date;
+}
+
+export interface ICommonSEO {
+  tags?: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  url?: string;
 }

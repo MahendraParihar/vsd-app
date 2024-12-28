@@ -1,8 +1,8 @@
 import { IManageTemple } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
-import { AddressDto } from '@server/common';
+import { AddressDto, SeoDto } from '@server/common';
 
-export class TempleDto implements IManageTemple {
+export class TempleDto extends SeoDto implements IManageTemple {
   @IsOptional()
   @IsNumber()
   templeId?: number;
@@ -18,7 +18,7 @@ export class TempleDto implements IManageTemple {
 
   @IsOptional()
   @IsArray()
-  imagePath: object;
+  imagePath: object[];
 
   @IsOptional()
   @IsNumber()

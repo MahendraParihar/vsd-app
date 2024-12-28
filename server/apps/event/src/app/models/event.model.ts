@@ -1,15 +1,15 @@
 import {
+  BelongsTo,
   Column,
-  DataType,
-  Table,
-  Model,
-  UpdatedAt,
   CreatedAt,
+  DataType,
   ForeignKey,
+  Model,
   Scopes,
-  BelongsTo
+  Table,
+  UpdatedAt,
 } from 'sequelize-typescript';
-import {AddressModel, AdminUserModel} from '@server/common';
+import { AddressModel, AdminUserModel } from '@server/common';
 
 @Table({
   tableName: 'txn_event',
@@ -129,6 +129,27 @@ export class EventModel extends Model<EventModel> {
   tags: string[];
 
   @Column({
+    field: 'url',
+    allowNull: true,
+    type: DataType.TEXT,
+  })
+  url: string;
+
+  @Column({
+    field: 'meta_title',
+    allowNull: true,
+    type: DataType.STRING(60),
+  })
+  metaTitle: string;
+
+  @Column({
+    field: 'meta_description',
+    allowNull: true,
+    type: DataType.STRING(160),
+  })
+  metaDescription: string;
+
+  @Column({
     field: 'active',
     allowNull: false,
     defaultValue: true,
@@ -178,12 +199,12 @@ export class EventModel extends Model<EventModel> {
   })
   modifiedIp: string;
 
-  @BelongsTo(() => AdminUserModel, {as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId'})
+  @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, {as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId'})
+  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
 
-  @BelongsTo(() => AddressModel, {as: 'address', foreignKey: 'addressId', targetKey: 'addressId'})
+  @BelongsTo(() => AddressModel, { as: 'address', foreignKey: 'addressId', targetKey: 'addressId' })
   address: AddressModel;
 }

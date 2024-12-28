@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 
 export interface IBaseJob {
   title: string;
@@ -8,17 +8,16 @@ export interface IBaseJob {
   isApproved: boolean;
   approvedBy?: number;
   commentApplicable: boolean;
-  tags: string[];
   visitedCount: number;
   imagePath: object;
   noOfPosition: number;
 }
 
-export interface IManageJob extends IBaseJob {
+export interface IManageJob extends IBaseJob, ICommonSEO {
   jobId?: number;
 }
 
-export interface IJob extends IBaseJob, ICommonTable {
+export interface IJob extends IBaseJob, ICommonTable, ICommonSEO {
   jobId: number;
   active: boolean;
 }

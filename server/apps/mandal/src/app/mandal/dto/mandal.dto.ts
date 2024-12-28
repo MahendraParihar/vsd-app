@@ -1,8 +1,8 @@
 import { IManageMandal } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
-import { AddressDto } from '@server/common';
+import { AddressDto, SeoDto } from '@server/common';
 
-export class MandalDto implements IManageMandal {
+export class MandalDto extends SeoDto implements IManageMandal {
   @IsOptional()
   @IsNumber()
   mandalId?: number;

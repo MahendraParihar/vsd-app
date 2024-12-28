@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 
 export interface IBaseNews {
   title: string;
@@ -7,17 +7,16 @@ export interface IBaseNews {
   time: Date;
   isApproved: boolean;
   commentApplicable: boolean;
-  tags: string[];
   visitedCount: number;
   imagePath: object;
   approvedBy: number;
 }
 
-export interface IManageNews extends IBaseNews {
+export interface IManageNews extends IBaseNews, ICommonSEO {
   currentAffairId?: number;
 }
 
-export interface INews extends IBaseNews, ICommonTable {
+export interface INews extends IBaseNews, ICommonTable, ICommonSEO {
   currentAffairId: number;
   active: boolean;
 }

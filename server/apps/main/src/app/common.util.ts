@@ -1,7 +1,5 @@
-import { join } from 'path';
+import { Env } from '@server/common';
 
-export class CommonUtil{
-  static getMediaFolderPath(): string {
-    return join(__dirname, '../../../apps/main/src', 'assets/media-files');
-  }
+export class CommonUtil {
+  public static readonly getMediaFolderPath = Env.persistentStorageAssetPath;
 }

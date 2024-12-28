@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
 
 export interface IBaseEvent {
@@ -10,12 +10,12 @@ export interface IBaseEvent {
   visitedCount: number;
 }
 
-export interface IManageEvent extends IBaseEvent {
+export interface IManageEvent extends IBaseEvent, ICommonSEO {
   eventId?: number;
   address: IManageAddress;
 }
 
-export interface IEvent extends IBaseEvent, ICommonTable {
+export interface IEvent extends IBaseEvent, ICommonTable, ICommonSEO {
   eventId: number;
   active: boolean;
 }

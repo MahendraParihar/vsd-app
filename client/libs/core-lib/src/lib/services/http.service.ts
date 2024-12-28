@@ -101,12 +101,12 @@ export class HttpService {
     return url;
   }
 
-  public uploadMedia(url: string, formData: FormData): Observable<HttpEvent<any>> {
-    const headerIn = {
-      'Content-Type': 'multipart/form-data',
-      'enctype': 'multipart/form-data',
-    };
-    return this.postRequestObservable(url, formData, headerIn);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public uploadMedia(url: string, formData: FormData): Observable<any> {
+    return this.httpClient.post(url, formData, {
+      reportProgress: true,
+      observe: 'events',
+    });
   }
 
   getRequestObservable<T>(
@@ -117,13 +117,6 @@ export class HttpService {
     url = this.createUrlWithQueryString(url, paramObj);
     return this.httpClient.get<T>(url, {
       headers: new HttpHeaders(header),
-    });
-  }
-
-  postRequestObservable<T>(url: string, payload: unknown, header?: { [key: string]: string }): Observable<T> {
-    return this.httpClient.post<T>(url, payload, {
-      headers: new HttpHeaders(header),
-      responseType: 'json',
     });
   }
 }

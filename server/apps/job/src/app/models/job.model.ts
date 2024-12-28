@@ -122,6 +122,27 @@ export class JobModel extends Model<JobModel> {
   tags: string[];
 
   @Column({
+    field: 'url',
+    allowNull: true,
+    type: DataType.TEXT,
+  })
+  url: string;
+
+  @Column({
+    field: 'meta_title',
+    allowNull: true,
+    type: DataType.STRING(60),
+  })
+  metaTitle: string;
+
+  @Column({
+    field: 'meta_description',
+    allowNull: true,
+    type: DataType.STRING(160),
+  })
+  metaDescription: string;
+
+  @Column({
     field: 'visited_count',
     allowNull: false,
     defaultValue: 0,

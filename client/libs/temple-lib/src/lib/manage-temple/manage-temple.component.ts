@@ -90,6 +90,7 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
   }
 
   async updateDetails() {
+    console.log(this.formGroup);
     ValidationUtil.validateAllFormFields(this.formGroup);
     if (!this.formGroup.valid) {
       return;

@@ -1,15 +1,15 @@
 import {
-  Column,
-  DataType,
-  Table,
-  Model,
-  UpdatedAt,
-  CreatedAt,
-  ForeignKey,
   BelongsTo,
-  Scopes
+  Column,
+  CreatedAt,
+  DataType,
+  ForeignKey,
+  Model,
+  Scopes,
+  Table,
+  UpdatedAt,
 } from 'sequelize-typescript';
-import {AddressModel, AdminUserModel} from '@server/common';
+import { AdminUserModel } from '@server/common';
 
 @Table({
   tableName: 'txn_current_affair',
@@ -115,6 +115,14 @@ export class CurrentAffairModel extends Model<CurrentAffairModel> {
   commentApplicable: boolean;
 
   @Column({
+    field: 'visited_count',
+    allowNull: false,
+    defaultValue: 0,
+    type: DataType.NUMBER,
+  })
+  visitedCount: number;
+
+  @Column({
     field: 'tags',
     allowNull: true,
     type: DataType.ARRAY(DataType.STRING),
@@ -122,12 +130,25 @@ export class CurrentAffairModel extends Model<CurrentAffairModel> {
   tags: string[];
 
   @Column({
-    field: 'visited_count',
-    allowNull: false,
-    defaultValue: 0,
-    type: DataType.NUMBER,
+    field: 'url',
+    allowNull: true,
+    type: DataType.TEXT,
   })
-  visitedCount: number;
+  url: string;
+
+  @Column({
+    field: 'meta_title',
+    allowNull: true,
+    type: DataType.STRING(60),
+  })
+  metaTitle: string;
+
+  @Column({
+    field: 'meta_description',
+    allowNull: true,
+    type: DataType.STRING(160),
+  })
+  metaDescription: string;
 
   @Column({
     field: 'active',

@@ -1,7 +1,8 @@
 import {IManageNews} from '@vsd-common/lib';
 import {IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, MaxLength} from 'class-validator';
+import { SeoDto } from '@server/common';
 
-export class NewsDto implements IManageNews {
+export class NewsDto extends SeoDto implements IManageNews {
   @IsOptional()
   @IsNumber()
   currentAffairId?: number;
