@@ -1,8 +1,9 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBaseContactType {
   contactType: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageContactType extends IBaseContactType {

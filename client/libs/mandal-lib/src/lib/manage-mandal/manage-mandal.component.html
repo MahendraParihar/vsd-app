@@ -42,8 +42,9 @@
                             [isRequired]='true'
                             [mediaFor]='mediaForEnum.MANDAL'
                             [mediaType]='fileTypeEnum.IMAGE'
-                            [uploadedMediaList]='[]'></vsd-ui-upload-form>
+                            [uploadedMediaList]="mandal ? mandal.imagePath : []"></vsd-ui-upload-form>
       </div>
+      <vsd-ui-seo-form [formGroup]='formGroup'></vsd-ui-seo-form>
     </form>
   </mat-card-content>
   <mat-card-actions align='end'>

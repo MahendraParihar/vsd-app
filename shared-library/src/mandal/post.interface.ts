@@ -1,8 +1,9 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBasePost {
   post: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManagePost extends IBasePost {

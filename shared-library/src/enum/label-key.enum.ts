@@ -149,4 +149,9 @@ export enum LabelKey {
   SUCCESS_FILE_PROGRESS = 'progress_file_upload',
   SUCCESS_DATA_UPDATED = 'success_data_updated',
   SUCCESS_DATA_ADDED = 'success_data_added',
+
+  SEO_META_TAGS = `seo_meta_tags`,
+  SEO_META_TITLE = `seo_meta_title`,
+  SEO_META_DESCRIPTION = `seo_meta_description`,
+  URL = `url`,
 }

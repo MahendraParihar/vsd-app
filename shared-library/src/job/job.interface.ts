@@ -1,4 +1,5 @@
 import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
+import { IMediaUpload } from '../core';
 
 export interface IBaseJob {
   title: string;
@@ -9,7 +10,7 @@ export interface IBaseJob {
   approvedBy?: number;
   commentApplicable: boolean;
   visitedCount: number;
-  imagePath: object;
+  imagePath: IMediaUpload[];
   noOfPosition: number;
 }
 

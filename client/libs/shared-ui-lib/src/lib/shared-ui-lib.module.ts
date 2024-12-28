@@ -21,6 +21,8 @@ import { UiUploadFormComponent } from './ui/ui-upload-form/ui-upload-form.compon
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CoreLibModule } from '@vsd-frontend/core-lib';
 import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.directive';
+import { UiSeoFormComponent } from './ui/ui-seo-form/ui-seo-form.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.dir
     UiStatusChangeButtonComponent,
     UiUploadFormComponent,
     UiAddressFormComponent,
+    UiSeoFormComponent,
     ImageDragDirective,
   ],
   imports: [
@@ -44,6 +47,7 @@ import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.dir
     MatMenuModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatChipsModule,
     NgIf,
     MatSelectModule,
     MatProgressBarModule,
@@ -66,7 +70,8 @@ import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.dir
     UiStatusChangeButtonComponent,
     UiUploadFormComponent,
     UiAddressFormComponent,
-    ImageDragDirective
+    UiSeoFormComponent,
+    ImageDragDirective,
   ],
   providers: [
     {

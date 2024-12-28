@@ -1,11 +1,12 @@
 import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IMediaUpload } from '../core';
 
 export interface IBaseFamily {
   firstName: string;
   middleName: string;
   lastName: string;
   emailId: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
   visitedCount: number;
 }
 

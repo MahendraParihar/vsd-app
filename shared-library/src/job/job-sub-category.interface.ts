@@ -1,10 +1,11 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
 import { IJobCategory } from "./job-category.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBaseJobSubCategory {
   jobCategoryId: number;
   jobSubCategory: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageJobSubCategory extends IBaseJobSubCategory {

@@ -1,8 +1,9 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IBaseAdminUser, ICommonTable } from '../base.interface';
+import { IMediaUpload } from '../core';
 
 export interface IBaseRelationship {
   relationship: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageRelationship extends IBaseRelationship {

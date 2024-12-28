@@ -22,4 +22,6 @@ export enum InputLength {
   CHAR_250 = 250,
   CHAR_1000 = 1000,
   CHAR_2000 = 2000,
+  MAX_META_TITLE = 60,
+  MAX_META_DESCRIPTION = 160,
 }

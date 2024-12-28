@@ -100,6 +100,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
       description: this.formGroup.value.description,
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
+      ...this.formGroup.value.seo,
     };
     if (this.formGroup.value.address.addressId) {
       payload.addressId = this.formGroup.value.address.addressId;

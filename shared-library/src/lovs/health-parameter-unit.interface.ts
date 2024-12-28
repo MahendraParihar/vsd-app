@@ -1,8 +1,9 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBaseHealthParameterUnit {
   healthParameterUnit: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageHealthParameterUnit extends IBaseHealthParameterUnit {

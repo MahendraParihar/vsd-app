@@ -1,4 +1,5 @@
 import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
+import { IMediaUpload } from '../core';
 
 export interface IBaseNews {
   title: string;
@@ -8,7 +9,7 @@ export interface IBaseNews {
   isApproved: boolean;
   commentApplicable: boolean;
   visitedCount: number;
-  imagePath: object;
+  imagePath: IMediaUpload[];
   approvedBy: number;
 }
 

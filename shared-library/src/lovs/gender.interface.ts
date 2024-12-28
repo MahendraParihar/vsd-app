@@ -1,8 +1,9 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBaseGender {
   gender: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageGender extends IBaseGender {

@@ -1,8 +1,9 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBaseReligion {
   religion: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageReligion extends IBaseReligion {

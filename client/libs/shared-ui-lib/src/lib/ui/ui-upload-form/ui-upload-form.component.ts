@@ -40,11 +40,9 @@ export class UiUploadFormComponent implements OnInit, OnChanges {
   @Input() labels!: Map<string, string>;
 
   fileUploadForm: UntypedFormArray = this.fb.array([]);
-  selectedFiles: any;
   mediaTypeEnum = FileTypeEnum;
   uploadedFiles: FileHandle[] = [];
   mediaPath = ApiUrls.MEDIA_PATH;
-  private differ: IterableDiffers;
 
   constructor(private fb: UntypedFormBuilder,
               private sanitizer: DomSanitizer,
@@ -54,7 +52,6 @@ export class UiUploadFormComponent implements OnInit, OnChanges {
               private snackbarService: SnackBarService,
               private labelService: LabelService,
               public dialog: MatDialog) {
-    this.differ = this.differs;
   }
 
   ngOnInit(): void {

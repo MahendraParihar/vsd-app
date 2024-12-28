@@ -1,8 +1,9 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from '../core';
 
 export interface IBaseAddiction {
   addiction: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageAddiction extends IBaseAddiction {

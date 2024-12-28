@@ -1,12 +1,13 @@
 import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
+import { IMediaUpload } from '../core';
 
 export interface IBaseEvent {
   title: string;
   description: string;
   date: Date;
   time: Date;
-  imagePath: object;
+  imagePath: IMediaUpload[];
   visitedCount: number;
 }
 

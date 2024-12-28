@@ -1,9 +1,10 @@
 import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IMediaUpload } from './media-upload.interface';
 
 export interface IBaseLegalPage {
   title: string;
   details: string;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageLegalPage extends IBaseLegalPage {

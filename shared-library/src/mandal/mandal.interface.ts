@@ -1,11 +1,12 @@
 import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
+import { IMediaUpload } from '../core';
 
 export interface IBaseMandal {
   mandalName: string;
   description: string;
   addressId?: number;
-  imagePath: object;
+  imagePath: IMediaUpload[];
 }
 
 export interface IManageMandal extends IBaseMandal, ICommonSEO {
