@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PagesService, Public } from '@server/common';
 import { ILegalPage, ILegalPageList, ITableList } from '@vsd-common/lib';
+import { LegalPagesDto } from './legal-pages.dto';
 
 @Controller('misc')
 export class MiscController {
@@ -22,6 +23,15 @@ export class MiscController {
   async getPage(@Param('page') page: string): Promise<ILegalPage> {
     try {
       return await this.pagesService.getById(page);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Post('/pages')
+  async manage(@Body() body: LegalPagesDto, userId: number): Promise<ILegalPage> {
+    try {
+      return await this.pagesService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

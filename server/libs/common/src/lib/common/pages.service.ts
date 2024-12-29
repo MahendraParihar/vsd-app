@@ -88,18 +88,23 @@ export class PagesService {
     };
   }
 
-  async manage(obj: IManageLegalPage, userId: number) {
+  async manage(obj: IManageLegalPage, userId: number): Promise<ILegalPage> {
     const dataObj = {
       title: obj.title,
       details: obj.details,
       updatedBy: userId,
     };
+    if (obj.imagePath) {
+      Object.assign(dataObj, { imagePath: obj.imagePath });
+    }
+    let res;
     if (obj.legalPageId) {
-      await this.legalPagesModel.update(dataObj, { where: { legalPageId: obj.legalPageId } });
+      res = await this.legalPagesModel.update(dataObj, { where: { legalPageId: obj.legalPageId } });
     } else {
       Object.assign(dataObj, { createdBy: userId });
-      await this.legalPagesModel.create(dataObj);
+      res = await this.legalPagesModel.create(dataObj);
     }
+    return res;
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {

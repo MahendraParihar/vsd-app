@@ -9,11 +9,11 @@ export interface IBaseLegalPage {
 
 export interface IManageLegalPage extends IBaseLegalPage {
   legalPageId?: number;
-  active: boolean;
 }
 
 export interface ILegalPage extends IBaseLegalPage, ICommonTable {
   legalPageId: number;
+  active: boolean;
 }
 
 export interface ILegalPageList extends ILegalPage {
