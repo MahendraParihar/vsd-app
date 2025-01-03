@@ -165,6 +165,11 @@ export class BaseLayoutComponent implements OnInit {
         path: NavigationPathEnum.FAQ,
       },
       {
+        title: this.labelService.getLabel(LabelKey.SIDE_MENU_PAGES),
+        iconName: 'list',
+        path: NavigationPathEnum.PAGE,
+      },
+      {
         title: 'Lovs',
         iconName: 'settings',
         children: [

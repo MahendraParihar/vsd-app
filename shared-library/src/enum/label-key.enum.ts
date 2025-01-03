@@ -41,6 +41,7 @@ export enum LabelKey {
   SIDE_MENU_LOGIN = 'side_menu_login',
   SIDE_MENU_MEDIA_TYPE = 'side_menu_media_type',
   SIDE_MENU_MEDIA_SRC = 'side_menu_media_src',
+  SIDE_MENU_PAGES = 'side_menu_pages',
 
   ITEM_NOT_FOUND_TEMPLE = 'item_not_found_temple',
   ITEM_NOT_FOUND_STATE = 'item_not_found_state',
@@ -155,6 +156,7 @@ export enum LabelKey {
   ADD_HEALTH_PARAMETER = 'add_health_parameter',
   ADD_ABOUT_US = 'add_about_us',
   ADD_CONTACT_US = 'add_contact_us',
+  ADD_PAGE = 'add_page',
 
   EDIT_MATRIMONIAL = 'edit_matrimonial',
   EDIT_MATRIMONIAL_STATUS = 'edit_matrimonial_status',
@@ -186,6 +188,7 @@ export enum LabelKey {
   EDIT_HEALTH_PARAMETER = 'edit_health_parameter',
   EDIT_ABOUT_US = 'edit_about_us',
   EDIT_CONTACT_US = 'edit_contact_us',
+  EDIT_PAGE = 'edit_page',
 
   ADDRESS = 'address',
   STATE = 'state',

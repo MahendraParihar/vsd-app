@@ -26,6 +26,8 @@ export enum NavigationPathEnum {
   MANDAL_MANAGE = 'mandal/manage',
   JOB = 'job',
   JOB_MANAGE = 'job/manage',
+  PAGE = 'page',
+  PAGE_MANAGE = 'page/manage',
   FAQ = `faq`,
   FAQ_MANAGE = `faq`,
   FAQ_CATEGORY = `${MASTER}/faq-category`,

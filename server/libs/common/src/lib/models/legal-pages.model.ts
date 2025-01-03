@@ -57,6 +57,34 @@ export class LegalPagesModel extends Model<LegalPagesModel> {
   imagePath: object;
 
   @Column({
+    field: 'tags',
+    allowNull: true,
+    type: DataType.ARRAY(DataType.STRING),
+  })
+  tags: string[];
+
+  @Column({
+    field: 'url',
+    allowNull: true,
+    type: DataType.TEXT,
+  })
+  url: string;
+
+  @Column({
+    field: 'meta_title',
+    allowNull: true,
+    type: DataType.STRING(60),
+  })
+  metaTitle: string;
+
+  @Column({
+    field: 'meta_description',
+    allowNull: true,
+    type: DataType.STRING(160),
+  })
+  metaDescription: string;
+
+  @Column({
     field: 'active',
     allowNull: false,
     defaultValue: true,

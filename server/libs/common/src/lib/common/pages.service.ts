@@ -7,10 +7,12 @@ import {
   IManageLegalPage,
   IStatusChange,
   ITableList,
+  ITableListFilter,
   LabelKey,
 } from '@vsd-common/lib';
 import { LabelService } from '../label';
 import { LegalPagesModel } from '../models/legal-pages.model';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class PagesService {
@@ -18,8 +20,23 @@ export class PagesService {
               private labelService: LabelService) {
   }
 
-  async load(): Promise<ITableList<ILegalPageList>> {
-    const { rows, count } = await this.legalPagesModel.scope('list').findAndCountAll();
+  async load(payload: ITableListFilter): Promise<ITableList<ILegalPageList>> {
+    const where = {};
+    if (payload.search) {
+      Object.assign(where, {
+        [Op.iLike]: {
+          title: `%${payload.search}%`,
+        },
+      });
+    }
+    const { rows, count } = await this.legalPagesModel.scope('list').findAndCountAll(
+      {
+        where: where,
+        limit: payload.limit,
+        offset: payload.limit * payload.page,
+        order: [['title', 'asc']],
+      },
+    );
     const data = rows.map((data: LegalPagesModel) => {
       return <ILegalPageList>{
         legalPageId: data.legalPageId,
@@ -46,7 +63,7 @@ export class PagesService {
     };
   }
 
-  async getById(page: string): Promise<ILegalPage> {
+  async getByUrl(page: string): Promise<IManageLegalPage> {
     let id = 1;
     switch (page) {
       case 'about-us':
@@ -56,11 +73,15 @@ export class PagesService {
         id = 1;
         break;
     }
+    return this.getById(id);
+  }
+
+  async getById(id: number): Promise<IManageLegalPage> {
     const obj = await this.legalPagesModel.findOne({ where: { legalPageId: id }, raw: true, nest: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_PAGE));
     }
-    return <ILegalPage>obj;
+    return <IManageLegalPage>obj;
   }
 
   async loadDetailById(id: number) {
@@ -93,6 +114,10 @@ export class PagesService {
       title: obj.title,
       details: obj.details,
       updatedBy: userId,
+      tags: obj.tags,
+      metaTitle: obj.metaTitle,
+      metaDescription: obj.metaDescription,
+      url: obj.url,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });

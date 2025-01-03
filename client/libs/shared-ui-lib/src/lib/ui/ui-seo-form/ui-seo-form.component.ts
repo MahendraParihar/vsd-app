@@ -31,6 +31,7 @@ export class UiSeoFormComponent implements OnInit {
     tags: new FormControl(null, [Validators.required]),
     metaTitle: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.MAX_META_TITLE)]),
     metaDescription: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.MAX_META_DESCRIPTION)]),
+    url: new FormControl(null, []),
   });
 
   constructor(public labelService: LabelService) {
@@ -55,7 +56,7 @@ export class UiSeoFormComponent implements OnInit {
     }
     // Clear the input value
     event.chipInput!.clear();
-    this.formGroup.patchValue({ tags: this.tagsList.join(',') });
+    this.seoFormGroup.patchValue({ tags: this.tagsList.join(',') });
   }
 
   remove(tag: string): void {
@@ -63,7 +64,7 @@ export class UiSeoFormComponent implements OnInit {
     if (index >= 0) {
       this.tagsList.splice(index, 1);
     }
-    this.formGroup.patchValue({ tags: this.tagsList.join(',') });
+    this.seoFormGroup.patchValue({ tags: this.tagsList.join(',') });
   }
 
   bindSEO() {
@@ -74,6 +75,7 @@ export class UiSeoFormComponent implements OnInit {
       tags: this._seo.tags ? this._seo.tags.join(',') : '',
       metaTitle: this._seo.metaTitle,
       metaDescription: this._seo.metaDescription,
+      url: this._seo.url,
     });
   }
 }

@@ -1,7 +1,7 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpService } from '@vsd-frontend/core-lib';
 import { IResponse, ITableList, ITableListFilter } from '@vsd-common/lib';
+import { HttpService } from '../services';
 
 export class TableDataDatasource<T> implements DataSource<T> {
   private dataSubject = new BehaviorSubject<T[]>([]);

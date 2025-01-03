@@ -1,8 +1,4 @@
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NgModule,
-  NO_ERRORS_SCHEMA,
-} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -23,12 +19,7 @@ import { PageNotFountComponent } from './page-not-fount/page-not-fount.component
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SideMenuComponent } from './side-menu/side-menu.component';
-import {
-  AuthGuard,
-  AuthGuardService,
-  CoreLibModule,
-  HttpService,
-} from '@vsd-frontend/core-lib';
+import { AuthGuard, AuthGuardService, CoreLibModule, HttpService } from '@vsd-frontend/core-lib';
 import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -36,6 +27,13 @@ import { AuthService } from './auth/auth.service';
 import { FaqComponent } from './faq/faq.component';
 import { ManageFaqComponent } from './faq/manage-faq/manage-faq.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { PagesComponent } from './pages/pages.component';
+import { ManagePagesComponent } from './pages/manage-pages/manage-pages.component';
+import { PagesService } from './services/pages.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -51,6 +49,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     PageNotFountComponent,
     FaqComponent,
     ManageFaqComponent,
+    PagesComponent,
+    ManagePagesComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -70,6 +70,21 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
               path: 'home',
               canActivate: [AuthGuard],
               component: HomeComponent,
+            },
+            {
+              path: 'page',
+              canActivate: [AuthGuard],
+              component: PagesComponent,
+            },
+            {
+              path: 'page/manage',
+              canActivate: [AuthGuard],
+              component: ManagePagesComponent,
+            },
+            {
+              path: 'page/manage/:id',
+              canActivate: [AuthGuard],
+              component: ManagePagesComponent,
             },
             {
               path: 'event',
@@ -168,9 +183,14 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     ReactiveFormsModule,
     SharedUiLibModule,
     MatInputModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatCardModule,
+    NgxEditorModule,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [HttpService, AuthService, AuthGuardService,
+    PagesService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
     }],

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { PagesService, Public } from '@server/common';
-import { ILegalPage, ILegalPageList, ITableList } from '@vsd-common/lib';
+import { PagesService, Public, TableListDto } from '@server/common';
+import { ILegalPage, ILegalPageList, IManageLegalPage, ITableList } from '@vsd-common/lib';
 import { LegalPagesDto } from './legal-pages.dto';
 
 @Controller('misc')
@@ -9,10 +9,10 @@ export class MiscController {
   }
 
   @Public()
-  @Get('pages')
-  async getPages(): Promise<ITableList<ILegalPageList>> {
+  @Post('pages')
+  async loadPages(@Body() payload: TableListDto): Promise<ITableList<ILegalPageList>> {
     try {
-      return await this.pagesService.load();
+      return await this.pagesService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -20,16 +20,34 @@ export class MiscController {
 
   @Public()
   @Get('/public/page/:page')
-  async getPage(@Param('page') page: string): Promise<ILegalPage> {
+  async getPage(@Param('page') page: string): Promise<IManageLegalPage> {
     try {
-      return await this.pagesService.getById(page);
+      return await this.pagesService.getByUrl(page);
     } catch (e) {
       throw new Error(e);
     }
   }
 
-  @Post('/pages')
-  async manage(@Body() body: LegalPagesDto, userId: number): Promise<ILegalPage> {
+  @Get('pages/:id')
+  async loadLegalPage(@Param('id') id: number): Promise<IManageLegalPage> {
+    try {
+      return await this.pagesService.getById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Get('details/:id')
+  async loadLegalPageDetail(@Param('id') id: number) {
+    try {
+      return await this.pagesService.loadDetailById(id);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Post('manage')
+  async manageLegalPage(@Body() body: LegalPagesDto, userId: number): Promise<IManageLegalPage> {
     try {
       return await this.pagesService.manage(body, userId);
     } catch (e) {

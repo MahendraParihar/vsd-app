@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
+import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IMediaUpload } from './media-upload.interface';
 
 export interface IBaseLegalPage {
@@ -7,7 +7,7 @@ export interface IBaseLegalPage {
   imagePath: IMediaUpload[];
 }
 
-export interface IManageLegalPage extends IBaseLegalPage {
+export interface IManageLegalPage extends IBaseLegalPage, ICommonSEO {
   legalPageId?: number;
 }
 

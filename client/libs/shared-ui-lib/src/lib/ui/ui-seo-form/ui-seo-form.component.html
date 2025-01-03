@@ -46,5 +46,16 @@
                             [control]="seoFormGroup.get('metaDescription')"></vsd-ui-input-error>
       </div>
     </div>
+    <div class='form-row'>
+      <div class='form-group'>
+        <vsd-ui-label [label]='labelService.getLabel(labelKeys.URL)'></vsd-ui-label>
+        <mat-form-field>
+          <input #url formControlName='url' matInput>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]='labelService.labels'
+                            [controlName]='labelService.getLabel(labelKeys.URL)'
+                            [control]="seoFormGroup.get('url')"></vsd-ui-input-error>
+      </div>
+    </div>
   </div>
 </form>

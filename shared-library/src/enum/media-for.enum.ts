@@ -26,4 +26,5 @@ export enum MediaForEnum {
   JOB_STATUS = 'job_status',
   RELIGION = 'religion',
   SERVICE = 'service',
+  PAGE = 'page',
 }
