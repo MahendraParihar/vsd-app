@@ -56,7 +56,7 @@ export class UiSeoFormComponent implements OnInit {
     }
     // Clear the input value
     event.chipInput!.clear();
-    this.seoFormGroup.patchValue({ tags: this.tagsList.join(',') });
+    // this.seoFormGroup.patchValue({ tags: this.tagsList.join(',') });
   }
 
   remove(tag: string): void {

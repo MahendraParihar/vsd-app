@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PagesService, Public, TableListDto } from '@server/common';
-import { ILegalPage, ILegalPageList, IManageLegalPage, ITableList } from '@vsd-common/lib';
+import { ILegalPageList, IManageLegalPage, ITableList } from '@vsd-common/lib';
 import { LegalPagesDto } from './legal-pages.dto';
 
-@Controller('misc')
-export class MiscController {
+@Controller('page')
+export class PagesController {
   constructor(private pagesService: PagesService) {
   }
 
   @Public()
-  @Post('pages')
+  @Post()
   async loadPages(@Body() payload: TableListDto): Promise<ITableList<ILegalPageList>> {
     try {
       return await this.pagesService.load(payload);
@@ -19,7 +19,7 @@ export class MiscController {
   }
 
   @Public()
-  @Get('/public/page/:page')
+  @Get('/public/:page')
   async getPage(@Param('page') page: string): Promise<IManageLegalPage> {
     try {
       return await this.pagesService.getByUrl(page);
@@ -28,7 +28,7 @@ export class MiscController {
     }
   }
 
-  @Get('pages/:id')
+  @Get(':id')
   async loadLegalPage(@Param('id') id: number): Promise<IManageLegalPage> {
     try {
       return await this.pagesService.getById(id);
@@ -37,7 +37,7 @@ export class MiscController {
     }
   }
 
-  @Get('details/:id')
+  @Get(':id')
   async loadLegalPageDetail(@Param('id') id: number) {
     try {
       return await this.pagesService.loadDetailById(id);
