@@ -97,6 +97,10 @@ export enum LabelKey {
   ACTION_CHANGE_STATUS_TITLE = 'action_change_status_title',
   ACTION_CHANGE_STATUS_DESCRIPTION = 'action_change_status_description',
   ACTION_OK = 'action_ok',
+  ACTION_ADD_SOCIAL_LINK = 'action_add_social_link',
+  ACTION_REMOVE_SOCIAL_LINK = 'action_remove_social_link',
+  ACTION_ADD = 'action_add',
+  ACTION_REMOVE = 'action_remove',
 
   INPUT_USER_NAME = 'input_user_name',
   INPUT_PASSWORD = 'input_password',
@@ -119,6 +123,7 @@ export enum LabelKey {
   FORM_PHONE_NUMBER = 'form_phone_number',
   FORM_MESSAGE = 'form_message',
   FORM_DESCRIPTION = 'form_description',
+  FORM_REG_NO = 'form_reg_number',
 
   ADD_MANDAL = 'add_mandal',
   EDIT_MANDAL = 'edit_mandal',
@@ -219,4 +224,8 @@ export enum LabelKey {
   SEO_META_TITLE = `seo_meta_title`,
   SEO_META_DESCRIPTION = `seo_meta_description`,
   URL = `url`,
+
+  LINK = 'link',
+  LOGO = 'logo',
+  LABEL = 'label',
 }

@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  templeTitle = 'मंदिर';
+  eventTitle = 'आयोजन';
+  aboutUsTitle = 'हमारे बारे में';
+  trusteeTitle = 'हमारे बारे में';
+}

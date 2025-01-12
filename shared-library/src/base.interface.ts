@@ -3,6 +3,12 @@ export interface IBaseAdminUser {
   lastName: string;
 }
 
+export interface ISocialLink {
+  label: string;
+  link: string;
+  icon: string;
+}
+
 export interface ICommonTable {
   active: boolean;
   createdBy: number;

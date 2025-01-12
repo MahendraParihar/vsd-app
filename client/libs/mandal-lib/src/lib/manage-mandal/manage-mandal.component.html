@@ -1,58 +1,93 @@
-<mat-card class='form'>
+<mat-card class="form">
   <mat-card-header>
     <mat-card-title>{{ pageTitle }}</mat-card-title>
   </mat-card-header>
-  <mat-card-content class='form-container-box'>
-    <form [formGroup]='formGroup'>
-      <div class='form-row'>
-        <div class='form-group'>
-          <vsd-ui-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'></vsd-ui-label>
+  <mat-card-content class="form-container-box">
+    <form [formGroup]="formGroup">
+      <div class="form-row">
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)"></vsd-ui-label>
           <mat-form-field>
-            <input #mandalName formControlName='mandalName' matInput required [maxlength]='150'>
-            <mat-hint align='end'>{{ mandalName.value.length || 0 }}/150</mat-hint>
+            <input #mandalName formControlName="mandalName" matInput required [maxlength]="inputLength.CHAR_150">
+            <mat-hint align="end">{{ mandalName.value.length || 0 }}/{{ inputLength.CHAR_150 }}</mat-hint>
           </mat-form-field>
-          <vsd-ui-input-error [labels]='labelService.labels'
-                              [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)"
                               [control]="formGroup.get('mandalName')"></vsd-ui-input-error>
         </div>
       </div>
-      <div class='form-row'>
-        <div class='form-group'>
-          <vsd-ui-label [label]='labelService.getLabel(labelKeys.FORM_DESCRIPTION)'></vsd-ui-label>
-          <div class='editor'>
-            <ngx-editor-menu [editor]='editor' [toolbar]='toolbar'>
+      <div class="form-row">
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"></vsd-ui-label>
+          <div class="editor">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
             </ngx-editor-menu>
-            <ngx-editor [editor]='editor' formControlName='description'>
+            <ngx-editor [editor]="editor" formControlName="description">
             </ngx-editor>
           </div>
-          <vsd-ui-input-error [labels]='labelService.labels'
-                              [controlName]='labelService.getLabel(labelKeys.FORM_DESCRIPTION)'
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"
                               [control]="formGroup.get('description')"></vsd-ui-input-error>
         </div>
       </div>
-      <div class='form-row'>
-        <vsd-ui-address-form class='address-box'
-                             [formGroup]='formGroup' [masterData]='addressMaster'
-                             [labels]='labelService.labels'></vsd-ui-address-form>
+      <div class="form-row">
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_REG_NO)"></vsd-ui-label>
+          <mat-form-field>
+            <input #regNo formControlName="regNo" matInput [maxlength]="inputLength.CHAR_150">
+            <mat-hint align="end">{{ regNo.value.length || 0 }}/{{ inputLength.CHAR_150 }}</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_REG_NO)"
+                              [control]="formGroup.get('regNo')"></vsd-ui-input-error>
+        </div>
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_EMAIL_ID)"></vsd-ui-label>
+          <mat-form-field>
+            <input #emailId formControlName="emailId" matInput [maxlength]="inputLength.MAX_EMAIL">
+            <mat-hint align="end">{{ emailId.value.length || 0 }}/{{ inputLength.MAX_EMAIL }}</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_EMAIL_ID)"
+                              [control]="formGroup.get('emailId')"></vsd-ui-input-error>
+        </div>
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_PHONE_NUMBER)"></vsd-ui-label>
+          <mat-form-field>
+            <input #phoneNumber formControlName="phoneNumber" matInput [maxlength]="inputLength.MAX_CONTACT_NUMBER">
+            <mat-hint align="end">{{ phoneNumber.value.length || 0 }}/{{ inputLength.MAX_CONTACT_NUMBER }}</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_PHONE_NUMBER)"
+                              [control]="formGroup.get('phoneNumber')"></vsd-ui-input-error>
+        </div>
       </div>
-      <div class='form-row'>
-        <vsd-ui-upload-form class='file-upload-box' [controlName]="'uploadFiles'" [formGroup]='formGroup'
-                            [labels]='labelService.labels'
-                            [isMultiFile]='false'
-                            [isRequired]='true'
-                            [mediaFor]='mediaForEnum.MANDAL'
-                            [mediaType]='fileTypeEnum.IMAGE'
+      <vsd-ui-social-link-form
+        [socialLinks]="mandal && mandal.additionalInfo && mandal.additionalInfo.socialSiteLink ? mandal.additionalInfo.socialSiteLink : []"
+        [formGroup]="formGroup"></vsd-ui-social-link-form>
+      <div class="form-row">
+        <vsd-ui-address-form class="address-box"
+                             [formGroup]="formGroup" [masterData]="addressMaster"
+                             [labels]="labelService.labels"></vsd-ui-address-form>
+      </div>
+      <div class="form-row">
+        <vsd-ui-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
+                            [labels]="labelService.labels"
+                            [isMultiFile]="false"
+                            [isRequired]="true"
+                            [mediaFor]="mediaForEnum.MANDAL"
+                            [mediaType]="fileTypeEnum.IMAGE"
                             [uploadedMediaList]="mandal ? mandal.imagePath : []"></vsd-ui-upload-form>
       </div>
-      <vsd-ui-seo-form [seo]='SEOObj' [formGroup]='formGroup'></vsd-ui-seo-form>
+      <vsd-ui-seo-form [seo]="seoData" [formGroup]="formGroup"></vsd-ui-seo-form>
     </form>
   </mat-card-content>
-  <mat-card-actions align='end'>
+  <mat-card-actions align="end">
     <vsd-ui-button
-      type='red'
-      [label]='labelService.getLabel(labelKeys.ACTION_CANCEL)'
-      (actionBtnClicked)='onCancel()'></vsd-ui-button>
-    <vsd-ui-button type='success' (actionBtnClicked)='updateDetails()'
-                   [label]='labelService.getLabel(labelKeys.ACTION_SUBMIT)'></vsd-ui-button>
+      type="red"
+      [label]="labelService.getLabel(labelKeys.ACTION_CANCEL)"
+      (actionBtnClicked)="onCancel()"></vsd-ui-button>
+    <vsd-ui-button type="success" (actionBtnClicked)="updateDetails()"
+                   [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></vsd-ui-button>
   </mat-card-actions>
 </mat-card>

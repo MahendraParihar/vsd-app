@@ -4,16 +4,77 @@
 
 $vsd-typography: mat.m2-define-typography-config(
   $font-family: $regular-font-family,
-  $headline-1: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-40), $line-height: var(--line-height-48), $font-weight: var(--font-weight-medium)), // mat-headline-1
-  $headline-2: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-40), $line-height: var(--line-height-48), $font-weight: var(--font-weight-light)), // mat-headline-2
-  $headline-3: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-36), $line-height: var(--line-height-40), $font-weight: var(--font-weight-medium)), // mat-headline-3
-  $headline-4: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-34), $line-height: var(--line-height-40), $font-weight: var(--font-weight-light)), // mat-headline-4
-  $headline-5: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-24), $line-height: var(--line-height-32), $font-weight: var(--font-weight-medium)), // mat-headline-5
-  $headline-6: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-20), $line-height: var(--line-height-32), $font-weight: var(--font-weight-medium)), // mat-headline-6
-  $subtitle-1: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-18), $line-height: var(--line-height-28), $font-weight: var(--font-weight-medium)), // mat-subtitle-1
-  $subtitle-2: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-18), $line-height: var(--line-height-24), $font-weight: var(--font-weight-regular)), // mat-subtitle-2
-  $body-1: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-18), $line-height: var(--line-height-24), $font-weight: var(--font-weight-regular)), // mat-body-1
-  $body-2: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-16), $line-height: var(--line-height-20), $font-weight: var(--font-weight-regular)), // mat-body-2
-  $caption: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-14), $line-height: var(--line-height-16), $font-weight: var(--font-weight-regular)), // mat-caption
-  $button: mat.m2-define-typography-level($font-family: $regular-font-family, $font-size: var(--font-size-18), $line-height: var(--line-height-18), $font-weight: var(--font-weight-regular)), // mat-caption
+  $headline-1: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-40),
+    $line-height: var(--line-height-48),
+    $font-weight: var(--font-weight-medium)
+  ), // mat-headline-1
+  $headline-2: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-40),
+    $line-height: var(--line-height-48),
+    $font-weight: var(--font-weight-light)
+  ), // mat-headline-2
+  $headline-3: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-36),
+    $line-height: var(--line-height-40),
+    $font-weight: var(--font-weight-medium)
+  ), // mat-headline-3
+  $headline-4: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-34),
+    $line-height: var(--line-height-40),
+    $font-weight: var(--font-weight-light)
+  ), // mat-headline-4
+  $headline-5: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-24),
+    $line-height: var(--line-height-32),
+    $font-weight: var(--font-weight-medium)
+  ), // mat-headline-5
+  $headline-6: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-20),
+    $line-height: var(--line-height-24),
+    $font-weight: var(--font-weight-medium)
+  ), // mat-headline-6
+  $subtitle-1: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-18),
+    $line-height: var(--line-height-28),
+    $font-weight: var(--font-weight-medium)
+  ), // mat-subtitle-1
+  $subtitle-2: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-18),
+    $line-height: var(--line-height-24),
+    $font-weight: var(--font-weight-regular)
+  ), // mat-subtitle-2
+  $body-1: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-18),
+    $line-height: var(--line-height-24),
+    $font-weight: var(--font-weight-regular)), // mat-body-1
+  $body-2: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-16),
+    $line-height: var(--line-height-20),
+    $font-weight: var(--font-weight-regular)
+  ), // mat-body-2
+  $caption: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-12),
+    $line-height: var(--line-height-12),
+    $font-weight: var(--font-weight-regular)
+  ), // mat-caption
+  $button: mat.m2-define-typography-level(
+    $font-family: $regular-font-family,
+    $font-size: var(--font-size-18),
+    $line-height: var(--line-height-18),
+    $font-weight: var(--font-weight-regular)
+  ), // mat-caption
 );
+
+@include mat.typography-hierarchy($vsd-typography);

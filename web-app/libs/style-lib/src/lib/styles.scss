@@ -6,6 +6,8 @@
 @import "./variables";
 @import "./typography";
 @import "./icons";
+@import "./themes/light-theme";
+@import "./themes/dark-theme";
 
 @include mat.core();
 
@@ -18,21 +20,27 @@ $html-font-size: 16px;
   @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
 }
 
-/* ======== Angular material custom themes ======== */
-$light-primary: mat.m2-define-palette($primary-platter);
-$light-accent: mat.m2-define-palette($accent-platter);
-$light-warn: mat.m2-define-palette($custom-brand-warn);
-$vsd-light-theme: mat.m2-define-light-theme((
-  color: (
-    primary: $light-primary,
-    accent: $light-accent,
-    warn: $light-warn,
-  ),
-  typography:$vsd-typography
-));
+:root {
+  @include mat.all-component-colors($light-theme);
+}
 
-@include mat.all-component-themes($vsd-light-theme);
-@include mat.typography-hierarchy($vsd-typography);
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
+
+@media (prefers-color-scheme: dark) {
+  @include mat.all-component-colors($dark-theme);
+}
+
+.custom-toolbar-theme {
+  @include mat.toolbar-theme($light-theme);
+  background-color: white !important;
+  color: white;
+
+  .mat-toolbar-row {
+    font-size: 20px;
+  }
+}
 
 * {
   padding: 0;
@@ -42,17 +50,66 @@ $vsd-light-theme: mat.m2-define-light-theme((
 
 html,
 body {
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-regular);
+  //font-size: var(--font-size-14);
+  //font-weight: var(--font-weight-regular);
   height: 100%;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  //font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.container {
+.main-container {
   width: 100%;
+}
+
+.main-section {
+  padding: 0;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
+}
+
+hr {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.is-active {
+  --mat-toolbar-container-text-color: var(--accent);
+}
+
+.flex-h {
+  display: flex;
+}
+
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .main-section {
+    padding: var(--spacing-0) var(--spacing-48);
+  }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .main-section {
+    padding: var(--spacing-0) var(--spacing-48);
+  }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+  .main-section {
+    padding: var(--spacing-0) var(--spacing-48);
+  }
 }

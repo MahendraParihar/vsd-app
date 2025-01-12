@@ -13,6 +13,7 @@
   //Font variables
   --font-size-40: #{rem(40px)};
   --font-size-36: #{rem(36px)};
+  --font-size-34: #{rem(34px)};
   --font-size-32: #{rem(32px)};
   --font-size-24: #{rem(24px)};
   --font-size-20: #{rem(20px)};
@@ -65,8 +66,8 @@
   --header-logo-height: #{rem(70px)};
 
   // Footer
-  --footer-logo-width: #{rem(90px)};
-  --footer-logo-height: #{rem(90px)};
+  --footer-logo-width: #{rem(100px)};
+  --footer-logo-height: #{rem(100px)};
 
   // Footer Nav Btn
   --footer-nav-btn-width: #{rem(120px)};

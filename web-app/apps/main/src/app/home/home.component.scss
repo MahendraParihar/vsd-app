@@ -1,0 +1,83 @@
+.home-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  shared-ui-lib-uikit-banner {
+    width: 100%;
+  }
+
+  .data-section {
+    padding: var(--spacing-48);
+  }
+
+  .divider {
+    display: flex;
+    flex-direction: column;
+    height: 1px;
+    background-color: orange;
+  }
+
+  .home-event-section {
+    .home-event-detail-section {
+      .left {
+        display: flex;
+        flex-direction: column;
+
+        .event-date-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: var(--spacing-12);
+
+          .date-part {
+            background-color: var(--accent);
+            display: flex;
+            padding: var(--spacing-16);
+            border-radius: var(--border-radius-10);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            ::ng-deep .mat-headline-6, .mat-caption {
+              line-height: 0 !important;
+              color: white;
+            }
+          }
+
+          .time-location-part {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .sub-section {
+              display: flex;
+            }
+          }
+        }
+
+        .description {
+
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: column;
+      }
+
+    }
+  }
+
+  .home-temple-section {
+
+  }
+
+  .home-about-us-section {
+
+  }
+
+  .home-trustee-section {
+
+  }
+}

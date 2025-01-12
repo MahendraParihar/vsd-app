@@ -1,11 +1,24 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MandalService } from '../mandal.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddressService, LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
-import { FileTypeEnum, IAddressMaster, ICommonSEO, IManageMandal, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import {
+  FileTypeEnum,
+  IAddressMaster,
+  ICommonSEO,
+  IManageMandal,
+  InputLength,
+  LabelKey,
+  MediaForEnum,
+} from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
-import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
+import {
+  UiAddressFormComponent,
+  UiSeoFormComponent,
+  UiSocialLinkFormComponent,
+  ValidationUtil,
+} from '@vsd-frontend/shared-ui-lib';
 import { Editor, Toolbar } from 'ngx-editor';
 
 @Component({
@@ -15,6 +28,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 })
 export class ManageMandalComponent implements OnInit, OnDestroy {
 
+  inputLength = InputLength;
   labelKeys = LabelKey;
   id!: number;
   pageTitle!: string;
@@ -22,6 +36,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
   fileTypeEnum = FileTypeEnum;
   mediaForEnum = MediaForEnum;
   mandal!: IManageMandal;
+  seoData!:ICommonSEO;
   editor!: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -35,11 +50,16 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
   ];
 
   formGroup: FormGroup = new FormGroup({
-    mandalName: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
+    mandalName: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_150)]),
     description: new FormControl(null),
+    regNo: new FormControl(null),
+    emailId: new FormControl(null, [Validators.email, Validators.pattern(ValidationUtil.EMAIL_REGEX), Validators.maxLength(InputLength.MAX_EMAIL)]),
+    phoneNumber: new FormControl(null, [Validators.pattern(ValidationUtil.PHONE_REGEX), Validators.maxLength(InputLength.MAX_CONTACT_NUMBER)]),
   });
 
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
+  @ViewChild(UiSeoFormComponent) seoComponents!: UiSeoFormComponent;
+  @ViewChild(UiSocialLinkFormComponent) socialLinkComponents!: UiSocialLinkFormComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private mandalService: MandalService,
               public labelService: LabelService, private title: Title,
@@ -68,18 +88,6 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     this.bindData();
   }
 
-  get SEOObj() {
-    if (this.mandal) {
-      return <ICommonSEO>{
-        tags: this.mandal.tags ? this.mandal.tags : [],
-        metaTitle: this.mandal.metaTitle,
-        metaDescription: this.mandal.metaDescription,
-        url: this.mandal.url,
-      };
-    }
-    return <ICommonSEO>{};
-  }
-
   ngOnDestroy(): void {
     this.editor.destroy();
   }
@@ -94,6 +102,19 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     });
     if (this.mandal.address) {
       this.addressComponent.address = this.mandal.address;
+    }
+    if (this.mandal.additionalInfo) {
+      this.formGroup.patchValue({
+        emailId: this.mandal.additionalInfo.emailId,
+        phoneNumber: this.mandal.additionalInfo.phoneNumber,
+        regNo: this.mandal.additionalInfo.regNo,
+      });
+    }
+    this.seoData = {
+      tags: this.mandal.tags ? this.mandal.tags : [],
+      metaTitle: this.mandal.metaTitle,
+      metaDescription: this.mandal.metaDescription,
+      url: this.mandal.url,
     }
   }
 
@@ -113,6 +134,12 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
       ...this.formGroup.value.seo,
+      additionalInfo: {
+        emailId: this.formGroup.value.emailId,
+        phoneNumber: this.formGroup.value.phoneNumber,
+        regNo: this.formGroup.value.regNo,
+        socialSiteLink: this.formGroup.value.socialSiteLink.socialSiteLink,
+      },
     };
     if (this.formGroup.value.address.addressId) {
       payload.addressId = this.formGroup.value.address.addressId;
@@ -127,5 +154,17 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));
     }
+  }
+
+  get socialLinks() {
+    return this.formGroup.get('socialSiteLink') as FormArray;
+  }
+
+  addSocialLink() {
+    this.socialLinks.push(new FormGroup({
+      label: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
+      link: new FormControl(null),
+      icon: new FormControl(null),
+    }));
   }
 }

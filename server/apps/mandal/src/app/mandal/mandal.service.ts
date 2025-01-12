@@ -87,6 +87,9 @@ export class MandalService {
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
       }
+      if (obj.additionalInfo) {
+        Object.assign(dataObj, { additionalInfo: obj.additionalInfo });
+      }
       const address = await this.addressService.manage(obj.address, transaction);
       obj.addressId = address.addressId;
       let res;

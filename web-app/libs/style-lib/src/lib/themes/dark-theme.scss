@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@import "./../typography";
+
+$dark-primary: mat.m2-define-palette(mat.$m2-blue-palette, 500);
+$dark-accent: mat.m2-define-palette(mat.$m2-amber-palette, 500);
+$dark-error: mat.m2-define-palette(mat.$m2-red-palette, 500);
+
+$dark-theme: mat.m2-define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+  ),
+  typography:$vsd-typography,
+  density: -1
+));
+@include mat.all-component-themes($dark-theme);

@@ -19,7 +19,7 @@ body {
 }
 
 $custom-primary-palette: (
-  50: '#e8eaf6',
+        50: '#e8eaf6',
 );
 
 $custom-typography: mat.define-typography-config($font-family: "Roboto, sans-serif");
@@ -28,24 +28,24 @@ $custom-accent: mat.define-palette(mat.$orange-palette, 500, 100, 700);
 $custom-warn: mat.define-palette(mat.$red-palette, 500, 100, 700);
 
 $light-theme: mat.define-light-theme(
-    (color:(
-      primary:$custom-primary,
-      accent: $custom-accent,
-      warn:$custom-warn
-    ),
-      typography: mat.define-typography-config(),
-      density: 0,
-    )
+                (color:(
+                        primary:$custom-primary,
+                        accent: $custom-accent,
+                        warn:$custom-warn
+                ),
+                        typography: mat.define-typography-config(),
+                        density: 0,
+                )
 );
 $dark-theme: mat.define-dark-theme(
-    (color:(
-      primary:$custom-primary,
-      accent: $custom-accent,
-      warn:$custom-warn
-    ),
-      typography: mat.define-typography-config(),
-      density: 0,
-    )
+                (color:(
+                        primary:$custom-primary,
+                        accent: $custom-accent,
+                        warn:$custom-warn
+                ),
+                        typography: mat.define-typography-config(),
+                        density: 0,
+                )
 );
 
 body.light-theme {

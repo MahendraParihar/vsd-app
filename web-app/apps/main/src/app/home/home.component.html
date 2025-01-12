@@ -1,1 +1,53 @@
-<p>home works!</p>
+<div class="home-section">
+  <shared-ui-lib-uikit-banner
+    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <div class="home-event-section data-section">
+    <shared-ui-lib-uikit-label *ngIf="eventTitle" [class]="['mat-headline-3']"
+                               [label]="eventTitle"></shared-ui-lib-uikit-label>
+    <div class="divider"></div>
+    <div class="home-event-detail-section">
+      <div class="left">
+        <shared-ui-lib-uikit-label [class]="['mat-headline-5']"
+                                   [label]="'Vishwakarma Jaynti'"></shared-ui-lib-uikit-label>
+        <div class="event-date-container">
+          <div class="date-part">
+            <span class="mat-headline-6">16</span>
+            <span class="mat-caption">Des</span>
+          </div>
+          <div class="time-location-part">
+            <div class="flex-h">
+              <shared-ui-lib-uikit-icon [color]="'accent'" [name]="'time'"></shared-ui-lib-uikit-icon>
+              <shared-ui-lib-uikit-label [class]="['mat-body-2']" [label]="'12 AM'"></shared-ui-lib-uikit-label>
+            </div>
+            <hr>
+            <div class="flex-h">
+              <shared-ui-lib-uikit-icon [color]="'accent'" [name]="'location'"></shared-ui-lib-uikit-icon>
+              <shared-ui-lib-uikit-label [class]="['mat-body-2']"
+                                         [label]="'Barwa, Rajeshthan'"></shared-ui-lib-uikit-label>
+            </div>
+          </div>
+        </div>
+        <div class="description"></div>
+      </div>
+      <div class="right"></div>
+    </div>
+  </div>
+
+  <div class="home-temple-section data-section">
+    <shared-ui-lib-uikit-label *ngIf="templeTitle" [class]="['mat-headline-3']"
+                               [label]="templeTitle"></shared-ui-lib-uikit-label>
+    <div class="divider"></div>
+  </div>
+
+  <div class="home-about-us-section data-section">
+    <shared-ui-lib-uikit-label *ngIf="aboutUsTitle" [class]="['mat-headline-3']"
+                               [label]="aboutUsTitle"></shared-ui-lib-uikit-label>
+    <div class="divider"></div>
+  </div>
+
+  <div class="home-trustee-section data-section">
+    <shared-ui-lib-uikit-label *ngIf="trusteeTitle" [class]="['mat-headline-3']"
+                               [label]="trusteeTitle"></shared-ui-lib-uikit-label>
+    <div class="divider"></div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+@import "./../typography";
+@import "./../colors";
+
+$custom-primary: mat.m2-define-palette(mat.$m2-indigo-palette, 500);
+$custom-accent: mat.m2-define-palette(mat.$m2-amber-palette, 500);
+$custom-warn: mat.m2-define-palette(mat.$m2-red-palette, 500);
+
+$light-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+  ),
+  typography:$vsd-typography,
+  density: (
+    scale: 0
+  )
+));
+// Apply to all components
+@include mat.all-component-themes($light-theme);

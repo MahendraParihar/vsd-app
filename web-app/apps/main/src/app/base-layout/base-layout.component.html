@@ -8,7 +8,10 @@
                                  [label]="'श्री विश्वकर्मा वंश - सुथार समाज'"></shared-ui-lib-uikit-label>
     </mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let btn of btnList; let i = index" mat-list-item (click)="onClick(i, btn)">{{ btn.label }}</a>
+      <mat-list-item *ngFor="let btn of btnList; let i = index"
+                     [routerLinkActive]="['is-active']"
+                     (click)="onClick(btn)">{{ btn.label }}
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -30,9 +33,11 @@
           </div>
         </div>
         <div class="fill-remaining-space btn-list">
-          <shared-ui-lib-uikit-button *ngFor="let btn of btnList; let i = index"
-                                      (buttonClicked)="onClick(i, btn)"
+          <shared-ui-lib-uikit-button *ngFor="let btn of btnList;"
+                                      (buttonClicked)="onClick(btn)"
                                       [type]="'link'"
+                                      [ngClass]="{'is-active':btn.isActive}"
+                                      [disableRipple]="true"
                                       [label]="btn.label"></shared-ui-lib-uikit-button>
         </div>
         <div class="fill-remaining-space">
@@ -41,7 +46,9 @@
       </ng-container>
     </mat-toolbar>
     <div class="main-container">
-      <router-outlet></router-outlet>
+      <div class="main-section">
+        <router-outlet></router-outlet>
+      </div>
       <vsd-web-app-footer></vsd-web-app-footer>
     </div>
   </mat-sidenav-content>

@@ -23,6 +23,7 @@ import { CoreLibModule } from '@vsd-frontend/core-lib';
 import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.directive';
 import { UiSeoFormComponent } from './ui/ui-seo-form/ui-seo-form.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { UiSocialLinkFormComponent } from './ui/ui-social-link/ui-social-link-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatChipsModule } from '@angular/material/chips';
     UiUploadFormComponent,
     UiAddressFormComponent,
     UiSeoFormComponent,
+    UiSocialLinkFormComponent,
     ImageDragDirective,
   ],
   imports: [
@@ -70,6 +72,7 @@ import { MatChipsModule } from '@angular/material/chips';
     UiStatusChangeButtonComponent,
     UiUploadFormComponent,
     UiAddressFormComponent,
+    UiSocialLinkFormComponent,
     UiSeoFormComponent,
     ImageDragDirective,
   ],

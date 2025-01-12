@@ -1,4 +1,4 @@
-import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
+import { IBaseAdminUser, ICommonSEO, ICommonTable, ISocialLink } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
 import { IMediaUpload } from '../core';
 
@@ -12,6 +12,7 @@ export interface IBaseMandal {
 export interface IManageMandal extends IBaseMandal, ICommonSEO {
   mandalId?: number;
   address: IManageAddress;
+  additionalInfo?: IMandalAdditionalInfo;
 }
 
 export interface IMandal extends IBaseMandal, ICommonTable, ICommonSEO {
@@ -29,7 +30,7 @@ export interface IMandalAdditionalInfo {
   regNo?: string;
   emailId?: string;
   phoneNumber?: string;
-  socialSiteLink?: { label: string, link: string, icon: string }[];
+  socialSiteLink?: ISocialLink[];
 }
 
 export interface IMandalDetail extends IMandalList {
