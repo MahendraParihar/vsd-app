@@ -57,16 +57,26 @@ export class AddressService {
   async loadDetailById(id: number) {
   }
 
-  async manage(obj: IManageAddress, transaction: Transaction): Promise<IManageAddress> {
+  async manage(obj: IManageAddress, transaction: Transaction, userId: number, createdIp: string, updatedIp: string): Promise<IManageAddress> {
+    const addressObj = {
+      ...obj, userId,
+      modifiedIp: updatedIp,
+      updatedBy: userId,
+    };
     if (obj.addressId) {
-      const [rows, dataSet] = await this.addressModel.update(obj, {
+      const [, dataSet] = await this.addressModel.update(addressObj, {
         where: { addressId: obj.addressId },
         transaction: transaction,
         returning: true,
       });
       return dataSet[0] as IManageAddress;
     } else {
-      return await this.addressModel.create(obj, { transaction: transaction });
+      Object.assign(addressObj, {
+        createdIp: createdIp,
+        createdBy: userId,
+      });
+      console.log(addressObj);
+      return await this.addressModel.create(addressObj, { transaction: transaction });
     }
   }
 

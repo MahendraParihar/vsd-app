@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './ui-label.component.scss',
 })
 export class LabelComponent {
-  @Input() class: 'body' | 'title' = 'body';
+  @Input() class: 'body' | 'title' | 'sub-title' = 'body';
   @Input() label!: string | undefined;
   @Input() toolTip!: string;
 }

@@ -1,5 +1,5 @@
-import {BelongsTo, Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt} from 'sequelize-typescript';
-import {AddressModel, AdminUserModel, CityVillageModel, FamilyModel} from '@server/common';
+import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { AdminUserModel, CityVillageModel, FamilyModel } from '@server/common';
 
 @Table({
   tableName: 'txn_city_village_chovtiya',
@@ -105,15 +105,15 @@ export class CityVillageChovtiyaModel extends Model<CityVillageChovtiyaModel> {
   })
   modifiedIp: string;
 
-  @BelongsTo(() => AdminUserModel, {as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId'})
+  @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 
-  @BelongsTo(() => AdminUserModel, {as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId'})
+  @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
 
-  @BelongsTo(() => FamilyModel, {as: 'family', foreignKey: 'familyId', targetKey: 'familyId'})
+  @BelongsTo(() => FamilyModel, { as: 'family', foreignKey: 'familyId', targetKey: 'familyId' })
   family: FamilyModel;
 
-  @BelongsTo(() => CityVillageModel, {as: 'cityVillage', foreignKey: 'cityVillageId', targetKey: 'cityVillageId'})
+  @BelongsTo(() => CityVillageModel, { as: 'cityVillage', foreignKey: 'cityVillageId', targetKey: 'cityVillageId' })
   cityVillage: CityVillageModel;
 }

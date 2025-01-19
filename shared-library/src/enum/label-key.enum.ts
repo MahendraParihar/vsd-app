@@ -101,6 +101,8 @@ export enum LabelKey {
   ACTION_REMOVE_SOCIAL_LINK = 'action_remove_social_link',
   ACTION_ADD = 'action_add',
   ACTION_REMOVE = 'action_remove',
+  ACTION_ADD_AGENDA = 'action_add_agenda',
+  ACTION_REMOVE_AGENDA = 'action_remove_agenda',
 
   INPUT_USER_NAME = 'input_user_name',
   INPUT_PASSWORD = 'input_password',
@@ -124,12 +126,21 @@ export enum LabelKey {
   FORM_MESSAGE = 'form_message',
   FORM_DESCRIPTION = 'form_description',
   FORM_REG_NO = 'form_reg_number',
+  FORM_DATE = 'form_date',
+  FORM_TIME = 'form_time',
+  FORM_AGENDA_TITLE = 'form_agenda_title',
+  FORM_AGENDA_DESC = 'form_agenda_description',
+  FORM_AGENDA_TIME = 'form_agenda_time',
 
   ADD_MANDAL = 'add_mandal',
   EDIT_MANDAL = 'edit_mandal',
 
   ADD_TEMPLE = 'add_temple',
   EDIT_TEMPLE = 'edit_temple',
+
+  ADD_EVENT = 'add_event',
+  EDIT_EVENT = 'edit_event',
+  AGENDA = 'agenda',
 
   ADD_MATRIMONIAL = 'add_matrimonial',
   ADD_MATRIMONIAL_STATUS = 'add_matrimonial_status',

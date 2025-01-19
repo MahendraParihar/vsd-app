@@ -22,28 +22,31 @@
   <mat-table [dataSource]="dataSource">
     <ng-container *ngFor="let t of displayedColumns" matColumnDef="{{t}}">
       <ng-container>
-        <mat-header-cell *matHeaderCellDef>{{labelService.getLabel(t)}}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>{{ labelService.getLabel(t) }}</mat-header-cell>
         <mat-cell *matCellDef="let d; let i = index;">
           @switch (t) {
-            @case ("seqNo"){
-              {{i + 1}}
+            @case ("seqNo") {
+              {{ i + 1 }}
             }
-            @case ("createdAt"){
-              {{d[t] | appDateTime: 'dateTime'}}
+            @case ("imagePath") {
+              <vsd-ui-image [alt]="''" [mediaPath]="'http://localhost:3000/'" [isAvatar]="true" [webUrl]="d.imagePath"></vsd-ui-image>
             }
-            @case ("updatedAt"){
-              {{d[t] | appDateTime: 'dateTime'}}
+            @case ("createdAt") {
+              {{ d[t] | appDateTime: 'dateTime' }}
             }
-            @case ("createdByUser"){
-              {{d[t] | appCreatedByUser}}
+            @case ("updatedAt") {
+              {{ d[t] | appDateTime: 'dateTime' }}
             }
-            @case ("updatedByUser"){
-              {{d[t] | appCreatedByUser}}
+            @case ("createdByUser") {
+              {{ d[t] | appCreatedByUser }}
             }
-            @case ("active"){
-              {{d[t]}}
+            @case ("updatedByUser") {
+              {{ d[t] | appCreatedByUser }}
             }
-            @case ("action"){
+            @case ("active") {
+              {{ d[t] }}
+            }
+            @case ("action") {
               <vsd-ui-status-change-button
                 [negativeBtnLabel]="labelService.getLabel(labelKeys.ACTION_NO)"
                 [positiveBtnLabel]="labelService.getLabel(labelKeys.ACTION_YES)"
@@ -55,8 +58,8 @@
                 <mat-icon>edit</mat-icon>
               </button>
             }
-            @default{
-              {{d[t]}}
+            @default {
+              {{ d[t] }}
             }
           }
         </mat-cell>

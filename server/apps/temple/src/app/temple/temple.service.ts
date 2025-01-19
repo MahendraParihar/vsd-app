@@ -80,7 +80,7 @@ export class TempleService {
         Object.assign(dataObj, { imagePath: obj.imagePath });
       }
       let res;
-      const address = await this.addressService.manage(obj.address, transaction);
+      const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
       obj.addressId = address.addressId;
       if (obj.templeId) {
         res = await this.templeModel.update(dataObj, { where: { templeId: obj.templeId }, transaction: transaction });
@@ -91,7 +91,6 @@ export class TempleService {
       await transaction.commit();
       return res;
     } catch (e) {
-      console.log(e);
       await transaction.rollback();
       throw e;
     }

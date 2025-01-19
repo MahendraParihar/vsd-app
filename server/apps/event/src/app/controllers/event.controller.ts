@@ -46,10 +46,10 @@ export class EventController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageEvent(@Body() body: EventDto, userId: number) {
     try {
-      return this.eventService.manage(body, userId);
+      return this.eventService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }

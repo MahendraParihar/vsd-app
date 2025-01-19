@@ -9,7 +9,14 @@ import {
   Table,
   UpdatedAt,
 } from 'sequelize-typescript';
-import { AddressModel, AdminUserModel } from '@server/common';
+import {
+  AddressModel,
+  AdminUserModel,
+  CityVillageModel,
+  CountryModel,
+  DistrictModel,
+  StateModel,
+} from '@server/common';
 
 @Table({
   tableName: 'txn_event',
@@ -31,6 +38,47 @@ import { AddressModel, AdminUserModel } from '@server/common';
         model: AdminUserModel,
         required: true,
         as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+    ],
+  },
+  details: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+        include: [
+          {
+            required: true,
+            model: CountryModel,
+          }, {
+            required: true,
+            model: StateModel,
+          }, {
+            required: true,
+            model: DistrictModel,
+          }, {
+            required: true,
+            model: CityVillageModel,
+          },
+        ],
       },
     ],
   },

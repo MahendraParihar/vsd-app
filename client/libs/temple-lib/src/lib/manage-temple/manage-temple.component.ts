@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Editor, Toolbar } from 'ngx-editor';
+import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { ActivatedRoute } from '@angular/router';
-import { AddressService, LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
+import { AddressService, LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { FileTypeEnum, IAddressMaster, ICommonSEO, IManageTemple, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { TempleService } from '../temple.service';
@@ -22,17 +22,9 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
   fileTypeEnum = FileTypeEnum;
   mediaForEnum = MediaForEnum;
   temple!: IManageTemple;
+  seoData!: ICommonSEO;
   editor!: Editor;
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+  toolbar: Toolbar = TOOLBAR;
 
   formGroup: FormGroup = new FormGroup({
     templeName: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
@@ -68,18 +60,6 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
     this.bindData();
   }
 
-  get SEOObj() {
-    if (this.temple) {
-      return <ICommonSEO>{
-        tags: this.temple.tags ? this.temple.tags : [],
-        metaTitle: this.temple.metaTitle,
-        metaDescription: this.temple.metaDescription,
-        url: this.temple.url,
-      };
-    }
-    return <ICommonSEO>{};
-  }
-
   ngOnDestroy(): void {
     this.editor.destroy();
   }
@@ -90,11 +70,17 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
     }
     this.formGroup.patchValue({
       templeName: this.temple.templeName,
-      description: this.temple.description,
+      description: toDoc(this.temple.description),
     });
     if (this.temple.address) {
       this.addressComponent.address = this.temple.address;
     }
+    this.seoData = {
+      tags: this.temple.tags ? this.temple.tags : [],
+      metaTitle: this.temple.metaTitle,
+      metaDescription: this.temple.metaDescription,
+      url: this.temple.url,
+    };
   }
 
   onCancel() {
@@ -109,7 +95,7 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
     }
     const payload: IManageTemple = {
       templeName: this.formGroup.value.templeName,
-      description: this.formGroup.value.description,
+      description: toHTML(this.formGroup.value.description),
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
       ...this.formGroup.value.seo,

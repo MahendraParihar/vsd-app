@@ -90,7 +90,7 @@ export class MandalService {
       if (obj.additionalInfo) {
         Object.assign(dataObj, { additionalInfo: obj.additionalInfo });
       }
-      const address = await this.addressService.manage(obj.address, transaction);
+      const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
       obj.addressId = address.addressId;
       let res;
       if (obj.mandalId) {

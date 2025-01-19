@@ -24,6 +24,7 @@ import { ImageDragDirective } from './ui/ui-upload-form/directive/image-drag.dir
 import { UiSeoFormComponent } from './ui/ui-seo-form/ui-seo-form.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { UiSocialLinkFormComponent } from './ui/ui-social-link/ui-social-link-form.component';
+import { UiImageComponent } from './ui/ui-img/ui-image.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { UiSocialLinkFormComponent } from './ui/ui-social-link/ui-social-link-fo
     UiSeoFormComponent,
     UiSocialLinkFormComponent,
     ImageDragDirective,
+    UiImageComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +77,7 @@ import { UiSocialLinkFormComponent } from './ui/ui-social-link/ui-social-link-fo
     UiSocialLinkFormComponent,
     UiSeoFormComponent,
     ImageDragDirective,
+    UiImageComponent,
   ],
   providers: [
     {

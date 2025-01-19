@@ -28,6 +28,9 @@
             @case ("seqNo"){
               {{i + 1}}
             }
+            @case ("imagePath") {
+              <vsd-ui-image [alt]="''" [mediaPath]="'http://localhost:3000/'" [isAvatar]="true" [webUrl]="d.imagePath"></vsd-ui-image>
+            }
             @case ("cityVillage"){
               {{d.address.cityVillage}}, {{d.address.district}}, {{d.address.state}}
             }

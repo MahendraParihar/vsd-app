@@ -2,11 +2,11 @@
 @import "colors";
 
 $my-custom-level: mat.define-typography-level(
-  $font-family: Roboto,
-  $font-weight: 400,
-  $font-size: 1rem,
-  $line-height: 1,
-  $letter-spacing: normal
+        $font-family: Roboto,
+        $font-weight: 400,
+        $font-size: 1rem,
+        $line-height: 1,
+        $letter-spacing: normal
 );
 
 
@@ -26,11 +26,11 @@ $profile-section-height: 75px;
 $member-detail-layout-height: calc(100vh - 295px);
 
 $my-custom-level: mat.define-typography-level(
-  $font-family: Roboto,
-  $font-weight: 400,
-  $font-size: 1rem,
-  $line-height: 1,
-  $letter-spacing: normal
+        $font-family: Roboto,
+        $font-weight: 400,
+        $font-size: 1rem,
+        $line-height: 1,
+        $letter-spacing: normal
 );
 
 :root,
@@ -54,9 +54,24 @@ $my-custom-level: mat.define-typography-level(
   --padding-normal: #{rem(8px)};
   --padding-medium: #{rem(12px)};
   --padding-large: #{rem(16px)};
-
   --margin-small: #{rem(8px)};
   --margin-normal: #{rem(8px)};
   --margin-medium: #{rem(12px)};
   --margin-large: #{rem(16px)};
+
+  --avatar-size: #{rem(48px)};
+
+  // Banner
+  --banner-height-512: #{rem(512px)};
+
+  --banner-height-80: #{rem(80px)};
+  --banner-width-140: #{rem(140px)};
+  --banner-height-200: #{rem(200px)};
+  --banner-width-400: #{rem(400px)};
+  --banner-height-250: #{rem(250px)};
+  --banner-width-600: #{rem(600px)};
+  --banner-height-300: #{rem(300px)};
+  --banner-width-700: #{rem(700px)};
+  --banner-height-400: #{rem(400px)};
+  --banner-width-980: #{rem(980px)};
 }

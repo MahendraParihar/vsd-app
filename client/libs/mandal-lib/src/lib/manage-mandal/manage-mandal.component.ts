@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MandalService } from '../mandal.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AddressService, LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
+import { AddressService, LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import {
   FileTypeEnum,
   IAddressMaster,
@@ -19,7 +19,7 @@ import {
   UiSocialLinkFormComponent,
   ValidationUtil,
 } from '@vsd-frontend/shared-ui-lib';
-import { Editor, Toolbar } from 'ngx-editor';
+import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'lib-manage-mandal',
@@ -36,18 +36,9 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
   fileTypeEnum = FileTypeEnum;
   mediaForEnum = MediaForEnum;
   mandal!: IManageMandal;
-  seoData!:ICommonSEO;
+  seoData!: ICommonSEO;
   editor!: Editor;
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+  toolbar: Toolbar = TOOLBAR;
 
   formGroup: FormGroup = new FormGroup({
     mandalName: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_150)]),
@@ -98,7 +89,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     }
     this.formGroup.patchValue({
       mandalName: this.mandal.mandalName,
-      description: this.mandal.description,
+      description: toDoc(this.mandal.description),
     });
     if (this.mandal.address) {
       this.addressComponent.address = this.mandal.address;
@@ -115,7 +106,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
       metaTitle: this.mandal.metaTitle,
       metaDescription: this.mandal.metaDescription,
       url: this.mandal.url,
-    }
+    };
   }
 
   onCancel() {
@@ -130,7 +121,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     console.log(this.formGroup);
     const payload: IManageMandal = {
       mandalName: this.formGroup.value.mandalName,
-      description: this.formGroup.value.description,
+      description: toHTML(this.formGroup.value.description),
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
       ...this.formGroup.value.seo,
