@@ -29,7 +29,7 @@ export class PagesService {
         },
       });
     }
-    const { rows, count } = await this.legalPagesModel.scope('list').findAndCountAll(
+    const { rows, count } = await this.legalPagesModel.scope('details').findAndCountAll(
       {
         where: where,
         limit: payload.limit,
@@ -38,24 +38,7 @@ export class PagesService {
       },
     );
     const data = rows.map((data: LegalPagesModel) => {
-      return <ILegalPageList>{
-        legalPageId: data.legalPageId,
-        title: data.title,
-        imagePath: data.imagePath,
-        active: data.active,
-        createdAt: data.createdAt,
-        createdBy: data.createdBy,
-        updatedAt: data.updatedAt,
-        updatedBy: data.updatedBy,
-        createdByUser: <IBaseAdminUser>{
-          firstName: data.createdByUser.firstName,
-          lastName: data.createdByUser.lastName,
-        },
-        updatedByUser: <IBaseAdminUser>{
-          firstName: data.updatedByUser.firstName,
-          lastName: data.updatedByUser.lastName,
-        },
-      };
+      return this.formatPage(data);
     });
     return <ITableList<ILegalPageList>>{
       data: data,
@@ -85,28 +68,12 @@ export class PagesService {
   }
 
   async loadDetailById(id: number) {
-    const data = await this.legalPagesModel.scope('list').findOne({
+    const data = await this.legalPagesModel.scope('details').findOne({
       where: { legalPageId: id },
+      raw: true, nest: true,
     });
 
-    return <ILegalPageList>{
-      legalPageId: data.legalPageId,
-      title: data.title,
-      imagePath: data.imagePath,
-      active: data.active,
-      createdAt: data.createdAt,
-      createdBy: data.createdBy,
-      updatedAt: data.updatedAt,
-      updatedBy: data.updatedBy,
-      createdByUser: <IBaseAdminUser>{
-        firstName: data.createdByUser.firstName,
-        lastName: data.createdByUser.lastName,
-      },
-      updatedByUser: <IBaseAdminUser>{
-        firstName: data.updatedByUser.firstName,
-        lastName: data.updatedByUser.lastName,
-      },
-    };
+    return <ILegalPageList>this.formatPage(data);
   }
 
   async manage(obj: IManageLegalPage, userId: number): Promise<ILegalPage> {
@@ -137,5 +104,31 @@ export class PagesService {
     obj.active = body.status;
     obj.updatedBy = userId;
     await obj.save();
+  }
+
+  private formatPage(data: LegalPagesModel) {
+    return <ILegalPageList>{
+      legalPageId: data.legalPageId,
+      title: data.title,
+      details: data.details,
+      imagePath: data.imagePath,
+      tags: data.tags,
+      metaTitle: data.metaTitle,
+      metaDescription: data.metaDescription,
+      url: data.url,
+      active: data.active,
+      createdAt: data.createdAt,
+      createdBy: data.createdBy,
+      updatedAt: data.updatedAt,
+      updatedBy: data.updatedBy,
+      createdByUser: <IBaseAdminUser>{
+        firstName: data.createdByUser.firstName,
+        lastName: data.createdByUser.lastName,
+      },
+      updatedByUser: <IBaseAdminUser>{
+        firstName: data.updatedByUser.firstName,
+        lastName: data.updatedByUser.lastName,
+      },
+    };
   }
 }

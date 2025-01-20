@@ -71,8 +71,9 @@ export class UiSeoFormComponent implements OnInit {
     if (!this._seo) {
       return;
     }
+    this.tagsList = this._seo.tags ? this._seo.tags : [];
     this.seoFormGroup.patchValue({
-      tags: this._seo.tags ? this._seo.tags.join(',') : '',
+      tags: this.tagsList,
       metaTitle: this._seo.metaTitle,
       metaDescription: this._seo.metaDescription,
       url: this._seo.url,

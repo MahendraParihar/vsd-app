@@ -1,4 +1,4 @@
-import { Column, DataType, Table, Model, UpdatedAt, CreatedAt, Scopes, BelongsTo } from 'sequelize-typescript';
+import { BelongsTo, Column, CreatedAt, DataType, Model, Scopes, Table, UpdatedAt } from 'sequelize-typescript';
 import { AdminUserModel } from './admin/admin-user.model';
 
 @Table({
@@ -9,6 +9,22 @@ import { AdminUserModel } from './admin/admin-user.model';
 })
 @Scopes(() => ({
   list: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+    ],
+  },
+  details: {
     include: [
       {
         attributes: ['adminUserId', 'firstName', 'lastName'],

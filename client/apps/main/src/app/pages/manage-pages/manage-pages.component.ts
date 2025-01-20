@@ -3,7 +3,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { ActivatedRoute } from '@angular/router';
-import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
+import { LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { FileTypeEnum, ICommonSEO, IManageLegalPage, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { PagesService } from '../../services/pages.service';
@@ -21,21 +21,13 @@ export class ManagePagesComponent implements OnInit, OnDestroy {
   fileTypeEnum = FileTypeEnum;
   mediaForEnum = MediaForEnum;
   legalPage!: IManageLegalPage;
+  seoData!: ICommonSEO;
   editor!: Editor;
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+  toolbar: Toolbar = TOOLBAR;
 
   formGroup: FormGroup = new FormGroup({
     title: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
-    details: new FormControl(null),
+    details: new FormControl(null, [Validators.required]),
   });
 
   constructor(private activatedRoute: ActivatedRoute, private pagesService: PagesService,
@@ -63,18 +55,6 @@ export class ManagePagesComponent implements OnInit, OnDestroy {
     this.bindData();
   }
 
-  get SEOObj() {
-    if (this.legalPage) {
-      return <ICommonSEO>{
-        tags: this.legalPage.tags ? this.legalPage.tags : [],
-        metaTitle: this.legalPage.metaTitle,
-        metaDescription: this.legalPage.metaDescription,
-        url: this.legalPage.url,
-      };
-    }
-    return <ICommonSEO>{};
-  }
-
   ngOnDestroy(): void {
     this.editor.destroy();
   }
@@ -87,6 +67,12 @@ export class ManagePagesComponent implements OnInit, OnDestroy {
       title: this.legalPage.title,
       details: this.legalPage.details,
     });
+    this.seoData = {
+      tags: this.legalPage.tags ? this.legalPage.tags : [],
+      metaTitle: this.legalPage.metaTitle,
+      metaDescription: this.legalPage.metaDescription,
+      url: this.legalPage.url,
+    };
   }
 
   onCancel() {
