@@ -50,10 +50,7 @@ $html-font-size: 16px;
 
 html,
 body {
-  //font-size: var(--font-size-14);
-  //font-weight: var(--font-weight-regular);
   height: 100%;
-  //font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .main-container {
@@ -80,6 +77,8 @@ hr {
 
 .flex-h {
   display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
 }
 
 // X-Small devices (portrait phones, less than 576px)

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { map, Observable, shareReplay } from 'rxjs';
 
 @Component({
@@ -28,7 +28,7 @@ export class BaseLayoutComponent {
   ];
 
   constructor(private router: Router) {
-    this.setActiveState()
+    this.setActiveState();
   }
 
   async onClick(btn: { label: string; path: string; isActive: boolean }) {
@@ -37,9 +37,12 @@ export class BaseLayoutComponent {
   }
 
   setActiveState() {
-    const url = this.router.url.substring(1, this.router.url.length);
+    let url = this.router.url.substring(1, this.router.url.length);
+    if (url === '') {
+      url = '/';
+    }
     for (const s of this.btnList) {
-      s.isActive = (url.includes(s.path === '/' ? '' : s.path));
+      s.isActive = (url.includes(s.path));
     }
   }
 }

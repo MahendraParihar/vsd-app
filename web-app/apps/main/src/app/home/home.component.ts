@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   templeTitle = 'मंदिर';
-  eventTitle = 'आयोजन';
+  eventTitle = 'आगामी कार्यक्रम';
   aboutUsTitle = 'हमारे बारे में';
-  trusteeTitle = 'हमारे बारे में';
+  trusteeTitle = 'हमारे ट्रस्टी';
 }

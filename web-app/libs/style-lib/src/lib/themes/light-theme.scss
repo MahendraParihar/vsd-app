@@ -3,13 +3,14 @@
 @import "./../colors";
 
 $custom-primary: mat.m2-define-palette(mat.$m2-indigo-palette, 500);
-$custom-accent: mat.m2-define-palette(mat.$m2-amber-palette, 500);
-$custom-warn: mat.m2-define-palette(mat.$m2-red-palette, 500);
+$custom-accent: mat.m2-define-palette(mat.$m2-amber-palette, A200, A100, A400);
+$custom-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 $light-theme: mat.m2-define-light-theme((
   color: (
     primary: $custom-primary,
     accent: $custom-accent,
+    warn: $custom-warn,
   ),
   typography:$vsd-typography,
   density: (
@@ -17,4 +18,5 @@ $light-theme: mat.m2-define-light-theme((
   )
 ));
 // Apply to all components
+@include mat.core-theme($light-theme);
 @include mat.all-component-themes($light-theme);

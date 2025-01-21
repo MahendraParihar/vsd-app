@@ -22,10 +22,11 @@
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: #{rem(16px)};
+  --border-radius-10: #{rem(10px)};
+  --border-radius-12: #{rem(12px)};
   --border-radius-20: #{rem(20px)};
-  --border-radius-10: 10px;
-  --border-radius-36: #{rem(36px)}; //ToDo: Change variable name
-  --border-radius-40: #{rem(40px)}; //ToDo: Change variable name
+  --border-radius-36: #{rem(36px)};
+  --border-radius-40: #{rem(40px)};
   --border-radius-46: #{rem(46px)};
   --border-radius-48: #{rem(48px)};
   --border-radius-xl: #{rem(20px)};

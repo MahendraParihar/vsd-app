@@ -54,6 +54,15 @@ $icon-lists: (
   ),
   logo:(
     $icon-size-large,
+  ),
+  divider-line:(
+    $icon-size-large,
+  ),
+  bg-art:(
+    $icon-size-large,
+  ),
+  clock:(
+    $icon-size-regular,
   )
 );
 
@@ -70,6 +79,14 @@ $icon-lists: (
 
 .header-logo {
   background: url('../assets/images/icons/large/header-logo.svg') no-repeat center;
+}
+
+.divider-line {
+  background: url('../assets/images/icons/large/divider-line.svg') no-repeat center;
+}
+
+.bg-art {
+  background: url('../assets/images/icons/large/bg-art.svg') no-repeat center;
 }
 
 .logo {
@@ -162,35 +179,42 @@ $icon-lists: (
 }
 
 //---------------------- mail --------------------------
-.icon-schedule-large {
+.icon-mail-large {
   background: url('../assets/images/icons/large/mail.svg') no-repeat center;
 }
 
-.icon-schedule-medium {
+.icon-mail-medium {
   background: url('../assets/images/icons/medium/mail.svg') no-repeat center;
 }
 
-.icon-schedule-regular {
+.icon-mail-regular {
   background: url('../assets/images/icons/regular/mail.svg') no-repeat center;
 }
 
-.icon-schedule-small {
+.icon-mail-small {
   background: url('../assets/images/icons/small/mail.svg') no-repeat center;
 }
 
 //---------------------- share --------------------------
-.icon-schedule-large {
+.icon-share-large {
   background: url('../assets/images/icons/large/share.svg') no-repeat center;
 }
 
-.icon-schedule-medium {
+.icon-share-medium {
   background: url('../assets/images/icons/medium/share.svg') no-repeat center;
 }
 
-.icon-schedule-regular {
+.icon-share-regular {
   background: url('../assets/images/icons/regular/share.svg') no-repeat center;
 }
 
-.icon-schedule-small {
+.icon-share-small {
   background: url('../assets/images/icons/small/share.svg') no-repeat center;
 }
+
+//---------------------- Clock --------------------------
+.icon-clock-regular {
+  background: url('../assets/images/icons/regular/clock.svg') no-repeat center;
+}
+
+
