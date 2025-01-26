@@ -1,35 +1,82 @@
-<div class="home-event-detail-section grid-item" *ngFor="let event of events">
-  <div class="left double">
-    <shared-ui-lib-uikit-label [class]="['mat-headline-4']"
-                               [label]="event.title"></shared-ui-lib-uikit-label>
-    <div class="event-date-container">
-      <div class="date-part">
-        <span class="mat-headline-4">{{ event.date | date: 'dd' }}</span>
-        <span class="mat-body-2">{{ event.date | date: 'MMM' }}</span>
+@if (orientation === 'horizontal') {
+  <div class="home-event-detail-section">
+    <div class="left double">
+      <shared-ui-lib-uikit-label [class]="['mat-headline-4']"
+                                 [label]="events[activeEventIndex].title"></shared-ui-lib-uikit-label>
+      <div class="event-date-container">
+        <div class="date-part">
+          <span class="mat-headline-4">{{ events[activeEventIndex].date | date: 'dd' }}</span>
+          <span class="mat-body-2">{{ events[activeEventIndex].date | date: 'MMM' }}</span>
+        </div>
+        <div class="time-location-part">
+          <div class="flex-h">
+            <shared-ui-lib-uikit-icon [name]="'clock'"></shared-ui-lib-uikit-icon>
+            <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
+                                       label="{{events[activeEventIndex].time}}"></shared-ui-lib-uikit-label>
+          </div>
+          <hr>
+          <div class="flex-h">
+            <shared-ui-lib-uikit-icon [name]="'address'"></shared-ui-lib-uikit-icon>
+            <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
+                                       [label]="address(events[activeEventIndex])"></shared-ui-lib-uikit-label>
+          </div>
+        </div>
       </div>
-      <div class="time-location-part">
-        <div class="flex-h">
-          <shared-ui-lib-uikit-icon [name]="'clock'"></shared-ui-lib-uikit-icon>
-          <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']" label="{{event.time}}"></shared-ui-lib-uikit-label>
+      <div class="description">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-subtitle-2']"
+          [hasHtmlContent]="true"
+          [charLimit]="250"
+          [label]="events[activeEventIndex].description"></shared-ui-lib-uikit-label>
+      </div>
+      <shared-ui-lib-uikit-button [type]="'link'" [hasUnderline]="true"
+                                  (buttonClicked)="onClick(events[activeEventIndex])"
+                                  [label]="labelService.getLabel(LabelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
+    </div>
+    <div class="right single">
+      <img class="about_us_1" />
+    </div>
+  </div>
+} @else {
+  <ng-container *ngFor="let event of events">
+    <div class="home-event-detail-section">
+      <div class="left double">
+        <shared-ui-lib-uikit-label [class]="['mat-headline-4']"
+                                   [label]="event.title"></shared-ui-lib-uikit-label>
+        <div class="event-date-container">
+          <div class="date-part">
+            <span class="mat-headline-4">{{ event.date | date: 'dd' }}</span>
+            <span class="mat-body-2">{{ event.date | date: 'MMM' }}</span>
+          </div>
+          <div class="time-location-part">
+            <div class="flex-h">
+              <shared-ui-lib-uikit-icon [name]="'clock'"></shared-ui-lib-uikit-icon>
+              <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
+                                         label="{{event.time}}"></shared-ui-lib-uikit-label>
+            </div>
+            <hr>
+            <div class="flex-h">
+              <shared-ui-lib-uikit-icon [name]="'address'"></shared-ui-lib-uikit-icon>
+              <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
+                                         [label]="address(event)"></shared-ui-lib-uikit-label>
+            </div>
+          </div>
         </div>
-        <hr>
-        <div class="flex-h">
-          <shared-ui-lib-uikit-icon [name]="'address'"></shared-ui-lib-uikit-icon>
-          <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
-                                     [label]="address(event)"></shared-ui-lib-uikit-label>
+        <div class="description">
+          <shared-ui-lib-uikit-label
+            [class]="['mat-subtitle-2']"
+            [hasHtmlContent]="true"
+            [charLimit]="250"
+            [label]="event.description"></shared-ui-lib-uikit-label>
         </div>
+        <shared-ui-lib-uikit-button [type]="'link'" [hasUnderline]="true" (buttonClicked)="onClick(event)"
+                                    [label]="labelService.getLabel(LabelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
+      </div>
+      <div class="right single">
+        <img class="about_us_1" />
       </div>
     </div>
-    <div class="description">
-      <shared-ui-lib-uikit-label
-        [class]="['mat-subtitle-2']"
-        [hasHtmlContent]="true"
-        [charLimit]="250"
-        [label]="event.description"></shared-ui-lib-uikit-label>
-    </div>
-    <shared-ui-lib-uikit-button [type]="'link'" [hasUnderline]="true" (buttonClicked)="onClick(event)" [label]="labelService.getLabel(LabelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
-  </div>
-  <div class="right single">
-    <img class="about_us_1" />
-  </div>
-</div>
+  </ng-container>
+}
+
+

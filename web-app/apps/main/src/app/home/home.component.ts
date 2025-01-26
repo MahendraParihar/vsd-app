@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event/services/event.service';
-import { IEventDetail, ITempleList, LabelKey } from '@vsd-common/lib';
+import { IEventDetail, ILegalPageList, ITempleList, LabelKey } from '@vsd-common/lib';
 import { LabelService } from '@core-lib';
 import { TempleService } from '../temple/services/temple.service';
+import { CommonService } from '../common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'vsd-web-app-home',
@@ -20,10 +22,13 @@ export class HomeComponent implements OnInit {
 
   upcomingEvents: IEventDetail[] = [];
   temples: ITempleList[] = [];
+  legalPage!: ILegalPageList;
 
   constructor(private eventService: EventService,
               private templeService: TempleService,
-              private labelService: LabelService) {
+              protected labelService: LabelService,
+              private commonService: CommonService,
+              private route: Router) {
   }
 
   async ngOnInit() {
@@ -37,8 +42,14 @@ export class HomeComponent implements OnInit {
     const res = await Promise.all([
       await this.eventService.loadUpcomingEvents(),
       this.templeService.loadHomeTemples(),
+      this.commonService.loadPage('about-us'),
     ]);
     this.upcomingEvents = res[0];
     this.temples = res[1];
+    this.legalPage = res[2];
+  }
+
+  aboutUsClick() {
+    this.route.navigate(['/about-us']);
   }
 }

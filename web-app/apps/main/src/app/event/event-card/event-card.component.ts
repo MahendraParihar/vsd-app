@@ -13,6 +13,7 @@ export class EventCardComponent {
   @Input() events!: IEventList[];
   @Input() orientation: 'horizontal' | 'vertical' = 'vertical';
   protected readonly LabelKey = LabelKey;
+  activeEventIndex = 0;
 
   constructor(public labelService: LabelService,
               private router: Router) {
