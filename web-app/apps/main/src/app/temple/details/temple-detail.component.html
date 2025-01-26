@@ -1,1 +1,27 @@
-<p>temple-detail works!</p>
+<div class="temple-detail-section" *ngIf="temple">
+  <shared-ui-lib-uikit-banner
+    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <div class="temple-detail-content main-section">
+    <div class="flex-d">
+      <shared-ui-lib-uikit-label *ngIf="temple.templeName" [class]="['mat-headline-3']"
+                                 [label]="temple.templeName"></shared-ui-lib-uikit-label>
+    </div>
+    <div class="divider divider-line"></div>
+    <div class="temple-detail-box">
+      <div class="left-section">
+        <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="temple.description"></shared-ui-lib-uikit-label>
+      </div>
+      <div class="right-section">
+        <div class="map-box">
+        <shared-ui-lib-uikit-google-map [address]="temple.address"></shared-ui-lib-uikit-google-map>
+        </div>
+        <div class="address-box">
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-label [class]="['mat-heading-5']"
+                                     label="{{ temple.address | addressText }}"></shared-ui-lib-uikit-label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

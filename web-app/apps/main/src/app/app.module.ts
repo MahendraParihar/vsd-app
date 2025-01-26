@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, withComponentInputBinding } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +14,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EventComponent } from './event/event.component';
 import { EventDetailComponent } from './event/details/event-detail.component';
 import { HistoryComponent } from './history/history.component';
-import { MandalComponent } from './mandal/mandal.component';
-import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
+import { FacilityComponent } from './facility/facility.component';
+import { FacilityDetailComponent } from './facility/details/facility-detail.component';
 import { TempleComponent } from './temple/temple.component';
 import { TempleDetailComponent } from './temple/details/temple-detail.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -25,12 +25,17 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { GoogleMap, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { MandalService } from './mandal/services/mandal.service';
+import { FacilityService } from './facility/services/facility.service';
 import { CommonService } from './common.service';
 import { EventService } from './event/services/event.service';
 import { TempleService } from './temple/services/temple.service';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { EventCardComponent } from './event/event-card/event-card.component';
+import { TempleCardComponent } from './temple/temple-card/temple-card.component';
+import { MandalComponent } from './mandal/mandal.component';
+import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
+import { MandalService } from './mandal/services/mandal.service';
 
 @NgModule({
   declarations: [
@@ -45,8 +50,12 @@ import { MatCardModule } from '@angular/material/card';
     HistoryComponent,
     MandalComponent,
     MandalDetailComponent,
+    FacilityComponent,
+    FacilityDetailComponent,
     TempleComponent,
     TempleDetailComponent,
+    EventCardComponent,
+    TempleCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,20 +71,19 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     FormsModule,
     MatInput,
-    GoogleMap,
-    MapAdvancedMarker,
-    MapMarker,
-    MapInfoWindow,
     MatCardModule,
+    MatGridListModule,
   ],
   providers: [
-    MandalService,
+    FacilityService,
     CommonService,
     EventService,
+    MandalService,
     TempleService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
     },
+    provideRouter(appRoutes, withComponentInputBinding()),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ILegalPage, LabelKey } from '@vsd-common/lib';
+import { ILegalPage, ILegalPageList, LabelKey } from '@vsd-common/lib';
 import { CommonService } from '../common.service';
 import { LabelService } from '@core-lib';
-import { Title } from '@angular/platform-browser';
+import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'vsd-web-app-about-us',
@@ -11,12 +11,13 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './about-us.component.scss',
 })
 export class AboutUsComponent implements OnInit {
-  legalPage!: ILegalPage;
-  pageTitle!:string | undefined;
+  legalPage!: ILegalPageList;
+  pageTitle!: string | undefined;
 
   constructor(private commonService: CommonService,
               private labelService: LabelService,
-              private title: Title) {
+              private title: Title,
+              private metaService: Meta) {
     this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_ABOUT_US);
     if (this.pageTitle) {
       this.title.setTitle(this.pageTitle);
@@ -29,5 +30,20 @@ export class AboutUsComponent implements OnInit {
 
   async loadPage() {
     this.legalPage = await this.commonService.loadPage('about-us');
+    this.bindSEOData();
+  }
+
+  bindSEOData() {
+    if (!this.legalPage) {
+      return;
+    }
+    const seoArray: MetaDefinition[] = [];
+    if (this.legalPage.tags) {
+      seoArray.push({ name: 'keyword', content: this.legalPage.tags.join(',') });
+    }
+    if (this.legalPage.metaDescription) {
+      seoArray.push({ name: 'description', content: this.legalPage.metaDescription });
+    }
+    this.metaService.addTags(seoArray);
   }
 }

@@ -7,7 +7,7 @@ import {
   IMandal,
   IMandalAdditionalInfo,
   IMandalDetail,
-  IMandalList,
+  IMandalList, IMandalMemberInfo,
   IStatusChange,
   ITableList,
   ITableListFilter,
@@ -15,14 +15,17 @@ import {
 } from '@vsd-common/lib';
 import { MandalModel } from '../models/mandal.model';
 import { Op } from 'sequelize';
-import { AddressService, LabelService } from '@server/common';
+import { AddressService, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
+import { filter } from 'lodash';
+import { MandalMemberModel } from '../models/mandal-member.model';
 
 @Injectable()
 export class MandalService {
   constructor(@InjectModel(MandalModel) private mandalModel: typeof MandalModel,
               private labelService: LabelService,
               private addressService: AddressService,
+              private postService: PostService,
               private sequelize: Sequelize) {
   }
 
@@ -60,6 +63,19 @@ export class MandalService {
     };
   }
 
+  async loadDetailByUrl(url: string): Promise<IMandalDetail> {
+    const data = await this.mandalModel.scope('withMember').findOne({
+      where: { url: url },
+      nest: true,
+    });
+
+    if (!data) {
+      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
+    }
+    const post: PostModel[] = await this.postService.masterPost();
+    return this.formatMandal(data.get({ plain: true }), post);
+  }
+
   async loadDetailById(id: number): Promise<IMandalDetail> {
     const data = await this.mandalModel.scope('details').findOne({
       where: { mandalId: id },
@@ -82,7 +98,7 @@ export class MandalService {
         tags: obj.tags,
         metaTitle: obj.metaTitle,
         metaDescription: obj.metaDescription,
-        url: obj.url
+        url: obj.url,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -118,14 +134,37 @@ export class MandalService {
     return await this.loadDetailById(12);
   }
 
-  private formatMandal(data: MandalModel) {
+  private formatMandal(data: MandalModel, post: PostModel[] = []) {
+    const mandalMembers: IMandalMemberInfo[] = [];
+    for (const p of post) {
+      const members: MandalMemberModel[] = filter(data.mandalMembers, { postId: p.postId });
+      if (members && members.length > 0) {
+        const s: IMandalMemberInfo = {
+          post: p.post,
+          members: [],
+        };
+        for (const member of members) {
+          s.members.push({
+            firstName: member.family.firstName,
+            lastName: member.family.lastName,
+            middleName: member.family.middleName,
+            imagePath: member.family.imagePath && member.family.imagePath.length > 0 ? member.family.imagePath[0] : null,
+            cityVillage: member.family.address ? member.family.address.cityVillage.cityVillage : null,
+          });
+        }
+        mandalMembers.push(s);
+      }
+    }
     return <IMandalDetail>{
       mandalId: data.mandalId,
       mandalName: data.mandalName,
+      description: data.description,
       tags: data.tags,
+      imagePath: data.imagePath,
       metaTitle: data.metaTitle,
       metaDescription: data.metaDescription,
       url: data.url,
+      mandalMembers: mandalMembers,
       active: data.active,
       createdAt: data.createdAt,
       createdBy: data.createdBy,

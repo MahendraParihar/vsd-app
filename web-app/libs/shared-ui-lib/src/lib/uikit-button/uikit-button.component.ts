@@ -10,9 +10,9 @@ import { IconNameType, IconSizeType } from '@vsd-common/lib';
 export class UikitButtonComponent {
   @Input() label!: string;
   @Input() suffixIcon!: IconNameType;
-  @Input() suffixIconSize!: IconSizeType;
+  @Input() suffixIconSize: IconSizeType = 'regular';
   @Input() prefixIcon!: IconNameType | string;
-  @Input() prefixIconSize!: IconSizeType;
+  @Input() prefixIconSize: IconSizeType = 'regular';
   @Input() disableRipple = false;
   @Input() type: 'regular' | 'raised' | 'stroked' | 'flat' | 'icon-only' | 'link' = 'regular';
 

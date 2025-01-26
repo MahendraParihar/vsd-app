@@ -1,0 +1,13 @@
+.facility-detail-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  shared-ui-lib-uikit-banner {
+    width: 100%;
+  }
+
+  .facility-detail-content {
+    margin-top: var(--spacing-48);
+  }
+}

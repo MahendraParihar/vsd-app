@@ -5,6 +5,7 @@ export enum LabelKey {
   SIDE_MENU_FAMILY = 'side_menu_family',
   SIDE_MENU_TEMPLE = 'side_menu_temple',
   SIDE_MENU_EVENT = 'side_menu_event',
+  SIDE_MENU_FACILITY = 'side_menu_facility',
   SIDE_MENU_JOB = 'side_menu_job',
   SIDE_MENU_MANDAL = 'side_menu_mandal',
   SIDE_MENU_MATRIMONIAL = 'side_menu_matrimonial',
@@ -44,6 +45,7 @@ export enum LabelKey {
   SIDE_MENU_PAGES = 'side_menu_pages',
 
   ITEM_NOT_FOUND_TEMPLE = 'item_not_found_temple',
+  ITEM_NOT_FOUND_FACILITY = 'item_not_found_facility',
   ITEM_NOT_FOUND_STATE = 'item_not_found_state',
   ITEM_NOT_FOUND_SERVICE = 'item_not_found_service',
   ITEM_NOT_FOUND_RELIGION = 'item_not_found_religion',
@@ -103,6 +105,7 @@ export enum LabelKey {
   ACTION_REMOVE = 'action_remove',
   ACTION_ADD_AGENDA = 'action_add_agenda',
   ACTION_REMOVE_AGENDA = 'action_remove_agenda',
+  ACTION_VIEW_MORE = 'action_view_more',
 
   INPUT_USER_NAME = 'input_user_name',
   INPUT_PASSWORD = 'input_password',

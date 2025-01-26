@@ -5,113 +5,64 @@
     <shared-ui-lib-uikit-label *ngIf="eventTitle" [class]="['mat-headline-3']"
                                [label]="eventTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <div class="home-event-detail-section">
-      <div class="left">
-        <shared-ui-lib-uikit-label [class]="['mat-headline-4']"
-                                   [label]="'श्रीविश्वकर्मा जयंती'"></shared-ui-lib-uikit-label>
-        <div class="event-date-container">
-          <div class="date-part">
-            <span class="mat-headline-4">16</span>
-            <span class="mat-body-2">Des</span>
-          </div>
-          <div class="time-location-part">
-            <div class="flex-h">
-              <shared-ui-lib-uikit-icon [name]="'clock'"></shared-ui-lib-uikit-icon>
-              <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']" [label]="'12 AM'"></shared-ui-lib-uikit-label>
-            </div>
-            <hr>
-            <div class="flex-h">
-              <shared-ui-lib-uikit-icon [name]="'address'"></shared-ui-lib-uikit-icon>
-              <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
-                                         [label]="'Barwa, Rajeshthan'"></shared-ui-lib-uikit-label>
-            </div>
-          </div>
-        </div>
-        <div class="description">
-          <shared-ui-lib-uikit-label
-            [class]="['mat-subtitle-2']"
-            [hasHtmlContent]="true"
-            [label]="'भगवान विश्वकर्मा को प्राचीन काल का सबसे पहला इंजीनियर माना जाता है. इस दिन औद्योगिक क्षेत्र से जुड़े उपकर, औजार, की पूजा करने से कार्य में कुशलता आती है. शिल्पकला का विकास होता है.'"></shared-ui-lib-uikit-label>
-        </div>
-      </div>
-      <div class="right">
-        <img />
-      </div>
-    </div>
+    <vsd-web-app-event-card></vsd-web-app-event-card>
   </div>
 
   <div class="home-temple-section data-section">
     <shared-ui-lib-uikit-label *ngIf="templeTitle" [class]="['mat-headline-3']"
                                [label]="templeTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <div class="home-temple-box">
-      <div class="home-temple-item"><img />
-        <div class="temple-address">
-          <shared-ui-lib-uikit-label
-            [class]="['mat-subtitle-1']"
-            [label]="'बारवा, राजस्थान'"></shared-ui-lib-uikit-label>
-        </div>
-        <div class="temple-body">
-          <div class="temple-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="'श्री विश्वकर्मा मंदिर'"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="temple-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-subtitle-2']"
-              [label]="'मंदिर एक पूजा स्थल है, जिसका उपयोग आध्यात्मिक अनुष्ठानों और प्रार्थना के लिए किया जाता है।'"></shared-ui-lib-uikit-label>
-          </div>
-          <shared-ui-lib-uikit-button [type]="'link'" [label]="'और अधिक जानें'"></shared-ui-lib-uikit-button>
-        </div>
-      </div>
-      <div class="home-temple-item"><img />
-        <div class="temple-address">
-          <shared-ui-lib-uikit-label
-            [class]="['mat-subtitle-1']"
-            [label]="'बारवा, राजस्थान'"></shared-ui-lib-uikit-label>
-        </div>
-        <div class="temple-body">
-          <div class="temple-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="'श्री विश्वकर्मा मंदिर'"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="temple-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-subtitle-2']"
-              [label]="'मंदिर एक पूजा स्थल है, जिसका उपयोग आध्यात्मिक अनुष्ठानों और प्रार्थना के लिए किया जाता है।'"></shared-ui-lib-uikit-label>
-          </div>
-          <shared-ui-lib-uikit-button [type]="'link'" [label]="'और अधिक जानें'"></shared-ui-lib-uikit-button>
-        </div>
-      </div>
-      <div class="home-temple-item"><img />
-        <div class="temple-address">
-          <shared-ui-lib-uikit-label
-            [class]="['mat-subtitle-1']"
-            [label]="'बारवा, राजस्थान'"></shared-ui-lib-uikit-label>
-        </div>
-        <div class="temple-body">
-          <div class="temple-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="'श्री विश्वकर्मा मंदिर'"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="temple-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-subtitle-2']"
-              [label]="'मंदिर एक पूजा स्थल है, जिसका उपयोग आध्यात्मिक अनुष्ठानों और प्रार्थना के लिए किया जाता है।'"></shared-ui-lib-uikit-label>
-          </div>
-          <shared-ui-lib-uikit-button [type]="'link'" [label]="'और अधिक जानें'"></shared-ui-lib-uikit-button>
-        </div>
-      </div>
-    </div>
+    <vsd-web-app-temple-card></vsd-web-app-temple-card>
   </div>
 
   <div class="home-about-us-section data-section">
     <shared-ui-lib-uikit-label *ngIf="aboutUsTitle" [class]="['mat-headline-3']"
                                [label]="aboutUsTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
+    <div class="home-about-us-box">
+      <div class="left">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-subtitle-2']" [hasHtmlContent]="true"
+          [label]="'सुथार समाज नेटवर्क सुथार समाज के लोगों का एक अग्रणी ऑनलाइन समुदाय है। यह वेबसाइट विश्वकर्मा धर्म के बारे में महत्वपूर्ण ज्ञान प्रदान करती है और दुनिया को सुथार समाज की प्रसिद्ध हस्तियों से भी परिचित कराती है जिनकी हर क्षेत्र में महत्वपूर्ण भूमिका है।'"></shared-ui-lib-uikit-label>
+        <shared-ui-lib-uikit-button [type]="'raised'" [label]="'और अधिक जानें'"></shared-ui-lib-uikit-button>
+      </div>
+      <div class="right">
+        <mat-grid-list [rowHeight]="'3:1'" [cols]="2">
+          <mat-grid-tile [colspan]="1" [rowspan]="3"><img class="about_us_1" /></mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]=""></mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="2"><img class="about_us_2" /></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [rowHeight]="'2:1'" [cols]="2">
+          <mat-grid-tile [colspan]="1" [rowspan]="1"><img class="about_us_3" /></mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="2"><img class="about_us_4" /></mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-facilities-section data-section">
+    <shared-ui-lib-uikit-label *ngIf="facilitiesTitle" [class]="['mat-headline-3']"
+                               [label]="facilitiesTitle"></shared-ui-lib-uikit-label>
+    <div class="divider divider-line"></div>
+    <div class="home-facilities-box">
+      <div class="left">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-subtitle-2']" [hasHtmlContent]="true"
+          [label]="'सुथार समाज नेटवर्क सुथार समाज के लोगों का एक अग्रणी ऑनलाइन समुदाय है। यह वेबसाइट विश्वकर्मा धर्म के बारे में महत्वपूर्ण ज्ञान प्रदान करती है और दुनिया को सुथार समाज की प्रसिद्ध हस्तियों से भी परिचित कराती है जिनकी हर क्षेत्र में महत्वपूर्ण भूमिका है।'"></shared-ui-lib-uikit-label>
+        <shared-ui-lib-uikit-button [type]="'raised'" [label]="'और अधिक जानें'"></shared-ui-lib-uikit-button>
+      </div>
+      <div class="right">
+        <mat-grid-list [rowHeight]="'3:1'" [cols]="2">
+          <mat-grid-tile [colspan]="1" [rowspan]="3"><img class="about_us_1" /></mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]=""></mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="2"><img class="about_us_2" /></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [rowHeight]="'2:1'" [cols]="2">
+          <mat-grid-tile [colspan]="1" [rowspan]="1"><img class="about_us_3" /></mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="2"><img class="about_us_4" /></mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
   </div>
 
   <div class="home-trustee-section data-section">

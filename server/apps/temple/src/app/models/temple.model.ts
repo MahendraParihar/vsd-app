@@ -60,28 +60,7 @@ import {
         ],
       },
     ],
-  },
-  details: {
-    include: [
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'createdByUser',
-      },
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'updatedByUser',
-      },
-      {
-        model: AddressModel,
-        required: true,
-        as: 'address',
-      },
-    ],
-  },
+  }
 }))
 export class TempleModel extends Model<TempleModel> {
   @Column({

@@ -8,15 +8,10 @@
   }
 
   .temple-list-content {
+    width: 100%;
     margin-top: var(--spacing-48);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-32);
-  }
-
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
   }
 }

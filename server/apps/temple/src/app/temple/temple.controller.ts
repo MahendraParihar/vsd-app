@@ -20,20 +20,20 @@ export class TempleController {
     }
   }
 
-  @Post()
-  loadTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
+  @Public()
+  @Get('public/:url')
+  loadPublicTempleDetail(@Param('url') url: string): Promise<ITempleList> {
     try {
-      return this.templeService.load(payload);
+      return this.templeService.loadDetailByUrl(url);
     } catch (e) {
       throw new Error(e);
     }
   }
 
-  @Public()
-  @Post('public/:id')
-  loadPublicTempleDetail(@Param() id: number): Promise<ITempleList> {
+  @Post()
+  loadTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
     try {
-      return this.templeService.loadDetailById(id);
+      return this.templeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }

@@ -20,7 +20,7 @@ export class PagesController {
 
   @Public()
   @Get('/public/:page')
-  async getPage(@Param('page') page: string): Promise<IManageLegalPage> {
+  async getPage(@Param('page') page: string): Promise<ILegalPageList> {
     try {
       return await this.pagesService.getByUrl(page);
     } catch (e) {
@@ -32,15 +32,6 @@ export class PagesController {
   async loadLegalPage(@Param('id') id: number): Promise<IManageLegalPage> {
     try {
       return await this.pagesService.getById(id);
-    } catch (e) {
-      throw new Error(e);
-    }
-  }
-
-  @Get(':id')
-  async loadLegalPageDetail(@Param('id') id: number) {
-    try {
-      return await this.pagesService.loadDetailById(id);
     } catch (e) {
       throw new Error(e);
     }

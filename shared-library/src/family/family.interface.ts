@@ -1,17 +1,21 @@
 import { IBaseAdminUser, ICommonTable } from '../base.interface';
 import { IMediaUpload } from '../core';
+import { IAddressDetail, IManageAddress } from '../location';
+import { IMandalAdditionalInfo, IMandalList, IMandalMemberInfo } from '../mandal';
 
 export interface IBaseFamily {
   firstName: string;
   middleName: string;
   lastName: string;
   emailId: string;
-  imagePath: IMediaUpload[];
+  addressId?: number;
+  imagePath?: IMediaUpload[];
   visitedCount: number;
 }
 
 export interface IManageFamily extends IBaseFamily {
   familyId?: number;
+  address?: IManageAddress;
 }
 
 export interface IFamily extends IBaseFamily, ICommonTable {
@@ -20,6 +24,7 @@ export interface IFamily extends IBaseFamily, ICommonTable {
 }
 
 export interface IFamilyList extends IFamily {
+  address?: IAddressDetail;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }

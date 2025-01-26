@@ -116,6 +116,7 @@ export class EventService {
     return <IEventList>{
       eventId: data.eventId,
       title: data.title,
+      description: data.description,
       date: data.date,
       time: data.time,
       active: data.active,

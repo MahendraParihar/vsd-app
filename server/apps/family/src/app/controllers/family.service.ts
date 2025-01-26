@@ -1,6 +1,7 @@
-import {Injectable} from '@nestjs/common';
-import {InjectModel} from '@nestjs/sequelize';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import {
+  IAddressDetail,
   IBaseAdminUser,
   IFamily,
   IFamilyList,
@@ -8,10 +9,10 @@ import {
   IStatusChange,
   ITableList,
   ITableListFilter,
-  LabelKey
+  LabelKey,
 } from '@vsd-common/lib';
-import {Op} from 'sequelize';
-import {FamilyModel, LabelService} from "@server/common";
+import { Op } from 'sequelize';
+import { FamilyModel, LabelService } from '@server/common';
 
 @Injectable()
 export class FamilyService {
@@ -25,42 +26,21 @@ export class FamilyService {
       Object.assign(where, {
         [Op.iLike]: {
           [Op.or]: [
-            {firstName: `%${payload.search}%`},
-            {lastName: `%${payload.search}%`},
-            {middleName: `%${payload.search}%`}
-          ]
+            { firstName: `%${payload.search}%` },
+            { lastName: `%${payload.search}%` },
+            { middleName: `%${payload.search}%` },
+          ],
         },
       });
     }
-    const {rows, count} = await this.familyModel.scope('list').findAndCountAll({
+    const { rows, count } = await this.familyModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order: [['firstName', 'desc'], ['middleName', 'desc'], ['lastName', 'asc']]
+      order: [['firstName', 'desc'], ['middleName', 'desc'], ['lastName', 'asc']],
     });
     const data = rows.map((data: FamilyModel) => {
-      return <IFamilyList>{
-        familyId: data.familyId,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        imagePath: data.imagePath,
-        emailId: data.emailId,
-        middleName: data.middleName,
-        visitedCount: data.visitedCount,
-        active: data.active,
-        createdAt: data.createdAt,
-        createdBy: data.createdBy,
-        updatedAt: data.updatedAt,
-        updatedBy: data.updatedBy,
-        createdByUser: <IBaseAdminUser>{
-          firstName: data.createdByUser.firstName,
-          lastName: data.createdByUser.lastName,
-        },
-        updatedByUser: <IBaseAdminUser>{
-          firstName: data.updatedByUser.firstName,
-          lastName: data.updatedByUser.lastName,
-        },
-      };
+      return this.formatFamily(data);
     });
     return <ITableList<IFamilyList>>{
       data: data,
@@ -69,7 +49,7 @@ export class FamilyService {
   }
 
   async getById(id: number): Promise<IFamily> {
-    const obj = await this.familyModel.findOne({where: {familyId: id}});
+    const obj = await this.familyModel.findOne({ where: { familyId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_FAMILY));
     }
@@ -81,9 +61,36 @@ export class FamilyService {
 
   async loadDetailById(id: number): Promise<IFamilyList> {
     const data = await this.familyModel.scope('list').findOne({
-      where: {familyId: id}
+      where: { familyId: id },
     });
 
+    return this.formatFamily(data);
+  }
+
+  async manage(obj: IManageFamily, userId: number) {
+    const dataObj = {
+      title: obj.firstName,
+      updatedBy: userId,
+    };
+    if (obj.imagePath) {
+      Object.assign(dataObj, { imagePath: obj.imagePath });
+    }
+    if (obj.familyId) {
+      await this.familyModel.update(dataObj, { where: { familyId: obj.familyId } });
+    } else {
+      Object.assign(dataObj, { createdBy: userId });
+      await this.familyModel.create(dataObj);
+    }
+  }
+
+  async updateStatus(id: number, body: IStatusChange, userId: number) {
+    const obj = await this.familyModel.findOne({ where: { familyId: id } });
+    obj.active = body.status;
+    obj.updatedBy = userId;
+    await obj.save();
+  }
+
+  private formatFamily(data: FamilyModel) {
     return <IFamilyList>{
       familyId: data.familyId,
       firstName: data.firstName,
@@ -105,29 +112,16 @@ export class FamilyService {
         firstName: data.updatedByUser.firstName,
         lastName: data.updatedByUser.lastName,
       },
+      address: <IAddressDetail>{
+        address: data.address.address,
+        pinCode: data.address.pinCode,
+        latitude: data.address.latitude,
+        longitude: data.address.longitude,
+        country: data.address.country.country,
+        state: data.address.state.state,
+        district: data.address.district.district,
+        cityVillage: data.address.cityVillage.cityVillage,
+      },
     };
-  }
-
-  async manage(obj: IManageFamily, userId: number) {
-    const dataObj = {
-      title: obj.firstName,
-      updatedBy: userId,
-    };
-    if (obj.imagePath) {
-      Object.assign(dataObj, {imagePath: obj.imagePath});
-    }
-    if (obj.familyId) {
-      await this.familyModel.update(dataObj, {where: {familyId: obj.familyId}});
-    } else {
-      Object.assign(dataObj, {createdBy: userId});
-      await this.familyModel.create(dataObj);
-    }
-  }
-
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.familyModel.findOne({where: {familyId: id}});
-    obj.active = body.status;
-    obj.updatedBy = userId;
-    await obj.save();
   }
 }

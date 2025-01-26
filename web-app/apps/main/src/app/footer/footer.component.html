@@ -12,19 +12,15 @@
     <div class="additional-info">
       <div class="address-section">
         <div class="address">
-          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'medium'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
           <shared-ui-lib-uikit-label [class]="['mat-body-1']" [hasHtmlContent]="true"
                                      [label]="'श्री विश्वकर्मा मंदिर, बड़वा, बाया-बाली,<br> जिला पाली , राजस्थान 306706'"></shared-ui-lib-uikit-label>
         </div>
       </div>
       <div class="social-link-section">
-        <shared-ui-lib-uikit-button [type]="'icon-only'"
-                                    [prefixIcon]="'address'"
-                                    [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
-        <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
-                                    [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
-        <shared-ui-lib-uikit-button [type]="'icon-only'" [prefixIcon]="'address'"
-                                    [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
+        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'" [prefixIcon]="'social-facebook'"></shared-ui-lib-uikit-button>
+        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'" [prefixIcon]="'social-twitter'"></shared-ui-lib-uikit-button>
+        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'" [prefixIcon]="'social-instagram'"></shared-ui-lib-uikit-button>
       </div>
     </div>
   </div>
@@ -41,10 +37,7 @@
   </div>
   <div class="right">
     <div class="map-section">
-      <google-map [options]="mapOptions" height="100%" width="100%">
-        <map-marker [position]="marker.position"></map-marker>
-        <map-info-window>{{ infoContent }}</map-info-window>
-      </google-map>
+      <shared-ui-lib-uikit-google-map></shared-ui-lib-uikit-google-map>
     </div>
   </div>
 </div>

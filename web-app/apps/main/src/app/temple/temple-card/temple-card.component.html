@@ -1,0 +1,25 @@
+<div class="temple-list grid-list" *ngIf="temples && temples.length>0">
+  <div class="home-temple-item grid-item" *ngFor="let temple of temples">
+    <img />
+    <div class="temple-address">
+      <shared-ui-lib-uikit-label
+        [class]="['mat-subtitle-1']"
+        [label]="getAddress(temple)"></shared-ui-lib-uikit-label>
+    </div>
+    <div class="temple-body">
+      <div class="temple-name">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-headline-5']"
+          [label]="temple.templeName"></shared-ui-lib-uikit-label>
+      </div>
+      <div class="temple-desc">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-subtitle-2']"
+          [hasHtmlContent]="true"
+          [label]="temple.description" [charLimit]="100"></shared-ui-lib-uikit-label>
+      </div>
+      <shared-ui-lib-uikit-button (buttonClicked)="onClick(temple)" [type]="'link'" [label]="labelService.getLabel(labelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
+    </div>
+  </div>
+  <div class="grid-item" *ngFor="let item of dummyEntry"></div>
+</div>

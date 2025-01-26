@@ -1,11 +1,10 @@
 <div class="event-list-section">
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
-  <div class="event-list-content">
+  <div class="event-list-content main-section">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
-    <div class="grid-list">
-
-    </div>
+    <vsd-web-app-event-card [orientation]="'vertical'" *ngIf="dataSet && dataSet.data"
+                            [events]="dataSet.data"></vsd-web-app-event-card>
   </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LabelService } from '@core-lib';
+import { LabelKey } from '@vsd-common/lib';
 
 @Component({
   selector: 'vsd-web-app-footer',
@@ -8,30 +10,19 @@ import { Router } from '@angular/router';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  mapOptions: google.maps.MapOptions = {
-    center: { lat: 25.1264456, lng: 73.3134433 },
-    zoom: 12,
-    zoomControl: false,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: false,
-  };
-  marker = {
-    position: { lat: 25.1264456, lng: 73.3134433 },
-  };
-  infoContent!: string;
+  btnList: { label: string, path: string, isActive: boolean }[] = [];
 
-  btnList = [
-    { label: 'आयोजन', path: 'event', isActive: false },
-    { label: 'मंदिर सूची', path: 'temple', isActive: false },
-    { label: 'मंडल सूची', path: 'mandal', isActive: false },
-    { label: 'इतिहास', path: 'history', isActive: false },
-    { label: 'संपर्क करें', path: 'contact-us', isActive: false },
-    { label: 'हमारे बारे में', path: 'about-us', isActive: false },
-  ];
-
-  constructor(private router: Router) {
-    this.setActiveState()
+  constructor(private router: Router,
+              private labelService: LabelService) {
+    this.btnList = [
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT), path: 'event', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE), path: 'temple', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL), path: 'mandal', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_HISTORY), path: 'history', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_ABOUT_US), path: 'about-us', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_CONTACT_US), path: 'contact-us', isActive: false },
+    ];
+    this.setActiveState();
   }
 
   async onClick(btn: { label: string; path: string; isActive: boolean }) {

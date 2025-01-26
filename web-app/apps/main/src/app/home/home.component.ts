@@ -11,4 +11,5 @@ export class HomeComponent {
   eventTitle = 'आगामी कार्यक्रम';
   aboutUsTitle = 'हमारे बारे में';
   trusteeTitle = 'हमारे ट्रस्टी';
+  facilitiesTitle = 'सुविधाएँ';
 }

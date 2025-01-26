@@ -4,3 +4,6 @@ export * from './lib/uikit-button/uikit-button.component';
 export * from './lib/uikit-label/uikit-label.component';
 export * from './lib/uikit-banner/uikit-banner.component';
 export * from './lib/uikit-input-error/uikit-input-error.component';
+export * from './lib/uikit-google-map/uikit-google-map.component';
+export * from './lib/pipe/truncate-text.pipe';
+export * from './lib/pipe/address-text.pipe';

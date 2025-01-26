@@ -11,13 +11,13 @@ export class TempleService {
   async loadTemples(pageNo: number = 0): Promise<ITableList<ITempleList>> {
     const res = await this.http.postRequest(TEMPLE, <ITableListFilter>{
       page: pageNo,
-      limit: 9,
+      limit: 100,
     }) as IResponse<ITableList<ITempleList>>;
     return res as unknown as ITableList<ITempleList>;
   }
 
-  async loadTempleDetails(id: number): Promise<ITemple> {
-    const res = await this.http.getRequest(TEMPLE_DETAILS(id)) as IResponse<ITemple>;
-    return res as ITemple;
+  async loadTempleDetails(url: string): Promise<ITempleList> {
+    const res = await this.http.getRequest(TEMPLE_DETAILS(url)) as IResponse<ITempleList>;
+    return res as ITempleList;
   }
 }

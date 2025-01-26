@@ -1,16 +1,14 @@
 <div class="contact-us-section" *ngIf="primaryMandal">
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
-  <div class="contact-us-content">
+  <div class="contact-us-content main-section">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
     <div class="details">
       <div class="address-section">
         <div class="map-section">
-          <google-map [options]="mapOptions" height="100%" width="100%">
-            <map-marker [position]="marker.position"></map-marker>
-            <map-info-window>{{ infoContent }}</map-info-window>
-          </google-map>
+          <shared-ui-lib-uikit-google-map *ngIf="primaryMandal"
+                                          [address]="primaryMandal.address"></shared-ui-lib-uikit-google-map>
         </div>
         <div class="address-title">
           <shared-ui-lib-uikit-label [class]="['mat-headline-1']"

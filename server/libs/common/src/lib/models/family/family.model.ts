@@ -1,5 +1,17 @@
-import {BelongsTo, Column, CreatedAt, DataType, Model, Scopes, Table, UpdatedAt} from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  ForeignKey,
+  Model,
+  Scopes,
+  Table,
+  UpdatedAt,
+} from 'sequelize-typescript';
 import { AdminUserModel } from '../admin';
+import { IMediaUpload } from '@vsd-common/lib';
+import { AddressModel, CityVillageModel, CountryModel, DistrictModel, StateModel } from '../location';
 
 @Table({
   tableName: 'txn_family',
@@ -21,6 +33,26 @@ import { AdminUserModel } from '../admin';
         model: AdminUserModel,
         required: true,
         as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: false,
+        as: 'address',
+        include: [
+          {
+            required: true,
+            model: CountryModel,
+          }, {
+            required: true,
+            model: StateModel,
+          }, {
+            required: true,
+            model: DistrictModel,
+          }, {
+            required: true,
+            model: CityVillageModel,
+          },
+        ],
       },
     ],
   },
@@ -68,7 +100,7 @@ export class FamilyModel extends Model<FamilyModel> {
     allowNull: true,
     type: DataType.JSONB,
   })
-  imagePath: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'visited_count',
@@ -77,6 +109,18 @@ export class FamilyModel extends Model<FamilyModel> {
     type: DataType.NUMBER,
   })
   visitedCount: number;
+
+  @ForeignKey(() => AddressModel)
+  @Column({
+    field: 'address_id',
+    allowNull: true,
+    type: DataType.NUMBER,
+    references: {
+      model: 'AddressModel',
+      key: 'address_id',
+    },
+  })
+  addressId: number;
 
   @Column({
     field: 'active',
@@ -133,4 +177,7 @@ export class FamilyModel extends Model<FamilyModel> {
 
   @BelongsTo(() => AdminUserModel, { as: 'updatedByUser', foreignKey: 'updatedBy', targetKey: 'adminUserId' })
   updatedByUser: AdminUserModel;
+
+  @BelongsTo(() => AddressModel, { as: 'address', foreignKey: 'addressId', targetKey: 'addressId' })
+  address: AddressModel;
 }

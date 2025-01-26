@@ -46,7 +46,7 @@ export class PagesService {
     };
   }
 
-  async getByUrl(page: string): Promise<IManageLegalPage> {
+  async getByUrl(page: string): Promise<ILegalPageList> {
     let id = 1;
     switch (page) {
       case 'about-us':
@@ -56,7 +56,7 @@ export class PagesService {
         id = 1;
         break;
     }
-    return this.getById(id);
+    return this.loadDetailById(id);
   }
 
   async getById(id: number): Promise<IManageLegalPage> {

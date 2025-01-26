@@ -11,7 +11,7 @@ export interface IManageLegalPage extends IBaseLegalPage, ICommonSEO {
   legalPageId?: number;
 }
 
-export interface ILegalPage extends IBaseLegalPage, ICommonTable {
+export interface ILegalPage extends IBaseLegalPage, ICommonTable, ICommonSEO {
   legalPageId: number;
   active: boolean;
 }

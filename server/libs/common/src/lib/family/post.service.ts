@@ -13,6 +13,7 @@ import {
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
 import { LabelService } from '../label';
+import { raw } from 'concurrently/dist/src/defaults';
 
 @Injectable()
 export class PostService {
@@ -118,5 +119,14 @@ export class PostService {
     obj.active = body.status;
     obj.updatedBy = userId;
     await obj.save();
+  }
+
+  async masterPost(): Promise<PostModel[]> {
+    return await this.postModel.findAll({
+      where: { active: true },
+      nest: true,
+      raw: true,
+      order: [['sequence', 'ASC']],
+    });
   }
 }

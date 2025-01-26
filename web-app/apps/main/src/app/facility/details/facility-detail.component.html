@@ -1,0 +1,11 @@
+<div class="facility-detail-section" *ngIf="facility">
+  <shared-ui-lib-uikit-banner
+    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <div class="facility-detail-content main-section">
+    <shared-ui-lib-uikit-label *ngIf="facility.title" [class]="['mat-headline-3']"
+                               [label]="facility.title"></shared-ui-lib-uikit-label>
+    <div class="divider divider-line"></div>
+
+    <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="facility.description"></shared-ui-lib-uikit-label>
+  </div>
+</div>

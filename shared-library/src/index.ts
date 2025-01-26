@@ -13,4 +13,5 @@ export * from './enum/index';
 export * from './faq/index';
 export * from './utils/index';
 export * from './gallery/index';
+export * from './facility/index';
 export * from './constants/ui.constants';

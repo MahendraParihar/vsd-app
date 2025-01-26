@@ -11,7 +11,7 @@ export class MandalService {
   async loadMandals(pageNo: number = 0): Promise<ITableList<IMandalList>> {
     const res = await this.http.postRequest(MANDAL_LIST, <ITableListFilter>{
       page: pageNo,
-      limit: 9,
+      limit: 100,
     }) as IResponse<ITableList<IMandalList>>;
     return res as unknown as ITableList<IMandalList>;
   }
@@ -21,8 +21,8 @@ export class MandalService {
     return res as unknown as IMandalDetail;
   }
 
-  async loadMandalDetails(id: number): Promise<IMandalDetail> {
-    const res = await this.http.getRequest(MANDAL_DETAILS(id)) as IResponse<IMandalDetail>;
+  async loadMandalDetails(url: string): Promise<IMandalDetail> {
+    const res = await this.http.getRequest(MANDAL_DETAILS(url)) as IResponse<IMandalDetail>;
     return res as IMandalDetail;
   }
 }

@@ -9,6 +9,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { UikitInputErrorComponent } from './uikit-input-error/uikit-input-error.component';
 import { MatError } from '@angular/material/form-field';
+import { TruncateTextPipe } from './pipe/truncate-text.pipe';
+import { UikitGoogleMapComponent } from './uikit-google-map/uikit-google-map.component';
+import { GoogleMap, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { AddressTextPipe } from './pipe/address-text.pipe';
 
 @NgModule({
   imports: [
@@ -17,6 +21,10 @@ import { MatError } from '@angular/material/form-field';
     MatIconModule,
     MatTooltipModule,
     MatError,
+    GoogleMap,
+    MapInfoWindow,
+    MapAdvancedMarker,
+    MapMarker,
   ],
   declarations: [
     UikitIconComponent,
@@ -24,6 +32,9 @@ import { MatError } from '@angular/material/form-field';
     UikitButtonComponent,
     UikitBannerComponent,
     UikitInputErrorComponent,
+    UikitGoogleMapComponent,
+    TruncateTextPipe,
+    AddressTextPipe,
   ],
   exports: [
     UikitIconComponent,
@@ -31,6 +42,9 @@ import { MatError } from '@angular/material/form-field';
     UikitLabelComponent,
     UikitBannerComponent,
     UikitInputErrorComponent,
+    AddressTextPipe,
+    TruncateTextPipe,
+    UikitGoogleMapComponent,
   ],
 })
 export class SharedUiLibModule {}

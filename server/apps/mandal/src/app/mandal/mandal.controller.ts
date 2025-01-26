@@ -38,6 +38,16 @@ export class MandalController {
     }
   }
 
+  @Public()
+  @Get('public/:url')
+  async loadMandalDetailByUrl(@Param('url') url: string) {
+    try {
+      return await this.mandalService.loadDetailByUrl(url);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
   @Get(':id')
   async loadMandal(@Param('id') id: number) {
     try {

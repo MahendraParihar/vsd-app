@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { map, Observable, shareReplay } from 'rxjs';
+import { LabelService } from '@core-lib';
+import { LabelKey } from '@vsd-common/lib';
 
 @Component({
   selector: 'vsd-web-app-base-layout',
@@ -17,17 +19,19 @@ export class BaseLayoutComponent {
     shareReplay(),
   );
 
-  btnList = [
-    { label: 'श्री विश्वकर्मा वंश सुथार समाज', path: '/', isActive: true },
-    { label: 'आयोजन', path: 'event', isActive: false },
-    { label: 'मंदिर सूची', path: 'temple', isActive: false },
-    { label: 'मंडल सूची', path: 'mandal', isActive: false },
-    { label: 'इतिहास', path: 'history', isActive: false },
-    { label: 'हमारे बारे में', path: 'about-us', isActive: false },
-    { label: 'संपर्क करें', path: 'contact-us', isActive: false },
-  ];
+  btnList: { label: string, path: string, isActive: boolean }[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private labelService: LabelService) {
+    this.btnList = [
+      { label: 'श्री विश्वकर्मा वंश सुथार समाज', path: '/', isActive: true },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT), path: 'event', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE), path: 'temple', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL), path: 'mandal', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_HISTORY), path: 'history', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_ABOUT_US), path: 'about-us', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_CONTACT_US), path: 'contact-us', isActive: false },
+    ];
     this.setActiveState();
   }
 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TempleService } from '../temple/services/temple.service';
 import { IEventList, ITableList, LabelKey } from '@vsd-common/lib';
 import { EventService } from './services/event.service';
 import { LabelService } from '@core-lib';
-import { Title } from '@angular/platform-browser';
+import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'vsd-web-app-event',
@@ -17,7 +16,8 @@ export class EventComponent implements OnInit {
 
   constructor(private eventService: EventService,
               private labelService: LabelService,
-              private title: Title) {
+              private title: Title,
+              private metaService: Meta) {
     this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_EVENT);
     if (this.pageTitle) {
       this.title.setTitle(this.pageTitle);
@@ -30,5 +30,20 @@ export class EventComponent implements OnInit {
 
   async loadData() {
     this.dataSet = await this.eventService.loadEvents(0);
+    this.bindSEOData();
+  }
+
+  bindSEOData() {
+    if (!this.dataSet) {
+      return;
+    }
+    const seoArray: MetaDefinition[] = [];
+    if (this.dataSet.tags) {
+      seoArray.push({ name: 'keyword', content: this.dataSet.tags.join(',') });
+    }
+    if (this.dataSet.metaDescription) {
+      seoArray.push({ name: 'description', content: this.dataSet.metaDescription });
+    }
+    this.metaService.addTags(seoArray);
   }
 }

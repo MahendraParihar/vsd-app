@@ -3,7 +3,7 @@ import {
   Column,
   CreatedAt,
   DataType,
-  ForeignKey,
+  ForeignKey, HasMany,
   Model,
   Scopes,
   Table,
@@ -14,10 +14,11 @@ import {
   AdminUserModel,
   CityVillageModel,
   CountryModel,
-  DistrictModel,
+  DistrictModel, FamilyModel, PostModel,
   StateModel,
 } from '@server/common';
 import { IMandalAdditionalInfo } from '@vsd-common/lib';
+import { MandalMemberModel } from './mandal-member.model';
 
 @Table({
   tableName: 'mst_mandal',
@@ -78,6 +79,83 @@ import { IMandalAdditionalInfo } from '@vsd-common/lib';
           }, {
             required: true,
             model: CityVillageModel,
+          },
+        ],
+      },
+    ],
+  },
+  withMember: {
+    include: [
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'createdByUser',
+      },
+      {
+        attributes: ['adminUserId', 'firstName', 'lastName'],
+        model: AdminUserModel,
+        required: true,
+        as: 'updatedByUser',
+      },
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+        include: [
+          {
+            required: true,
+            model: CountryModel,
+          }, {
+            required: true,
+            model: StateModel,
+          }, {
+            required: true,
+            model: DistrictModel,
+          }, {
+            required: true,
+            model: CityVillageModel,
+          },
+        ],
+      },
+      {
+        model: MandalMemberModel,
+        required: false,
+        where: { active: true },
+        include: [
+          {
+            attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],
+            model: FamilyModel,
+            where: { active: true },
+            required: false,
+            include: [
+              {
+                model: AddressModel,
+                required: false,
+                as: 'address',
+                include: [
+                  {
+                    required: false,
+                    model: CountryModel,
+                  }, {
+                    required: false,
+                    model: StateModel,
+                  }, {
+                    required: false,
+                    model: DistrictModel,
+                  }, {
+                    required: false,
+                    model: CityVillageModel,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            attributes: ['post'],
+            where: { active: true },
+            model: PostModel,
+            required: false,
           },
         ],
       },
@@ -220,4 +298,7 @@ export class MandalModel extends Model<MandalModel> {
 
   @BelongsTo(() => AddressModel, { as: 'address', foreignKey: 'addressId', targetKey: 'addressId' })
   address: AddressModel;
+
+  @HasMany(() => MandalMemberModel, { as: 'mandalMembers', foreignKey: 'mandalId', sourceKey: 'mandalId' })
+  mandalMembers: MandalMemberModel[];
 }

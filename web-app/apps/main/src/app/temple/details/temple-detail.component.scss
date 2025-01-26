@@ -1,0 +1,112 @@
+.temple-detail-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  shared-ui-lib-uikit-banner {
+    width: 100%;
+  }
+
+  .temple-detail-content {
+    margin-top: var(--spacing-48);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-16);
+
+    .temple-detail-box {
+      width: 100%;
+      display: grid;
+      gap: var(--spacing-24);
+      grid-template-columns: 3fr 1fr;
+
+      .left-section {
+
+      }
+
+      .right-section {
+        display: flex;
+        padding: var(--spacing-16);
+        gap: var(--spacing-16);
+        border-radius: var(--border-radius-10);
+        box-shadow: var(--box-shadow);
+        border: var(--stroke-thin) solid white;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .map-box {
+          width: 100%;
+          height: 250px;
+        }
+
+        .address-box {
+          display: flex;
+          gap: var(--spacing-12);
+          align-items: center;
+        }
+      }
+    }
+
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+//@media (min-width: 576px) {
+//  .temple-detail-section {
+//    .temple-detail-content {
+//      .temple-detail-box {
+//        display: flex !important;
+//        flex-direction: column !important;
+//      }
+//    }
+//  }
+//}
+//
+//// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) {
+//  .temple-detail-section {
+//    .temple-detail-content {
+//      .temple-detail-box {
+//        display: grid;
+//        grid-template-columns: 3fr 1fr;
+//      }
+//    }
+//  }
+//}
+//
+//// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) {
+//  .temple-detail-section {
+//    .temple-detail-content {
+//      .temple-detail-box {
+//        display: grid;
+//        grid-template-columns: 3fr 1fr;
+//      }
+//    }
+//  }
+//}
+//
+//// X-Large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) {
+//  .temple-detail-section {
+//    .temple-detail-content {
+//      .temple-detail-box {
+//        display: grid;
+//        grid-template-columns: 3fr 1fr;
+//      }
+//    }
+//  }
+//}
+//
+//// XX-Large devices (larger desktops, 1400px and up)
+//@media (min-width: 1400px) {
+//  .temple-detail-section {
+//    .temple-detail-content {
+//      .temple-detail-box {
+//        display: grid;
+//        grid-template-columns: 3fr 1fr;
+//      }
+//    }
+//  }
+//}

@@ -1,5 +1,5 @@
-import { Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
-import { FamilyModel, PostModel } from '@server/common';
+import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { AdminUserModel, FamilyModel, PostModel } from '@server/common';
 import { MandalModel } from './mandal.model';
 
 @Table({
@@ -117,4 +117,10 @@ export class MandalMemberModel extends Model<MandalMemberModel> {
     type: DataType.STRING(50),
   })
   modifiedIp: string;
+
+  @BelongsTo(() => PostModel, { as: 'post', foreignKey: 'postId', targetKey: 'postId' })
+  post: PostModel;
+
+  @BelongsTo(() => FamilyModel, { as: 'family', foreignKey: 'familyId', targetKey: 'familyId' })
+  family: FamilyModel;
 }

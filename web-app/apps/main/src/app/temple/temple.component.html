@@ -1,16 +1,12 @@
 <div class="temple-list-section">
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
-  <div class="temple-list-content">
+  <div class="temple-list-content main-section">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
-    <div class="grid-list" *ngIf="dataSet && dataSet.data">
-      <mat-card class="grid-item" appearance="outlined" *ngFor="let item of dataSet.data">
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-actions>
-          <mat-card-title>{{ item.templeName }}</mat-card-title>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+    <div class="divider divider-line"></div>
+    <ng-container *ngIf="dataSet && dataSet.data && dataSet.data.length>0">
+      <vsd-web-app-temple-card [temples]="dataSet.data"></vsd-web-app-temple-card>
+    </ng-container>
   </div>
 </div>

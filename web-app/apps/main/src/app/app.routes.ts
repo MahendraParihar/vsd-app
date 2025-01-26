@@ -6,10 +6,12 @@ import { HistoryComponent } from './history/history.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EventDetailComponent } from './event/details/event-detail.component';
 import { TempleDetailComponent } from './temple/details/temple-detail.component';
-import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
-import { MandalComponent } from './mandal/mandal.component';
+import { FacilityDetailComponent } from './facility/details/facility-detail.component';
+import { FacilityComponent } from './facility/facility.component';
 import { TempleComponent } from './temple/temple.component';
 import { EventComponent } from './event/event.component';
+import { MandalComponent } from './mandal/mandal.component';
+import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
 
 export const appRoutes: Route[] = [
   {
@@ -55,6 +57,14 @@ export const appRoutes: Route[] = [
       {
         path: 'mandal/:url',
         component: MandalDetailComponent
+      },
+      {
+        path: 'facility',
+        component: FacilityComponent
+      },
+      {
+        path: 'facility/:url',
+        component: FacilityDetailComponent
       }
     ]
   }

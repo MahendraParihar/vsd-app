@@ -49,15 +49,23 @@ export class TempleService {
   }
 
   async getById(id: number): Promise<ITemple> {
-    const obj = await this.templeModel.scope('list').findOne({ where: { templeId: id }, nest: true, raw: true });
+    const obj = await this.templeModel.findOne({ where: { templeId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_TEMPLE));
     }
     return <ITemple>obj;
   }
 
+  async loadDetailByUrl(url: string): Promise<ITempleList> {
+    const data = await this.templeModel.scope('list').findOne({
+      where: { url: url },
+    });
+
+    return this.formatObj(data);
+  }
+
   async loadDetailById(id: number): Promise<ITempleList> {
-    const data = await this.templeModel.scope('details').findOne({
+    const data = await this.templeModel.findOne({
       where: { templeId: id },
     });
 
@@ -109,6 +117,7 @@ export class TempleService {
       templeName: data.templeName,
       imagePath: data.imagePath,
       tags: data.tags,
+      description: data.description,
       metaTitle: data.metaTitle,
       metaDescription: data.metaDescription,
       url: data.url,

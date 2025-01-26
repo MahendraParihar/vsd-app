@@ -57,8 +57,14 @@
   --line-height-12: #{rem(12px)};
   --line-height-10: 10px;
 
+  // default box
+  --box-shadow: #{rem(0px)} #{rem(6px)} #{rem(16px)} #{rem(0px)} rgba(0, 0, 0, 0.1019607843);
+
   // icon
   --default-icon-color: var(--icon-color);
+
+  // Grid Item
+  --default-grid-item-basis: #{rem(300px)};
 
   // Header
   --header-hight: #{rem(90px)};
@@ -77,4 +83,11 @@
 
   // event date section
   --date-box-width: #{rem(86px)};
+
+  // Temple
+  --temple-grid-item-height: #{rem(400px)};
+  --temple-image-height: #{rem(300px)};
+
+  // Member Image
+  --mandal-member-image-size: #{rem(80px)};
 }

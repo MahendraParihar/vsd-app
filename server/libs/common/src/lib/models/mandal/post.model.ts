@@ -57,6 +57,13 @@ export class PostModel extends Model<PostModel> {
   })
   active: boolean;
 
+  @Column({
+    field: 'sequence',
+    allowNull: true,
+    type: DataType.INTEGER,
+  })
+  sequence: number;
+
   @CreatedAt
   @Column({
     field: 'created_at',

@@ -11,13 +11,13 @@ export class EventService {
   async loadEvents(pageNo: number = 0): Promise<ITableList<IEventList>> {
     const res = await this.http.postRequest(EVENT, <ITableListFilter>{
       page: pageNo,
-      limit: 9,
+      limit: 100,
     }) as IResponse<ITableList<IEventList>>;
     return res as unknown as ITableList<IEventList>;
   }
 
-  async loadEventDetails(id: number): Promise<IEvent> {
-    const res = await this.http.getRequest(EVENT_DETAILS(id)) as IResponse<IEvent>;
-    return res as IEvent;
+  async loadEventDetails(url: string): Promise<IEventList> {
+    const res = await this.http.getRequest(EVENT_DETAILS(url)) as IResponse<IEventList>;
+    return res as IEventList;
   }
 }
