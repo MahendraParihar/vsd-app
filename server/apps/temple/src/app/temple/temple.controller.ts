@@ -21,6 +21,16 @@ export class TempleController {
   }
 
   @Public()
+  @Get('public/home')
+  loadHomeTemples(): Promise<ITempleList[]> {
+    try {
+      return this.templeService.loadHomeTemples();
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Public()
   @Get('public/:url')
   loadPublicTempleDetail(@Param('url') url: string): Promise<ITempleList> {
     try {

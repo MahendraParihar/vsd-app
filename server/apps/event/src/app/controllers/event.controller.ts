@@ -20,6 +20,16 @@ export class EventController {
   }
 
   @Public()
+  @Get('public/upcoming-event')
+  loadUpcomingEvent(): Promise<IEventDetail[]> {
+    try {
+      return this.eventService.loadUpcomingEvents();
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Public()
   @Get('public/:url')
   loadEventDetailByUrl(@Param('url') url: string): Promise<IEventDetail> {
     try {

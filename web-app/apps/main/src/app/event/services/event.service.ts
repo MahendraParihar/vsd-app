@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@core-lib';
 import { IEventDetail, IEventList, IResponse, ITableList, ITableListFilter } from '@vsd-common/lib';
-import { EVENT, EVENT_DETAILS } from '../event.url';
+import { EVENT, EVENT_DETAILS, UPCOMING_EVENTS } from '../event.url';
 
 @Injectable()
 export class EventService {
@@ -19,5 +19,10 @@ export class EventService {
   async loadEventDetails(url: string): Promise<IEventDetail> {
     const res = await this.http.getRequest(EVENT_DETAILS(url)) as IResponse<IEventDetail>;
     return res as IEventDetail;
+  }
+
+  async loadUpcomingEvents(): Promise<IEventDetail[]> {
+    const res = await this.http.getRequest(UPCOMING_EVENTS) as IResponse<IEventDetail>;
+    return res as IEventDetail[];
   }
 }

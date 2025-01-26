@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@core-lib';
 import { IResponse, ITableList, ITableListFilter, ITemple, ITempleList } from '@vsd-common/lib';
-import { TEMPLE, TEMPLE_DETAILS } from '../temple.url';
+import { HOME_TEMPLE, TEMPLE, TEMPLE_DETAILS } from '../temple.url';
 
 @Injectable()
 export class TempleService {
@@ -19,5 +19,10 @@ export class TempleService {
   async loadTempleDetails(url: string): Promise<ITempleList> {
     const res = await this.http.getRequest(TEMPLE_DETAILS(url)) as IResponse<ITempleList>;
     return res as ITempleList;
+  }
+
+  async loadHomeTemples(): Promise<ITempleList[]> {
+    const res = await this.http.getRequest(HOME_TEMPLE) as IResponse<ITempleList[]>;
+    return res as ITempleList[];
   }
 }

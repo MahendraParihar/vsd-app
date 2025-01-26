@@ -48,6 +48,20 @@ export class TempleService {
     };
   }
 
+  async loadHomeTemples(): Promise<ITempleList[]> {
+    const data = await this.templeModel.scope('list').findAll({
+      where: {
+        active: true,
+      },
+      order: ['templeId'],
+      limit: 4,
+    });
+
+    return data.map((m) => {
+      return this.formatObj(m.get({ plain: true }));
+    });
+  }
+
   async getById(id: number): Promise<ITemple> {
     const obj = await this.templeModel.findOne({ where: { templeId: id }, nest: true, raw: true });
     if (!obj) {

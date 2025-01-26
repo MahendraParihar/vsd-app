@@ -64,6 +64,23 @@ export class EventService {
     };
   }
 
+  async loadUpcomingEvents(): Promise<IEventDetail[]> {
+    const data = await this.eventModel.scope('withMember').findAll({
+      where: {
+        date: {
+          [Op.gte]: new Date(),
+        },
+      },
+      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']],
+      limit: 3,
+      nest: true,
+    });
+
+    return data.map((d) => {
+      return this.formatEvent(d.get({ plain: true }));
+    });
+  }
+
   async loadDetailByUrl(url: string): Promise<IEventDetail> {
     const data = await this.eventModel.scope('withMember').findOne({
       where: { url: url },

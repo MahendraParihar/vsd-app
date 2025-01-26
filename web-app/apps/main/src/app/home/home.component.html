@@ -1,18 +1,18 @@
 <div class="home-section">
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
-  <div class="home-event-section data-section">
+  <div class="home-event-section data-section" *ngIf="upcomingEvents && upcomingEvents.length> 0">
     <shared-ui-lib-uikit-label *ngIf="eventTitle" [class]="['mat-headline-3']"
                                [label]="eventTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <vsd-web-app-event-card></vsd-web-app-event-card>
+    <vsd-web-app-event-card [events]="upcomingEvents" [orientation]="'horizontal'"></vsd-web-app-event-card>
   </div>
 
-  <div class="home-temple-section data-section">
+  <div class="home-temple-section data-section" *ngIf="temples && temples.length>0">
     <shared-ui-lib-uikit-label *ngIf="templeTitle" [class]="['mat-headline-3']"
                                [label]="templeTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <vsd-web-app-temple-card></vsd-web-app-temple-card>
+    <vsd-web-app-temple-card [temples]="temples"></vsd-web-app-temple-card>
   </div>
 
   <div class="home-about-us-section data-section">
