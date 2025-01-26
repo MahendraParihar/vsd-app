@@ -18,7 +18,10 @@
           [hasHtmlContent]="true"
           [label]="temple.description" [charLimit]="100"></shared-ui-lib-uikit-label>
       </div>
-      <shared-ui-lib-uikit-button (buttonClicked)="onClick(temple)" [type]="'link'" [label]="labelService.getLabel(labelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
+      <shared-ui-lib-uikit-button
+        [hasUnderline]="true"
+        (buttonClicked)="onClick(temple)" [type]="'link'"
+        [label]="labelService.getLabel(labelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
     </div>
   </div>
   <div class="grid-item" *ngFor="let item of dummyEntry"></div>

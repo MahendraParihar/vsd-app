@@ -4,7 +4,9 @@ import {
   IAddressDetail,
   IBaseAdminUser,
   IEvent,
+  IEventDetail,
   IEventList,
+  IEventMemberInfo,
   IManageEvent,
   IStatusChange,
   ITableList,
@@ -13,15 +15,18 @@ import {
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
 import { EventModel } from '../models/event.model';
-import { AddressService, LabelService } from '@server/common';
+import { AddressService, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
+import { filter } from 'lodash';
+import { EventCoordinatorModel } from '../models/event-coordinator.model';
 
 @Injectable()
 export class EventService {
   constructor(@InjectModel(EventModel) private eventModel: typeof EventModel,
               private labelService: LabelService,
               private sequelize: Sequelize,
-              private addressService: AddressService) {
+              private addressService: AddressService,
+              private postService: PostService) {
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IEventList>> {
@@ -40,7 +45,7 @@ export class EventService {
       order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']],
     });
     const data = rows.map((data: EventModel) => {
-      return this.formatObj(data);
+      return this.formatEvent(data);
     });
     return <ITableList<IEventList>>{
       data: data,
@@ -59,12 +64,26 @@ export class EventService {
     };
   }
 
-  async loadDetailById(id: number): Promise<IEventList> {
-    const data = await this.eventModel.scope('list').findOne({
+  async loadDetailByUrl(url: string): Promise<IEventDetail> {
+    const data = await this.eventModel.scope('withMember').findOne({
+      where: { url: url },
+      nest: true,
+    });
+
+    const post: PostModel[] = await this.postService.masterPost();
+    return this.formatEvent(data.get({ plain: true }), post);
+  }
+
+  async loadDetailById(id: number): Promise<IEventDetail> {
+    const data = await this.eventModel.scope('details').findOne({
       where: { eventId: id },
     });
 
-    return this.formatObj(data);
+    if (!data) {
+      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_EVENT));
+    }
+
+    return this.formatEvent(data);
   }
 
   async manage(obj: IManageEvent, userId: number) {
@@ -112,11 +131,33 @@ export class EventService {
     await obj.save();
   }
 
-  private formatObj(data: EventModel) {
-    return <IEventList>{
+  private formatEvent(data: EventModel, post: PostModel[] = []) {
+    const eventMembers: IEventMemberInfo[] = [];
+    for (const p of post) {
+      const members: EventCoordinatorModel[] = filter(data.eventMembers, { postId: p.postId });
+      if (members && members.length > 0) {
+        const s: IEventMemberInfo = {
+          post: p.post,
+          members: [],
+        };
+        for (const member of members) {
+          s.members.push({
+            firstName: member.family.firstName,
+            lastName: member.family.lastName,
+            middleName: member.family.middleName,
+            imagePath: member.family.imagePath && member.family.imagePath.length > 0 ? member.family.imagePath[0] : null,
+            cityVillage: member.family.address ? member.family.address.cityVillage.cityVillage : null,
+          });
+        }
+        eventMembers.push(s);
+      }
+    }
+    return <IEventDetail>{
       eventId: data.eventId,
       title: data.title,
       description: data.description,
+      eventMembers: eventMembers,
+      agenda: data.agenda,
       date: data.date,
       time: data.time,
       active: data.active,

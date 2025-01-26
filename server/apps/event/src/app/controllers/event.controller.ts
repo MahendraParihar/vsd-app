@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Public, StatusChangeDto, TableListDto } from '@server/common';
-import { IEventList, ITableList } from '@vsd-common/lib';
+import { IEventDetail, IEventList, ITableList } from '@vsd-common/lib';
 import { EventService } from './event.service';
 import { EventDto } from './dto/event.dto';
 
@@ -14,6 +14,16 @@ export class EventController {
   loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
     try {
       return this.eventService.load(payload);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Public()
+  @Get('public/:url')
+  loadEventDetailByUrl(@Param('url') url: string): Promise<IEventDetail> {
+    try {
+      return this.eventService.loadDetailByUrl(url);
     } catch (e) {
       throw new Error(e);
     }
@@ -38,7 +48,7 @@ export class EventController {
   }
 
   @Get('details/:id')
-  loadEventDetail(@Param('id') id: number) {
+  loadEventDetail(@Param('id') id: number): Promise<IEventDetail> {
     try {
       return this.eventService.loadDetailById(id);
     } catch (e) {
@@ -49,7 +59,7 @@ export class EventController {
   @Post('manage')
   manageEvent(@Body() body: EventDto, userId: number) {
     try {
-      return this.eventService.manage(body, 1);
+      return this.eventService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

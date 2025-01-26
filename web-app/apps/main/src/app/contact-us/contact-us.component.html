@@ -21,7 +21,7 @@
         <div class="address-info">
           <div class="address-item">
             <div class="icon_location_img">
-              <shared-ui-lib-uikit-icon [name]="'address'" [size]="'medium'"
+              <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'"
                                         [color]="'primary'"></shared-ui-lib-uikit-icon>
             </div>
             <shared-ui-lib-uikit-label [label]="address"
@@ -30,7 +30,7 @@
           <div class="address-item"
                *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.emailId">
             <div class="icon_email_img">
-              <shared-ui-lib-uikit-icon [name]="'mail'" [size]="'medium'"
+              <shared-ui-lib-uikit-icon [name]="'mail'" [size]="'large'"
                                         [color]="'primary'"></shared-ui-lib-uikit-icon>
             </div>
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
@@ -39,7 +39,7 @@
           <div class="address-item"
                *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.phoneNumber">
             <div class="icon_email_img">
-              <shared-ui-lib-uikit-icon [name]="'call'" [size]="'medium'"
+              <shared-ui-lib-uikit-icon [name]="'call'" [size]="'large'"
                                         [color]="'primary'"></shared-ui-lib-uikit-icon>
             </div>
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
@@ -102,7 +102,7 @@
           </div>
           <div class="form-item">
             <shared-ui-lib-uikit-button (buttonClicked)="submitForm()" [type]="'raised'"
-                                        [label]="'submit'"></shared-ui-lib-uikit-button>
+                                        [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></shared-ui-lib-uikit-button>
           </div>
         </form>
       </div>

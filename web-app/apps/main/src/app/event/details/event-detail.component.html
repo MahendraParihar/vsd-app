@@ -1,1 +1,70 @@
-<p>event-detail works!</p>
+<div class="event-detail-section" *ngIf="event">
+  <shared-ui-lib-uikit-banner
+    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <div class="event-detail-content main-section">
+    <div class="flex-d">
+      <shared-ui-lib-uikit-label *ngIf="event.title" [class]="['mat-headline-3']"
+                                 [label]="event.title"></shared-ui-lib-uikit-label>
+    </div>
+    <div class="divider divider-line"></div>
+    <div class="event-detail-box">
+      <div class="left-section">
+        <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="event.description"></shared-ui-lib-uikit-label>
+      </div>
+      <div class="right-section border-box">
+        <div class="map-box">
+          <shared-ui-lib-uikit-google-map [address]="event.address"></shared-ui-lib-uikit-google-map>
+        </div>
+        <div class="address-box">
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-label [class]="['mat-heading-5']"
+                                     label="{{ event.address | addressText }}"></shared-ui-lib-uikit-label>
+        </div>
+
+      </div>
+    </div>
+    <div class="agenda-section" *ngIf="event.agenda">
+      <div class="subtitle-line">
+        <shared-ui-lib-uikit-label [label]="'कार्यसूची'" [class]="['mat-headline-4']"></shared-ui-lib-uikit-label>
+        <div class="line"></div>
+      </div>
+      <div class="tabs" *ngIf="event.agenda.length > 1">
+        <shared-ui-lib-uikit-button (buttonClicked)="changeAgenda(i)"
+          [ngClass]="{'active': activeTabIndex === i}" [type]="'raised'"
+          *ngFor="let agenda of event.agenda; let i = index"
+          label="{{agenda.date | date: 'dd MMMM yyyy'}}"></shared-ui-lib-uikit-button>
+      </div>
+      <div class="agenda-detail-section" *ngIf="this.event.agenda[this.activeTabIndex].details">
+        <div class="agenda-detail-item" *ngFor="let item of this.event.agenda[this.activeTabIndex].details">
+          <shared-ui-lib-uikit-label [label]="item.title" [class]="['mat-headline-5']"></shared-ui-lib-uikit-label>
+          <shared-ui-lib-uikit-label [label]="item.details" [class]="['mat-subtitle-2']"></shared-ui-lib-uikit-label>
+          <div class="date">
+            <shared-ui-lib-uikit-icon [label]="'schedule'" [color]="'primary'"
+                                      [size]="'large'"></shared-ui-lib-uikit-icon>
+            <shared-ui-lib-uikit-label label="{{item.time.toString()}}"
+                                       [class]="['mat-heading-6']"></shared-ui-lib-uikit-label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="member-section" *ngIf="event.eventMembers && event.eventMembers.length > 0">
+      <div class="subtitle-line">
+        <shared-ui-lib-uikit-label [label]="'आयोजक'" [class]="['mat-headline-4']"></shared-ui-lib-uikit-label>
+        <div class="line"></div>
+      </div>
+      <div class="grid-list">
+        <ng-container *ngFor="let post of event.eventMembers">
+        <div class="grid-item event-coordinator" *ngFor="let m of post.members">
+          <img/>
+          <shared-ui-lib-uikit-label [class]="['mat-headline-5','text-center']"
+                                     [hasHtmlContent]="true"
+                                     label="{{m.firstName + ' ' + m.middleName + ' ' + m.lastName}}"></shared-ui-lib-uikit-label>
+          <shared-ui-lib-uikit-label [class]="['mat-headline-6','secondary-color']"
+                                     [label]="m.cityVillage ? m.cityVillage : ''"></shared-ui-lib-uikit-label>
+        </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

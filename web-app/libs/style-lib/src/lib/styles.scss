@@ -75,10 +75,33 @@ hr {
   --mat-toolbar-container-text-color: var(--accent);
 }
 
+.line {
+  height: var(--stroke-thick);
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, #FFFFFF 100%);
+}
+
 .flex-h {
   display: flex;
   align-items: center;
   gap: var(--spacing-12);
+}
+
+.border-box {
+  border: var(--stroke-thin) solid var(--border-color);
+  border-radius: var(--border-radius-25);
+}
+
+.border-25 {
+  border-radius: var(--border-radius-25);
+}
+
+.subtitle-line {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-16);
+  align-items: center;
 }
 
 // X-Small devices (portrait phones, less than 576px)

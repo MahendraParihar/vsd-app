@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class UikitBannerComponent {
   @Input() banner!: string[];
+  @Input() title!: string;
+  @Input() subTitle!: string;
 
   slideIndex: number = 0;
 

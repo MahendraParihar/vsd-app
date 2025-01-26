@@ -1,19 +1,22 @@
 <ng-container *ngIf="banner">
-  <div *ngIf="banner.length === 0" class="single-banner">
-    <img [src]="banner[0]" alt="" />
-  </div>
-  <div *ngIf="banner.length > 0" class="multi-banner">
+  <div class="multi-banner">
     <div class="slideshow-container" #myDiv>
       <div class="mySlides fade">
-        <shared-ui-lib-uikit-label [ngClass]="{'number-text': true}" label="{{ slideIndex + 1 }} / {{ banner.length }}"></shared-ui-lib-uikit-label>
+        <shared-ui-lib-uikit-label *ngIf="banner.length > 1" [ngClass]="{'number-text': true}"
+                                   label="{{ slideIndex + 1 }} / {{ banner.length }}"></shared-ui-lib-uikit-label>
         <img
           [src]="banner[slideIndex]"
           style="width:100%"
           alt="" />
-        <div class="text">Caption Text</div>
+        <div class="content">
+          <div class="breadcrumb">Caption Text</div>
+          <div class="title" *ngIf="title">Caption Text</div>
+          <div class="sub-title" *ngIf="subTitle">Caption Text</div>
+        </div>
+
       </div>
-      <a class="prev" *ngIf="slideIndex !== 0" (click)="previousSlide()">&#10094;</a>
-      <a class="next" *ngIf="slideIndex !== banner.length - 1" (click)="nextSlide()">&#10095;</a>
+      <a class="prev" *ngIf="banner.length> 1 && slideIndex !== 0" (click)="previousSlide()">&#10094;</a>
+      <a class="next" *ngIf="banner.length> 1 && slideIndex !== banner.length - 1" (click)="nextSlide()">&#10095;</a>
     </div>
   </div>
 </ng-container>

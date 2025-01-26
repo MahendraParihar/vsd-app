@@ -1,6 +1,6 @@
-import { Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import { EventModel } from './event.model';
-import { FamilyModel } from '@server/common';
+import { FamilyModel, PostModel } from '@server/common';
 
 @Table({
   tableName: 'txn_event_coordinator',
@@ -42,12 +42,17 @@ export class EventCoordinatorModel extends Model<EventCoordinatorModel> {
   })
   familyId: number;
 
+  @ForeignKey(() => PostModel)
   @Column({
-    field: 'post',
+    field: 'post_id',
     allowNull: false,
-    type: DataType.STRING(100),
+    type: DataType.NUMBER,
+    references: {
+      model: PostModel,
+      key: 'post_id',
+    },
   })
-  post: string;
+  postId: number;
 
   @Column({
     field: 'active',
@@ -98,4 +103,10 @@ export class EventCoordinatorModel extends Model<EventCoordinatorModel> {
     type: DataType.STRING(50),
   })
   modifiedIp: string;
+
+  @BelongsTo(() => PostModel, { as: 'post', foreignKey: 'postId', targetKey: 'postId' })
+  post: PostModel;
+
+  @BelongsTo(() => FamilyModel, { as: 'family', foreignKey: 'familyId', targetKey: 'familyId' })
+  family: FamilyModel;
 }

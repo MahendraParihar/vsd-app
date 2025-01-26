@@ -27,6 +27,7 @@
         [charLimit]="250"
         [label]="event.description"></shared-ui-lib-uikit-label>
     </div>
+    <shared-ui-lib-uikit-button [type]="'link'" [hasUnderline]="true" (buttonClicked)="onClick(event)" [label]="labelService.getLabel(LabelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
   </div>
   <div class="right single">
     <img class="about_us_1" />

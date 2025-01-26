@@ -13,7 +13,7 @@
       <shared-ui-lib-uikit-label [label]="'हमारे सदस्यों से मिलें'"
                                  [class]="['mat-headline-3','secondary-color']"></shared-ui-lib-uikit-label>
       <div *ngFor="let post of mandal.mandalMembers" class="mandal-member-section">
-        <div class="post-section" *ngIf="post.members && post.members.length > 0">
+        <div class="subtitle-line" *ngIf="post.members && post.members.length > 0">
           <shared-ui-lib-uikit-label [label]="post.post" [class]="['mat-headline-4']"></shared-ui-lib-uikit-label>
           <div class="line fill-remaining-space"></div>
         </div>

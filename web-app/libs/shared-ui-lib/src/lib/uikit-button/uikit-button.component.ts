@@ -15,6 +15,8 @@ export class UikitButtonComponent {
   @Input() prefixIconSize: IconSizeType = 'regular';
   @Input() disableRipple = false;
   @Input() type: 'regular' | 'raised' | 'stroked' | 'flat' | 'icon-only' | 'link' = 'regular';
+  @Input() color: 'primary' | 'warn' | 'accent' | 'light' = 'primary';
+  @Input() hasUnderline = false;
 
   @Output() buttonClicked: EventEmitter<Event> = new EventEmitter();
 

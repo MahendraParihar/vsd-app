@@ -29,8 +29,8 @@
     <div class="nav">
       <shared-ui-lib-uikit-button *ngFor="let btn of btnList;"
                                   (buttonClicked)="onClick(btn)"
+                                  [color]="!btn.isActive ? 'primary' : 'accent'"
                                   [type]="'link'"
-                                  [ngClass]="{'is-active':btn.isActive}"
                                   [disableRipple]="true"
                                   [label]="btn.label"></shared-ui-lib-uikit-button>
     </div>

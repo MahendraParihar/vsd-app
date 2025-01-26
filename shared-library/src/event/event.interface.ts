@@ -1,6 +1,7 @@
 import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
 import { IMediaUpload } from '../core';
+import { IMandalAdditionalInfo, IMandalList, IMandalMemberInfo } from '../mandal';
 
 export interface IEventAgendaDetail {
   title: string;
@@ -39,4 +40,19 @@ export interface IEventList extends IEvent {
   address: IAddressDetail;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
+}
+
+export interface IEventMemberInfo {
+  post: string;
+  members: {
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    cityVillage: string | null;
+    imagePath: IMediaUpload | null;
+  }[];
+}
+
+export interface IEventDetail extends IEventList {
+  eventMembers: IEventMemberInfo[];
 }
