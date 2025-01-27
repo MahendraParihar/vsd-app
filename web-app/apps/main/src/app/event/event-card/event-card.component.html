@@ -14,7 +14,7 @@
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
                                        label="{{events[activeEventIndex].time}}"></shared-ui-lib-uikit-label>
           </div>
-          <hr>
+          <mat-divider></mat-divider>
           <div class="flex-h">
             <shared-ui-lib-uikit-icon [name]="'address'"></shared-ui-lib-uikit-icon>
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
@@ -38,7 +38,7 @@
     </div>
   </div>
 } @else {
-  <ng-container *ngFor="let event of events">
+  <ng-container *ngFor="let event of events let i = index">
     <div class="home-event-detail-section">
       <div class="left double">
         <shared-ui-lib-uikit-label [class]="['mat-headline-4']"
@@ -76,6 +76,8 @@
         <img class="about_us_1" />
       </div>
     </div>
+
+    <mat-divider *ngIf="i!== events.length-1"></mat-divider>
   </ng-container>
 }
 
