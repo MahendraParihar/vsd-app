@@ -119,7 +119,7 @@ export class FacilityService {
 
       let res;
       const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
-      obj.addressId = address.addressId;
+      Object.assign(dataObj, { addressId: address.addressId });
       if (obj.facilityId) {
         res = await this.facilityModel.update(dataObj, {
           where: { facilityId: obj.facilityId },

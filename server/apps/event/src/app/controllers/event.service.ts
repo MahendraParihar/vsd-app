@@ -58,7 +58,6 @@ export class EventService {
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_EVENT));
     }
-    console.log(obj);
     return <IEvent>{
       ...obj,
     };
@@ -125,7 +124,7 @@ export class EventService {
 
       let res;
       const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
-      obj.addressId = address.addressId;
+      Object.assign(dataObj, { addressId: address.addressId });
       if (obj.eventId) {
         res = await this.eventModel.update(dataObj, { where: { eventId: obj.eventId }, transaction: transaction });
       } else {

@@ -75,8 +75,8 @@ export class AddressService {
         createdIp: createdIp,
         createdBy: userId,
       });
-      console.log(addressObj);
-      return await this.addressModel.create(addressObj, { transaction: transaction });
+      const tee = await this.addressModel.create(addressObj, { transaction: transaction });
+      return tee.get({plain:true});
     }
   }
 

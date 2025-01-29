@@ -103,7 +103,7 @@ export class TempleService {
       }
       let res;
       const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
-      obj.addressId = address.addressId;
+      Object.assign(dataObj, { addressId: address.addressId });
       if (obj.templeId) {
         res = await this.templeModel.update(dataObj, { where: { templeId: obj.templeId }, transaction: transaction });
       } else {

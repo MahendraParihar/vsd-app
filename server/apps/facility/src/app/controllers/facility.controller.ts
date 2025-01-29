@@ -69,7 +69,7 @@ export class FacilityController {
   @Post('manage')
   manageEvent(@Body() body: FacilityDto, userId: number) {
     try {
-      return this.facilityService.manage(body, userId);
+      return this.facilityService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }
