@@ -143,3 +143,51 @@ CREATE TABLE IF NOT EXISTS txn_inquiry
 
 CREATE INDEX ix_inquiries_app_user_id
   ON txn_inquiry (app_user_id);
+
+-- ------------------------------------------ FACILITY ---------------------------------------------
+DROP TABLE IF EXISTS txn_facility;
+
+CREATE TABLE IF NOT EXISTS txn_facility
+(
+    facility_id      SERIAL      NOT NULL PRIMARY KEY,
+    address_id       INTEGER     NOT NULL,
+    title            VARCHAR(100)         DEFAULT NULL,
+    description      TEXT                 DEFAULT NULL,
+    image_path       jsonb                DEFAULT NULL,
+    tags             varchar[]            default null,
+    url              text,
+    meta_title       varchar(60),
+    meta_description varchar(160),
+    visited_count    INT                  DEFAULT 0,
+    active           BOOLEAN     NOT NULL DEFAULT '1',
+    created_ip       VARCHAR(20) NOT NULL,
+    modified_ip      VARCHAR(20) NOT NULL,
+    created_at       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by       INTEGER     NOT NULL,
+    updated_by       INTEGER     NOT NULL,
+    CONSTRAINT tf_address_id_fk FOREIGN KEY (address_id) REFERENCES txn_address (address_id)
+);
+
+CREATE INDEX ix_facility_address_id
+    ON txn_facility (address_id);
+
+CREATE TABLE IF NOT EXISTS txn_facility_member
+(
+    event_contact_person_number_id SERIAL      NOT NULL PRIMARY KEY,
+    facility_id                    INT         NOT NULL,
+    family_id                      INT         NOT NULL,
+    post_id                        INTEGER     NOT NULL,
+    active                         BOOLEAN     NOT NULL DEFAULT '1',
+    created_ip                     VARCHAR(20) NOT NULL,
+    modified_ip                    VARCHAR(20) NOT NULL,
+    created_at                     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at                     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by                     INTEGER     NOT NULL,
+    updated_by                     INTEGER     NOT NULL,
+    CONSTRAINT tf_family_id_fk FOREIGN KEY (family_id) REFERENCES txn_family (family_id),
+    CONSTRAINT tf_facility_id_fk FOREIGN KEY (facility_id) REFERENCES txn_facility (facility_id),
+    CONSTRAINT tf_post_id_fk FOREIGN KEY (post_id) REFERENCES mst_post (post_id)
+);
+CREATE INDEX ix_facility_member_facility_id
+    ON txn_facility_member (facility_id);

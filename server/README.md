@@ -20,6 +20,11 @@ Run `npx nx build main` to build the application. The build artifacts are stored
 
 ## Running tasks
 
+To create new app
+```
+nx g @nx/nest:app apps/my-nest-app
+```
+
 To create new lib
 ```
 nx g @nx/nest:lib libs/common --buildable

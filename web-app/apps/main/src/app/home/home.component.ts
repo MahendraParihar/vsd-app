@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event/services/event.service';
-import { IEventDetail, ILegalPageList, ITempleList, LabelKey } from '@vsd-common/lib';
+import { IEventDetail, IFacilityList, ILegalPageList, ITempleList, LabelKey } from '@vsd-common/lib';
 import { LabelService } from '@core-lib';
 import { TempleService } from '../temple/services/temple.service';
 import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
+import { FacilityService } from '../facility/services/facility.service';
 
 @Component({
   selector: 'vsd-web-app-home',
@@ -22,10 +23,12 @@ export class HomeComponent implements OnInit {
 
   upcomingEvents: IEventDetail[] = [];
   temples: ITempleList[] = [];
+  facilities: IFacilityList[] = [];
   legalPage!: ILegalPageList;
 
   constructor(private eventService: EventService,
               private templeService: TempleService,
+              private facilityService: FacilityService,
               protected labelService: LabelService,
               private commonService: CommonService,
               private route: Router) {
@@ -42,11 +45,13 @@ export class HomeComponent implements OnInit {
     const res = await Promise.all([
       await this.eventService.loadUpcomingEvents(),
       this.templeService.loadHomeTemples(),
+      this.facilityService.loadHomeFacilities(),
       this.commonService.loadPage('about-us'),
     ]);
     this.upcomingEvents = res[0];
     this.temples = res[1];
-    this.legalPage = res[2];
+    this.facilities = res[2];
+    this.legalPage = res[3];
   }
 
   aboutUsClick() {

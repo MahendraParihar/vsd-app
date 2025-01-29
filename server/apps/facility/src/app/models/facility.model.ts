@@ -20,10 +20,11 @@ import {
   PostModel,
   StateModel,
 } from '@server/common';
-import { EventCoordinatorModel } from './event-coordinator.model';
+import { FacilityMemberModel } from './facility-member.model';
+import { IMediaUpload } from '@vsd-common/lib';
 
 @Table({
-  tableName: 'txn_event',
+  tableName: 'txn_facility',
   schema: 'public',
   freezeTableName: true,
   timestamps: true,
@@ -121,7 +122,7 @@ import { EventCoordinatorModel } from './event-coordinator.model';
         ],
       },
       {
-        model: EventCoordinatorModel,
+        model: FacilityMemberModel,
         required: false,
         where: { active: true },
         include: [
@@ -164,15 +165,15 @@ import { EventCoordinatorModel } from './event-coordinator.model';
     ],
   },
 }))
-export class EventModel extends Model<EventModel> {
+export class FacilityModel extends Model<FacilityModel> {
   @Column({
-    field: 'event_id',
+    field: 'facility_id',
     allowNull: false,
     type: DataType.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   })
-  eventId: number;
+  facilityId: number;
 
   @Column({
     field: 'title',
@@ -188,20 +189,6 @@ export class EventModel extends Model<EventModel> {
   })
   description: string;
 
-  @Column({
-    field: 'date',
-    allowNull: true,
-    type: DataType.DATEONLY,
-  })
-  date: Date;
-
-  @Column({
-    field: 'time',
-    allowNull: true,
-    type: DataType.TIME,
-  })
-  time: Date;
-
   @ForeignKey(() => AddressModel)
   @Column({
     field: 'address_id',
@@ -215,32 +202,11 @@ export class EventModel extends Model<EventModel> {
   addressId: number;
 
   @Column({
-    field: 'event_days',
-    allowNull: true,
-    type: DataType.NUMBER,
-  })
-  eventDays: number;
-
-  @Column({
     field: 'image_path',
     allowNull: true,
     type: DataType.JSONB,
   })
-  imagePath: object;
-
-  @Column({
-    field: 'download_path',
-    allowNull: true,
-    type: DataType.JSONB,
-  })
-  downloadPath: object;
-
-  @Column({
-    field: 'agenda',
-    allowNull: true,
-    type: DataType.JSONB,
-  })
-  agenda: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'visited_count',
@@ -337,6 +303,6 @@ export class EventModel extends Model<EventModel> {
   @BelongsTo(() => AddressModel, { as: 'address', foreignKey: 'addressId', targetKey: 'addressId' })
   address: AddressModel;
 
-  @HasMany(() => EventCoordinatorModel, { as: 'eventMembers', foreignKey: 'eventId', sourceKey: 'eventId' })
-  eventMembers: EventCoordinatorModel[];
+  @HasMany(() => FacilityMemberModel, { as: 'facilityMembers', foreignKey: 'facilityId', sourceKey: 'facilityId' })
+  facilityMembers: FacilityMemberModel[];
 }

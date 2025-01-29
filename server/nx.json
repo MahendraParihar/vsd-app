@@ -43,12 +43,19 @@
         "apps/family-e2e/**/*",
         "apps/job-e2e/**/*",
         "apps/event-e2e/**/*",
-        "apps/lovs-e2e/**/*"
+        "apps/lovs-e2e/**/*",
+        "apps/facility-e2e/**/*",
+        "apps/facility-e2e/**/*"
       ]
     }
   ],
   "targetDefaults": {
     "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "@nx/esbuild:esbuild": {
+      "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     }

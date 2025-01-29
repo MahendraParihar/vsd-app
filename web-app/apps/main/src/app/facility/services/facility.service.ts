@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@core-lib';
-import { IFacilityList, IResponse, ITableList, ITableListFilter } from '@vsd-common/lib';
-import { FACILITY_DETAILS, FACILITY_LIST } from '../facility.url';
+import { IFacilityDetail, IFacilityList, IResponse, ITableList, ITableListFilter } from '@vsd-common/lib';
+import { FACILITY_DETAILS, FACILITY_LIST, HOME_FACILITY } from '../facility.url';
 
 @Injectable()
 export class FacilityService {
@@ -16,8 +16,13 @@ export class FacilityService {
     return res as unknown as ITableList<IFacilityList>;
   }
 
-  async loadFacilityDetails(url: string): Promise<IFacilityList> {
-    const res = await this.http.getRequest(FACILITY_DETAILS(url)) as IResponse<IFacilityList>;
-    return res as IFacilityList;
+  async loadFacilityDetails(url: string): Promise<IFacilityDetail> {
+    const res = await this.http.getRequest(FACILITY_DETAILS(url)) as IResponse<IFacilityDetail>;
+    return res as IFacilityDetail;
+  }
+
+  async loadHomeFacilities(): Promise<IFacilityList[]> {
+    const res = await this.http.getRequest(HOME_FACILITY) as IResponse<IFacilityList[]>;
+    return res as IFacilityList[];
   }
 }

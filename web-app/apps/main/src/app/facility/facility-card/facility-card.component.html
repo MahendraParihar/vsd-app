@@ -1,0 +1,28 @@
+<div class="facility-list grid-list" *ngIf="facilities && facilities.length>0">
+  <div class="home-facility-item grid-item" *ngFor="let facility of facilities">
+    <img />
+    <div class="facility-address">
+      <shared-ui-lib-uikit-label
+        [class]="['mat-subtitle-1']"
+        [label]="getAddress(facility)"></shared-ui-lib-uikit-label>
+    </div>
+    <div class="facility-body">
+      <div class="temple-name">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-headline-5']"
+          [label]="facility.title"></shared-ui-lib-uikit-label>
+      </div>
+      <div class="facility-desc">
+        <shared-ui-lib-uikit-label
+          [class]="['mat-subtitle-2']"
+          [hasHtmlContent]="true"
+          [label]="facility.description" [charLimit]="100"></shared-ui-lib-uikit-label>
+      </div>
+      <shared-ui-lib-uikit-button
+        [hasUnderline]="true"
+        (buttonClicked)="onClick(facility)" [type]="'link'"
+        [label]="labelService.getLabel(labelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
+    </div>
+  </div>
+  <div class="grid-item" *ngFor="let item of dummyEntry"></div>
+</div>

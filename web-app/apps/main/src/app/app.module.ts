@@ -36,6 +36,7 @@ import { TempleCardComponent } from './temple/temple-card/temple-card.component'
 import { MandalComponent } from './mandal/mandal.component';
 import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
 import { MandalService } from './mandal/services/mandal.service';
+import { FacilityCardComponent } from './facility/facility-card/facility-card.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MandalService } from './mandal/services/mandal.service';
     TempleDetailComponent,
     EventCardComponent,
     TempleCardComponent,
+    FacilityCardComponent
   ],
   imports: [
     BrowserModule,
