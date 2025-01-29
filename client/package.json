@@ -6,8 +6,8 @@
     "build_shared_lib": "npm --prefix ../shared-library run build",
     "dev_shared_lib": "npm --prefix ../shared-library run dev",
     "start": "npm run build_shared_lib && nx serve",
-    "dev": "nx serve main --devRemotes=event,news,temple,mandal,family,matrimonial,event,lov,job",
-    "build": "npm run build_shared_lib && nx run-many --target=build --projects=main-app && nx run-many --target=build --projects=event,news,temple,mandal,family,matrimonial,event,lov,job"
+    "dev": "nx serve main --devRemotes=event,news,temple,mandal,family,matrimonial,event,lov,job,faclity",
+    "build": "npm run build_shared_lib && nx run-many --target=build --projects=main-app && nx run-many --target=build --projects=event,news,temple,mandal,family,matrimonial,event,lov,job,facility"
   },
   "private": true,
   "dependencies": {

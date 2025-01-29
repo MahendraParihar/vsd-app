@@ -27,13 +27,12 @@
       "@vsd-frontend/shared-ui-lib": ["libs/shared-ui-lib/src/index.ts"],
       "@vsd-frontend/temple-lib": ["libs/temple-lib/src/index.ts"],
       "event/Module": ["apps/event/src/app/remote-entry/entry.module.ts"],
+      "facility/Module": ["apps/facility/src/app/remote-entry/entry.module.ts"],
       "family/Module": ["apps/family/src/app/remote-entry/entry.module.ts"],
       "job/Module": ["apps/job/src/app/remote-entry/entry.module.ts"],
       "lov/Module": ["apps/lov/src/app/remote-entry/entry.module.ts"],
       "mandal/Module": ["apps/mandal/src/app/remote-entry/entry.module.ts"],
-      "matrimonial/Module": [
-        "apps/matrimonial/src/app/remote-entry/entry.module.ts"
-      ],
+      "matrimonial/Module": ["apps/matrimonial/src/app/remote-entry/entry.module.ts"],
       "news/Module": ["apps/news/src/app/remote-entry/entry.module.ts"],
       "temple/Module": ["apps/temple/src/app/remote-entry/entry.module.ts"]
     }

@@ -6,5 +6,6 @@
   "matrimonial": "http://localhost:4205",
   "temple": "http://localhost:4206",
   "mandal": "http://localhost:4207",
-  "job": "http://localhost:4208"
+  "job": "http://localhost:4208",
+  "facility": "http://localhost:4209"
 }
