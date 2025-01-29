@@ -18,6 +18,8 @@ export enum NavigationPathEnum {
   NEWS_MANAGE = 'news/manage',
   EVENT = 'event',
   EVENT_MANAGE = 'event/manage',
+  FACILITY = 'facility',
+  FACILITY_MANAGE = 'facility/manage',
   FAMILY = 'family',
   FAMILY_MANAGE = 'family/manage',
   TEMPLE = 'temple',

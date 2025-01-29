@@ -117,6 +117,12 @@ import { NgxEditorModule } from 'ngx-editor';
                 import('temple/Module').then((m) => m.RemoteEntryModule),
             },
             {
+              path: 'facility',
+              canActivate: [AuthGuard],
+              loadChildren: () =>
+                import('facility/Module').then((m) => m.RemoteEntryModule),
+            },
+            {
               path: 'matrimonial',
               canActivate: [AuthGuard],
               loadChildren: () =>

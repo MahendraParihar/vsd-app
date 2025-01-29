@@ -135,6 +135,11 @@ export class BaseLayoutComponent implements OnInit {
         iconName: 'temple_hindu',
       },
       {
+        title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
+        path: NavigationPathEnum.FACILITY,
+        iconName: 'menu_book',
+      },
+      {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL),
         path: NavigationPathEnum.MANDAL,
         iconName: 'corporate_fare',

@@ -145,6 +145,9 @@ export enum LabelKey {
   EDIT_EVENT = 'edit_event',
   AGENDA = 'agenda',
 
+  ADD_FACILITY = 'add_facility',
+  EDIT_FACILITY = 'edit_facility',
+
   ADD_MATRIMONIAL = 'add_matrimonial',
   ADD_MATRIMONIAL_STATUS = 'add_matrimonial_status',
   ADD_MATRIMONIAL_REQUESTED_STATUS = 'add_matrimonial_requested_status',

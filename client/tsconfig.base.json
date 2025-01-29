@@ -26,6 +26,7 @@
       "@vsd-frontend/news-lib": ["libs/news-lib/src/index.ts"],
       "@vsd-frontend/shared-ui-lib": ["libs/shared-ui-lib/src/index.ts"],
       "@vsd-frontend/temple-lib": ["libs/temple-lib/src/index.ts"],
+      "@vsd-frontend/facility-lib": ["libs/facility-lib/src/index.ts"],
       "event/Module": ["apps/event/src/app/remote-entry/entry.module.ts"],
       "facility/Module": ["apps/facility/src/app/remote-entry/entry.module.ts"],
       "family/Module": ["apps/family/src/app/remote-entry/entry.module.ts"],

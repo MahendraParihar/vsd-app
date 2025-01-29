@@ -44,5 +44,10 @@
     "target": "http://localhost:3338",
     "secure": false,
     "changeOrigin": true
+  },
+  "/api/facility/**": {
+    "target": "http://localhost:3340",
+    "secure": false,
+    "changeOrigin": true
   }
 }

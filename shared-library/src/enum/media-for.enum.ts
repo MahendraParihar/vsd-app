@@ -2,6 +2,7 @@ export enum MediaForEnum {
   TEMPLE = 'temple',
   MANDAL = 'mandal',
   EVENT = 'event',
+  FACILITY = 'facility',
   ADMIN = 'admin',
   FAMILY = 'family',
   ADDICTION = 'addiction',

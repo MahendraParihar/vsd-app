@@ -42,7 +42,7 @@ export class FacilityService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']],
+      order: [['title', 'asc']],
     });
     const data = rows.map((data: FacilityModel) => {
       return this.formatFacility(data);
