@@ -16,7 +16,6 @@ import { AllExceptionsFilter } from './http-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
   const globalPrefix = 'api/core';
-  console.log(join(__dirname, '../../../apps/main/src', 'assets'));
   app.useStaticAssets(join(__dirname, '../../../apps/main/src', 'assets'));
   app.use(urlencoded({ extended: true, limit: '50mb' }));
 

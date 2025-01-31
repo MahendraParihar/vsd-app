@@ -41,6 +41,7 @@ Thumbs.db
 .nx/cache
 
 /apps/event/.env
+/apps/facility/.env
 /apps/family/.env
 /apps/job/.env
 /apps/lovs/.env
