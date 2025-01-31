@@ -13,7 +13,7 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
-import { IEventList, ITableListFilter, LabelKey } from '@vsd-common/lib';
+import { IFacilityList, ITableListFilter, LabelKey } from '@vsd-common/lib';
 import { FacilityService } from '../facility.service';
 import { FacilityApiUrl } from '../api-url';
 
@@ -36,7 +36,7 @@ export class FacilityComponent implements OnInit, AfterViewInit {
     'updatedAt',
     'action',
   ];
-  dataSource!: TableDataDatasource<IEventList>;
+  dataSource!: TableDataDatasource<IFacilityList>;
   totalCount = 0;
   defaultPageSize = MASTER_PAGE_SIZE;
   pageSizeList = PAGE_SIZE_LIST;
@@ -87,12 +87,12 @@ export class FacilityComponent implements OnInit, AfterViewInit {
     this.navigationService.navigateTo(NavigationPathEnum.FACILITY_MANAGE);
   }
 
-  edit(obj: IEventList) {
-    this.navigationService.navigateToById(NavigationPathEnum.FACILITY_MANAGE, obj.eventId);
+  edit(obj: IFacilityList) {
+    this.navigationService.navigateToById(NavigationPathEnum.FACILITY_MANAGE, obj.facilityId);
   }
 
-  async changeStatus(status: boolean, index: number, obj: IEventList) {
-    await this.service.changeStatus(obj.eventId, !obj.active);
+  async changeStatus(status: boolean, index: number, obj: IFacilityList) {
+    await this.service.changeStatus(obj.facilityId, !obj.active);
     this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
