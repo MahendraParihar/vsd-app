@@ -11,6 +11,7 @@ import fs from 'fs';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaDto } from './dto/media-for.dto';
 import { CommonUtil } from '../common.util';
+import { Env } from '@server/common';
 
 @Controller('media')
 export class MediaController {
@@ -30,6 +31,8 @@ export class MediaController {
     if (!fs.existsSync(destinationFolderPath)) {
       fs.mkdirSync(destinationFolderPath, { recursive: true });
     }
+    console.log(destinationFolderPath);
+    console.log(destinationPath);
 
     //Write File
     await fs.writeFileSync(destinationPath, file['buffer']);
@@ -40,7 +43,7 @@ export class MediaController {
       encoding: file['encoding'],
       mimetype: file['mimetype'],
       size: file['size'],
-      webUrl: `${destinationPath}`,
+      webUrl: `${Env.baseMediaPath}${mediaDto.mediaFor}/${fileName}`,
     };
   }
 }

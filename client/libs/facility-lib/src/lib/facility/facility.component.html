@@ -29,7 +29,7 @@
               {{ i + 1 }}
             }
             @case ("imagePath") {
-              <vsd-ui-image [alt]="''" [mediaPath]="'http://localhost:3000/'" [isAvatar]="true" [webUrl]="d.imagePath"></vsd-ui-image>
+              <vsd-ui-image [alt]="''" [mediaPath]="''" [isAvatar]="true" [webUrl]="d.imagePath"></vsd-ui-image>
             }
             @case ("createdAt") {
               {{ d[t] | appDateTime: 'dateTime' }}
