@@ -1,11 +1,12 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, EventEmitter, Input, OnInit, Output, signal, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { FamilyService, SnackBarService } from '@vsd-frontend/core-lib';
+import { FamilyService, LabelService, LoadingStage, SnackBarService } from '@vsd-frontend/core-lib';
 import { find } from 'lodash';
-import { debounceTime, switchMap, tap } from 'rxjs';
+import { debounceTime, tap } from 'rxjs';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { IFamilyList, LabelKey } from '@vsd-common/lib';
 
 @Component({
   selector: 'vsd-ui-family-select',
@@ -14,15 +15,18 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class UiFamilySelectComponent implements OnInit {
   searchCtrl = new FormControl();
-  isLoading = false;
   errorMsg!: string;
   filteredList!: { id: number; title: string, subTitle: string }[];
   selectedItemList: { id: number; title: string, subTitle: string }[] = [];
-
-  selectable = true;
+  protected readonly LabelKey = LabelKey;
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
+  protected readonly LoadingStages = LoadingStage;
+  loadingStage = signal(LoadingStage.LOADED);
+  checkLoadStage = computed(() => {
+    return this.loadingStage();
+  });
 
   masterList!: { id: number; title: string, subTitle: string }[];
 
@@ -44,6 +48,7 @@ export class UiFamilySelectComponent implements OnInit {
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
 
   constructor(private snackbarService: SnackBarService,
+              protected labelService: LabelService,
               private familyService: FamilyService) {
   }
 
@@ -59,12 +64,15 @@ export class UiFamilySelectComponent implements OnInit {
       tap(() => {
           this.errorMsg = '';
           this.filteredList = [];
-          this.isLoading = true;
+          this.loadingStage.set(this.LoadingStages.LOADING);
         },
       ),
-      switchMap(async (value: string) => await this.getFilteredList(value)),
-    ).subscribe(data => {
-      this.filteredList = data;
+    ).subscribe(async (value) => {
+      if (typeof value !== 'string') {
+        this.filteredList = [];
+      } else {
+        this.filteredList = await this.getFilteredList(value);
+      }
     });
     if (this.selectedItemList && this.selectedItemList.length > 0) {
       this.emitEvent();
@@ -75,28 +83,29 @@ export class UiFamilySelectComponent implements OnInit {
     let ddList: { id: number; title: string, subTitle: string }[] = [];
     try {
       if (!searchStr) {
-        this.errorMsg = 'empty search text';
-        this.isLoading = false;
+        this.errorMsg = this.labelService.getLabel(LabelKey.SEARCH_FAMILY_HINT);
+        this.loadingStage.set(this.LoadingStages.EMPTY_SET);
         return ddList;
       }
       if (searchStr && searchStr.length < 1) {
-        this.errorMsg = 'search text should be min 1 char.';
-        this.isLoading = false;
+        this.errorMsg = this.labelService.getLabel(LabelKey.SEARCH_HINT);
+        this.loadingStage.set(this.LoadingStages.EMPTY_SET);
         return ddList;
       }
-      ddList = (await this.familyService.searchFamilies([],searchStr)).map((f)=>{
+      const tempFamily = await this.familyService.searchFamilies([], searchStr);
+      ddList = tempFamily.map((f: IFamilyList) => {
         return {
-          id:f.familyId,
+          id: f.familyId,
           title: `${f.firstName} ${f.middleName} ${f.lastName}`,
-          subTitle: `${f.address && f.address.cityVillage ? f.address.cityVillage : ''}`
-        }
+          subTitle: `${f.address && f.address.cityVillage ? f.address.cityVillage : ''}`,
+        };
       });
-      this.isLoading = false;
+      this.loadingStage.set(this.LoadingStages.LOADED);
       if (ddList.length === 0) {
-        this.errorMsg = 'No member found';
+        this.errorMsg = this.labelService.getLabel(LabelKey.SEARCH_EMPTY_RESULT);
       }
     } catch (e) {
-      this.isLoading = false;
+      this.loadingStage.set(this.LoadingStages.LOADED);
     }
     return ddList;
   }

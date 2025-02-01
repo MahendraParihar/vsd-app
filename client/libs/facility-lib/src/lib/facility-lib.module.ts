@@ -15,6 +15,7 @@ import { FacilityService } from './facility.service';
 import { FacilityComponent } from './facility/facility.component';
 import { ManageFacilityComponent } from './manage-facility/manage-facility.component';
 import { FacilityDetailComponent } from './facility-detail/facility-detail.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [CommonModule,
@@ -72,7 +73,7 @@ import { FacilityDetailComponent } from './facility-detail/facility-detail.compo
       },
     }),
     MatNativeDateModule,
-    MatDatepickerModule],
+    MatDatepickerModule, MatDividerModule],
   declarations: [FacilityComponent, ManageFacilityComponent, FacilityDetailComponent],
   exports: [FacilityComponent, ManageFacilityComponent, FacilityDetailComponent],
   providers: [FacilityService, provideMomentDateAdapter(MY_FORMATS)],

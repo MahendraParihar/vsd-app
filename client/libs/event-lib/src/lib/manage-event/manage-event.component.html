@@ -56,87 +56,88 @@
                               [control]="formGroup.get('description')"></vsd-ui-input-error>
         </div>
       </div>
-
-      <div class="agenda-section">
-        <div class="agenda-section-header">
+      <div class="form-sub-section-box">
+        <div class="sub-section-header">
           <vsd-ui-label [class]="'sub-title'" [label]="labelService.getLabel(labelKeys.AGENDA)"></vsd-ui-label>
           <vsd-ui-button [type]="'blue'" (actionBtnClicked)="addAgendaDay(null)"
                          [label]="labelService.getLabel(labelKeys.ACTION_ADD_AGENDA)"></vsd-ui-button>
         </div>
-        <div class="agenda-section-body" formArrayName="agenda">
-          <ng-container *ngFor="let item of agendaDayFormArray['controls']; let i = index;">
-            <div class="agenda-item-box" [formGroupName]="i">
-              <div class="header-item">
-                <div class="form-group">
-                  <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_DATE)"></vsd-ui-label>
-                  <mat-form-field>
-                    <input [matDatepicker]="datePickerViewRef_i" formControlName="date" matInput required>
-                    <mat-datepicker-toggle matIconSuffix [for]="datePickerViewRef_i"></mat-datepicker-toggle>
-                    <mat-datepicker #datePickerViewRef_i></mat-datepicker>
-                  </mat-form-field>
-                  <vsd-ui-input-error [labels]="labelService.labels"
-                                      [controlName]="labelService.getLabel(labelKeys.FORM_DATE)"
-                                      [control]="agendaDayFormArray.controls[i].get('date')"></vsd-ui-input-error>
-                </div>
-                <vsd-ui-button [type]="'red'" (actionBtnClicked)="removeAgendaDay(i)"
-                               [label]="labelService.getLabel(labelKeys.ACTION_REMOVE_AGENDA)"></vsd-ui-button>
-              </div>
-
-              <div class="agenda-detail-box" formArrayName="details">
-                <ng-container *ngFor="let item1 of getAgendaDayDetailsFormArray(i)['controls']; let j = index;">
-                  <div class="agenda-detail-item" [formGroupName]="j">
-                    <div class="input-box">
-                      <div class="form-row">
-                        <div class="form-group">
-                          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_AGENDA_TITLE)"></vsd-ui-label>
-                          <mat-form-field>
-                            <input #title_i_j formControlName="title" matInput required
-                                   [maxlength]="inputLength.CHAR_100">
-                            <mat-hint align="end">{{ title_i_j.value.length || 0 }}/{{ inputLength.CHAR_100 }}
-                            </mat-hint>
-                          </mat-form-field>
-                          <vsd-ui-input-error [labels]="labelService.labels"
-                                              [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_TITLE)"
-                                              [control]="getAgendaDayDetailsFormArray(i).controls[j].get('title')"></vsd-ui-input-error>
-                        </div>
-                        <div class="form-group">
-                          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_AGENDA_TIME)"></vsd-ui-label>
-                          <mat-form-field>
-                            <input #time_i_j formControlName="time" matInput required>
-                            <mat-hint align="end">HH:MM AM/PM</mat-hint>
-                          </mat-form-field>
-                          <vsd-ui-input-error [labels]="labelService.labels"
-                                              [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_TIME)"
-                                              [control]="getAgendaDayDetailsFormArray(i).controls[j].get('time')"></vsd-ui-input-error>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_AGENDA_DESC)"></vsd-ui-label>
-                          <mat-form-field>
-                            <textarea #desc_i_j formControlName="details" matInput required></textarea>
-                            <mat-hint align="end">{{ desc_i_j.value.length || 0 }}/{{ inputLength.CHAR_200 }}</mat-hint>
-                          </mat-form-field>
-                          <vsd-ui-input-error [labels]="labelService.labels"
-                                              [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_DESC)"
-                                              [control]="getAgendaDayDetailsFormArray(i).controls[j].get('details')"></vsd-ui-input-error>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="agenda-detail-remove">
-                      <vsd-ui-button *ngIf="j === 0" [type]="'blue'" (actionBtnClicked)="addAgendaDayDetails(i,null)"
-                                     [label]="labelService.getLabel(labelKeys.ACTION_ADD)"></vsd-ui-button>
-                      <vsd-ui-button *ngIf="j > 0" [type]="'red'" (actionBtnClicked)="removeAgendaDayDetails(i,j)"
-                                     [label]="labelService.getLabel(labelKeys.ACTION_REMOVE)"></vsd-ui-button>
-                    </div>
+        <div class="sub-section-body">
+          <div class="agenda-section-body" formArrayName="agenda">
+            <ng-container *ngFor="let item of agendaDayFormArray['controls']; let i = index;">
+              <div class="agenda-item-box" [formGroupName]="i">
+                <div class="header-item">
+                  <div class="form-group">
+                    <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_DATE)"></vsd-ui-label>
+                    <mat-form-field>
+                      <input [matDatepicker]="datePickerViewRef_i" formControlName="date" matInput required>
+                      <mat-datepicker-toggle matIconSuffix [for]="datePickerViewRef_i"></mat-datepicker-toggle>
+                      <mat-datepicker #datePickerViewRef_i></mat-datepicker>
+                    </mat-form-field>
+                    <vsd-ui-input-error [labels]="labelService.labels"
+                                        [controlName]="labelService.getLabel(labelKeys.FORM_DATE)"
+                                        [control]="agendaDayFormArray.controls[i].get('date')"></vsd-ui-input-error>
                   </div>
-                </ng-container>
+                  <vsd-ui-button [type]="'red'" (actionBtnClicked)="removeAgendaDay(i)"
+                                 [label]="labelService.getLabel(labelKeys.ACTION_REMOVE_AGENDA)"></vsd-ui-button>
+                </div>
+
+                <div class="agenda-detail-box" formArrayName="details">
+                  <ng-container *ngFor="let item1 of getAgendaDayDetailsFormArray(i)['controls']; let j = index;">
+                    <div class="agenda-detail-item" [formGroupName]="j">
+                      <div class="input-box">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_AGENDA_TITLE)"></vsd-ui-label>
+                            <mat-form-field>
+                              <input #title_i_j formControlName="title" matInput required
+                                     [maxlength]="inputLength.CHAR_100">
+                              <mat-hint align="end">{{ title_i_j.value.length || 0 }}/{{ inputLength.CHAR_100 }}
+                              </mat-hint>
+                            </mat-form-field>
+                            <vsd-ui-input-error [labels]="labelService.labels"
+                                                [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_TITLE)"
+                                                [control]="getAgendaDayDetailsFormArray(i).controls[j].get('title')"></vsd-ui-input-error>
+                          </div>
+                          <div class="form-group">
+                            <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_AGENDA_TIME)"></vsd-ui-label>
+                            <mat-form-field>
+                              <input #time_i_j formControlName="time" matInput required>
+                              <mat-hint align="end">HH:MM AM/PM</mat-hint>
+                            </mat-form-field>
+                            <vsd-ui-input-error [labels]="labelService.labels"
+                                                [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_TIME)"
+                                                [control]="getAgendaDayDetailsFormArray(i).controls[j].get('time')"></vsd-ui-input-error>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_AGENDA_DESC)"></vsd-ui-label>
+                            <mat-form-field>
+                              <textarea #desc_i_j formControlName="details" matInput required></textarea>
+                              <mat-hint align="end">{{ desc_i_j.value.length || 0 }}/{{ inputLength.CHAR_200 }}
+                              </mat-hint>
+                            </mat-form-field>
+                            <vsd-ui-input-error [labels]="labelService.labels"
+                                                [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_DESC)"
+                                                [control]="getAgendaDayDetailsFormArray(i).controls[j].get('details')"></vsd-ui-input-error>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="agenda-detail-remove">
+                        <vsd-ui-button *ngIf="j === 0" [type]="'blue'" (actionBtnClicked)="addAgendaDayDetails(i,null)"
+                                       [label]="labelService.getLabel(labelKeys.ACTION_ADD)"></vsd-ui-button>
+                        <vsd-ui-button *ngIf="j > 0" [type]="'red'" (actionBtnClicked)="removeAgendaDayDetails(i,j)"
+                                       [label]="labelService.getLabel(labelKeys.ACTION_REMOVE)"></vsd-ui-button>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
               </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </div>
       </div>
-
       <div class="form-row">
         <vsd-ui-address-form class="address-box"
                              [formGroup]="formGroup" [masterData]="addressMaster"

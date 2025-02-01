@@ -18,49 +18,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-$custom-primary-palette: (
-        50: '#e8eaf6',
-);
-
-$custom-typography: mat.define-typography-config($font-family: "Roboto, sans-serif");
-$custom-primary: mat.define-palette(mat.$indigo-palette, 500, 100, 700);
-$custom-accent: mat.define-palette(mat.$orange-palette, 500, 100, 700);
-$custom-warn: mat.define-palette(mat.$red-palette, 500, 100, 700);
-
-$light-theme: mat.define-light-theme(
-                (color:(
-                        primary:$custom-primary,
-                        accent: $custom-accent,
-                        warn:$custom-warn
-                ),
-                        typography: mat.define-typography-config(),
-                        density: 0,
-                )
-);
-$dark-theme: mat.define-dark-theme(
-                (color:(
-                        primary:$custom-primary,
-                        accent: $custom-accent,
-                        warn:$custom-warn
-                ),
-                        typography: mat.define-typography-config(),
-                        density: 0,
-                )
-);
-
-body.light-theme {
-  @include mat.all-component-themes($light-theme);
-}
-
-body.dark-theme {
-  @include mat.all-component-themes($dark-theme);
-}
-
-@include mat.all-component-themes($light-theme);
-
 .form {
-
-  mat-form-field {
+  mat-form-field, vsd-ui-family-select {
     width: 100% !important;
   }
 
@@ -117,5 +76,29 @@ body.dark-theme {
         white-space: pre !important;
       }
     }
+  }
+}
+
+.form-sub-section-box {
+  display: flex;
+  flex-direction: column;
+  border: var(--stroke-thin) solid var(--secondary-a-v4);
+  border-radius: var(--border-radius-small);
+  margin-top: var(--spacing-12);
+
+  .sub-section-header {
+    padding: var(--spacing-12);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--stroke-thin) solid var(--secondary-a-v4);
+  }
+
+  .sub-section-body {
+    display: flex;
+    padding: var(--spacing-12);
+    flex-direction: column;
   }
 }

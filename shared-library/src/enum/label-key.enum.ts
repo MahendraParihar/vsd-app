@@ -116,6 +116,11 @@ export enum LabelKey {
   LOGIN_SUB_TITLE = 'login_sub_title',
   SUCCESS_STATUS_CHANGE = 'success_status_change',
 
+  SEARCH_HINT = 'search_hint',
+  SEARCH_FAMILY_HINT = 'search_family_hint',
+  SEARCH_EMPTY_RESULT = 'search_empty_result',
+  SEARCH_FAMILY_MEMBER_HINT = 'search_family_text',
+
   ERROR_IN_VALID_DATE = 'error_invalid_date',
   ERROR_IN_VALID_NUMBER = 'error_invalid_number',
   ERROR_IN_VALID_MAX_LENGTH = 'error_max_length',
@@ -247,4 +252,9 @@ export enum LabelKey {
   LINK = 'link',
   LOGO = 'logo',
   LABEL = 'label',
+
+  SECTION_TITLE_ADDRESS = 'section_title_address',
+  SECTION_TITLE_SEO = 'section_title_seo',
+  SECTION_TITLE_MEMBER_POST = 'section_title_member_post',
+  SECTION_TITLE_EVENT_AGENDA = 'section_title_event_agenda',
 }

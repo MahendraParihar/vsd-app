@@ -28,6 +28,7 @@ import { UiImageComponent } from './ui/ui-img/ui-image.component';
 import { UiMemberPostComponent } from './ui/ui-member-post/ui-member-post.component';
 import { UiFamilySelectComponent } from './ui/ui-family-select/ui-family-select.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatProgressBarModule,
     CoreLibModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatButtonModule,

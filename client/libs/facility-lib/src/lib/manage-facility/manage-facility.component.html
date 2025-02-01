@@ -31,13 +31,17 @@
                               [control]="formGroup.get('description')"></vsd-ui-input-error>
         </div>
       </div>
-
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
       <div class="form-row">
         <vsd-ui-address-form class="address-box"
                              [formGroup]="formGroup" [masterData]="addressMaster"
                              [labels]="labelService.labels"></vsd-ui-address-form>
       </div>
-
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
       <div class="form-row">
         <vsd-ui-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
                             [labels]="labelService.labels"
@@ -47,8 +51,14 @@
                             [mediaFor]="mediaForEnum.FACILITY"
                             [mediaType]="fileTypeEnum.IMAGE"></vsd-ui-upload-form>
       </div>
-      <vsd-ui-member-post-form [formGroup]="formGroup"></vsd-ui-member-post-form>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
       <vsd-ui-seo-form [seo]="seoData" [formGroup]="formGroup"></vsd-ui-seo-form>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <vsd-ui-member-post-form [formGroup]="formGroup"></vsd-ui-member-post-form>
     </form>
   </mat-card-content>
   <mat-card-actions align="end">

@@ -9,7 +9,7 @@ import { IAddressMaster, IManageAddress, InputLength, IOption, LabelKey } from '
 })
 export class UiAddressFormComponent implements OnInit {
 
-  labelKeys = LabelKey;
+  protected readonly LabelKey = LabelKey;
   inputLength = InputLength;
   stateList: IOption[] = [];
   districtList: IOption[] = [];

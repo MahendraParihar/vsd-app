@@ -1,6 +1,7 @@
 export * from './lib/core-lib.module';
 export * from './lib/enums/navigation-path-enum';
 export * from './lib/enums/alert-type-enum';
+export * from './lib/enums/loading-stage.enum';
 export * from './lib/services/index';
 export * from './lib/label/label.service';
 export * from './lib/guard/auth.guard';

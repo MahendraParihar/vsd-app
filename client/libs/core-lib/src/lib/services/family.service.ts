@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiUrls } from '../api-urls';
 import { HttpService } from './http.service';
-import { IFamilyList, IResponse, ITableList, ITableListFilter } from '@vsd-common/lib';
+import { IFamilyList, IResponse, ITableListFilter } from '@vsd-common/lib';
 
 @Injectable()
 export class FamilyService {
@@ -19,7 +19,7 @@ export class FamilyService {
     if (ids && ids.length > 0) {
       payload.ids = ids;
     }
-    const res = (await this.httpService.postRequest<IResponse<ITableList<IFamilyList>>>(ApiUrls.FAMILY, payload)) as unknown as ITableList<IFamilyList>;
-    return res.data as IFamilyList[];
+    const res = (await this.httpService.postRequest<IResponse<IFamilyList>>(ApiUrls.FAMILY, payload)) as unknown as IFamilyList[];
+    return res as IFamilyList[];
   }
 }

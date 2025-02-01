@@ -12,7 +12,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class UiSeoFormComponent implements OnInit {
 
-  labelKeys = LabelKey;
+  protected readonly LabelKey = LabelKey;
   inputLength = InputLength;
   _seo!: ICommonSEO;
   tagsList: string[] = [];
