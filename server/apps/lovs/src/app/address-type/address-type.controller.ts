@@ -35,9 +35,9 @@ export class AddressTypeController {
   }
 
   @Post('manage')
-  manageAddressType(@Body() body) {
+  manageAddressType(@Body() body, userId: number) {
     try {
-    return this.addressTypeService.manage(body, 1);
+    return this.addressTypeService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }
