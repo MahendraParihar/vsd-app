@@ -4,6 +4,11 @@
     "secure": false,
     "changeOrigin": true
   },
+  "/api/facility/**": {
+    "target": "http://localhost:3340",
+    "secure": false,
+    "changeOrigin": true
+  },
   "/api/family/**": {
     "target": "http://localhost:3332",
     "secure": false,

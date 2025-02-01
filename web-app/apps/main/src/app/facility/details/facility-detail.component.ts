@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FacilityService } from '../services/facility.service';
-import { IFacilityList, IMandalDetail, LabelKey } from '@vsd-common/lib';
+import { IFacilityDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { LabelService } from '@core-lib';
 
@@ -11,7 +11,7 @@ import { LabelService } from '@core-lib';
   styleUrl: './facility-detail.component.scss',
 })
 export class FacilityDetailComponent {
-  facility!: IFacilityList;
+  facility!: IFacilityDetail;
   _url!: string;
 
   @Input()
@@ -43,5 +43,19 @@ export class FacilityDetailComponent {
       seoArray.push({ name: 'description', content: this.facility.metaDescription });
     }
     this.metaService.addTags(seoArray);
+  }
+
+  getDummyMemberEntry(post: IMemberPostInfo) {
+    const dummyEntry: null[] = [];
+    if (post.members && post.members.length > 0) {
+      let dummyCount = post.members.length % 3;
+      if (post.members.length === 1) {
+        dummyCount = 1 + dummyCount;
+      }
+      for (let i = 0; i < dummyCount; i++) {
+        dummyEntry.push(null);
+      }
+    }
+    return dummyEntry;
   }
 }

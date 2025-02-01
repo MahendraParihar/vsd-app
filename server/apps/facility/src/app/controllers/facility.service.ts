@@ -80,10 +80,7 @@ export class FacilityService {
   }
 
   async loadHomeFacilities(): Promise<IFacilityList[]> {
-    const data = await this.facilityModel.scope('details').findAll({
-      where: {
-        facilityId: 1,
-      },
+    const data = await this.facilityModel.scope('list').findAll({
       order: [['title', 'asc']],
       limit: 4,
       nest: true,

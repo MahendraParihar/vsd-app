@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MandalService } from '../services/mandal.service';
-import { IMandalDetail, IMandalMemberInfo, LabelKey } from '@vsd-common/lib';
+import { IMandalDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { LabelService } from '@core-lib';
 
@@ -31,7 +31,7 @@ export class MandalDetailComponent {
     this.bindSEOData();
   }
 
-  getDummyMemberEntry(post: IMandalMemberInfo) {
+  getDummyMemberEntry(post: IMemberPostInfo) {
     const dummyEntry: null[] = [];
     if (post.members && post.members.length > 0) {
       let dummyCount = post.members.length % 3;
