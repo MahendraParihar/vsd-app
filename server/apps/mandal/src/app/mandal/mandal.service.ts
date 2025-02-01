@@ -61,6 +61,7 @@ export class MandalService {
     }
     return <IMandal>{
       ...obj,
+      members:[]
     };
   }
 

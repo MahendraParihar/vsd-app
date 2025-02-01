@@ -19,6 +19,7 @@ export interface IManageMandal extends IBaseMandal, ICommonSEO {
 export interface IMandal extends IBaseMandal, ICommonTable, ICommonSEO {
   mandalId: number;
   active: boolean;
+  members: IMemberPost[];
 }
 
 export interface IMandalList extends IMandal {

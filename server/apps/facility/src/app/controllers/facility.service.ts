@@ -6,8 +6,9 @@ import {
   IFacility,
   IFacilityDetail,
   IFacilityList,
-  IMemberPostInfo,
   IManageFacility,
+  IMemberPost,
+  IMemberPostInfo,
   IStatusChange,
   ITableList,
   ITableListFilter,
@@ -16,13 +17,14 @@ import {
 import { Op } from 'sequelize';
 import { AddressService, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
-import { filter } from 'lodash';
+import { filter, groupBy, map } from 'lodash';
 import { FacilityModel } from '../models/facility.model';
 import { FacilityMemberModel } from '../models/facility-member.model';
 
 @Injectable()
 export class FacilityService {
   constructor(@InjectModel(FacilityModel) private facilityModel: typeof FacilityModel,
+              @InjectModel(FacilityMemberModel) private facilityMemberModel: typeof FacilityMemberModel,
               private labelService: LabelService,
               private sequelize: Sequelize,
               private addressService: AddressService,
@@ -38,7 +40,7 @@ export class FacilityService {
         },
       });
     }
-    const { rows, count } = await this.facilityModel.scope('details').findAndCountAll({
+    const { rows, count } = await this.facilityModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
@@ -54,12 +56,25 @@ export class FacilityService {
   }
 
   async getById(id: number): Promise<IFacility> {
-    const obj = await this.facilityModel.scope('list').findOne({ where: { facilityId: id }, raw: true, nest: true });
+    const obj = await this.facilityModel.scope('details').findOne({ where: { facilityId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_FACILITY));
     }
+    const tempObj = obj.get({ plain: true });
+    const memberPost: IMemberPost[] = [];
+    const groupByPost = groupBy(tempObj.facilityMembers, 'postId');
+    const keys = Object.keys(groupByPost);
+    for (const postId of keys) {
+      const temp = groupByPost[postId];
+      memberPost.push(<IMemberPost>{
+        postId: Number(postId),
+        familyIds: map(temp, 'familyId'),
+      });
+    }
+    delete tempObj['facilityMembers'];
     return <IFacility>{
-      ...obj,
+      ...tempObj,
+      members: memberPost,
     };
   }
 
@@ -129,7 +144,20 @@ export class FacilityService {
         Object.assign(dataObj, { createdBy: userId });
         Object.assign(dataObj, { createdIp: ':0' });
         res = await this.facilityModel.create(dataObj, { transaction: transaction });
+        obj.facilityId = res.facilityId;
       }
+      const postArray = [];
+      for (const m of obj.members) {
+        for (const f of m.familyIds) {
+          postArray.push({
+            facilityId: obj.facilityId,
+            familyId: f,
+            postId: m.postId,
+          });
+        }
+      }
+      await this.facilityMemberModel.destroy({ where: { facilityId: obj.facilityId }, transaction: transaction });
+      await this.facilityMemberModel.bulkCreate(postArray, { transaction: transaction });
       await transaction.commit();
       return res;
     } catch (e) {

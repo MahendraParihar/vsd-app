@@ -28,6 +28,8 @@
             <vsd-ui-label [label]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"></vsd-ui-label>
             <vsd-ui-family-select [isMultiSelection]="true"
                                   [isRequired]="true"
+                                  [masterList]="masterList"
+                                  [selectedIds]="_membersPost[i].familyIds"
                                   (userChangeEvent)="onFamilyChange($event, i)"
                                   [label]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"></vsd-ui-family-select>
             <vsd-ui-input-error [labels]="labelService.labels"

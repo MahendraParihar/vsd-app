@@ -34,6 +34,7 @@ export interface IManageEvent extends IBaseEvent, ICommonSEO {
 export interface IEvent extends IBaseEvent, ICommonTable, ICommonSEO {
   eventId: number;
   active: boolean;
+  members: IMemberPost[];
 }
 
 export interface IEventList extends IEvent {

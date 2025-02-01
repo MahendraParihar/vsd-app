@@ -18,6 +18,7 @@ export interface IManageFacility extends IBaseFacility, ICommonSEO {
 export interface IFacility extends IBaseFacility, ICommonTable, ICommonSEO {
   facilityId: number;
   active: boolean;
+  members: IMemberPost[];
 }
 
 export interface IFacilityList extends IFacility {

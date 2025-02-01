@@ -46,6 +46,47 @@ import { MandalMemberModel } from './mandal-member.model';
         required: true,
         as: 'address',
       },
+      {
+        model: MandalMemberModel,
+        required: false,
+        where: { active: true },
+        include: [
+          {
+            attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],
+            model: FamilyModel,
+            where: { active: true },
+            required: false,
+            include: [
+              {
+                model: AddressModel,
+                required: false,
+                as: 'address',
+                include: [
+                  {
+                    required: false,
+                    model: CountryModel,
+                  }, {
+                    required: false,
+                    model: StateModel,
+                  }, {
+                    required: false,
+                    model: DistrictModel,
+                  }, {
+                    required: false,
+                    model: CityVillageModel,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            attributes: ['post'],
+            where: { active: true },
+            model: PostModel,
+            required: false,
+          },
+        ],
+      },
     ],
   },
   details: {

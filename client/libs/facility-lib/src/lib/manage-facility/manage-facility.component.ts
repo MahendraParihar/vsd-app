@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
+import { UiAddressFormComponent, UiMemberPostComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { ActivatedRoute } from '@angular/router';
 import { AddressService, LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
@@ -41,6 +41,7 @@ export class ManageFacilityComponent implements OnInit, OnDestroy {
   });
 
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
+  @ViewChild(UiMemberPostComponent) memberPostComponent!: UiMemberPostComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private facilityService: FacilityService,
               public labelService: LabelService, private title: Title,
@@ -88,6 +89,9 @@ export class ManageFacilityComponent implements OnInit, OnDestroy {
     if (this.facility.address) {
       this.addressComponent.address = this.facility.address;
     }
+    if (this.facility.members){
+      this.memberPostComponent.membersPost = this.facility.members
+    }
     this.seoData = {
       tags: this.facility.tags ? this.facility.tags : [],
       metaTitle: this.facility.metaTitle,
@@ -112,6 +116,7 @@ export class ManageFacilityComponent implements OnInit, OnDestroy {
       description: toHTML(this.formGroup.value.description),
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
+      members: this.formGroup.value.membersPost.membersPost,
       ...this.formGroup.value.seo,
     };
     if (this.formGroup.value.address.addressId) {

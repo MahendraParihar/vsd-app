@@ -60,6 +60,7 @@ export class EventService {
     }
     return <IEvent>{
       ...obj,
+      members:[]
     };
   }
 

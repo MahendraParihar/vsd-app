@@ -27,6 +27,7 @@ export class UiFamilySelectComponent implements OnInit {
     return this.loadingStage();
   });
 
+  @Input()
   masterList!: { id: number; title: string, subTitle: string }[];
 
   @Input()

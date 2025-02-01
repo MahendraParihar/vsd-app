@@ -48,27 +48,6 @@ import { IMediaUpload } from '@vsd-common/lib';
         model: AddressModel,
         required: true,
         as: 'address',
-      },
-    ],
-  },
-  details: {
-    include: [
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'createdByUser',
-      },
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'updatedByUser',
-      },
-      {
-        model: AddressModel,
-        required: true,
-        as: 'address',
         include: [
           {
             required: true,
@@ -84,6 +63,50 @@ import { IMediaUpload } from '@vsd-common/lib';
             model: CityVillageModel,
           },
         ],
+      },
+      {
+        model: FacilityMemberModel,
+        required: false,
+        include: [
+          {
+            attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],
+            model: FamilyModel,
+            where: { active: true },
+            required: false,
+            include: [
+              {
+                model: AddressModel,
+                required: false,
+                as: 'address',
+                include: [
+                  {
+                    required: false,
+                    model: CountryModel,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            attributes: ['post'],
+            where: { active: true },
+            model: PostModel,
+            required: false,
+          },
+        ],
+      },
+    ],
+  },
+  details: {
+    include: [
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+      {
+        model: FacilityMemberModel,
+        required: false,
       },
     ],
   },
@@ -124,7 +147,6 @@ import { IMediaUpload } from '@vsd-common/lib';
       {
         model: FacilityMemberModel,
         required: false,
-        where: { active: true },
         include: [
           {
             attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],

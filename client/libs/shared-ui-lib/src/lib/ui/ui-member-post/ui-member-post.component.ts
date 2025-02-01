@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IMemberPost, IPostList, LabelKey } from '@vsd-common/lib';
-import { LabelService, PostService } from '@vsd-frontend/core-lib';
+import { FamilyService, LabelService, PostService } from '@vsd-frontend/core-lib';
+import { map } from 'lodash';
 
 @Component({
   selector: 'vsd-ui-member-post-form',
@@ -12,6 +13,7 @@ export class UiMemberPostComponent implements OnInit {
 
   protected readonly LabelKey = LabelKey;
   _membersPost!: IMemberPost[];
+  masterList: { id: number; title: string, subTitle: string }[] = [];
 
   @Input()
   formGroup!: FormGroup;
@@ -30,6 +32,7 @@ export class UiMemberPostComponent implements OnInit {
 
 
   constructor(public labelService: LabelService,
+              private familyService: FamilyService,
               private postService: PostService) {
   }
 
@@ -38,9 +41,23 @@ export class UiMemberPostComponent implements OnInit {
     this.formGroup.addControl('membersPost', this.membersPostFormGroup);
   }
 
-  bindMembersPost() {
+  async bindMembersPost() {
     if (!this._membersPost || this._membersPost.length === 0) {
       return;
+    }
+    const memberIds: number[] = [];
+    for (const s of this._membersPost) {
+      memberIds.push(...s.familyIds as number[]);
+    }
+    const tempList = await this.familyService.searchFamilies(memberIds, null);
+    if (tempList.length > 0) {
+      this.masterList = tempList.map((m) => {
+        return {
+          id: m.familyId,
+          title: `${m.firstName} ${m.middleName} ${m.lastName}`,
+          subTitle: m.address && m.address.cityVillage ? m.address.cityVillage : '',
+        };
+      });
     }
     for (const s of this._membersPost) {
       this.addMemberPost(s);
@@ -68,9 +85,9 @@ export class UiMemberPostComponent implements OnInit {
 
   onFamilyChange(event: { id: number; title: string, subTitle: string }[], index: number): void {
     if (event && event.length > 0) {
-      const s = this.memberPostFormArray.value;
-      // s[index].recipeIds = map(event, 'id');
-      // this.memberPostFormArray().patchValue(s);
+      this.memberPostFormArray.at(index).patchValue({
+        familyIds: map(event, 'id'),
+      });
     }
   }
 }
