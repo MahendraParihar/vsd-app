@@ -1,0 +1,41 @@
+<form *ngIf="posts && formGroup" [formGroup]="membersPostFormGroup" class="form social-link-form-array m-t-medium">
+  <div class="form-row">
+    <div class="form-group">
+      <vsd-ui-button [type]="'blue'" (actionBtnClicked)="addMemberPost(null)"
+                     [label]="labelService.getLabel(LabelKey.ACTION_ADD_POST)"></vsd-ui-button>
+    </div>
+  </div>
+  <div class="social-link-box" formArrayName="membersPost"
+       *ngFor="let item of memberPostFormArray['controls']; let i = index;">
+    <div class="form-row" [formGroupName]="i">
+      <div class="form-group">
+        <vsd-ui-label [label]="labelService.getLabel(LabelKey.SIDE_MENU_POST)"></vsd-ui-label>
+        <mat-form-field>
+          <mat-select #label formControlName="postId" required>
+            @for (option of posts; track option.postId) {
+              <mat-option [value]="option.postId">{{ option.post }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <vsd-ui-input-error [labels]="labelService.labels"
+                            [controlName]="labelService.getLabel(LabelKey.SIDE_MENU_POST)"
+                            [control]="memberPostFormArray.controls[i].get('postId')"></vsd-ui-input-error>
+      </div>
+      <input hidden formControlName="familyIds" matInput required>
+      <div class="form-group">
+        <vsd-ui-label [label]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"></vsd-ui-label>
+        <vsd-ui-family-select [isMultiSelection]="true"
+                              [isRequired]="true"
+                              (userChangeEvent)="onFamilyChange($event, i)"
+                              [label]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"></vsd-ui-family-select>
+        <vsd-ui-input-error [labels]="labelService.labels"
+                            [controlName]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"
+                            [control]="memberPostFormArray.controls[i].get('familyIds')"></vsd-ui-input-error>
+      </div>
+      <div class="form-group">
+        <vsd-ui-button [type]="'red'" (actionBtnClicked)="removeMemberPost(i)"
+                       [label]="labelService.getLabel(LabelKey.ACTION_REMOVE_POST)"></vsd-ui-button>
+      </div>
+    </div>
+  </div>
+</form>

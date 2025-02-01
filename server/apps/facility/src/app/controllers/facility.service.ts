@@ -6,7 +6,7 @@ import {
   IFacility,
   IFacilityDetail,
   IFacilityList,
-  IFacilityMemberInfo,
+  IMemberPostInfo,
   IManageFacility,
   IStatusChange,
   ITableList,
@@ -146,11 +146,11 @@ export class FacilityService {
   }
 
   private formatFacility(data: FacilityModel, post: PostModel[] = []) {
-    const facilityMembers: IFacilityMemberInfo[] = [];
+    const facilityMembers: IMemberPostInfo[] = [];
     for (const p of post) {
       const members: FacilityMemberModel[] = filter(data.facilityMembers, { postId: p.postId });
       if (members && members.length > 0) {
-        const s: IFacilityMemberInfo = {
+        const s: IMemberPostInfo = {
           post: p.post,
           members: [],
         };

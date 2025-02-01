@@ -7,7 +7,8 @@ import {
   IMandal,
   IMandalAdditionalInfo,
   IMandalDetail,
-  IMandalList, IMandalMemberInfo,
+  IMandalList,
+  IMemberPostInfo,
   IStatusChange,
   ITableList,
   ITableListFilter,
@@ -135,11 +136,11 @@ export class MandalService {
   }
 
   private formatMandal(data: MandalModel, post: PostModel[] = []) {
-    const mandalMembers: IMandalMemberInfo[] = [];
+    const mandalMembers: IMemberPostInfo[] = [];
     for (const p of post) {
       const members: MandalMemberModel[] = filter(data.mandalMembers, { postId: p.postId });
       if (members && members.length > 0) {
-        const s: IMandalMemberInfo = {
+        const s: IMemberPostInfo = {
           post: p.post,
           members: [],
         };

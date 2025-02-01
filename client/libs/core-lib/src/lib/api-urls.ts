@@ -1,4 +1,5 @@
 const BASE_URL = '/api/core/';
+const LOV_BASE_URL = '/api/lov/';
 
 export enum ApiUrls {
   GET_ALL_LABELS = `${BASE_URL}label/admin`,
@@ -6,4 +7,5 @@ export enum ApiUrls {
   ADDRESS_MASTER_DATA = `${BASE_URL}address/master-data`,
   MEDIA_PATH = `http://localhost:3000` + '/',
   MEDIA_UPLOAD = `${BASE_URL}media/upload-media`,
+  POST = `${LOV_BASE_URL}post`,
 }

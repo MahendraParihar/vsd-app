@@ -1,6 +1,6 @@
 import { IEventAgenda, IEventAgendaDetail, IManageEvent, IMediaUpload, InputLength } from '@vsd-common/lib';
 import { IsArray, IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
-import { AddressDto, SeoDto } from '@server/common';
+import { AddressDto, MemberPostDto, SeoDto } from '@server/common';
 import { Type } from 'class-transformer';
 
 export class EventAgendaDetailDto implements IEventAgendaDetail {
@@ -69,4 +69,9 @@ export class EventDto extends SeoDto implements IManageEvent {
   @IsArray()
   @Type(() => EventAgendaDto)
   agenda: EventAgendaDto[];
+
+  @IsNotEmpty()
+  @IsArray()
+  @Type(() => MemberPostDto)
+  members: MemberPostDto[];
 }

@@ -1,7 +1,6 @@
 import { IBaseAdminUser, ICommonTable } from '../base.interface';
 import { IMediaUpload } from '../core';
 import { IAddressDetail, IManageAddress } from '../location';
-import { IMandalAdditionalInfo, IMandalList, IMandalMemberInfo } from '../mandal';
 
 export interface IBaseFamily {
   firstName: string;

@@ -25,6 +25,9 @@ import { UiSeoFormComponent } from './ui/ui-seo-form/ui-seo-form.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { UiSocialLinkFormComponent } from './ui/ui-social-link/ui-social-link-form.component';
 import { UiImageComponent } from './ui/ui-img/ui-image.component';
+import { UiMemberPostComponent } from './ui/ui-member-post/ui-member-post.component';
+import { UiFamilySelectComponent } from './ui/ui-family-select/ui-family-select.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { UiImageComponent } from './ui/ui-img/ui-image.component';
     UiSocialLinkFormComponent,
     ImageDragDirective,
     UiImageComponent,
+    UiMemberPostComponent,
+    UiFamilySelectComponent,
   ],
   imports: [
     CommonModule,
@@ -56,6 +61,7 @@ import { UiImageComponent } from './ui/ui-img/ui-image.component';
     MatSelectModule,
     MatProgressBarModule,
     CoreLibModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatButtonModule,
@@ -78,6 +84,8 @@ import { UiImageComponent } from './ui/ui-img/ui-image.component';
     UiSeoFormComponent,
     ImageDragDirective,
     UiImageComponent,
+    UiMemberPostComponent,
+    UiFamilySelectComponent
   ],
   providers: [
     {

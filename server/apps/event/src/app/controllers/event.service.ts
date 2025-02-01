@@ -6,7 +6,7 @@ import {
   IEvent,
   IEventDetail,
   IEventList,
-  IEventMemberInfo,
+  IMemberPostInfo,
   IManageEvent,
   IStatusChange,
   ITableList,
@@ -148,11 +148,11 @@ export class EventService {
   }
 
   private formatEvent(data: EventModel, post: PostModel[] = []) {
-    const eventMembers: IEventMemberInfo[] = [];
+    const eventMembers: IMemberPostInfo[] = [];
     for (const p of post) {
       const members: EventCoordinatorModel[] = filter(data.eventMembers, { postId: p.postId });
       if (members && members.length > 0) {
-        const s: IEventMemberInfo = {
+        const s: IMemberPostInfo = {
           post: p.post,
           members: [],
         };

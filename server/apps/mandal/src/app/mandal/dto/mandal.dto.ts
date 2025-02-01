@@ -1,6 +1,7 @@
 import { IManageMandal, IMediaUpload } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
-import { AddressDto, SeoDto } from '@server/common';
+import { AddressDto, MemberPostDto, SeoDto } from '@server/common';
+import { Type } from 'class-transformer';
 
 export class MandalDto extends SeoDto implements IManageMandal {
   @IsOptional()
@@ -26,5 +27,10 @@ export class MandalDto extends SeoDto implements IManageMandal {
 
   @IsNotEmpty()
   address: AddressDto;
+
+  @IsNotEmpty()
+  @IsArray()
+  @Type(() => MemberPostDto)
+  members: MemberPostDto[];
 
 }

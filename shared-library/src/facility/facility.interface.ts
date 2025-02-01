@@ -1,6 +1,6 @@
 import { IBaseAdminUser, ICommonSEO, ICommonTable } from '../base.interface';
 import { IAddressDetail, IManageAddress } from '../location';
-import { IMediaUpload } from '../core';
+import { IMediaUpload, IMemberPost, IMemberPostInfo } from '../core';
 
 export interface IBaseFacility {
   title: string;
@@ -12,6 +12,7 @@ export interface IBaseFacility {
 export interface IManageFacility extends IBaseFacility, ICommonSEO {
   facilityId?: number;
   address: IManageAddress;
+  members: IMemberPost[];
 }
 
 export interface IFacility extends IBaseFacility, ICommonTable, ICommonSEO {
@@ -25,18 +26,7 @@ export interface IFacilityList extends IFacility {
   updatedByUser: IBaseAdminUser;
 }
 
-export interface IFacilityMemberInfo {
-  post: string;
-  members: {
-    firstName: string;
-    middleName: string;
-    lastName: string;
-    cityVillage: string | null;
-    imagePath: IMediaUpload | null;
-  }[];
-}
-
 export interface IFacilityDetail extends IFacilityList {
-  facilityMembers: IFacilityMemberInfo[];
+  facilityMembers: IMemberPostInfo[];
 }
 

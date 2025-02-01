@@ -10,6 +10,8 @@ export * from './lib/ui/ui-address-form/ui-address-form.component';
 export * from './lib/ui/ui-upload-form/ui-upload-form.component';
 export * from './lib/ui/ui-img/ui-image.component';
 export * from './lib/ui/ui-seo-form/ui-seo-form.component';
+export * from './lib/ui/ui-member-post/ui-member-post.component';
+export * from './lib/ui/ui-family-select/ui-family-select.component';
 export * from './lib/ui/ui-social-link/ui-social-link-form.component';
 export * from './lib/ui/ui-upload-form/directive/image-drag.directive';
 export * from './lib/util/validation.util';

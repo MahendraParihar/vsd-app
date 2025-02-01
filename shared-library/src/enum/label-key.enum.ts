@@ -105,6 +105,8 @@ export enum LabelKey {
   ACTION_REMOVE = 'action_remove',
   ACTION_ADD_AGENDA = 'action_add_agenda',
   ACTION_REMOVE_AGENDA = 'action_remove_agenda',
+  ACTION_ADD_POST = 'action_add_post',
+  ACTION_REMOVE_POST = 'action_remove_post',
   ACTION_VIEW_MORE = 'action_view_more',
 
   INPUT_USER_NAME = 'input_user_name',
