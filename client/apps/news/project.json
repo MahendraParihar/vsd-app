@@ -37,6 +37,12 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/news/src/environments/environment.ts",
+              "with": "apps/news/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/news/webpack.prod.config.ts"

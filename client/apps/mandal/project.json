@@ -37,6 +37,12 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/mandal/src/environments/environment.ts",
+              "with": "apps/mandal/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/mandal/webpack.prod.config.ts"

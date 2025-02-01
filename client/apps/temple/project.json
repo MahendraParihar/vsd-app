@@ -37,6 +37,12 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/temple/src/environments/environment.ts",
+              "with": "apps/temple/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/temple/webpack.prod.config.ts"

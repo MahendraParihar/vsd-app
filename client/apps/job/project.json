@@ -37,6 +37,12 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/job/src/environments/environment.ts",
+              "with": "apps/job/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/job/webpack.prod.config.ts"

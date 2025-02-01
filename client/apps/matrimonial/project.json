@@ -40,6 +40,12 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/matrimonial/src/environments/environment.ts",
+              "with": "apps/matrimonial/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/matrimonial/webpack.prod.config.ts"
