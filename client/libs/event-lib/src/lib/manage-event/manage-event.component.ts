@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
+import { UiAddressFormComponent, UiMemberPostComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { ActivatedRoute } from '@angular/router';
 import { AddressService, LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
@@ -46,6 +46,7 @@ export class ManageEventComponent implements OnInit, OnDestroy {
   });
 
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
+  @ViewChild(UiMemberPostComponent) memberPostComponent!: UiMemberPostComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private eventService: EventService,
               public labelService: LabelService, private title: Title,
@@ -97,6 +98,9 @@ export class ManageEventComponent implements OnInit, OnDestroy {
     if (this.event.address) {
       this.addressComponent.address = this.event.address;
     }
+    if (this.event.members && this.event.members.length > 0) {
+      this.memberPostComponent.membersPost = this.event.members
+    }
     this.seoData = {
       tags: this.event.tags ? this.event.tags : [],
       metaTitle: this.event.metaTitle,
@@ -124,6 +128,7 @@ export class ManageEventComponent implements OnInit, OnDestroy {
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
       agenda: this.formGroup.value.agenda,
+      members: this.formGroup.value.membersPost.membersPost,
       ...this.formGroup.value.seo,
     };
     if (this.formGroup.value.address.addressId) {

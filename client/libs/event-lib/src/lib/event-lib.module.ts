@@ -14,6 +14,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatDividerModule } from '@angular/material/divider';
 
 export const MY_FORMATS = {
   parse: {
@@ -85,6 +86,7 @@ export const MY_FORMATS = {
     }),
     MatNativeDateModule,
     MatDatepickerModule,
+    MatDividerModule,
   ],
   declarations: [EventComponent, ManageEventComponent, EventDetailComponent],
   exports: [EventComponent, ManageEventComponent, EventDetailComponent],

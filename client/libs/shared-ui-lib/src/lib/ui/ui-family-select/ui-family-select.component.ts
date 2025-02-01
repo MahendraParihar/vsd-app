@@ -28,7 +28,7 @@ export class UiFamilySelectComponent implements OnInit {
   });
 
   @Input()
-  masterList!: { id: number; title: string, subTitle: string }[];
+  masterList: { id: number; title: string, subTitle: string }[] = [];
 
   @Input()
   isMultiSelection = false;

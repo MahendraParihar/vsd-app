@@ -14,7 +14,7 @@ import {
 } from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
 import {
-  UiAddressFormComponent,
+  UiAddressFormComponent, UiMemberPostComponent,
   UiSeoFormComponent,
   UiSocialLinkFormComponent,
   ValidationUtil,
@@ -51,6 +51,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
   @ViewChild(UiSeoFormComponent) seoComponents!: UiSeoFormComponent;
   @ViewChild(UiSocialLinkFormComponent) socialLinkComponents!: UiSocialLinkFormComponent;
+  @ViewChild(UiMemberPostComponent) memberPostComponent!: UiMemberPostComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private mandalService: MandalService,
               public labelService: LabelService, private title: Title,
@@ -94,6 +95,9 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     if (this.mandal.address) {
       this.addressComponent.address = this.mandal.address;
     }
+    if (this.mandal.members && this.mandal.members.length > 0) {
+      this.memberPostComponent.membersPost = this.mandal.members
+    }
     if (this.mandal.additionalInfo) {
       this.formGroup.patchValue({
         emailId: this.mandal.additionalInfo.emailId,
@@ -124,6 +128,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
       description: toHTML(this.formGroup.value.description),
       imagePath: this.formGroup.value.uploadFiles,
       address: this.formGroup.value.address,
+      members: this.formGroup.value.membersPost.membersPost,
       ...this.formGroup.value.seo,
       additionalInfo: {
         emailId: this.formGroup.value.emailId,

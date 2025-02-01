@@ -47,27 +47,6 @@ import { EventCoordinatorModel } from './event-coordinator.model';
         model: AddressModel,
         required: true,
         as: 'address',
-      },
-    ],
-  },
-  details: {
-    include: [
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'createdByUser',
-      },
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'updatedByUser',
-      },
-      {
-        model: AddressModel,
-        required: true,
-        as: 'address',
         include: [
           {
             required: true,
@@ -83,6 +62,50 @@ import { EventCoordinatorModel } from './event-coordinator.model';
             model: CityVillageModel,
           },
         ],
+      },
+      {
+        model: EventCoordinatorModel,
+        required: false,
+        include: [
+          {
+            attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],
+            model: FamilyModel,
+            where: { active: true },
+            required: false,
+            include: [
+              {
+                model: AddressModel,
+                required: false,
+                as: 'address',
+                include: [
+                  {
+                    required: false,
+                    model: CountryModel,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            attributes: ['post'],
+            where: { active: true },
+            model: PostModel,
+            required: false,
+          },
+        ],
+      },
+    ],
+  },
+  details: {
+    include: [
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+      {
+        model: EventCoordinatorModel,
+        required: false,
       },
     ],
   },
@@ -123,7 +146,6 @@ import { EventCoordinatorModel } from './event-coordinator.model';
       {
         model: EventCoordinatorModel,
         required: false,
-        where: { active: true },
         include: [
           {
             attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],

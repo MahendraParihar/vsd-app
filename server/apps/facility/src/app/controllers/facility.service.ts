@@ -34,10 +34,11 @@ export class FacilityService {
   async load(payload: ITableListFilter): Promise<ITableList<IFacilityList>> {
     const where = {};
     if (payload.search) {
+      payload.search = payload.search.toLowerCase();
       Object.assign(where, {
-        [Op.iLike]: {
-          title: `%${payload.search}%`,
-        },
+        [Op.or]: [
+          { title: { [Op.iLike]: `%${payload.search}%` } },
+        ],
       });
     }
     const { rows, count } = await this.facilityModel.scope('list').findAndCountAll({

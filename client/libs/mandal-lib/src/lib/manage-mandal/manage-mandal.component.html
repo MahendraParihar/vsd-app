@@ -62,13 +62,22 @@
                               [control]="formGroup.get('phoneNumber')"></vsd-ui-input-error>
         </div>
       </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
       <vsd-ui-social-link-form
         [socialLinks]="mandal && mandal.additionalInfo && mandal.additionalInfo.socialSiteLink ? mandal.additionalInfo.socialSiteLink : []"
         [formGroup]="formGroup"></vsd-ui-social-link-form>
       <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="form-row">
         <vsd-ui-address-form class="address-box"
                              [formGroup]="formGroup" [masterData]="addressMaster"
                              [labels]="labelService.labels"></vsd-ui-address-form>
+      </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
       </div>
       <div class="form-row">
         <vsd-ui-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
@@ -79,7 +88,14 @@
                             [mediaType]="fileTypeEnum.IMAGE"
                             [uploadedMediaList]="mandal ? mandal.imagePath : []"></vsd-ui-upload-form>
       </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
       <vsd-ui-seo-form [seo]="seoData" [formGroup]="formGroup"></vsd-ui-seo-form>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <vsd-ui-member-post-form [formGroup]="formGroup"></vsd-ui-member-post-form>
     </form>
   </mat-card-content>
   <mat-card-actions align="end">

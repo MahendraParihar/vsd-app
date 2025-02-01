@@ -12,6 +12,7 @@ import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { MatCardModule } from '@angular/material/card';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { NgxEditorModule } from 'ngx-editor';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [CommonModule,
@@ -20,7 +21,7 @@ import { NgxEditorModule } from 'ngx-editor';
     MatTableModule,
     FormsModule,
     NgxEditorModule,
-    SharedUiLibModule, MatCardModule],
+    SharedUiLibModule, MatCardModule, MatDividerModule],
   declarations: [ManageMandalComponent, MandalComponent, MandalDetailComponent],
   exports: [ManageMandalComponent, MandalComponent, MandalDetailComponent],
   providers: [MandalService, {

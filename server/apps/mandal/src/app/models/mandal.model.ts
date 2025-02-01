@@ -45,11 +45,25 @@ import { MandalMemberModel } from './mandal-member.model';
         model: AddressModel,
         required: true,
         as: 'address',
+        include: [
+          {
+            required: true,
+            model: CountryModel,
+          }, {
+            required: true,
+            model: StateModel,
+          }, {
+            required: true,
+            model: DistrictModel,
+          }, {
+            required: true,
+            model: CityVillageModel,
+          },
+        ],
       },
       {
         model: MandalMemberModel,
         required: false,
-        where: { active: true },
         include: [
           {
             attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],
@@ -65,15 +79,6 @@ import { MandalMemberModel } from './mandal-member.model';
                   {
                     required: false,
                     model: CountryModel,
-                  }, {
-                    required: false,
-                    model: StateModel,
-                  }, {
-                    required: false,
-                    model: DistrictModel,
-                  }, {
-                    required: false,
-                    model: CityVillageModel,
                   },
                 ],
               },
@@ -92,36 +97,13 @@ import { MandalMemberModel } from './mandal-member.model';
   details: {
     include: [
       {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'createdByUser',
-      },
-      {
-        attributes: ['adminUserId', 'firstName', 'lastName'],
-        model: AdminUserModel,
-        required: true,
-        as: 'updatedByUser',
-      },
-      {
         model: AddressModel,
         required: true,
         as: 'address',
-        include: [
-          {
-            required: true,
-            model: CountryModel,
-          }, {
-            required: true,
-            model: StateModel,
-          }, {
-            required: true,
-            model: DistrictModel,
-          }, {
-            required: true,
-            model: CityVillageModel,
-          },
-        ],
+      },
+      {
+        model: MandalMemberModel,
+        required: false,
       },
     ],
   },
@@ -162,7 +144,6 @@ import { MandalMemberModel } from './mandal-member.model';
       {
         model: MandalMemberModel,
         required: false,
-        where: { active: true },
         include: [
           {
             attributes: ['firstName', 'lastName', 'middleName', 'imagePath'],

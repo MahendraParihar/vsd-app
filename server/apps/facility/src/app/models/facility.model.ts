@@ -132,13 +132,16 @@ import { IMediaUpload } from '@vsd-common/lib';
           {
             required: true,
             model: CountryModel,
-          }, {
+          },
+          {
             required: true,
             model: StateModel,
-          }, {
+          },
+          {
             required: true,
             model: DistrictModel,
-          }, {
+          },
+          {
             required: true,
             model: CityVillageModel,
           },

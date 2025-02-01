@@ -7,7 +7,7 @@ import {
   IMandal,
   IMandalAdditionalInfo,
   IMandalDetail,
-  IMandalList,
+  IMandalList, IMemberPost,
   IMemberPostInfo,
   IStatusChange,
   ITableList,
@@ -18,12 +18,13 @@ import { MandalModel } from '../models/mandal.model';
 import { Op } from 'sequelize';
 import { AddressService, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
-import { filter } from 'lodash';
+import { filter, groupBy, map } from 'lodash';
 import { MandalMemberModel } from '../models/mandal-member.model';
 
 @Injectable()
 export class MandalService {
   constructor(@InjectModel(MandalModel) private mandalModel: typeof MandalModel,
+              @InjectModel(MandalMemberModel) private mandalMemberModel: typeof MandalMemberModel,
               private labelService: LabelService,
               private addressService: AddressService,
               private postService: PostService,
@@ -32,21 +33,23 @@ export class MandalService {
 
   async load(payload: ITableListFilter): Promise<ITableList<IMandalList>> {
     const where = {};
+
     if (payload.search) {
+      payload.search = payload.search.toLowerCase();
       Object.assign(where, {
-        [Op.iLike]: {
-          mandalName: `%${payload.search}%`,
-        },
+        [Op.or]: [
+          { mandalName: { [Op.iLike]: `%${payload.search}%` } },
+        ],
       });
     }
-    const { rows, count } = await this.mandalModel.scope('details').findAndCountAll({
+    const { rows, count } = await this.mandalModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
       order: [['mandalName', 'asc']],
     });
     const data = rows.map((data: MandalModel) => {
-      return this.formatMandal(data);
+      return this.formatMandal(data.get({plain:true}));
     });
     return <ITableList<IMandalList>>{
       data: data,
@@ -55,13 +58,27 @@ export class MandalService {
   }
 
   async getById(id: number): Promise<IMandal> {
-    const obj = await this.mandalModel.scope('list').findOne({ where: { mandalId: id }, raw: true, nest: true });
+    const obj = await this.mandalModel.scope('details').findOne({ where: { mandalId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
+
+    const tempObj = obj.get({ plain: true });
+    const memberPost: IMemberPost[] = [];
+    const groupByPost = groupBy(tempObj.mandalMembers, 'postId');
+    const keys = Object.keys(groupByPost);
+    for (const postId of keys) {
+      const temp = groupByPost[postId];
+      memberPost.push(<IMemberPost>{
+        postId: Number(postId),
+        familyIds: map(temp, 'familyId'),
+      });
+    }
+    delete tempObj['mandalMembers'];
+
     return <IMandal>{
-      ...obj,
-      members:[]
+      ...tempObj,
+      members: memberPost,
     };
   }
 
@@ -116,7 +133,20 @@ export class MandalService {
       } else {
         Object.assign(dataObj, { createdBy: userId });
         res = await this.mandalModel.create(dataObj, { transaction: transaction });
+        obj.mandalId = res.mandalId;
       }
+      const postArray = [];
+      for (const m of obj.members) {
+        for (const f of m.familyIds) {
+          postArray.push({
+            mandalId: obj.mandalId,
+            familyId: f,
+            postId: m.postId,
+          });
+        }
+      }
+      await this.mandalMemberModel.destroy({ where: { mandalId: obj.mandalId }, transaction: transaction });
+      await this.mandalMemberModel.bulkCreate(postArray, { transaction: transaction });
       await transaction.commit();
       return res;
     } catch (e) {

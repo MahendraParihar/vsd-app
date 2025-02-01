@@ -6,8 +6,9 @@ import {
   IEvent,
   IEventDetail,
   IEventList,
-  IMemberPostInfo,
   IManageEvent,
+  IMemberPost,
+  IMemberPostInfo,
   IStatusChange,
   ITableList,
   ITableListFilter,
@@ -17,12 +18,13 @@ import { Op } from 'sequelize';
 import { EventModel } from '../models/event.model';
 import { AddressService, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
-import { filter } from 'lodash';
+import { filter, groupBy, map } from 'lodash';
 import { EventCoordinatorModel } from '../models/event-coordinator.model';
 
 @Injectable()
 export class EventService {
   constructor(@InjectModel(EventModel) private eventModel: typeof EventModel,
+              @InjectModel(EventCoordinatorModel) private eventCoordinatorModel: typeof EventCoordinatorModel,
               private labelService: LabelService,
               private sequelize: Sequelize,
               private addressService: AddressService,
@@ -32,20 +34,21 @@ export class EventService {
   async load(payload: ITableListFilter): Promise<ITableList<IEventList>> {
     const where = {};
     if (payload.search) {
+      payload.search = payload.search.toLowerCase();
       Object.assign(where, {
-        [Op.iLike]: {
-          title: `%${payload.search}%`,
-        },
+        [Op.or]: [
+          { title: { [Op.iLike]: `%${payload.search}%` } },
+        ],
       });
     }
-    const { rows, count } = await this.eventModel.scope('details').findAndCountAll({
+    const { rows, count } = await this.eventModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
       order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']],
     });
     const data = rows.map((data: EventModel) => {
-      return this.formatEvent(data);
+      return this.formatEvent(data.get({ plain: true }));
     });
     return <ITableList<IEventList>>{
       data: data,
@@ -54,13 +57,27 @@ export class EventService {
   }
 
   async getById(id: number): Promise<IEvent> {
-    const obj = await this.eventModel.scope('list').findOne({ where: { eventId: id }, raw: true, nest: true });
+    const obj = await this.eventModel.scope('details').findOne({ where: { eventId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_EVENT));
     }
+
+    const tempObj = obj.get({ plain: true });
+    const memberPost: IMemberPost[] = [];
+    const groupByPost = groupBy(tempObj.eventMembers, 'postId');
+    const keys = Object.keys(groupByPost);
+    for (const postId of keys) {
+      const temp = groupByPost[postId];
+      memberPost.push(<IMemberPost>{
+        postId: Number(postId),
+        familyIds: map(temp, 'familyId'),
+      });
+    }
+    delete tempObj['eventMembers'];
+
     return <IEvent>{
-      ...obj,
-      members:[]
+      ...tempObj,
+      members: memberPost,
     };
   }
 
@@ -132,7 +149,20 @@ export class EventService {
         Object.assign(dataObj, { createdBy: userId });
         Object.assign(dataObj, { createdIp: ':0' });
         res = await this.eventModel.create(dataObj, { transaction: transaction });
+        obj.eventId = res.eventId;
       }
+      const postArray = [];
+      for (const m of obj.members) {
+        for (const f of m.familyIds) {
+          postArray.push({
+            eventId: obj.eventId,
+            familyId: f,
+            postId: m.postId,
+          });
+        }
+      }
+      await this.eventCoordinatorModel.destroy({ where: { eventId: obj.eventId }, transaction: transaction });
+      await this.eventCoordinatorModel.bulkCreate(postArray, { transaction: transaction });
       await transaction.commit();
       return res;
     } catch (e) {

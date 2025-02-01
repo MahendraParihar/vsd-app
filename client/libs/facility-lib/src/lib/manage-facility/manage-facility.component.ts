@@ -89,7 +89,7 @@ export class ManageFacilityComponent implements OnInit, OnDestroy {
     if (this.facility.address) {
       this.addressComponent.address = this.facility.address;
     }
-    if (this.facility.members){
+    if (this.facility.members && this.facility.members.length > 0) {
       this.memberPostComponent.membersPost = this.facility.members
     }
     this.seoData = {
