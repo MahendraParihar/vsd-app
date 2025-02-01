@@ -1,6 +1,13 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddressService, ErrorHandlerService, HttpService, PostService, SnackBarService } from './services';
+import {
+  AddressService,
+  ErrorHandlerService,
+  FamilyService,
+  HttpService,
+  PostService,
+  SnackBarService,
+} from './services';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpConfigInterceptor } from './guard/httpconfig.interceptor';
 import { AuthGuardService } from './guard/auth.guard';
@@ -29,6 +36,7 @@ export function appLabelInitialize(appLabelService: LabelService) {
     LabelService,
     AddressService,
     PostService,
+    FamilyService,
     { provide: APP_INITIALIZER, useFactory: appLabelInitialize, deps: [LabelService], multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },

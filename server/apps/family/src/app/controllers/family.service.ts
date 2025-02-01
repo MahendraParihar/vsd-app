@@ -23,15 +23,17 @@ export class FamilyService {
   async load(payload: ITableListFilter): Promise<ITableList<IFamilyList>> {
     const where = {};
     if (payload.search) {
+      payload.search = payload.search.toLowerCase();
       Object.assign(where, {
-        [Op.iLike]: {
-          [Op.or]: [
-            { firstName: `%${payload.search}%` },
-            { lastName: `%${payload.search}%` },
-            { middleName: `%${payload.search}%` },
-          ],
-        },
+        [Op.or]: [
+          { firstName: { [Op.iLike]: `%${payload.search}%` } },
+          { lastName: { [Op.iLike]: `%${payload.search}%` } },
+          { middleName: { [Op.iLike]: `%${payload.search}%` } },
+        ],
       });
+    }
+    if (payload.ids) {
+      Object.assign(where, { familyId: payload.ids });
     }
     const { rows, count } = await this.familyModel.scope('list').findAndCountAll({
       where: where,
@@ -40,12 +42,39 @@ export class FamilyService {
       order: [['firstName', 'desc'], ['middleName', 'desc'], ['lastName', 'asc']],
     });
     const data = rows.map((data: FamilyModel) => {
-      return this.formatFamily(data);
+      return this.formatFamily(data.get({ plain: true }), true);
     });
     return <ITableList<IFamilyList>>{
       data: data,
       count: count,
     };
+  }
+
+  async searchFamily(payload: ITableListFilter, allDetails: boolean): Promise<Partial<IFamilyList>[]> {
+    const where = {};
+    if (payload.search) {
+      payload.search = payload.search.toLowerCase();
+      Object.assign(where, {
+        [Op.or]: [
+          { firstName: { [Op.iLike]: `%${payload.search}%` } },
+          { lastName: { [Op.iLike]: `%${payload.search}%` } },
+          { middleName: { [Op.iLike]: `%${payload.search}%` } },
+        ],
+      });
+    }
+    if (payload.ids) {
+      Object.assign(where, { familyId: payload.ids });
+    }
+    console.log(where);
+    const rows = await this.familyModel.scope('list').findAll({
+      where: where,
+      limit: payload.limit,
+      offset: payload.limit * payload.page,
+      order: [['firstName', 'desc'], ['middleName', 'desc'], ['lastName', 'asc']],
+    });
+    return rows.map((data: FamilyModel) => {
+      return this.formatFamily(data.get({ plain: true }), allDetails);
+    }) as Partial<IFamilyList>[];
   }
 
   async getById(id: number): Promise<IFamily> {
@@ -64,7 +93,7 @@ export class FamilyService {
       where: { familyId: id },
     });
 
-    return this.formatFamily(data);
+    return this.formatFamily(data, true) as IFamilyList;
   }
 
   async manage(obj: IManageFamily, userId: number) {
@@ -90,7 +119,20 @@ export class FamilyService {
     await obj.save();
   }
 
-  private formatFamily(data: FamilyModel) {
+  private formatFamily(data: FamilyModel, allDetails: boolean): IFamilyList | Partial<IFamilyList> {
+    console.log(data);
+    if (!allDetails) {
+      return <IFamilyList>{
+        familyId: data.familyId,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        middleName: data.middleName,
+        imagePath: data.imagePath,
+        address: <IAddressDetail>{
+          cityVillage: data.address ? data.address.cityVillage.cityVillage : '',
+        },
+      };
+    }
     return <IFamilyList>{
       familyId: data.familyId,
       firstName: data.firstName,
@@ -112,7 +154,7 @@ export class FamilyService {
         firstName: data.updatedByUser.firstName,
         lastName: data.updatedByUser.lastName,
       },
-      address: <IAddressDetail>{
+      address: !data.address ? null : <IAddressDetail>{
         address: data.address.address,
         pinCode: data.address.pinCode,
         latitude: data.address.latitude,

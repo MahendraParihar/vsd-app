@@ -9,4 +9,5 @@ export interface ITableListFilter {
   page: number;
   limit: number;
   search?: string;
+  ids?: number[];
 }

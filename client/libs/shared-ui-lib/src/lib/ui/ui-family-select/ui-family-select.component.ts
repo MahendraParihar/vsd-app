@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { SnackBarService } from '@vsd-frontend/core-lib';
+import { FamilyService, SnackBarService } from '@vsd-frontend/core-lib';
 import { find } from 'lodash';
 import { debounceTime, switchMap, tap } from 'rxjs';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -24,7 +24,6 @@ export class UiFamilySelectComponent implements OnInit {
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  @Input()
   masterList!: { id: number; title: string, subTitle: string }[];
 
   @Input()
@@ -44,7 +43,8 @@ export class UiFamilySelectComponent implements OnInit {
   @ViewChild('auto', { static: false }) matAutocomplete!: MatAutocomplete;
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private snackbarService: SnackBarService) {
+  constructor(private snackbarService: SnackBarService,
+              private familyService: FamilyService) {
   }
 
   ngOnInit(): void {
@@ -62,7 +62,7 @@ export class UiFamilySelectComponent implements OnInit {
           this.isLoading = true;
         },
       ),
-      switchMap((value: string) => this.getFilteredList(value)),
+      switchMap(async (value: string) => await this.getFilteredList(value)),
     ).subscribe(data => {
       this.filteredList = data;
     });
@@ -84,7 +84,13 @@ export class UiFamilySelectComponent implements OnInit {
         this.isLoading = false;
         return ddList;
       }
-      ddList = this.masterList.filter(o => o.title.toLowerCase().includes(searchStr.toLowerCase()));
+      ddList = (await this.familyService.searchFamilies([],searchStr)).map((f)=>{
+        return {
+          id:f.familyId,
+          title: `${f.firstName} ${f.middleName} ${f.lastName}`,
+          subTitle: `${f.address && f.address.cityVillage ? f.address.cityVillage : ''}`
+        }
+      });
       this.isLoading = false;
       if (ddList.length === 0) {
         this.errorMsg = 'No member found';

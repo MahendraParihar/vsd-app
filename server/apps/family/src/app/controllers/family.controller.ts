@@ -4,7 +4,7 @@ import {FamilyService} from "./family.service";
 import {IFamilyList, ITableList} from "@vsd-common/lib";
 import {FamilyDto} from "./dto/family.dto";
 
-@Controller('family')
+@Controller()
 export class FamilyController {
   constructor(private familyService: FamilyService) {
   }
@@ -14,6 +14,17 @@ export class FamilyController {
     try {
       return this.familyService.load(payload);
     } catch (e) {
+      console.log(e);
+      throw new Error(e);
+    }
+  }
+
+  @Post('search')
+  searchFamilies(@Body() payload: TableListDto): Promise<Partial<IFamilyList>[]> {
+    try {
+      return this.familyService.searchFamily(payload, false);
+    } catch (e) {
+      console.log(e);
       throw new Error(e);
     }
   }
@@ -36,7 +47,7 @@ export class FamilyController {
     }
   }
 
-  @Post()
+  @Post('manage')
   manageFamily(@Body() body: FamilyDto, userId: number) {
     try {
       return this.familyService.manage(body, userId);
