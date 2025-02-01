@@ -15,7 +15,6 @@ import { IFamilyList, LabelKey } from '@vsd-common/lib';
 })
 export class UiFamilySelectComponent implements OnInit {
   searchCtrl = new FormControl();
-  errorMsg!: string;
   filteredList!: { id: number; title: string, subTitle: string }[];
   selectedItemList: { id: number; title: string, subTitle: string }[] = [];
   protected readonly LabelKey = LabelKey;
@@ -62,9 +61,7 @@ export class UiFamilySelectComponent implements OnInit {
     this.searchCtrl.valueChanges.pipe(
       debounceTime(500),
       tap(() => {
-          this.errorMsg = '';
           this.filteredList = [];
-          this.loadingStage.set(this.LoadingStages.LOADING);
         },
       ),
     ).subscribe(async (value) => {
@@ -80,15 +77,14 @@ export class UiFamilySelectComponent implements OnInit {
   }
 
   async getFilteredList(searchStr: string): Promise<{ id: number; title: string, subTitle: string }[]> {
+    this.loadingStage.set(this.LoadingStages.LOADING);
     let ddList: { id: number; title: string, subTitle: string }[] = [];
     try {
       if (!searchStr) {
-        this.errorMsg = this.labelService.getLabel(LabelKey.SEARCH_FAMILY_HINT);
         this.loadingStage.set(this.LoadingStages.EMPTY_SET);
         return ddList;
       }
       if (searchStr && searchStr.length < 1) {
-        this.errorMsg = this.labelService.getLabel(LabelKey.SEARCH_HINT);
         this.loadingStage.set(this.LoadingStages.EMPTY_SET);
         return ddList;
       }
@@ -100,9 +96,10 @@ export class UiFamilySelectComponent implements OnInit {
           subTitle: `${f.address && f.address.cityVillage ? f.address.cityVillage : ''}`,
         };
       });
-      this.loadingStage.set(this.LoadingStages.LOADED);
       if (ddList.length === 0) {
-        this.errorMsg = this.labelService.getLabel(LabelKey.SEARCH_EMPTY_RESULT);
+        this.loadingStage.set(this.LoadingStages.EMPTY_SET);
+      } else {
+        this.loadingStage.set(this.LoadingStages.LOADED);
       }
     } catch (e) {
       this.loadingStage.set(this.LoadingStages.LOADED);
