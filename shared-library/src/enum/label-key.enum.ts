@@ -86,6 +86,8 @@ export enum LabelKey {
   ITEM_NOT_FOUND_MEDIA_SRC = 'item_not_found_media_src',
 
   APP_NAME = 'app_name',
+  APP_NAME_LONG = 'app_name_long',
+  APP_ADDRESS = 'app_address',
   ERROR_NOT_FOUND_ADMIN = 'error_not_found_admin',
 
   ACTION_SUBMIT = 'action_submit',

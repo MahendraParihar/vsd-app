@@ -10,14 +10,16 @@ import { LabelKey } from '@vsd-common/lib';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
+  protected readonly LabelKey = LabelKey;
   btnList: { label: string, path: string, isActive: boolean }[] = [];
 
   constructor(private router: Router,
-              private labelService: LabelService) {
+              protected labelService: LabelService) {
     this.btnList = [
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT), path: 'event', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE), path: 'temple', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL), path: 'mandal', isActive: false },
+      { label: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY), path: 'facility', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_HISTORY), path: 'history', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_ABOUT_US), path: 'about-us', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_CONTACT_US), path: 'contact-us', isActive: false },

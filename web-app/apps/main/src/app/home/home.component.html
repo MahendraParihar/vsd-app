@@ -1,21 +1,21 @@
-<div class="home-section">
+<div class="home-section main-section">
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
-  <div class="home-event-section data-section" *ngIf="upcomingEvents && upcomingEvents.length> 0">
+  <div class="home-event-section" *ngIf="upcomingEvents && upcomingEvents.length> 0">
     <shared-ui-lib-uikit-label *ngIf="eventTitle" [class]="['mat-headline-3']"
                                [label]="eventTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
     <vsd-web-app-event-card [events]="upcomingEvents" [orientation]="'horizontal'"></vsd-web-app-event-card>
   </div>
 
-  <div class="home-temple-section data-section" *ngIf="temples && temples.length>0">
+  <div class="home-temple-section" *ngIf="temples && temples.length>0">
     <shared-ui-lib-uikit-label *ngIf="templeTitle" [class]="['mat-headline-3']"
                                [label]="templeTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
     <vsd-web-app-temple-card [temples]="temples"></vsd-web-app-temple-card>
   </div>
 
-  <div class="home-about-us-section data-section" *ngIf="legalPage">
+  <div class="home-about-us-section" *ngIf="legalPage">
     <shared-ui-lib-uikit-label *ngIf="aboutUsTitle" [class]="['mat-headline-3']"
                                [label]="aboutUsTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
@@ -33,60 +33,60 @@
     </div>
   </div>
 
-  <div class="home-facilities-section data-section" *ngIf="facilities && facilities.length>0">
+  <div class="home-facilities-section" *ngIf="facilities && facilities.length>0">
     <shared-ui-lib-uikit-label *ngIf="facilitiesTitle" [class]="['mat-headline-3']"
                                [label]="facilitiesTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
     <vsd-web-app-facility-card [facilities]="facilities"></vsd-web-app-facility-card>
   </div>
 
-  <div class="home-trustee-section data-section">
-    <shared-ui-lib-uikit-label *ngIf="trusteeTitle" [class]="['mat-headline-3']"
-                               [label]="trusteeTitle"></shared-ui-lib-uikit-label>
-    <div class="divider divider-line"></div>
-    <div class="home-trustee-box">
-      <div class="home-trustee-item"><img />
-        <div class="trustee-body">
-          <div class="trustee-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="trustee-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-body-2']"
-              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>
-          </div>
-        </div>
-      </div>
-      <div class="home-trustee-item"><img />
-        <div class="trustee-body">
-          <div class="trustee-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="trustee-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-body-2']"
-              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>
-          </div>
-        </div>
-      </div>
-      <div class="home-trustee-item"><img />
-        <div class="trustee-body">
-          <div class="trustee-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="trustee-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-body-2']"
-              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--  <div class="home-trustee-section">-->
+<!--    <shared-ui-lib-uikit-label *ngIf="trusteeTitle" [class]="['mat-headline-3']"-->
+<!--                               [label]="trusteeTitle"></shared-ui-lib-uikit-label>-->
+<!--    <div class="divider divider-line"></div>-->
+<!--    <div class="home-trustee-box">-->
+<!--      <div class="home-trustee-item"><img />-->
+<!--        <div class="trustee-body">-->
+<!--          <div class="trustee-name">-->
+<!--            <shared-ui-lib-uikit-label-->
+<!--              [class]="['mat-headline-5']"-->
+<!--              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>-->
+<!--          </div>-->
+<!--          <div class="trustee-desc">-->
+<!--            <shared-ui-lib-uikit-label-->
+<!--              [class]="['mat-body-2']"-->
+<!--              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="home-trustee-item"><img />-->
+<!--        <div class="trustee-body">-->
+<!--          <div class="trustee-name">-->
+<!--            <shared-ui-lib-uikit-label-->
+<!--              [class]="['mat-headline-5']"-->
+<!--              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>-->
+<!--          </div>-->
+<!--          <div class="trustee-desc">-->
+<!--            <shared-ui-lib-uikit-label-->
+<!--              [class]="['mat-body-2']"-->
+<!--              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="home-trustee-item"><img />-->
+<!--        <div class="trustee-body">-->
+<!--          <div class="trustee-name">-->
+<!--            <shared-ui-lib-uikit-label-->
+<!--              [class]="['mat-headline-5']"-->
+<!--              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>-->
+<!--          </div>-->
+<!--          <div class="trustee-desc">-->
+<!--            <shared-ui-lib-uikit-label-->
+<!--              [class]="['mat-body-2']"-->
+<!--              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>

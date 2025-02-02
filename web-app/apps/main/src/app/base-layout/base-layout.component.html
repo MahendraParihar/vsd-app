@@ -5,7 +5,7 @@
                [opened]="(isHandset$ | async) === true">
     <mat-toolbar>
       <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
-                                 [label]="'श्री विश्वकर्मा वंश - सुथार समाज'"></shared-ui-lib-uikit-label>
+                                 [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
     </mat-toolbar>
     <mat-nav-list>
       <mat-list-item *ngFor="let btn of btnList; let i = index"
@@ -28,7 +28,7 @@
             <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
             <div class="header-title">
               <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
-                                         [label]="'श्री विश्वकर्मा वंश - सुथार समाज</br>गोडवाड - पट्टा - मालवा'"></shared-ui-lib-uikit-label>
+                                         [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
             </div>
           </div>
         </div>

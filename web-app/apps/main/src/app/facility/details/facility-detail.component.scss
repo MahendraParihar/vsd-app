@@ -34,7 +34,7 @@
 
         .map-box {
           width: 100%;
-          height: 250px;
+          height: var(--min-map-height);
         }
 
         .address-box {

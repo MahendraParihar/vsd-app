@@ -26,7 +26,7 @@ $vsd-typography: mat.m2-define-typography-config(
     $font-family: $regular-font-family,
     $font-size: var(--font-size-32),
     $line-height: var(--line-height-40),
-    $font-weight: var(--font-weight-bold)
+    $font-weight: var(--font-weight-medium)
   ), // mat-headline-4
   $headline-5: mat.m2-define-typography-level(
     $font-family: $regular-font-family,

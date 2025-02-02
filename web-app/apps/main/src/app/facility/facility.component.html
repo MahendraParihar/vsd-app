@@ -5,30 +5,8 @@
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <div class="facility-list grid-list" *ngIf="dataSet.data && dataSet.data.length>0">
-      <div class="facility-item grid-item" *ngFor="let facility of dataSet.data">
-        <img />
-        <div class="facility-address">
-          <shared-ui-lib-uikit-label
-            [class]="['mat-subtitle-1']"
-            [label]="getAddress(facility)"></shared-ui-lib-uikit-label>
-        </div>
-        <div class="facility-body">
-          <div class="facility-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="facility.title"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="facility-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-subtitle-2']"
-              [label]="facility.description" [charLimit]="100"></shared-ui-lib-uikit-label>
-          </div>
-          <shared-ui-lib-uikit-button (buttonClicked)="onClick(facility)" [type]="'link'"
-                                      [label]="labelService.getLabel(labelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
-        </div>
-      </div>
-      <div class="grid-item" *ngFor="let item of dummyEntry"></div>
-    </div>
+    <ng-container *ngIf="dataSet && dataSet.data && dataSet.data.length>0">
+      <vsd-web-app-facility-card [facilities]="dataSet.data"></vsd-web-app-facility-card>
+    </ng-container>
   </div>
 </div>

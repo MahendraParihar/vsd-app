@@ -49,7 +49,7 @@ export class MandalService {
       order: [['mandalName', 'asc']],
     });
     const data = rows.map((data: MandalModel) => {
-      return this.formatMandal(data.get({plain:true}));
+      return this.formatMandal(data.get({ plain: true }));
     });
     return <ITableList<IMandalList>>{
       data: data,
@@ -104,7 +104,7 @@ export class MandalService {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
     }
 
-    return this.formatMandal(data);
+    return this.formatMandal(data.get({ plain: true }));
   }
 
   async manage(obj: IManageMandal, userId: number): Promise<IManageMandal> {
@@ -163,7 +163,16 @@ export class MandalService {
   }
 
   async loadPrimaryMandalInfo(): Promise<IMandalDetail> {
-    return await this.loadDetailById(12);
+    const data = await this.mandalModel.scope('withMember').findOne({
+      where: { mandalId: 12 },
+      nest: true,
+    });
+
+    if (!data) {
+      throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_MANDAL));
+    }
+    const post: PostModel[] = await this.postService.masterPost();
+    return this.formatMandal(data.get({ plain: true }), post);
   }
 
   private formatMandal(data: MandalModel, post: PostModel[] = []) {

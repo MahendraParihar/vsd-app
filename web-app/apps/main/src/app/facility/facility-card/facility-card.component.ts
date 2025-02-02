@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IFacilityList, LabelKey } from '@vsd-common/lib';
 import { Router } from '@angular/router';
-import { LabelService } from '@core-lib';
+import { insertDummyEntry, LabelService } from '@core-lib';
 
 @Component({
   selector: 'vsd-web-app-facility-card',
@@ -18,13 +18,7 @@ export class FacilityCardComponent {
   }
 
   get dummyEntry() {
-    const dummyEntry: null[] = [];
-    if (this.facilities && this.facilities.length > 0) {
-      console.log(this.facilities.length % 4);
-      for (let i = 0; i < this.facilities.length % 4; i++) {}
-      dummyEntry.push(null);
-    }
-    return dummyEntry;
+    return insertDummyEntry(this.facilities);
   }
 
   getAddress(item: IFacilityList) {

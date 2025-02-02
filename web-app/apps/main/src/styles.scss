@@ -29,22 +29,22 @@ html {
   }
 }
 
-@media only screen and (max-width: 1024px) {
-  .mat-icon {
-    background-size: cover !important;
-  }
-  ::ng-deep {
-    .mat-icon {
-      background-size: cover !important;
-    }
-  }
-}
-
-@media only screen and (min-width: 1920px) {
-  .mat-icon {
-    background-size: cover !important;
-  }
-}
+//@media only screen and (max-width: 1024px) {
+//  .mat-icon {
+//    background-size: cover !important;
+//  }
+//  ::ng-deep {
+//    .mat-icon {
+//      background-size: cover !important;
+//    }
+//  }
+//}
+//
+//@media only screen and (min-width: 1920px) {
+//  .mat-icon {
+//    background-size: cover !important;
+//  }
+//}
 
 body {
   font-family: inherit;
@@ -79,18 +79,18 @@ a {
   text-decoration: inherit;
 }
 
-svg {
-  display: block;
-  vertical-align: middle;
-  shape-rendering: auto;
-  text-rendering: optimizeLegibility;
-}
+//svg {
+//  display: block;
+//  vertical-align: middle;
+//  shape-rendering: auto;
+//  text-rendering: optimizeLegibility;
+//}
 
 pre {
   background-color: rgba(55, 65, 81, 1);
   border-radius: 0.25rem;
   color: rgba(229, 231, 235, 1);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  //font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   overflow: scroll;
   padding: 0.5rem 0.75rem;
 }

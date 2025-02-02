@@ -1,6 +1,6 @@
 <div class="facility-list grid-list" *ngIf="facilities && facilities.length>0">
   <div class="home-facility-item grid-item" *ngFor="let facility of facilities">
-    <img />
+    <img [src]="facility.imagePath[0].webUrl" />
     <div class="facility-address">
       <shared-ui-lib-uikit-label
         [class]="['mat-subtitle-1']"
@@ -16,7 +16,7 @@
         <shared-ui-lib-uikit-label
           [class]="['mat-subtitle-2']"
           [hasHtmlContent]="true"
-          [label]="facility.description" [charLimit]="100"></shared-ui-lib-uikit-label>
+          [label]="facility.description" [charLimit]="150"></shared-ui-lib-uikit-label>
       </div>
       <shared-ui-lib-uikit-button
         [hasUnderline]="true"

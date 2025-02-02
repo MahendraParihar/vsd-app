@@ -6,7 +6,7 @@
       <div class="header-title">
         <shared-ui-lib-uikit-label [hasHtmlContent]="true"
                                    [class]="['mat-headline-5']"
-                                   [label]="'श्री विश्वकर्मा वंश - सुथार समाज<br>गोडवाड - पट्टा - मालवा'"></shared-ui-lib-uikit-label>
+                                   [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
       </div>
     </div>
     <hr>
@@ -15,13 +15,16 @@
         <div class="address">
           <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
           <shared-ui-lib-uikit-label [class]="['mat-body-1']" [hasHtmlContent]="true"
-                                     [label]="'श्री विश्वकर्मा मंदिर, बड़वा, बाया-बाली,<br> जिला पाली , राजस्थान 306706'"></shared-ui-lib-uikit-label>
+                                     [label]="labelService.getLabel(LabelKey.APP_ADDRESS)"></shared-ui-lib-uikit-label>
         </div>
       </div>
       <div class="social-link-section">
-        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'" [prefixIcon]="'social-facebook'"></shared-ui-lib-uikit-button>
-        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'" [prefixIcon]="'social-twitter'"></shared-ui-lib-uikit-button>
-        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'" [prefixIcon]="'social-instagram'"></shared-ui-lib-uikit-button>
+        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'"
+                                    [prefixIcon]="'social-facebook'"></shared-ui-lib-uikit-button>
+        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'"
+                                    [prefixIcon]="'social-twitter'"></shared-ui-lib-uikit-button>
+        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'"
+                                    [prefixIcon]="'social-instagram'"></shared-ui-lib-uikit-button>
       </div>
     </div>
   </div>

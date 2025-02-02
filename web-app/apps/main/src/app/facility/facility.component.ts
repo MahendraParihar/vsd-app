@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IFacilityList, ITableList, LabelKey } from '@vsd-common/lib';
 import { FacilityService } from './services/facility.service';
-import { LabelService } from '@core-lib';
+import { insertDummyEntry, LabelService } from '@core-lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -37,13 +37,7 @@ export class FacilityComponent implements OnInit {
   }
 
   get dummyEntry() {
-    const dummyEntry: null[] = [];
-    if (this.dataSet.data && this.dataSet.data.length > 0) {
-      console.log(this.dataSet.data.length % 4);
-      for (let i = 0; i < this.dataSet.data.length % 4; i++) {}
-      dummyEntry.push(null);
-    }
-    return dummyEntry;
+    return insertDummyEntry(this.dataSet.data);
   }
 
   getAddress(item: IFacilityList) {

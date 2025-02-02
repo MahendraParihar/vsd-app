@@ -12,6 +12,7 @@ import { LabelKey } from '@vsd-common/lib';
   styleUrl: './base-layout.component.scss',
 })
 export class BaseLayoutComponent {
+  protected readonly LabelKey = LabelKey;
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -22,9 +23,9 @@ export class BaseLayoutComponent {
   btnList: { label: string, path: string, isActive: boolean }[] = [];
 
   constructor(private router: Router,
-              private labelService: LabelService) {
+              protected labelService: LabelService) {
     this.btnList = [
-      { label: 'श्री विश्वकर्मा वंश सुथार समाज', path: '/', isActive: true },
+      { label: this.labelService.getLabel(LabelKey.APP_NAME), path: '/', isActive: true },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT), path: 'event', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE), path: 'temple', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL), path: 'mandal', isActive: false },

@@ -15,47 +15,7 @@
     align-items: center;
   }
 
-  .facility-list {
-    margin-top: var(--spacing-48);
+  vsd-web-app-facility-card {
+    width: 100%;
   }
-
-  .facility-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: var(--border-radius-10);
-    box-shadow: var(--box-shadow);
-    border: var(--stroke-thin) solid white;
-
-    img {
-      width: 100%;
-      height: var(--temple-image-height);
-      border-top-left-radius: var(--border-radius-10);
-      border-top-right-radius: var(--border-radius-10);
-    }
-
-    .facility-address {
-      background-color: var(--accent);
-      box-shadow: var(--box-shadow);
-      border-radius: var(--border-radius-10);
-      padding: var(--spacing-12);
-      margin-right: 50px;
-      margin-top: -24px;
-
-      ::ng-deep .mat-subtitle-1 {
-        margin: 0 !important;
-        color: white;
-      }
-    }
-
-    .facility-body {
-      width: 100%;
-      display: flex;
-      padding: var(--spacing-24);
-      flex-direction: column;
-      gap: var(--spacing-16);
-    }
-  }
-
-
 }

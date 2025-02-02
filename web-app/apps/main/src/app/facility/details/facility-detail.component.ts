@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FacilityService } from '../services/facility.service';
 import { IFacilityDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
-import { LabelService } from '@core-lib';
+import { insertDummyEntry, LabelService } from '@core-lib';
 
 @Component({
   selector: 'vsd-web-app-facility-detail',
@@ -46,16 +46,9 @@ export class FacilityDetailComponent {
   }
 
   getDummyMemberEntry(post: IMemberPostInfo) {
-    const dummyEntry: null[] = [];
     if (post.members && post.members.length > 0) {
-      let dummyCount = post.members.length % 3;
-      if (post.members.length === 1) {
-        dummyCount = 1 + dummyCount;
-      }
-      for (let i = 0; i < dummyCount; i++) {
-        dummyEntry.push(null);
-      }
+      return insertDummyEntry(post.members, 3);
     }
-    return dummyEntry;
+    return [];
   }
 }
