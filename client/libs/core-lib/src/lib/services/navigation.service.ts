@@ -20,7 +20,7 @@ export class NavigationService {
     private storageService: StorageService,
     private location: Location,
     private sharedService: SharedService,
-    private labelService: LabelService
+    private labelService: LabelService,
   ) {
     // this.router.events.subscribe((event: Event) => {
     //   if (event instanceof NavigationEnd) {
@@ -196,10 +196,30 @@ export class NavigationService {
             path: NavigationPathEnum.FAMILY,
           });
           break;
+        case NavigationPathEnum.FAMILY_MANAGE:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAMILY),
+            path: NavigationPathEnum.FAMILY,
+          });
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAMILY),
+            path: NavigationPathEnum.FAMILY_MANAGE,
+          });
+          break;
         case NavigationPathEnum.NEWS:
           breadcrumbList.push({
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_NEWS),
             path: NavigationPathEnum.NEWS,
+          });
+          break;
+        case NavigationPathEnum.NEWS_MANAGE:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_NEWS),
+            path: NavigationPathEnum.NEWS,
+          });
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_NEWS),
+            path: NavigationPathEnum.NEWS_MANAGE,
           });
           break;
         case NavigationPathEnum.TEMPLE:
@@ -208,10 +228,30 @@ export class NavigationService {
             path: NavigationPathEnum.TEMPLE,
           });
           break;
+        case NavigationPathEnum.TEMPLE_MANAGE:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE),
+            path: NavigationPathEnum.TEMPLE,
+          });
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE),
+            path: NavigationPathEnum.TEMPLE_MANAGE,
+          });
+          break;
         case NavigationPathEnum.MANDAL:
           breadcrumbList.push({
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL),
             path: NavigationPathEnum.MANDAL,
+          });
+          break;
+        case NavigationPathEnum.MANDAL_MANAGE:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL),
+            path: NavigationPathEnum.MANDAL,
+          });
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL),
+            path: NavigationPathEnum.MANDAL_MANAGE,
           });
           break;
         case NavigationPathEnum.SETTING:
@@ -239,7 +279,7 @@ export class NavigationService {
         case NavigationPathEnum.JOB_SUB_CATEGORY:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY
+              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
             ),
             path: NavigationPathEnum.JOB_SUB_CATEGORY,
           });
@@ -247,13 +287,13 @@ export class NavigationService {
         case NavigationPathEnum.JOB_SUB_CATEGORY_MANAGE:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY
+              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
             ),
             path: NavigationPathEnum.JOB_SUB_CATEGORY,
           });
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY
+              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
             ),
             path: NavigationPathEnum.JOB_SUB_CATEGORY_MANAGE,
           });
@@ -421,7 +461,7 @@ export class NavigationService {
         case NavigationPathEnum.EDUCATION_DEGREE:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_EDUCATION_DEGREE
+              LabelKey.SIDE_MENU_EDUCATION_DEGREE,
             ),
             path: NavigationPathEnum.EDUCATION_DEGREE,
           });
@@ -429,13 +469,13 @@ export class NavigationService {
         case NavigationPathEnum.EDUCATION_DEGREE_MANAGE:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_EDUCATION_DEGREE
+              LabelKey.SIDE_MENU_EDUCATION_DEGREE,
             ),
             path: NavigationPathEnum.EDUCATION_DEGREE,
           });
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_EDUCATION_DEGREE
+              LabelKey.SIDE_MENU_EDUCATION_DEGREE,
             ),
             path: NavigationPathEnum.EDUCATION_DEGREE_MANAGE,
           });
@@ -459,7 +499,7 @@ export class NavigationService {
         case NavigationPathEnum.MARITAL_STATUS:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MARITAL_STATUS
+              LabelKey.SIDE_MENU_MARITAL_STATUS,
             ),
             path: NavigationPathEnum.MARITAL_STATUS,
           });
@@ -467,13 +507,13 @@ export class NavigationService {
         case NavigationPathEnum.MARITAL_STATUS_MANAGE:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MARITAL_STATUS
+              LabelKey.SIDE_MENU_MARITAL_STATUS,
             ),
             path: NavigationPathEnum.MARITAL_STATUS,
           });
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MARITAL_STATUS
+              LabelKey.SIDE_MENU_MARITAL_STATUS,
             ),
             path: NavigationPathEnum.MARITAL_STATUS_MANAGE,
           });
@@ -481,7 +521,7 @@ export class NavigationService {
         case NavigationPathEnum.MATRIMONIAL_STATUS:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS
+              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS,
             ),
             path: NavigationPathEnum.MATRIMONIAL_STATUS,
           });
@@ -489,13 +529,13 @@ export class NavigationService {
         case NavigationPathEnum.MATRIMONIAL_STATUS_MANAGE:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS
+              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS,
             ),
             path: NavigationPathEnum.MATRIMONIAL_STATUS,
           });
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS
+              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS,
             ),
             path: NavigationPathEnum.MATRIMONIAL_STATUS_MANAGE,
           });
@@ -503,7 +543,7 @@ export class NavigationService {
         case NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS
+              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS,
             ),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS,
           });
@@ -511,13 +551,13 @@ export class NavigationService {
         case NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS_MANAGE:
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS
+              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS,
             ),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS,
           });
           breadcrumbList.push({
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS
+              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS,
             ),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS_MANAGE,
           });
@@ -584,6 +624,22 @@ export class NavigationService {
           breadcrumbList.push({
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_CONTACT_TYPE),
             path: NavigationPathEnum.CONTACT_TYPE_MANAGE,
+          });
+          break;
+        case NavigationPathEnum.FACILITY:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
+            path: NavigationPathEnum.FAMILY,
+          });
+          break;
+        case NavigationPathEnum.FACILITY_MANAGE:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
+            path: NavigationPathEnum.FACILITY,
+          });
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
+            path: NavigationPathEnum.FACILITY_MANAGE,
           });
           break;
       }
