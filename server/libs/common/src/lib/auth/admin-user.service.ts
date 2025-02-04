@@ -6,6 +6,7 @@ import { Op } from 'sequelize';
 import { jwtConstants } from './constants';
 import { JwtService } from '@nestjs/jwt';
 import { IAuthUser, ILogin, LabelKey } from '@vsd-common/lib';
+import { CryptoUtil } from '../utils/crypto.util';
 
 @Injectable()
 export class AdminUserService {
@@ -29,12 +30,13 @@ export class AdminUserService {
         },
       },
     });
-    // console.log('---------------------',decryptApiData(user.password));
     if (!adminUser) {
       throw new UnauthorizedException();
     }
-    // if (adminUser.password !== encryptData(user.password)) {
-    if (adminUser.password !== user.password) {
+
+    const isMatch = await CryptoUtil.compareHash(user.password, adminUser.password);
+
+    if (!isMatch) {
       throw new UnauthorizedException();
     }
     const token = this.jwtService.sign(

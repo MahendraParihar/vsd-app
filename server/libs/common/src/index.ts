@@ -1,4 +1,5 @@
 export * from './lib/common.module';
+export * from './lib/utils/crypto.util';
 export * from './lib/utils/env.values';
 export * from './lib/models/admin';
 export * from './lib/models/family';
@@ -34,6 +35,7 @@ export * from './lib/common/dto/member-post.dto';
 
 export * from './lib/faq/faq-category.service';
 export * from './lib/label/label.module';
+
 export * from './lib/filters/validation.filter';
 export * from './lib/filters/validation.exception';
 export * from './lib/filters/validation.filter';

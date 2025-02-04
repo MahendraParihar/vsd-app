@@ -1,5 +1,5 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { LabelService, SharedService } from '@vsd-frontend/core-lib';
+import { AfterContentChecked, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { SharedService } from '@vsd-frontend/core-lib';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -7,22 +7,17 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnDestroy, AfterContentChecked, OnInit {
+export class AppComponent implements OnDestroy, AfterContentChecked {
   loader = false;
   loaderSubscription!: Subscription;
 
   constructor(
     private sharedService: SharedService,
     private cdr: ChangeDetectorRef,
-    private labelService: LabelService,
   ) {
     this.sharedService.getLoader().subscribe((data: boolean) => {
       this.loader = data;
     });
-  }
-
-  async ngOnInit() {
-    this.labelService.getLabel('admin');
   }
 
   ngAfterContentChecked() {

@@ -59,7 +59,7 @@ import { NgxEditorModule } from 'ngx-editor';
         {
           path: '',
           component: BaseLayoutComponent,
-          //canActivateChild: [ChildAuthGuard],
+          canActivate: [AuthGuard],
           children: [
             {
               path: '',
