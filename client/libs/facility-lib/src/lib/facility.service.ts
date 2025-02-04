@@ -21,7 +21,7 @@ export class FacilityService {
     return res as IManageFacility;
   }
 
-  async manageEvent(payload: IManageFacility): Promise<IManageFacility> {
+  async manageFacility(payload: IManageFacility): Promise<IManageFacility> {
     const res = await this.httpService.postRequest<IResponse<IManageFacility>>(FacilityApiUrl.MANAGE_FACILITY, payload);
     return res as IManageFacility;
   }

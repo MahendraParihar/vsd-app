@@ -126,7 +126,7 @@ export class ManageFacilityComponent implements OnInit, OnDestroy {
       payload.facilityId = this.id;
     }
     try {
-      await this.facilityService.manageEvent(payload);
+      await this.facilityService.manageFacility(payload);
       this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
       this.onCancel();
     } catch (e) {

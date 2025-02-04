@@ -56,6 +56,15 @@ import { AddressModel, CityVillageModel, CountryModel, DistrictModel, StateModel
       },
     ],
   },
+  details: {
+    include: [
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+    ],
+  },
 }))
 export class FamilyModel extends Model<FamilyModel> {
   @Column({

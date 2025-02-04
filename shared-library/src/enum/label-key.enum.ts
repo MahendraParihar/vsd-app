@@ -188,6 +188,7 @@ export enum LabelKey {
   ADD_ABOUT_US = 'add_about_us',
   ADD_CONTACT_US = 'add_contact_us',
   ADD_PAGE = 'add_page',
+  ADD_FAMILY = 'add_family',
 
   EDIT_MATRIMONIAL = 'edit_matrimonial',
   EDIT_MATRIMONIAL_STATUS = 'edit_matrimonial_status',
@@ -220,6 +221,7 @@ export enum LabelKey {
   EDIT_ABOUT_US = 'edit_about_us',
   EDIT_CONTACT_US = 'edit_contact_us',
   EDIT_PAGE = 'edit_page',
+  EDIT_FAMILY = 'edit_family',
 
   ADDRESS = 'address',
   STATE = 'state',
@@ -259,4 +261,10 @@ export enum LabelKey {
   SECTION_TITLE_SEO = 'section_title_seo',
   SECTION_TITLE_MEMBER_POST = 'section_title_member_post',
   SECTION_TITLE_EVENT_AGENDA = 'section_title_event_agenda',
+
+  FIRST_NAME = 'first_name',
+  MIDDLE_NAME = 'middle_name',
+  LAST_NAME = 'last_name',
+  EMAIL_ID = 'email_id',
+  PASSWORD = 'password',
 }

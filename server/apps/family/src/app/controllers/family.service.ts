@@ -12,11 +12,14 @@ import {
   LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
-import { FamilyModel, LabelService } from '@server/common';
+import { AddressService, FamilyModel, LabelService } from '@server/common';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class FamilyService {
   constructor(@InjectModel(FamilyModel) private familyModel: typeof FamilyModel,
+              private addressService: AddressService,
+              private sequelize: Sequelize,
               private labelService: LabelService) {
   }
 
@@ -65,7 +68,6 @@ export class FamilyService {
     if (payload.ids) {
       Object.assign(where, { familyId: payload.ids });
     }
-    console.log(where);
     const rows = await this.familyModel.scope('list').findAll({
       where: where,
       limit: payload.limit,
@@ -78,14 +80,11 @@ export class FamilyService {
   }
 
   async getById(id: number): Promise<IFamily> {
-    const obj = await this.familyModel.findOne({ where: { familyId: id } });
+    const obj = await this.familyModel.scope('details').findOne({ where: { familyId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_FAMILY));
     }
-    return <IFamily>{
-      ...obj,
-      updatedBy: obj.updatedBy,
-    };
+    return <IFamily>obj;
   }
 
   async loadDetailById(id: number): Promise<IFamilyList> {
@@ -97,18 +96,32 @@ export class FamilyService {
   }
 
   async manage(obj: IManageFamily, userId: number) {
-    const dataObj = {
-      title: obj.firstName,
-      updatedBy: userId,
-    };
-    if (obj.imagePath) {
-      Object.assign(dataObj, { imagePath: obj.imagePath });
-    }
-    if (obj.familyId) {
-      await this.familyModel.update(dataObj, { where: { familyId: obj.familyId } });
-    } else {
-      Object.assign(dataObj, { createdBy: userId });
-      await this.familyModel.create(dataObj);
+    const transaction = await this.sequelize.transaction();
+    try {
+      const dataObj = {
+        firstName: obj.firstName,
+        middleName: obj.middleName,
+        lastName: obj.lastName,
+        emailId: obj.emailId,
+        updatedBy: userId,
+      };
+      if (obj.imagePath) {
+        Object.assign(dataObj, { imagePath: obj.imagePath });
+      }
+
+      const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
+      Object.assign(dataObj, { addressId: address.addressId });
+
+      if (obj.familyId) {
+        await this.familyModel.update(dataObj, { where: { familyId: obj.familyId }, transaction: transaction });
+      } else {
+        Object.assign(dataObj, { createdBy: userId });
+        await this.familyModel.create(dataObj, { transaction: transaction });
+      }
+      await transaction.commit();
+    } catch (e) {
+      await transaction.rollback();
+      throw e;
     }
   }
 

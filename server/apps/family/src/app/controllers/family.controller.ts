@@ -14,7 +14,6 @@ export class FamilyController {
     try {
       return this.familyService.load(payload);
     } catch (e) {
-      console.log(e);
       throw new Error(e);
     }
   }
@@ -50,7 +49,7 @@ export class FamilyController {
   @Post('manage')
   manageFamily(@Body() body: FamilyDto, userId: number) {
     try {
-      return this.familyService.manage(body, userId);
+      return this.familyService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }

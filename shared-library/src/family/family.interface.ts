@@ -9,7 +9,6 @@ export interface IBaseFamily {
   emailId: string;
   addressId?: number;
   imagePath?: IMediaUpload[];
-  visitedCount: number;
 }
 
 export interface IManageFamily extends IBaseFamily {
@@ -19,6 +18,7 @@ export interface IManageFamily extends IBaseFamily {
 
 export interface IFamily extends IBaseFamily, ICommonTable {
   familyId: number;
+  visitedCount: number;
   active: boolean;
 }
 
