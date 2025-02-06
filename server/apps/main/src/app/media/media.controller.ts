@@ -31,8 +31,6 @@ export class MediaController {
     if (!fs.existsSync(destinationFolderPath)) {
       fs.mkdirSync(destinationFolderPath, { recursive: true });
     }
-    console.log(destinationFolderPath);
-    console.log(destinationPath);
 
     //Write File
     await fs.writeFileSync(destinationPath, file['buffer']);

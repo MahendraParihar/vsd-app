@@ -23,7 +23,6 @@ export class FamilyController {
     try {
       return this.familyService.searchFamily(payload, false);
     } catch (e) {
-      console.log(e);
       throw new Error(e);
     }
   }

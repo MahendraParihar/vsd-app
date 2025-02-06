@@ -133,7 +133,6 @@ export class FamilyService {
   }
 
   private formatFamily(data: FamilyModel, allDetails: boolean): IFamilyList | Partial<IFamilyList> {
-    console.log(data);
     if (!allDetails) {
       return <IFamilyList>{
         familyId: data.familyId,
