@@ -162,7 +162,7 @@ export class BaseLayoutComponent implements OnInit {
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_INQUIRY),
         path: NavigationPathEnum.INQUIRY,
-        iconName: 'work_outline',
+        iconName: 'contact_support',
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL),
