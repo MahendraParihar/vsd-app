@@ -18,6 +18,8 @@
     <mat-toolbar color="primary">
       @if (isHandset$ | async) {
         <shared-ui-lib-uikit-button
+          [type]="'icon-only'"
+          [prefixIcon]="'home'"
           aria-label="Toggle sidenav"
           (click)="drawer.toggle()">
         </shared-ui-lib-uikit-button>
@@ -41,7 +43,7 @@
                                       [label]="btn.label"></shared-ui-lib-uikit-button>
         </div>
         <div class="fill-remaining-space">
-          <shared-ui-lib-uikit-button [type]="'raised'" [label]="'वार्षिक शुल्क'"></shared-ui-lib-uikit-button>
+<!--          <shared-ui-lib-uikit-button [type]="'raised'" [label]="'वार्षिक शुल्क'"></shared-ui-lib-uikit-button>-->
         </div>
       </ng-container>
     </mat-toolbar>

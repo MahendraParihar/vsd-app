@@ -43,6 +43,7 @@ export enum LabelKey {
   SIDE_MENU_MEDIA_TYPE = 'side_menu_media_type',
   SIDE_MENU_MEDIA_SRC = 'side_menu_media_src',
   SIDE_MENU_PAGES = 'side_menu_pages',
+  SIDE_MENU_INQUIRY = 'side_menu_inquiry',
 
   ITEM_NOT_FOUND_TEMPLE = 'item_not_found_temple',
   ITEM_NOT_FOUND_FACILITY = 'item_not_found_facility',

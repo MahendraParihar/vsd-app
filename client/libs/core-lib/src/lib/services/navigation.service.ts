@@ -632,6 +632,12 @@ export class NavigationService {
             path: NavigationPathEnum.FAMILY,
           });
           break;
+        case NavigationPathEnum.INQUIRY:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_INQUIRY),
+            path: NavigationPathEnum.INQUIRY,
+          });
+          break;
         case NavigationPathEnum.FACILITY_MANAGE:
           breadcrumbList.push({
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),

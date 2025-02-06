@@ -11,7 +11,7 @@ export class FacilityController {
 
   @Public()
   @Post('public')
-  loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
+  loadPublicFacility(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
     try {
       return this.facilityService.load(payload);
     } catch (e) {
@@ -31,7 +31,7 @@ export class FacilityController {
 
   @Public()
   @Get('public/:url')
-  loadEventDetailByUrl(@Param('url') url: string): Promise<IFacilityDetail> {
+  loadFacilityDetailByUrl(@Param('url') url: string): Promise<IFacilityDetail> {
     try {
       return this.facilityService.loadDetailByUrl(url);
     } catch (e) {
@@ -40,7 +40,7 @@ export class FacilityController {
   }
 
   @Post()
-  loadEvents(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
+  loadFacilities(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
     try {
       return this.facilityService.load(payload);
     } catch (e) {
@@ -49,7 +49,7 @@ export class FacilityController {
   }
 
   @Get(':id')
-  loadEvent(@Param('id') id: number) {
+  loadFacility(@Param('id') id: number) {
     try {
       return this.facilityService.getById(id);
     } catch (e) {
@@ -58,7 +58,7 @@ export class FacilityController {
   }
 
   @Get('details/:id')
-  loadEventDetail(@Param('id') id: number): Promise<IFacilityDetail> {
+  loadFacilityDetail(@Param('id') id: number): Promise<IFacilityDetail> {
     try {
       return this.facilityService.loadDetailById(id);
     } catch (e) {
@@ -66,8 +66,9 @@ export class FacilityController {
     }
   }
 
+  @Public()
   @Post('manage')
-  manageEvent(@Body() body: FacilityDto, userId: number) {
+  manageFacility(@Body() body: FacilityDto, userId: number) {
     try {
       return this.facilityService.manage(body, userId);
     } catch (e) {
@@ -76,7 +77,7 @@ export class FacilityController {
   }
 
   @Put('status/:id')
-  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateFacilityStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
     try {
       return this.facilityService.updateStatus(id, statusChange, 1);
     } catch (e) {

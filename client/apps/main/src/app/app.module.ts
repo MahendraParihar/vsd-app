@@ -34,6 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { NgxEditorModule } from 'ngx-editor';
+import { InquiryComponent } from './inquiry/inquiry.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgxEditorModule } from 'ngx-editor';
     ManageFaqComponent,
     PagesComponent,
     ManagePagesComponent,
+    InquiryComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -75,6 +77,11 @@ import { NgxEditorModule } from 'ngx-editor';
               path: 'page',
               canActivate: [AuthGuard],
               component: PagesComponent,
+            },
+            {
+              path: 'inquiry',
+              canActivate: [AuthGuard],
+              component: InquiryComponent,
             },
             {
               path: 'page/manage',

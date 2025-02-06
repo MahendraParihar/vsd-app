@@ -160,6 +160,11 @@ export class BaseLayoutComponent implements OnInit {
         iconName: 'work_outline',
       },
       {
+        title: this.labelService.getLabel(LabelKey.SIDE_MENU_INQUIRY),
+        path: NavigationPathEnum.INQUIRY,
+        iconName: 'work_outline',
+      },
+      {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL),
         path: NavigationPathEnum.MATRIMONIAL,
         iconName: 'diversity_1',
