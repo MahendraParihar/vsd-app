@@ -34,7 +34,8 @@
     <shared-ui-lib-uikit-label [class]="['mat-headline-6']" [label]="'त्वरित संपर्क'"></shared-ui-lib-uikit-label>
     <div class="nav">
       <shared-ui-lib-uikit-button *ngFor="let btn of btnList;"
-                                  (buttonClicked)="onClick(btn)"
+                                  [routerLink]="btn.path"
+                                  (buttonClicked)="setActiveState()"
                                   [color]="!btn.isActive ? 'primary' : 'accent'"
                                   [type]="'link'"
                                   [disableRipple]="true"

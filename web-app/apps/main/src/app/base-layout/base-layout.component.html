@@ -1,8 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === true">
+               [attr.role]="'navigation'"
+               [mode]="showSideNav() ? 'over' : 'side'">
     <mat-nav-list>
       <mat-list-item [routerLink]="btn.path" *ngFor="let btn of btnList; let i = index"
                      [activated]="btn.isActive" (click)="setActiveState();drawer.close()">{{ btn.label }}
@@ -11,8 +10,9 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
+      <div class="fill-remaining-space header-main-title-section">
         <shared-ui-lib-uikit-button
+          *ngIf="showSideNav()"
           [type]="'icon-only'"
           [prefixIcon]="'home'"
           aria-label="Toggle sidenav"
@@ -27,30 +27,17 @@
             </div>
           </a>
         </div>
-      }
-      <ng-container *ngIf="(isHandset$ | async) === false">
-        <div class="fill-remaining-space">
-          <div class="header-logo-section">
-            <a [routerLink]="''">
-              <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
-              <div class="header-title">
-                <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
-                                           [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="fill-remaining-space btn-list">
-          <shared-ui-lib-uikit-button *ngFor="let btn of btnList;"
-                                      (buttonClicked)="onClick(btn)"
-                                      [color]="!btn.isActive ? 'primary' : 'accent'"
-                                      [type]="'link'"
-                                      [disableRipple]="true"
-                                      [label]="btn.label"></shared-ui-lib-uikit-button>
-        </div>
-        <div class="fill-remaining-space">
-        </div>
-      </ng-container>
+      </div>
+      <div class="fill-remaining-space btn-list" *ngIf="!showSideNav()">
+        <shared-ui-lib-uikit-button *ngFor="let btn of btnList;"
+                                    (buttonClicked)="onClick(btn)"
+                                    [color]="!btn.isActive ? 'primary' : 'accent'"
+                                    [type]="'link'"
+                                    [disableRipple]="true"
+                                    [label]="btn.label"></shared-ui-lib-uikit-button>
+      </div>
+      <div class="fill-remaining-space">
+      </div>
     </mat-toolbar>
     <div class="main-container">
       <div class="main-section">

@@ -1,12 +1,12 @@
 <ng-container *ngIf="banner">
   <div class="multi-banner">
     <div class="slideshow-container" #myDiv>
-      <div class="mySlides fade">
+      <div class="fade">
         <shared-ui-lib-uikit-label *ngIf="banner.length > 1" [ngClass]="{'number-text': true}"
                                    label="{{ slideIndex + 1 }} / {{ banner.length }}"></shared-ui-lib-uikit-label>
         <img
+          [height]="bannerHeight()"
           [src]="banner[slideIndex]"
-          style="width:100%"
           alt="" />
         <div class="content">
           <div class="breadcrumb">Caption Text</div>

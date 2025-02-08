@@ -1,8 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, computed } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { map, Observable, shareReplay } from 'rxjs';
-import { LabelService } from '@core-lib';
+import { LabelService, ResponsiveService } from '@core-lib';
 import { LabelKey } from '@vsd-common/lib';
 
 @Component({
@@ -13,17 +11,20 @@ import { LabelKey } from '@vsd-common/lib';
 })
 export class BaseLayoutComponent {
   protected readonly LabelKey = LabelKey;
-  private breakpointObserver = inject(BreakpointObserver);
-
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
 
   btnList: { label: string, path: string, isActive: boolean }[] = [];
 
+  showSideNav = computed(() => {
+    return !!(this.responsiveService.isHandset() ||
+      this.responsiveService.isXSmall() ||
+      this.responsiveService.isSmall() ||
+      this.responsiveService.isMedium());
+
+  });
+
   constructor(private router: Router,
-              protected labelService: LabelService) {
+              protected labelService: LabelService,
+              private responsiveService: ResponsiveService) {
     this.btnList = [
       { label: this.labelService.getLabel(LabelKey.APP_NAME), path: '', isActive: true },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT), path: 'event', isActive: false },
