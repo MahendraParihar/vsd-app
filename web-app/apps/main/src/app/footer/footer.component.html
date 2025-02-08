@@ -2,12 +2,14 @@
 <div class="footer">
   <div class="left">
     <div class="app-name-footer">
-      <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
-      <div class="header-title">
-        <shared-ui-lib-uikit-label [hasHtmlContent]="true"
-                                   [class]="['mat-headline-5']"
-                                   [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
-      </div>
+      <a [routerLink]="''">
+        <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
+        <div class="header-title">
+          <shared-ui-lib-uikit-label [hasHtmlContent]="true"
+                                     [class]="['mat-headline-5']"
+                                     [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
+        </div>
+      </a>
     </div>
     <hr>
     <div class="additional-info">
@@ -47,5 +49,5 @@
 </div>
 <div class="copy-right">
   <shared-ui-lib-uikit-label
-    [label]="'कॉपीराइट ©2024 श्री विश्वकर्मा वंश सुथार समाज, बारवा द्वारा निर्मित'"></shared-ui-lib-uikit-label>
+    [label]="labelService.getLabel(LabelKey.COPYRIGHT)"></shared-ui-lib-uikit-label>
 </div>

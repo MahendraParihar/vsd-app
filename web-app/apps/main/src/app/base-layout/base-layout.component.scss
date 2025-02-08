@@ -18,7 +18,7 @@
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   height: var(--header-hight) !important;
 }
 
@@ -32,7 +32,7 @@
   gap: var(--spacing-16);
 }
 
-.header-logo-section {
+.header-logo-section a {
   display: flex;
   align-items: center;
 }

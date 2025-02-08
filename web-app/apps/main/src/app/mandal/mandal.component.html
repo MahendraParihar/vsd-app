@@ -5,9 +5,9 @@
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <div class="mandal-list grid-list" *ngIf="dataSet.data && dataSet.data.length>0">
+    <div class="mandal-list grid-list" *ngIf="dataSet && dataSet.data && dataSet.data.length>0">
       <div class="mandal-item grid-item" *ngFor="let mandal of dataSet.data">
-        <img />
+        <img [src]="mandal.imagePath[0].webUrl" />
         <div class="mandal-address">
           <shared-ui-lib-uikit-label
             [class]="['mat-subtitle-1']"

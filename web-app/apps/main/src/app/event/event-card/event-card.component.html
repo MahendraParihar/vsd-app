@@ -34,7 +34,7 @@
                                   [label]="labelService.getLabel(LabelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
     </div>
     <div class="right single">
-      <img class="about_us_1" />
+      <img [src]="events[activeEventIndex].imagePath[0].webUrl" />
     </div>
   </div>
 } @else {
@@ -73,7 +73,7 @@
                                     [label]="labelService.getLabel(LabelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
       </div>
       <div class="right single">
-        <img class="about_us_1" />
+        <img [src]="event.imagePath[0].webUrl" />
       </div>
     </div>
 

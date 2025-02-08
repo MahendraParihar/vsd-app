@@ -3,14 +3,9 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === true">
-    <mat-toolbar>
-      <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
-                                 [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
-    </mat-toolbar>
     <mat-nav-list>
-      <mat-list-item *ngFor="let btn of btnList; let i = index"
-                     [routerLinkActive]="['is-active']"
-                     (click)="onClick(btn)">{{ btn.label }}
+      <mat-list-item [routerLink]="btn.path" *ngFor="let btn of btnList; let i = index"
+                     [activated]="btn.isActive" (click)="setActiveState();drawer.close()">{{ btn.label }}
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
@@ -23,15 +18,26 @@
           aria-label="Toggle sidenav"
           (click)="drawer.toggle()">
         </shared-ui-lib-uikit-button>
-      }
-      <ng-container *ngIf="(isHandset$ | async) === false">
-        <div class="fill-remaining-space">
-          <div class="header-logo-section">
+        <div class="header-logo-section">
+          <a [routerLink]="''">
             <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
             <div class="header-title">
               <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
                                          [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
             </div>
+          </a>
+        </div>
+      }
+      <ng-container *ngIf="(isHandset$ | async) === false">
+        <div class="fill-remaining-space">
+          <div class="header-logo-section">
+            <a [routerLink]="''">
+              <shared-ui-lib-uikit-icon class="logo header-logo"></shared-ui-lib-uikit-icon>
+              <div class="header-title">
+                <shared-ui-lib-uikit-label [class]="['body']" [hasHtmlContent]="true"
+                                           [label]="labelService.getLabel(LabelKey.APP_NAME_LONG)"></shared-ui-lib-uikit-label>
+              </div>
+            </a>
           </div>
         </div>
         <div class="fill-remaining-space btn-list">
@@ -43,7 +49,6 @@
                                       [label]="btn.label"></shared-ui-lib-uikit-button>
         </div>
         <div class="fill-remaining-space">
-<!--          <shared-ui-lib-uikit-button [type]="'raised'" [label]="'वार्षिक शुल्क'"></shared-ui-lib-uikit-button>-->
         </div>
       </ng-container>
     </mat-toolbar>

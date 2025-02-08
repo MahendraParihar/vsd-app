@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LabelService } from '@core-lib';
 import { LabelKey } from '@vsd-common/lib';
 
@@ -24,7 +24,11 @@ export class FooterComponent {
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_ABOUT_US), path: 'about-us', isActive: false },
       { label: this.labelService.getLabel(LabelKey.SIDE_MENU_CONTACT_US), path: 'contact-us', isActive: false },
     ];
-    this.setActiveState();
+    this.router.events.subscribe((params) => {
+      if (params instanceof NavigationEnd){
+        this.setActiveState()
+      }
+    });
   }
 
   async onClick(btn: { label: string; path: string; isActive: boolean }) {
@@ -33,9 +37,9 @@ export class FooterComponent {
   }
 
   setActiveState() {
-    const url = this.router.url.substring(1, this.router.url.length);
-    for (const s of this.btnList) {
-      s.isActive = (url.includes(s.path));
+    const url = this.router.url.substring(1, this.router.url.length).split('/');
+    for (let s of this.btnList) {
+      s.isActive = s.path.split('/').includes(url[0]);
     }
   }
 }

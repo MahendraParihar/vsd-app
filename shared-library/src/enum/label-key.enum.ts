@@ -268,4 +268,6 @@ export enum LabelKey {
   LAST_NAME = 'last_name',
   EMAIL_ID = 'email_id',
   PASSWORD = 'password',
+
+  COPYRIGHT = 'copyright',
 }

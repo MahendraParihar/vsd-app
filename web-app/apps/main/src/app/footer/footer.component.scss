@@ -10,6 +10,7 @@
   padding: var(--spacing-32) var(--spacing-40);
   color: var(--black) !important;
   background-color: var(--white);
+  gap: var(--spacing-16);
 
   .header-logo {
     display: block;
@@ -26,7 +27,7 @@
     gap: var(--spacing-16);
     padding: 0 var(--spacing-40);
 
-    .app-name-footer {
+    .app-name-footer a {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
