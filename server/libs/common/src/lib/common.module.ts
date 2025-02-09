@@ -84,6 +84,8 @@ import { StateService } from './location';
 import { MediaTypeService } from './gallery';
 import { LegalPagesModel } from './models/legal-pages.model';
 import { PagesService } from './common/pages.service';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthController } from './health/health.controller';
 
 const commonModels = [
   LabelModel,
@@ -138,7 +140,9 @@ export class CommonModule {
     const modulesList = [...configModules, ...modulesNeededForCommon]; // add modules needed for common
     return {
       module: CommonModule,
-      controllers: [],
+      controllers: [
+        HealthController
+      ],
       providers: [
         JwtStrategy,
         AdminUserService,
@@ -198,6 +202,7 @@ export class CommonModule {
           secret: jwtConstants.secret,
           signOptions: { expiresIn: '10h' },
         }),
+        TerminusModule
       ],
       exports: [
         SequelizeModule,
