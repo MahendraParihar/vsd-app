@@ -12,9 +12,9 @@ import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { MatCardModule } from '@angular/material/card';
 import { NgxEditorModule } from 'ngx-editor';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 export const MY_FORMATS = {
   parse: {
@@ -90,7 +90,11 @@ export const MY_FORMATS = {
   ],
   declarations: [EventComponent, ManageEventComponent, EventDetailComponent],
   exports: [EventComponent, ManageEventComponent, EventDetailComponent],
-  providers: [EventService, provideMomentDateAdapter(MY_FORMATS)],
+  providers: [
+    EventService,
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: DateAdapter, useValue: MomentDateAdapter },
+  ],
 })
 export class EventLibModule {
 }

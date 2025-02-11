@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { FamilyService } from './family.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgxEditorModule } from 'ngx-editor';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_FORMATS } from '@vsd-frontend/event-lib';
 import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { MatCardModule } from '@angular/material/card';
@@ -77,6 +77,10 @@ import { MatCardModule } from '@angular/material/card';
     MatDividerModule],
   declarations: [FamilyDetailComponent, FamilyComponent, ManageFamilyComponent],
   exports: [FamilyDetailComponent, FamilyComponent, ManageFamilyComponent],
-  providers: [FamilyService, provideMomentDateAdapter(MY_FORMATS)],
+  providers: [
+    FamilyService,
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: DateAdapter, useValue: MomentDateAdapter },
+  ],
 })
 export class FamilyLibModule {}
