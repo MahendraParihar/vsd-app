@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -15,8 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@vsd-common/lib": ["../shared-library/dist"],
       "@server/common": ["libs/common/src/index.ts"],
-      "@vsd-common/lib": ["../shared-library/dist"]
     }
   },
   "exclude": ["node_modules", "tmp"],

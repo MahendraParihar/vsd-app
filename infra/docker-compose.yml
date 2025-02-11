@@ -1,7 +1,7 @@
 services:
   main:
     container_name: vsd-server-main
-    command: sh -c "cd server && node -r newrelic dist/apps/main/main.js"
+    command: sh -c "cd server && node -r dist/apps/main/main.js"
     restart: always
     volumes:
       - assets:/home/app/assets
@@ -17,7 +17,7 @@ services:
       timeout: 10s
   event:
     container_name: vsd-server-event
-    command: sh -c "cd server && node -r newrelic dist/apps/event/main.js"
+    command: sh -c "cd server && node -r dist/apps/event/main.js"
     restart: always
     volumes:
       - assets:/home/app/assets
@@ -36,7 +36,7 @@ services:
       timeout: 10s
   facility:
     container_name: vsd-server-facility
-    command: sh -c "cd server && node -r newrelic dist/apps/facility/main.js"
+    command: sh -c "cd server && node -r dist/apps/facility/main.js"
     restart: always
     env_file:
       - facility.env
@@ -55,7 +55,7 @@ services:
       timeout: 10s
   family:
     container_name: vsd-server-family
-    command: sh -c "cd server && node -r newrelic dist/apps/family/main.js"
+    command: sh -c "cd server && node -r dist/apps/family/main.js"
     restart: always
     env_file:
       family.env
@@ -74,7 +74,7 @@ services:
       timeout: 10s
   job:
     container_name: vsd-server-job
-    command: sh -c "cd server && node -r newrelic dist/apps/job/main.js"
+    command: sh -c "cd server && node -r dist/apps/job/main.js"
     restart: always
     env_file:
       - job.env
@@ -93,7 +93,7 @@ services:
       timeout: 10s
   lovs:
     container_name: vsd-server-lovs
-    command: sh -c "cd server && node -r newrelic dist/apps/lovs/main.js"
+    command: sh -c "cd server && node -r dist/apps/lovs/main.js"
     restart: always
     env_file:
       - lovs.env
@@ -112,7 +112,7 @@ services:
       timeout: 10s
   mandal:
     container_name: vsd-server-mandal
-    command: sh -c "cd server && node -r newrelic dist/apps/mandal/main.js"
+    command: sh -c "cd server && node -r dist/apps/mandal/main.js"
     restart: always
     env_file:
       - mandal.env
@@ -131,7 +131,7 @@ services:
       timeout: 10s
   matrimonial:
     container_name: vsd-server-matrimonial
-    command: sh -c "cd server && node -r newrelic dist/apps/matrimonial/main.js"
+    command: sh -c "cd server && node -r dist/apps/matrimonial/main.js"
     restart: always
     env_file:
       - matrimonial.env
@@ -150,7 +150,7 @@ services:
       - assets:/home/app/assets
   news:
     container_name: vsd-server-news
-    command: sh -c "cd server && node -r newrelic dist/apps/news/main.js"
+    command: sh -c "cd server && node -r dist/apps/news/main.js"
     restart: always
     env_file:
       - news.env
@@ -169,7 +169,7 @@ services:
       - assets:/home/app/assets
   temple:
     container_name: vsd-server-temple
-    command: sh -c "cd server && node -r newrelic dist/apps/temple/main.js"
+    command: sh -c "cd server && node -r dist/apps/temple/main.js"
     restart: always
     env_file:
       - temple.env

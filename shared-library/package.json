@@ -1,6 +1,8 @@
 {
   "name": "vsd-shared-library",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A share lib used across frontend and backend",
+  "main": "dist/index.js",
   "license": "private",
   "scripts": {
     "build": "tsc --build",
