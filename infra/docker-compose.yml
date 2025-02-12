@@ -1,0 +1,221 @@
+services:
+  main:
+    container_name: vsd-server-main
+    command: sh -c "cd server && node -r dist/apps/main/main.js"
+    restart: always
+    volumes:
+      - assets:/home/app/assets
+    env_file:
+      - main.env
+    ports:
+      - "8001:3330"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3330/api/core/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  event:
+    container_name: vsd-server-event
+    command: sh -c "cd server && node -r dist/apps/event/main.js"
+    restart: always
+    volumes:
+      - assets:/home/app/assets
+    env_file:
+      - event.env
+    ports:
+      - "8002:3331"
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3331/api/event/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  facility:
+    container_name: vsd-server-facility
+    command: sh -c "cd server && node -r dist/apps/facility/main.js"
+    restart: always
+    env_file:
+      - facility.env
+    ports:
+      - "8003:3340"
+    volumes:
+      - assets:/home/app/assets
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3340/api/facility/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  family:
+    container_name: vsd-server-family
+    command: sh -c "cd server && node -r dist/apps/family/main.js"
+    restart: always
+    env_file:
+      family.env
+    ports:
+      - "8004:3332"
+    volumes:
+      - assets:/home/app/assets
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3332/api/family/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  job:
+    container_name: vsd-server-job
+    command: sh -c "cd server && node -r dist/apps/job/main.js"
+    restart: always
+    env_file:
+      - job.env
+    volumes:
+      - assets:/home/app/assets
+    ports:
+      - "8005:3333"
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3333/api/job/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  lovs:
+    container_name: vsd-server-lovs
+    command: sh -c "cd server && node -r dist/apps/lovs/main.js"
+    restart: always
+    env_file:
+      - lovs.env
+    ports:
+      - "8006:3334"
+    volumes:
+      - assets:/home/app/assets
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3334/api/lovs/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  mandal:
+    container_name: vsd-server-mandal
+    command: sh -c "cd server && node -r dist/apps/mandal/main.js"
+    restart: always
+    env_file:
+      - mandal.env
+    ports:
+      - "8007:3335"
+    volumes:
+      - assets:/home/app/assets
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3335/api/mandal/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+  matrimonial:
+    container_name: vsd-server-matrimonial
+    command: sh -c "cd server && node -r dist/apps/matrimonial/main.js"
+    restart: always
+    env_file:
+      - matrimonial.env
+    ports:
+      - "8008:3336"
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3336/api/matrimonial/health"]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+    volumes:
+      - assets:/home/app/assets
+  news:
+    container_name: vsd-server-news
+    command: sh -c "cd server && node -r dist/apps/news/main.js"
+    restart: always
+    env_file:
+      - news.env
+    ports:
+      - "8009:3337"
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3337/api/news/health" ]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+    volumes:
+      - assets:/home/app/assets
+  temple:
+    container_name: vsd-server-temple
+    command: sh -c "cd server && node -r dist/apps/temple/main.js"
+    restart: always
+    env_file:
+      - temple.env
+    ports:
+      - "8010:3338"
+    depends_on:
+      main:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3336/api/temple/health" ]
+      interval: 20s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
+    volumes:
+      - assets:/home/app/assets
+  client:
+    container_name: vsd-client
+    restart: always
+    environment:
+      CLIENT: 'VSD'
+    ports:
+      - "8000:80"
+      - "443:443"
+    depends_on:
+      main:
+        condition: service_healthy
+      event:
+        condition: service_healthy
+      facility:
+        condition: service_healthy
+      family:
+        condition: service_healthy
+      job:
+        condition: service_healthy
+      lovs:
+        condition: service_healthy
+      mandal:
+        condition: service_healthy
+      matrimonial:
+        condition: service_healthy
+      news:
+        condition: service_healthy
+      temple:
+        condition: service_healthy
+volumes:
+  assets:
+    driver: local
+

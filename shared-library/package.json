@@ -1,6 +1,8 @@
 {
   "name": "vsd-shared-library",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A share lib used across frontend and backend",
+  "main": "dist/index.js",
   "license": "private",
   "scripts": {
     "build": "tsc --build",
@@ -9,12 +11,11 @@
   },
   "private": true,
   "devDependencies": {
-    "@nrwl/node": "^19.0.4",
-    "@nx/eslint": "^19.0.4",
-    "@nx/js": "19.0.4",
-    "@nx/workspace": "19.0.4",
-    "eslint": "~8.57.0",
-    "nx": "19.0.4"
-  },
-  "dependencies": {}
+    "@nx/eslint": "20.4.2",
+    "@nx/js": "20.4.2",
+    "@nx/node": "19.8.4",
+    "@nx/workspace": "20.4.2",
+    "eslint": "8.57.0",
+    "nx": "20.4.2"
+  }
 }
