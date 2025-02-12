@@ -37,7 +37,7 @@ For building admin panel image
 
 ```shell
 docker build . -f ./infra/Dockerfile.client-admin -t vsd-client-admin
-
+````
 
 For building web site image
 
