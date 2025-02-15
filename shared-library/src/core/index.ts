@@ -7,3 +7,4 @@ export * from './status-change.interface';
 export * from './media-upload.interface';
 export * from './member-post.interface';
 export * from './inquiry.interface';
+export * from './banner.interface';

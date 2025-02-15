@@ -125,6 +125,11 @@ export class BaseLayoutComponent implements OnInit {
         iconName: 'home',
       },
       {
+        title: this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER),
+        path: NavigationPathEnum.FAMILY,
+        iconName: 'people',
+      },
+      {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAMILY),
         path: NavigationPathEnum.FAMILY,
         iconName: 'people',

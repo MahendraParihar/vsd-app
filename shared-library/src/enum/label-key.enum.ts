@@ -85,6 +85,7 @@ export enum LabelKey {
   ITEM_NOT_FOUND_PAGE = 'item_not_found_page',
   ITEM_NOT_FOUND_MEDIA_TYPE = 'item_not_found_media_type',
   ITEM_NOT_FOUND_MEDIA_SRC = 'item_not_found_media_src',
+  ITEM_NOT_FOUND_BANNER = 'item_not_found_banner',
 
   APP_NAME = 'app_name',
   APP_NAME_LONG = 'app_name_long',

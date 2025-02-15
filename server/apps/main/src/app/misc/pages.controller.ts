@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PagesService, Public, TableListDto } from '@server/common';
 import { ILegalPageList, IManageLegalPage, ITableList } from '@vsd-common/lib';
-import { LegalPagesDto } from './legal-pages.dto';
+import { LegalPagesDto } from './dto/legal-pages.dto';
 
 @Controller('page')
 export class PagesController {
