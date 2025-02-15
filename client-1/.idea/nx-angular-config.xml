@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="NxAngularConfigService" workspaceLocation="file://$PROJECT_DIR$/nx.json">
+    <projects>
+      <project name="core-lib" file="file://$PROJECT_DIR$/libs/core-lib/project.json" />
+      <project name="event" file="file://$PROJECT_DIR$/apps/event/project.json" />
+      <project name="event-lib" file="file://$PROJECT_DIR$/libs/event-lib/project.json" />
+      <project name="facility" file="file://$PROJECT_DIR$/apps/facility/project.json" />
+      <project name="faclity-lib" file="file://$PROJECT_DIR$/libs/faclity-lib/project.json" />
+      <project name="family" file="file://$PROJECT_DIR$/apps/family/project.json" />
+      <project name="family-lib" file="file://$PROJECT_DIR$/libs/family-lib/project.json" />
+      <project name="job" file="file://$PROJECT_DIR$/apps/job/project.json" />
+      <project name="job-lib" file="file://$PROJECT_DIR$/libs/job-lib/project.json" />
+      <project name="lov" file="file://$PROJECT_DIR$/apps/lov/project.json" />
+      <project name="lovs-lib" file="file://$PROJECT_DIR$/libs/lovs-lib/project.json" />
+      <project name="main" file="file://$PROJECT_DIR$/apps/main/project.json" />
+      <project name="mandal" file="file://$PROJECT_DIR$/apps/mandal/project.json" />
+      <project name="mandal-lib" file="file://$PROJECT_DIR$/libs/mandal-lib/project.json" />
+      <project name="matrimonial" file="file://$PROJECT_DIR$/apps/matrimonial/project.json" />
+      <project name="metrimonial-lib" file="file://$PROJECT_DIR$/libs/metrimonial-lib/project.json" />
+      <project name="news" file="file://$PROJECT_DIR$/apps/news/project.json" />
+      <project name="news-lib" file="file://$PROJECT_DIR$/libs/news-lib/project.json" />
+      <project name="shared-ui-lib" file="file://$PROJECT_DIR$/libs/shared-ui-lib/project.json" />
+      <project name="temple" file="file://$PROJECT_DIR$/apps/temple/project.json" />
+      <project name="temple-lib" file="file://$PROJECT_DIR$/libs/temple-lib/project.json" />
+    </projects>
+  </component>
+</project>

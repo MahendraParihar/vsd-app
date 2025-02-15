@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8244485f-528a-432e-9c1a-b82b63439f02" name="Changes" comment="renamed" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2t4Eq9IAJm3fFB4zWEoGTYSpxMw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/temple/src/app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "dev.nx.console.project_details_files": [
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/event/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/event/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/facility/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/facility/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/family/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/family/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/job/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/job/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/lov/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/lov/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/main/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/main/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/mandal/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/mandal/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/matrimonial/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/matrimonial/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/news/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/news/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/temple/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/temple/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/core-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/core-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/event-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/event-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/faclity-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/faclity-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/family-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/family-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/job-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/job-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/lovs-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/lovs-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/mandal-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/mandal-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/metrimonial-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/metrimonial-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/news-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/news-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/shared-ui-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/shared-ui-lib/package.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/temple-lib/project.json",
+      "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/libs/temple-lib/package.json"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/temple/src/app" />
+      <recent name="$PROJECT_DIR$/apps/news/src/app" />
+      <recent name="$PROJECT_DIR$/apps/matrimonial/src/app" />
+      <recent name="$PROJECT_DIR$/apps/mandal/src/app" />
+      <recent name="$PROJECT_DIR$/apps/lov/src/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.22855.113" />
+        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.22855.113" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8244485f-528a-432e-9c1a-b82b63439f02" name="Changes" comment="" />
+      <created>1739603134490</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739603134490</updated>
+      <workItem from="1739603135588" duration="11953000" />
+    </task>
+    <task id="LOCAL-00001" summary="client new">
+      <option name="closed" value="true" />
+      <created>1739624401703</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739624401703</updated>
+    </task>
+    <task id="LOCAL-00002" summary="old client removed">
+      <option name="closed" value="true" />
+      <created>1739624453243</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739624453243</updated>
+    </task>
+    <task id="LOCAL-00003" summary="renamed">
+      <option name="closed" value="true" />
+      <created>1739624507302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739624507302</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="additionalRoots">
+      <list>
+        <option value="$PROJECT_DIR$/../shared-library/dist" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="client new" />
+    <MESSAGE value="old client removed" />
+    <MESSAGE value="renamed" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed" />
+  </component>
+</project>
