@@ -51,6 +51,36 @@ export const appRoutes: Route[] = [
         component: ManagePagesComponent,
       },
       {
+        path: 'faq',
+        component: FaqComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'faq/manage',
+        component: ManageFaqComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'faq/manage/:id',
+        component: ManageFaqComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'banner',
+        component: BannerComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'banner/manage',
+        component: ManageBannerComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'banner/manage/:id',
+        component: ManageBannerComponent,
+        canActivate: [AuthGuard],
+      },
+      {
         path: 'event',
         canActivate: [AuthGuard],
         loadChildren: () =>
@@ -103,36 +133,6 @@ export const appRoutes: Route[] = [
         canActivate: [AuthGuard],
         loadChildren: () =>
           import('job/Module').then((m) => m.RemoteEntryModule),
-      },
-      {
-        path: 'faq',
-        component: FaqComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'faq/manage',
-        component: ManageFaqComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'faq/manage/:id',
-        component: ManageFaqComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'banner',
-        component: BannerComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'banner/manage',
-        component: ManageBannerComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'banner/manage/:id',
-        component: ManageBannerComponent,
-        canActivate: [AuthGuard],
       },
     ],
   },

@@ -22,11 +22,6 @@ export class NavigationService {
     private sharedService: SharedService,
     private labelService: LabelService,
   ) {
-    // this.router.events.subscribe((event: Event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.currentUrl.next(event.urlAfterRedirects);
-    //   }
-    // });
   }
 
   back(): void {
@@ -45,25 +40,7 @@ export class NavigationService {
   }
 
   navigateTo(navEnum: NavigationPathEnum) {
-    this.router
-      .navigate([navEnum])
-      .then((suc: any) => {
-        this.setBreadcrumb(navEnum);
-      })
-      .catch((e: any) => {
-        console.log(e);
-      });
-  }
-
-  navigateByStrPath(navEnum: string) {
-    this.router
-      .navigate([navEnum])
-      .then((suc: any) => {
-        // this.setBreadcrumb(navEnum);
-      })
-      .catch((e: any) => {
-        console.log(e);
-      });
+    this.setBreadcrumb(navEnum);
   }
 
   navigateToLogin() {
@@ -129,7 +106,6 @@ export class NavigationService {
   }
 
   setBreadcrumb(path: NavigationPathEnum, id: any = 0) {
-    console.log(path);
     let temp = path.split('/');
     if (temp && temp.length > 0) {
       if (temp[0] === '') {
@@ -148,7 +124,6 @@ export class NavigationService {
         path = <NavigationPathEnum>temp.join('/');
       }
     }
-    console.log(path);
     const breadcrumbList: BreadcrumbItem[] = [];
     breadcrumbList.push({
       title: this.labelService.getLabel(LabelKey.SIDE_MENU_HOME),

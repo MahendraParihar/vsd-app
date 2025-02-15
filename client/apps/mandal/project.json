@@ -61,8 +61,8 @@
     "serve": {
       "executor": "@nx/angular:dev-server",
       "options": {
-        "port": 4206,
-        "publicHost": "http://localhost:4206"
+        "port": 4207,
+        "publicHost": "http://localhost:4207"
       },
       "configurations": {
         "production": {
@@ -95,7 +95,7 @@
       "defaultConfiguration": "production",
       "options": {
         "buildTarget": "mandal:build",
-        "port": 4206,
+        "port": 4207,
         "watch": false
       },
       "configurations": {

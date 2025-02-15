@@ -60,6 +60,7 @@ export class SideMenuComponent implements OnInit {
     }
     if (item.path) {
       this.navigate.emit();
+      this.router.navigate([item.path]);
       this.navService.navigateTo(item.path);
     }
   }

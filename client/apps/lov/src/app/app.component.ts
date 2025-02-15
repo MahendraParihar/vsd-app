@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'vsd-root',
+  selector: 'vsd-lov-root',
   standalone: false,
   template: '<router-outlet></router-outlet>',
 })
