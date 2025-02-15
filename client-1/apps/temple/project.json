@@ -1,0 +1,111 @@
+{
+  "name": "temple",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "vsd-temple",
+  "sourceRoot": "apps/temple/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/temple",
+        "index": "apps/temple/src/index.html",
+        "main": "apps/temple/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/temple/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/temple/public"
+          }
+        ],
+        "styles": ["apps/temple/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/temple/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/temple/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4209,
+        "publicHost": "http://localhost:4209"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "temple:build:production"
+        },
+        "development": {
+          "buildTarget": "temple:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "temple:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/temple/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "temple:build",
+        "port": 4209,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "temple:build:development"
+        },
+        "production": {
+          "buildTarget": "temple:build:production"
+        }
+      }
+    }
+  }
+}

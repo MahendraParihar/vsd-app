@@ -4,16 +4,167 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8244485f-528a-432e-9c1a-b82b63439f02" name="Changes" comment="renamed" />
+    <list default="true" id="1868d121-92a7-4907-80c5-ac4b1e23ddbe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/event-details/event-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/event-details/event-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/event-details/event-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/event-list/event-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/event-list/event-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/event-list/event-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/manage-event/manage-event.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/manage-event/manage-event.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/event/src/app/manage-event/manage-event.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/facility-details/facility-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/facility-details/facility-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/facility-details/facility-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/facility-list/facility-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/facility-list/facility-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/facility-list/facility-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/manage-facility/manage-facility.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/manage-facility/manage-facility.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/facility/src/app/manage-facility/manage-facility.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/family-details/family-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/family-details/family-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/family-details/family-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/family-list/family-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/family-list/family-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/family-list/family-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/manage-family/manage-family.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/manage-family/manage-family.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/family/src/app/manage-family/manage-family.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/job-details/job-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/job-details/job-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/job-details/job-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/job-list/job-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/job-list/job-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/job-list/job-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/manage-job/manage-job.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/manage-job/manage-job.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/job/src/app/manage-job/manage-job.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lov/src/app/lov/lov.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lov/src/app/lov/lov.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lov/src/app/lov/lov.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lov/src/app/manage-lov/manage-lov.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lov/src/app/manage-lov/manage-lov.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lov/src/app/manage-lov/manage-lov.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/proxy.conf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/api.url.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/forgot-password/forgot-password.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/forgot-password/forgot-password.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/forgot-password/forgot-password.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/login/login.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/login/login.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/login/login.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/reset-password/reset-password.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/reset-password/reset-password.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/auth/reset-password/reset-password.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/api-url.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner-detail/banner-detail.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner-detail/banner-detail.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner-detail/banner-detail.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner/banner.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner/banner.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/banner/banner.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/manage-banner/manage-banner.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/manage-banner/manage-banner.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/banner/manage-banner/manage-banner.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/base-layout/base-layout.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/base-layout/base-layout.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/base-layout/base-layout.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/error/error.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/error/error.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/error/error.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/faq/faq.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/faq/faq.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/faq/faq.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/faq/manage-faq/manage-faq.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/faq/manage-faq/manage-faq.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/faq/manage-faq/manage-faq.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/header/header.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/header/header.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/header/header.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/home/home.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/home/home.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/home/home.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/inquiry/inquiry.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/inquiry/inquiry.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/inquiry/inquiry.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/page-not-fount/page-not-fount.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/page-not-fount/page-not-fount.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/page-not-fount/page-not-fount.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/page-not-fount/page-not-fount.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/pages/manage-pages/manage-pages.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/pages/manage-pages/manage-pages.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/pages/manage-pages/manage-pages.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/pages/pages.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/pages/pages.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/pages/pages.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/services/pages.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/side-menu/side-menu.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/side-menu/side-menu.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/main/src/app/side-menu/side-menu.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/manage-mandal/manage-mandal.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/manage-mandal/manage-mandal.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/manage-mandal/manage-mandal.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/mandal-details/mandal-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/mandal-details/mandal-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/mandal-details/mandal-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/mandal-list/mandal-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/mandal-list/mandal-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mandal/src/app/mandal-list/mandal-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/manage-matrimonial/manage-matrimonial.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/manage-matrimonial/manage-matrimonial.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/manage-matrimonial/manage-matrimonial.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/matrimonial-details/matrimonial-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/matrimonial-details/matrimonial-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/matrimonial-details/matrimonial-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/matrimonial-list/matrimonial-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/matrimonial-list/matrimonial-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/matrimonial/src/app/matrimonial-list/matrimonial-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/manage-news/manage-news.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/manage-news/manage-news.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/manage-news/manage-news.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/news-details/news-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/news-details/news-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/news-details/news-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/news-list/news-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/news-list/news-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/news/src/app/news-list/news-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/manage-temple/manage-temple.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/manage-temple/manage-temple.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/manage-temple/manage-temple.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/temple-details/temple-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/temple-details/temple-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/temple-details/temple-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/temple-list/temple-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/temple-list/temple-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/temple/src/app/temple-list/temple-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/lov/src/app/lov/lov.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/lov/src/app/lov/lov.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/lov/src/app/lov/lov.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/lov/src/app/remote-entry/entry.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/lov/src/app/remote-entry/entry.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/lov/src/app/remote-entry/entry.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/main/module-federation.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/apps/main/module-federation.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/main/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/main/src/app/app.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/main/src/assets/module-federation.manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/temple/src/app/remote-entry/entry.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/apps/temple/src/app/remote-entry/entry.module.ts" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
   </component>
   <component name="ComposerSettings">
     <execution />
@@ -22,9 +173,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
   "associatedIndex": 7
 }]]></component>
-  <component name="ProjectId" id="2t4Eq9IAJm3fFB4zWEoGTYSpxMw" />
+  <component name="ProjectId" id="2t5FtxwknbvW0b22PkoXOG8NUKa" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,13 +185,12 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/temple/src/app",
+    "last_opened_file_path": "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/apps/lov/src/app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
     "ts.external.directory.path": "/Users/mahendraparihar/Projects/VSD/vsd-app/client-1/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -92,14 +243,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/lov/src/app" />
       <recent name="$PROJECT_DIR$/apps/temple/src/app" />
       <recent name="$PROJECT_DIR$/apps/news/src/app" />
       <recent name="$PROJECT_DIR$/apps/matrimonial/src/app" />
       <recent name="$PROJECT_DIR$/apps/mandal/src/app" />
-      <recent name="$PROJECT_DIR$/apps/lov/src/app" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/apps" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -113,38 +261,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8244485f-528a-432e-9c1a-b82b63439f02" name="Changes" comment="" />
-      <created>1739603134490</created>
+      <changelist id="1868d121-92a7-4907-80c5-ac4b1e23ddbe" name="Changes" comment="" />
+      <created>1739634246505</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1739603134490</updated>
-      <workItem from="1739603135588" duration="11953000" />
+      <updated>1739634246505</updated>
+      <workItem from="1739634247643" duration="4480000" />
     </task>
-    <task id="LOCAL-00001" summary="client new">
-      <option name="closed" value="true" />
-      <created>1739624401703</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1739624401703</updated>
-    </task>
-    <task id="LOCAL-00002" summary="old client removed">
-      <option name="closed" value="true" />
-      <created>1739624453243</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1739624453243</updated>
-    </task>
-    <task id="LOCAL-00003" summary="renamed">
-      <option name="closed" value="true" />
-      <created>1739624507302</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1739624507302</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,11 +277,5 @@
         <option value="$PROJECT_DIR$/../shared-library/dist" />
       </list>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="client new" />
-    <MESSAGE value="old client removed" />
-    <MESSAGE value="renamed" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed" />
   </component>
 </project>
