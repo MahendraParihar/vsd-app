@@ -9,13 +9,13 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxEditorModule } from 'ngx-editor';
 import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MY_FORMATS } from '@vsd-frontend/event-lib';
 import { FacilityService } from './facility.service';
 import { FacilityComponent } from './facility/facility.component';
 import { ManageFacilityComponent } from './manage-facility/manage-facility.component';
 import { FacilityDetailComponent } from './facility-detail/facility-detail.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MY_FORMATS } from '@vsd-common/lib';
 
 @NgModule({
   imports: [CommonModule,

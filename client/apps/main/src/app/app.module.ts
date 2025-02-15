@@ -35,6 +35,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { NgxEditorModule } from 'ngx-editor';
 import { InquiryComponent } from './inquiry/inquiry.component';
+import { BannerService } from './banner/banner.service';
+import { BannerComponent } from './banner/banner/banner.component';
+import { BannerDetailComponent } from './banner/banner-detail/banner-detail.component';
+import { ManageBannerComponent } from './banner/manage-banner/manage-banner.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MY_FORMATS } from '@vsd-common/lib';
 
 @NgModule({
   declarations: [
@@ -53,6 +61,9 @@ import { InquiryComponent } from './inquiry/inquiry.component';
     PagesComponent,
     ManagePagesComponent,
     InquiryComponent,
+    BannerComponent,
+    BannerDetailComponent,
+    ManageBannerComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -162,6 +173,21 @@ import { InquiryComponent } from './inquiry/inquiry.component';
               component: ManageFaqComponent,
               canActivate: [AuthGuard],
             },
+            {
+              path: 'banner',
+              component: BannerComponent,
+              canActivate: [AuthGuard],
+            },
+            {
+              path: 'banner/manage',
+              component: ManageBannerComponent,
+              canActivate: [AuthGuard],
+            },
+            {
+              path: 'banner/manage/:id',
+              component: ManageBannerComponent,
+              canActivate: [AuthGuard],
+            },
           ],
         },
         {
@@ -200,13 +226,20 @@ import { InquiryComponent } from './inquiry/inquiry.component';
     MatTableModule,
     MatCardModule,
     NgxEditorModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [HttpService, AuthService, AuthGuardService,
     PagesService,
+    BannerService,
     {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
-    }],
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: DateAdapter, useValue: MomentDateAdapter },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

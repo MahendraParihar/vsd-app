@@ -13,7 +13,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { MY_FORMATS } from '@vsd-frontend/event-lib';
+import { MY_FORMATS } from '@vsd-common/lib';
 import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { MatCardModule } from '@angular/material/card';
 

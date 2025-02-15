@@ -33,6 +33,8 @@ export enum NavigationPathEnum {
   INQUIRY = 'inquiry',
   FAQ = `faq`,
   FAQ_MANAGE = `faq`,
+  BANNER = `banner`,
+  BANNER_MANAGE = `banner/manage`,
   FAQ_CATEGORY = `${MASTER}/faq-category`,
   FAQ_CATEGORY_MANAGE = `${MASTER}/faq-category/manage`,
   JOB_CATEGORY = `${MASTER}/job-category`,
