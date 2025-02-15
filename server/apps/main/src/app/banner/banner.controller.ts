@@ -40,7 +40,7 @@ export class BannerController {
   @Post('manage')
   manageBanner(@Body() body: BannerDto, userId: number) {
     try {
-      return this.bannerService.manage(body, userId);
+      return this.bannerService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }

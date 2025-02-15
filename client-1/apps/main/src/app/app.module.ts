@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, withComponentInputBinding } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,6 +43,8 @@ import { InquiryComponent } from './inquiry/inquiry.component';
 import { BannerComponent } from './banner/banner/banner.component';
 import { BannerDetailComponent } from './banner/banner-detail/banner-detail.component';
 import { ManageBannerComponent } from './banner/manage-banner/manage-banner.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,7 @@ import { ManageBannerComponent } from './banner/manage-banner/manage-banner.comp
     NgxEditorModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSlideToggleModule,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -95,6 +98,11 @@ import { ManageBannerComponent } from './banner/manage-banner/manage-banner.comp
     PagesService,
     BannerService,
     provideMomentDateAdapter(MY_FORMATS),
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+    },
+    provideRouter(appRoutes, withComponentInputBinding()),
   ],
   bootstrap: [AppComponent],
 })

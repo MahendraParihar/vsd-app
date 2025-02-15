@@ -28,8 +28,10 @@ export class BannerComponent implements OnInit, AfterViewInit {
   displayedColumns = [
     'seqNo',
     'imagePath',
-    'mandalName',
-    'cityVillage',
+    'title',
+    'subTitle',
+    'fromDate',
+    'toDate',
     'active',
     'createdByUser',
     'createdAt',

@@ -1,14 +1,7 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import {
   BreadcrumbItem,
@@ -40,18 +33,16 @@ export class BaseLayoutComponent implements OnInit {
     .observe(Breakpoints.Handset)
     .pipe(
       map((result) => result.matches),
-      shareReplay()
+      shareReplay(),
     );
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   constructor(
-    private router: Router,
-    private cdr: ChangeDetectorRef,
     private navService: NavigationService,
     private sharedService: SharedService,
     private userService: UserService,
-    public labelService: LabelService
+    public labelService: LabelService,
   ) {
     this.sharedService.breadcrumb.subscribe((itemList: BreadcrumbItem[]) => {
       if (!itemList || itemList.length === 0) {
@@ -128,7 +119,7 @@ export class BaseLayoutComponent implements OnInit {
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER),
         path: NavigationPathEnum.BANNER,
-        iconName: 'banner',
+        iconName: 'image',
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAMILY),
@@ -196,7 +187,7 @@ export class BaseLayoutComponent implements OnInit {
           },
           {
             title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY
+              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
             ),
             path: NavigationPathEnum.JOB_SUB_CATEGORY,
             iconName: 'list',

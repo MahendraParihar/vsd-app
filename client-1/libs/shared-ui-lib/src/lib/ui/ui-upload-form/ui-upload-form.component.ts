@@ -185,7 +185,7 @@ export class UiUploadFormComponent implements OnInit, OnChanges {
             f.fileUpdateStatus = 1;
             f.progress = 100;
             const mediaResponse = <IMediaUpload>{
-              fieldName: res.body.fileName,
+              fieldName: res.body.fieldName,
               originalName: res.body.originalName,
               encoding: res.body.encoding,
               mimetype: res.body.mimetype,
