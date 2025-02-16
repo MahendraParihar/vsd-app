@@ -1,0 +1,106 @@
+<mat-card class="form">
+  <mat-card-header>
+    <mat-card-title>{{ pageTitle }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-container-box">
+    <form [formGroup]="formGroup" class="form">
+      <div class="form-row">
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_TITLE)"></vsd-ui-label>
+          <mat-form-field>
+            <input #title formControlName="title" matInput required [maxlength]="inputLength.CHAR_100">
+            <mat-hint align="end">{{ title.value.length || 0 }}/{{ inputLength.CHAR_100 }}</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_TITLE)"
+                              [control]="formGroup.get('title')"></vsd-ui-input-error>
+        </div>
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_SUB_TITLE)"></vsd-ui-label>
+          <mat-form-field>
+            <input #subtitle formControlName="subtitle" matInput [maxlength]="inputLength.CHAR_200">
+            <mat-hint align="end">{{ subtitle.value.length || 0 }}/{{ inputLength.CHAR_200 }}</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_SUB_TITLE)"
+                              [control]="formGroup.get('subtitle')"></vsd-ui-input-error>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_FROM_DATE)"></vsd-ui-label>
+          <mat-form-field>
+            <input [matDatepicker]="picker" formControlName="fromDate" matInput required>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_FROM_DATE)"
+                              [control]="formGroup.get('fromDate')"></vsd-ui-input-error>
+        </div>
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_TO_DATE)"></vsd-ui-label>
+          <mat-form-field>
+            <input [matDatepicker]="picker1" formControlName="toDate" matInput>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_TO_DATE)"
+                              [control]="formGroup.get('toDate')"></vsd-ui-input-error>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_URL)"></vsd-ui-label>
+          <mat-form-field>
+            <input #url formControlName="url" matInput [maxlength]="inputLength.CHAR_200">
+            <mat-hint align="end">{{ url.value.length || 0 }}/{{ inputLength.CHAR_200 }}</mat-hint>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_URL)"
+                              [control]="formGroup.get('url')"></vsd-ui-input-error>
+        </div>
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_BANNER_FOR)"></vsd-ui-label>
+          <mat-form-field>
+            <mat-select formControlName="bannerFor" required>
+              <mat-option>---------</mat-option>
+              <mat-option *ngFor="let o of bannerFor" [value]="o.id">{{o.title}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_BANNER_FOR)"
+                              [control]="formGroup.get('bannerFor')"></vsd-ui-input-error>
+        </div>
+        <div class="form-group">
+          <vsd-ui-label [label]="labelService.getLabel(labelKeys.FORM_IS_INTERNAL_URL)"></vsd-ui-label>
+          <mat-slide-toggle formControlName="isInternalUrl">Is Internal Url</mat-slide-toggle>
+          <vsd-ui-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_IS_INTERNAL_URL)"
+                              [control]="formGroup.get('isInternalUrl')"></vsd-ui-input-error>
+        </div>
+      </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="form-row">
+        <vsd-ui-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
+                            [labels]="labelService.labels"
+                            [isMultiFile]="false"
+                            [isRequired]="true"
+                            [mediaFor]="mediaForEnum.HOME"
+                            [mediaType]="fileTypeEnum.IMAGE"
+                            [uploadedMediaList]="banner ? banner.imagePath : []"></vsd-ui-upload-form>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <vsd-ui-button
+      type="red"
+      [label]="labelService.getLabel(labelKeys.ACTION_CANCEL)"
+      (actionBtnClicked)="onCancel()"></vsd-ui-button>
+    <vsd-ui-button type="success" (actionBtnClicked)="updateDetails()"
+                   [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></vsd-ui-button>
+  </mat-card-actions>
+</mat-card>

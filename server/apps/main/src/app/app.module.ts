@@ -12,10 +12,13 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { InquiryController } from './misc/Inquiry.controller';
 import { InquiryService } from './misc/Inquiry.service';
 import { InquiryModel } from './misc/models/inquiry.model';
+import { BannerController } from './banner/banner.controller';
+import { BannerService } from './banner/banner.service';
+import { BannerModel } from './banner/models/banner.model';
 
 @Module({
   imports: [
-    CommonModule.forRoot([InquiryModel], []),
+    CommonModule.forRoot([InquiryModel, BannerModel], []),
     LabelModule.asyncRegister(['admin']),
     ServeStaticModule.forRoot({
       rootPath: Env.persistentStorageAssetPath,
@@ -26,7 +29,8 @@ import { InquiryModel } from './misc/models/inquiry.model';
     MediaController,
     PagesController,
     InquiryController,
+    BannerController,
   ],
-  providers: [AppService, InquiryService],
+  providers: [AppService, InquiryService, BannerService],
 })
 export class AppModule {}

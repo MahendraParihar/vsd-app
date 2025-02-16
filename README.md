@@ -49,7 +49,8 @@ Note: Ensure that you have .env file created in infra folder with ENV variable d
 For running all Servers
 
 ```
-CLIENT=<fsn || tn> docker-compose -f ./infra/docker-compose-local.yml  --env-file ./infra/.env up -d
+CLIENT=VSD 
+docker-compose -f './infra/docker-compose-local.yml' up -d -build
 ```
 
 URL for UI: http://localhost:8080/ --issues with code and setup of backend

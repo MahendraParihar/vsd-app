@@ -44,6 +44,7 @@ export enum LabelKey {
   SIDE_MENU_MEDIA_SRC = 'side_menu_media_src',
   SIDE_MENU_PAGES = 'side_menu_pages',
   SIDE_MENU_INQUIRY = 'side_menu_inquiry',
+  SIDE_MENU_BANNER = 'side_menu_banner',
 
   ITEM_NOT_FOUND_TEMPLE = 'item_not_found_temple',
   ITEM_NOT_FOUND_FACILITY = 'item_not_found_facility',
@@ -85,6 +86,7 @@ export enum LabelKey {
   ITEM_NOT_FOUND_PAGE = 'item_not_found_page',
   ITEM_NOT_FOUND_MEDIA_TYPE = 'item_not_found_media_type',
   ITEM_NOT_FOUND_MEDIA_SRC = 'item_not_found_media_src',
+  ITEM_NOT_FOUND_BANNER = 'item_not_found_banner',
 
   APP_NAME = 'app_name',
   APP_NAME_LONG = 'app_name_long',
@@ -144,6 +146,13 @@ export enum LabelKey {
   FORM_AGENDA_TITLE = 'form_agenda_title',
   FORM_AGENDA_DESC = 'form_agenda_description',
   FORM_AGENDA_TIME = 'form_agenda_time',
+  FORM_FROM_DATE = 'form_from_date',
+  FORM_TO_DATE = 'form_to_date',
+  FORM_TITLE = 'form_title',
+  FORM_SUB_TITLE = 'form_sub_title',
+  FORM_URL = 'form_url',
+  FORM_IS_INTERNAL_URL = 'form_is_internal_url',
+  FORM_BANNER_FOR = 'form_banner_for',
 
   ADD_MANDAL = 'add_mandal',
   EDIT_MANDAL = 'edit_mandal',
@@ -190,6 +199,7 @@ export enum LabelKey {
   ADD_CONTACT_US = 'add_contact_us',
   ADD_PAGE = 'add_page',
   ADD_FAMILY = 'add_family',
+  ADD_BANNER = 'add_banner',
 
   EDIT_MATRIMONIAL = 'edit_matrimonial',
   EDIT_MATRIMONIAL_STATUS = 'edit_matrimonial_status',
@@ -223,6 +233,7 @@ export enum LabelKey {
   EDIT_CONTACT_US = 'edit_contact_us',
   EDIT_PAGE = 'edit_page',
   EDIT_FAMILY = 'edit_family',
+  EDIT_BANNER = 'edit_banner',
 
   ADDRESS = 'address',
   STATE = 'state',

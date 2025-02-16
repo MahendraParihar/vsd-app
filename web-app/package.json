@@ -9,7 +9,8 @@
     "dev": "nx serve main --devRemotes=member",
     "dev:main": "nx serve main",
     "dev_all": "concurrently \"npm run dev_shared_lib\"  \"npm run dev\"",
-    "build": "npm run build_shared_lib && nx run-many --target=build --projects=main && nx run-many --target=build --projects=member"
+    "build": "npm run build_shared_lib && nx run-many --target=build --projects=main && nx run-many --target=build --projects=member",
+    "postinstall": "mkdir -p .nx"
   },
   "private": true,
   "devDependencies": {
