@@ -8,6 +8,7 @@ export interface IBaseBanner {
   toDate?: Date;
   url?: string;
   isInternalUrl: boolean;
+  bannerFor: string;
   imagePath: IMediaUpload[];
 }
 

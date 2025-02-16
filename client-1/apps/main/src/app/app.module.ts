@@ -45,6 +45,8 @@ import { BannerDetailComponent } from './banner/banner-detail/banner-detail.comp
 import { ManageBannerComponent } from './banner/manage-banner/manage-banner.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     MatNativeDateModule,
     MatDatepickerModule,
     MatSlideToggleModule,
+    MatSelect,
+    MatOption,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [

@@ -21,7 +21,7 @@ export class BannerService {
               private sequelize: Sequelize) {
   }
 
-  async load(payload: ITableListFilter): Promise<ITableList<IBannerList>> {
+  async load(payload: ITableListFilter, bannerFor: string = null): Promise<ITableList<IBannerList>> {
     const where = {};
     if (payload.search) {
       payload.search = payload.search.toLowerCase();
@@ -31,6 +31,9 @@ export class BannerService {
           { subTitle: { [Op.iLike]: `%${payload.search}%` } },
         ],
       });
+    }
+    if (bannerFor) {
+      Object.assign(where, { bannerFor: bannerFor });
     }
     const { rows, count } = await this.bannerModel.scope('list').findAndCountAll({
       where: where,
@@ -48,7 +51,7 @@ export class BannerService {
   }
 
   async getById(id: number): Promise<IBanner> {
-    const obj = await this.bannerModel.scope('details').findOne({ where: { bannerId: id } });
+    const obj = await this.bannerModel.scope('list').findOne({ where: { bannerId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_BANNER));
     }
@@ -65,6 +68,7 @@ export class BannerService {
         title: obj.title,
         subTitle: obj.subTitle,
         isInternalUrl: obj.isInternalUrl,
+        bannerFor: obj.bannerFor,
         url: obj.url,
         fromDate: obj.fromDate,
         toDate: obj.toDate,
@@ -105,6 +109,7 @@ export class BannerService {
       title: data.title,
       subTitle: data.subTitle,
       isInternalUrl: data.isInternalUrl,
+      bannerFor: data.bannerFor,
       url: data.url,
       fromDate: data.fromDate,
       toDate: data.toDate,

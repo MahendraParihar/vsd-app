@@ -8,7 +8,7 @@ import {
   IAddressMaster,
   ICommonSEO,
   IManageBanner,
-  InputLength,
+  InputLength, IOption,
   LabelKey,
   MediaForEnum,
 } from '@vsd-common/lib';
@@ -32,6 +32,17 @@ export class ManageBannerComponent implements OnInit {
   mediaForEnum = MediaForEnum;
   banner!: IManageBanner;
   seoData!: ICommonSEO;
+  bannerFor: IOption[] = [
+    { id: 'home', title: 'Home' },
+    { id: 'temple', title: 'Temple' },
+    { id: 'mandal', title: 'Mandal' },
+    { id: 'event', title: 'Event' },
+    { id: 'facility', title: 'Facility' },
+    { id: 'family', title: 'Family' },
+    { id: 'about_us', title: 'About Us' },
+    { id: 'contact_us', title: 'Contact Us' },
+    { id: 'term_condition', title: 'Terms and Condition' },
+  ];
 
   formGroup: FormGroup = new FormGroup({
     title: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_100)]),
@@ -40,6 +51,7 @@ export class ManageBannerComponent implements OnInit {
     toDate: new FormControl(null),
     url: new FormControl(null),
     isInternalUrl: new FormControl(null),
+    bannerFor: new FormControl(null, [Validators.required]),
   });
 
   constructor(private activatedRoute: ActivatedRoute, private service: BannerService,
@@ -76,6 +88,7 @@ export class ManageBannerComponent implements OnInit {
       url: this.banner.url,
       fromDate: this.banner.fromDate,
       toDate: this.banner.toDate,
+      bannerFor: this.banner.bannerFor,
     });
   }
 
@@ -96,6 +109,7 @@ export class ManageBannerComponent implements OnInit {
       url: this.formGroup.value.url,
       fromDate: this.formGroup.value.fromDate,
       toDate: this.formGroup.value.toDate,
+      bannerFor: this.formGroup.value.bannerFor,
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {

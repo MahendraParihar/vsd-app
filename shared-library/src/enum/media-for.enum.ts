@@ -1,5 +1,5 @@
 export enum MediaForEnum {
-  BANNER = 'banner',
+  HOME = 'home',
   TEMPLE = 'temple',
   MANDAL = 'mandal',
   EVENT = 'event',
@@ -12,8 +12,10 @@ export enum MediaForEnum {
   EDUCATION_DEGREE = 'education_degree',
   MEDIA_FOLDER = 'media-files',
   UPLOADS = 'uploads',
-
   CONTACT_TYPE = 'contact_type',
+  ABOUT_US = 'about_us',
+  CONTACT_US = 'contact_us',
+  TERM_CONDITION = 'term_condition',
   GENDER = 'gender',
   ADDRESS_TYPE = 'address_type',
   POST = 'post',

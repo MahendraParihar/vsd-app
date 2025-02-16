@@ -10,8 +10,7 @@ import { PagesComponent } from './pages/pages.component';
 import { HomeComponent } from './home/home.component';
 import { InquiryComponent } from './inquiry/inquiry.component';
 
-export let appRoutes: Route[];
-appRoutes = [
+export const appRoutes: Route[] = [
   {
     path: '',
     component: BaseLayoutComponent,

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
   HttpService,
   LabelService,
@@ -6,13 +6,14 @@ import {
   NavigationPathEnum,
   NavigationService,
   PAGE_SIZE_LIST,
-  SnackBarService, TableDataDatasource
-} from "@vsd-frontend/core-lib";
-import {FormControl} from "@angular/forms";
-import {MatPaginator} from "@angular/material/paginator";
-import {Title} from "@angular/platform-browser";
-import {debounceTime, distinctUntilChanged, tap} from "rxjs";
-import {IMandalList, ITableListFilter, LabelKey} from "@vsd-common/lib";
+  SnackBarService,
+  TableDataDatasource,
+} from '@vsd-frontend/core-lib';
+import { FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { Title } from '@angular/platform-browser';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { IBannerList, ITableListFilter, LabelKey } from '@vsd-common/lib';
 import { BannerService } from '../banner.service';
 import { BannerApiUrl } from '../api-url';
 
@@ -24,12 +25,13 @@ import { BannerApiUrl } from '../api-url';
 })
 export class BannerComponent implements OnInit, AfterViewInit {
   labelKeys = LabelKey;
-  title!:string;
+  title!: string;
   displayedColumns = [
     'seqNo',
     'imagePath',
     'title',
     'subTitle',
+    'bannerFor',
     'fromDate',
     'toDate',
     'active',
@@ -39,7 +41,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     'updatedAt',
     'action',
   ];
-  dataSource!: TableDataDatasource<IMandalList>;
+  dataSource!: TableDataDatasource<IBannerList>;
   totalCount = 0;
   defaultPageSize = MASTER_PAGE_SIZE;
   pageSizeList = PAGE_SIZE_LIST;
@@ -56,13 +58,13 @@ export class BannerComponent implements OnInit, AfterViewInit {
     private pageTitle: Title,
     private service: BannerService,
     private navigationService: NavigationService,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER);
     this.pageTitle.setTitle(this.title);
     this.dataSource = new TableDataDatasource(this.httpService);
     this.dataSource.totalCount.subscribe(
-      (count: number) => (this.totalCount = count)
+      (count: number) => (this.totalCount = count),
     );
     this.searchControl.valueChanges
       .pipe(debounceTime(400), distinctUntilChanged())
@@ -90,13 +92,13 @@ export class BannerComponent implements OnInit, AfterViewInit {
     this.navigationService.navigateTo(NavigationPathEnum.BANNER_MANAGE);
   }
 
-  edit(obj: IMandalList) {
-    this.navigationService.navigateToById(NavigationPathEnum.BANNER_MANAGE, obj.mandalId);
+  edit(obj: IBannerList) {
+    this.navigationService.navigateToById(NavigationPathEnum.BANNER_MANAGE, obj.bannerId);
   }
 
-  async changeStatus(obj: IMandalList) {
-    await this.service.changeStatus(obj.mandalId, !obj.active);
-    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
+  async changeStatus(obj: IBannerList) {
+    await this.service.changeStatus(obj.bannerId, !obj.active);
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
 

@@ -603,16 +603,16 @@ export class NavigationService {
             path: NavigationPathEnum.CONTACT_TYPE_MANAGE,
           });
           break;
-        case NavigationPathEnum.FACILITY:
-          breadcrumbList.push({
-            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
-            path: NavigationPathEnum.FAMILY,
-          });
-          break;
         case NavigationPathEnum.INQUIRY:
           breadcrumbList.push({
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_INQUIRY),
             path: NavigationPathEnum.INQUIRY,
+          });
+          break;
+        case NavigationPathEnum.FACILITY:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
+            path: NavigationPathEnum.FAMILY,
           });
           break;
         case NavigationPathEnum.FACILITY_MANAGE:
@@ -623,6 +623,22 @@ export class NavigationService {
           breadcrumbList.push({
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
             path: NavigationPathEnum.FACILITY_MANAGE,
+          });
+          break;
+        case NavigationPathEnum.BANNER:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER),
+            path: NavigationPathEnum.BANNER,
+          });
+          break;
+        case NavigationPathEnum.BANNER_MANAGE:
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER),
+            path: NavigationPathEnum.BANNER,
+          });
+          breadcrumbList.push({
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER),
+            path: NavigationPathEnum.BANNER_MANAGE,
           });
           break;
       }

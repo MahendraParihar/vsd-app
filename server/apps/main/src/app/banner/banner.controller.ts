@@ -10,10 +10,10 @@ export class BannerController {
   }
 
   @Public()
-  @Post('public')
-  loadPublicBanners(@Body() payload: TableListDto): Promise<ITableList<IBannerList>> {
+  @Post('public/:banner_for')
+  loadPublicBanners(@Body() payload: TableListDto, @Param('banner_for') bannerFor: string): Promise<ITableList<IBannerList>> {
     try {
-      return this.bannerService.load(payload);
+      return this.bannerService.load(payload, bannerFor);
     } catch (e) {
       throw new Error(e);
     }

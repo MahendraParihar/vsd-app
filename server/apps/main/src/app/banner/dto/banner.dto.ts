@@ -42,6 +42,10 @@ export class BannerDto implements IManageBanner {
   @IsBoolean()
   isInternalUrl: boolean;
 
+  @IsString()
+  @IsNotEmpty()
+  bannerFor: string;
+
   @IsNotEmpty()
   @IsArray()
   imagePath: IMediaUpload[];

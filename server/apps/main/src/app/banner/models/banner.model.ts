@@ -87,6 +87,14 @@ export class BannerModel extends Model<BannerModel> {
   isInternalUrl: boolean;
 
   @Column({
+    field: 'banner_for',
+    allowNull: false,
+    defaultValue: 'home',
+    type: DataType.ENUM('home', 'temple', 'mandal', 'event', 'facility', 'family', 'about_us', 'contact_us', 'term_condition'),
+  })
+  bannerFor: string;
+
+  @Column({
     field: 'active',
     allowNull: false,
     defaultValue: true,

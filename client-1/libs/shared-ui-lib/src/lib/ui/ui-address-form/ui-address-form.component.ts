@@ -72,19 +72,19 @@ export class UiAddressFormComponent implements OnInit {
 
   findStates(countryId: number | IOption) {
     this.stateList = this.masterData.states.filter((p) => {
-      return p.parentId === (typeof countryId === 'number' ? countryId : countryId.id);
+      return p.parentId as number === (typeof countryId === 'number' ? countryId : countryId.id);
     });
   }
 
   findDistricts(stateId: number | IOption) {
     this.districtList = this.masterData.districts.filter((p) => {
-      return p.parentId === (typeof stateId === 'number' ? stateId : stateId.id);
+      return p.parentId as number === (typeof stateId === 'number' ? stateId : stateId.id);
     });
   }
 
   findCityVillages(districtId: number | IOption) {
     this.cityVillageList = this.masterData.cityVillages.filter((p) => {
-      return p.parentId = (typeof districtId === 'number' ? districtId : districtId.id);
+      return p.parentId as number === (typeof districtId === 'number' ? districtId : districtId.id);
     });
   }
 }

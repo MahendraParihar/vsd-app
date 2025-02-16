@@ -152,6 +152,7 @@ export enum LabelKey {
   FORM_SUB_TITLE = 'form_sub_title',
   FORM_URL = 'form_url',
   FORM_IS_INTERNAL_URL = 'form_is_internal_url',
+  FORM_BANNER_FOR = 'form_banner_for',
 
   ADD_MANDAL = 'add_mandal',
   EDIT_MANDAL = 'edit_mandal',

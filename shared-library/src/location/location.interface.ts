@@ -1,7 +1,7 @@
 import { IBaseAdminUser, ICommonTable } from '../base.interface';
 
 export interface IOption {
-  id: number;
+  id: number | string;
   title: string;
   subTitle?: string;
   parentId?: number;
