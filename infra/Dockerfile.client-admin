@@ -7,7 +7,7 @@ RUN npm --prefix shared-library install
 COPY ./client ./client
 RUN npm --prefix client install
 COPY ./shared-library ./shared-library
-RUN npm --prefix client run build --nx-bail=true
+RUN npm --prefix client run build
 
 FROM nginx:latest AS ngi
 COPY --from=build /home/app/client/dist/apps/main /usr/share/nginx/html
