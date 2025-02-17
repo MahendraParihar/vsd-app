@@ -50,7 +50,7 @@ For running all Servers
 
 ```
 CLIENT=VSD 
-docker-compose -f './infra/docker-compose-local.yml' up -d -build
+docker compose -f 'infra/docker-compose.yml' up -d --build
 ```
 
 URL for UI: http://localhost:8080/ --issues with code and setup of backend

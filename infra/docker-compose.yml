@@ -19,8 +19,6 @@ services:
     container_name: vsd-server-event
     command: sh -c "cd server && node -r dist/apps/event/main.js"
     restart: always
-    volumes:
-      - assets:/home/app/assets
     env_file:
       - event.env
     ports:
@@ -189,11 +187,36 @@ services:
   client:
     container_name: vsd-client
     restart: always
-    environment:
-      CLIENT: 'VSD'
     ports:
-      - "8000:80"
       - "443:443"
+    depends_on:
+      main:
+        condition: service_healthy
+      event:
+        condition: service_healthy
+      facility:
+        condition: service_healthy
+      family:
+        condition: service_healthy
+      job:
+        condition: service_healthy
+      lovs:
+        condition: service_healthy
+      mandal:
+        condition: service_healthy
+      matrimonial:
+        condition: service_healthy
+      news:
+        condition: service_healthy
+      temple:
+        condition: service_healthy
+
+
+  client-admin:
+    container_name: vsd-admin-client
+    restart: always
+    ports:
+      - "8090:80"
     depends_on:
       main:
         condition: service_healthy
