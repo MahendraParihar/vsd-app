@@ -39,7 +39,7 @@ For building admin panel image
 docker build . -f ./infra/Dockerfile.client-admin -t vsd-client-admin
 ````
 
-For building web site image
+For building website image
 
 ```shell
 docker build . -f ./infra/Dockerfile.client -t vsd-client
@@ -49,8 +49,8 @@ Note: Ensure that you have .env file created in infra folder with ENV variable d
 For running all Servers
 
 ```
-CLIENT=VSD 
-docker-compose -f './infra/docker-compose-local.yml' up -d -build
+CLIENT=VSD
+docker compose -f 'infra/docker-compose.yml' up -d --build
 ```
 
 URL for UI: http://localhost:8080/ --issues with code and setup of backend
