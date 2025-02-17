@@ -69,5 +69,8 @@
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.3",
     "@nx/angular": "^19.8.14"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-musl": "4.9.5"
   }
 }

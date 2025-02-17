@@ -4,10 +4,10 @@ WORKDIR /home/app
 RUN mkdir -p client && mkdir -p shared-library
 COPY ./shared-library/package*.json ./shared-library/
 RUN npm --prefix shared-library install
-COPY ./client-1 ./client
+COPY ./client ./client
 RUN npm --prefix client install
 COPY ./shared-library ./shared-library
-RUN npm --prefix client run build
+RUN npm --prefix client run build --nx-bail=true
 
 FROM nginx:latest AS ngi
 COPY --from=build /home/app/client/dist/apps/main /usr/share/nginx/html

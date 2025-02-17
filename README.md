@@ -49,7 +49,7 @@ Note: Ensure that you have .env file created in infra folder with ENV variable d
 For running all Servers
 
 ```
-CLIENT=VSD 
+CLIENT=VSD
 docker compose -f 'infra/docker-compose.yml' up -d --build
 ```
 

@@ -177,7 +177,7 @@ services:
       main:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3336/api/temple/health" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:3338/api/temple/health" ]
       interval: 20s
       retries: 5
       start_period: 5s
@@ -210,8 +210,6 @@ services:
         condition: service_healthy
       temple:
         condition: service_healthy
-
-
   client-admin:
     container_name: vsd-admin-client
     restart: always
