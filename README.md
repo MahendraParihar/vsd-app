@@ -59,11 +59,6 @@ docker ps -a
 docker exec -it reverent_swirles bash
 ```
 
-#### Docker run
-```shell
-docker  run  [CONTAINER_NAME] sleep infinity
-```
-
 Note: Ensure that you have .env file created in infra folder with ENV variable defined
 For running all Servers
 
