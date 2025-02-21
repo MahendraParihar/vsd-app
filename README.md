@@ -45,12 +45,30 @@ For building website image
 docker build . -f ./infra/Dockerfile.client -t vsd-client
 ```
 
+#### Docker run
+```shell
+docker  run  [CONTAINER_NAME] sleep infinity
+```
+#### Docker run
+```shell
+docker ps -a
+```
+
+#### Check docker image
+```shell
+docker exec -it reverent_swirles bash
+```
+
+#### Docker run
+```shell
+docker  run  [CONTAINER_NAME] sleep infinity
+```
+
 Note: Ensure that you have .env file created in infra folder with ENV variable defined
 For running all Servers
 
 ```
-CLIENT=VSD
-docker compose -f 'infra/docker-compose.yml' up -d --build
+docker compose -f 'infra/docker-compose.yml' up -d
 ```
 
 URL for UI: http://localhost:8080/ --issues with code and setup of backend

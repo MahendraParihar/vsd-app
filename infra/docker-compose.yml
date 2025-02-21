@@ -1,6 +1,7 @@
 services:
   main:
     container_name: vsd-server-main
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/main/main.js"
     restart: always
     volumes:
@@ -17,6 +18,7 @@ services:
       timeout: 10s
   event:
     container_name: vsd-server-event
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/event/main.js"
     restart: always
     env_file:
@@ -34,6 +36,7 @@ services:
       timeout: 10s
   facility:
     container_name: vsd-server-facility
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/facility/main.js"
     restart: always
     env_file:
@@ -53,6 +56,7 @@ services:
       timeout: 10s
   family:
     container_name: vsd-server-family
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/family/main.js"
     restart: always
     env_file:
@@ -72,6 +76,7 @@ services:
       timeout: 10s
   job:
     container_name: vsd-server-job
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/job/main.js"
     restart: always
     env_file:
@@ -91,6 +96,7 @@ services:
       timeout: 10s
   lovs:
     container_name: vsd-server-lovs
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/lovs/main.js"
     restart: always
     env_file:
@@ -110,6 +116,7 @@ services:
       timeout: 10s
   mandal:
     container_name: vsd-server-mandal
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/mandal/main.js"
     restart: always
     env_file:
@@ -129,6 +136,7 @@ services:
       timeout: 10s
   matrimonial:
     container_name: vsd-server-matrimonial
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/matrimonial/main.js"
     restart: always
     env_file:
@@ -148,6 +156,7 @@ services:
       - assets:/home/app/assets
   news:
     container_name: vsd-server-news
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/news/main.js"
     restart: always
     env_file:
@@ -167,6 +176,7 @@ services:
       - assets:/home/app/assets
   temple:
     container_name: vsd-server-temple
+    image: vsd-server
     command: sh -c "cd server && node -r dist/apps/temple/main.js"
     restart: always
     env_file:
@@ -184,8 +194,9 @@ services:
       timeout: 10s
     volumes:
       - assets:/home/app/assets
-  client:
+  vsd-client:
     container_name: vsd-client
+    image: vsd-client
     restart: always
     ports:
       - "443:443"
@@ -210,8 +221,9 @@ services:
         condition: service_healthy
       temple:
         condition: service_healthy
-  client-admin:
-    container_name: vsd-admin-client
+  vsd-client-admin:
+    container_name: vsd-client-admin
+    image: vsd-client-admin
     restart: always
     ports:
       - "8090:80"
