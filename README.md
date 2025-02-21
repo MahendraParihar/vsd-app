@@ -49,12 +49,12 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 ```shell
 docker  run  [CONTAINER_NAME] sleep infinity
 ```
-#### Docker run
+#### Check docker list
 ```shell
 docker ps -a
 ```
 
-#### Check docker image
+#### Go inside docker image
 ```shell
 docker exec -it reverent_swirles bash
 ```
