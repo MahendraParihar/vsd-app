@@ -1,0 +1,13 @@
+FROM ubuntu:latest
+WORKDIR /home/infra
+RUN mkdir -p certs && mkdir -p config && mkdir -p keys
+COPY ./infra/event.env ./event.env
+COPY ./infra/facility.env ./facility.env
+COPY ./infra/family.env ./family.env
+COPY ./infra/job.env ./job.env
+COPY ./infra/lovs.env ./lovs.env
+COPY ./infra/main.env ./main.env
+COPY ./infra/mandal.env ./mandal.env
+COPY ./infra/matrimonial.env ./matrimonial.env
+COPY ./infra/news.env ./news.env
+COPY ./infra/temple.env ./temple.env
