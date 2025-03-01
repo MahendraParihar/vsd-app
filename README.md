@@ -49,7 +49,7 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 ```shell
 docker  run  [CONTAINER_NAME] sleep infinity
 ```
-#### Check docker list
+#### List docker containers list
 ```shell
 docker ps -a
 ```
