@@ -48,7 +48,7 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 Note: Ensure that you have .env file created in infra folder with ENV variable defined
 For running all Servers
 
-```
+```shell
 docker-compose -f ./infra/docker-compose.yml  --env-file ./infra/.env up -d
 ```
 

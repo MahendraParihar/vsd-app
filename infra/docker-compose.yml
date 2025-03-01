@@ -2,12 +2,20 @@ services:
   main:
     container_name: vsd-server-main
     image: vsd-server
-    command: sh -c "cd server && node -r dist/apps/main/main.js"
+    command: sh -c "cd server && node dist/apps/main/main.js"
     restart: always
     volumes:
       - assets:/home/app/assets
-    env_file:
-      - main.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8001:3330"
     healthcheck:
