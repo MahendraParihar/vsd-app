@@ -8,7 +8,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   constructor(private reflector: Reflector) {
     super();
   }
-  canActivate(context: ExecutionContext) {
+  canActivate(context: ExecutionContext): any {
     const scope = this.reflector.getAllAndOverride<string>(AUTH_SCOPE, [context.getHandler(), context.getClass()]);
     if (!scope || scope === PUBLIC_API) {
       return true;
