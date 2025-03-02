@@ -18,6 +18,7 @@ export class UikitGoogleMapComponent {
     center: { lat: 25.1264456, lng: 73.3134433 },
     zoom: 12,
     zoomControl: false,
+    disableDoubleClickZoom: true,
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,

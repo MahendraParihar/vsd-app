@@ -81,12 +81,12 @@
           <div class="form-item">
             <label for="phoneNumber">{{ labelService.labels.get(labelKeys.FORM_PHONE_NUMBER) }}</label>
             <mat-form-field>
-              <input id="phoneNumber" type="text" matInput formControlName="phoneNumber" placeholder="">
+              <input id="phoneNumber" type="text" matInput formControlName="contactNumber" placeholder="">
             </mat-form-field>
 
             <app-input-error [controlName]="labelService.labels.get(labelKeys.FORM_PHONE_NUMBER)"
                              [labels]="labelService.labels"
-                             [control]="formGroup.get('phoneNumber')"></app-input-error>
+                             [control]="formGroup.get('contactNumber')"></app-input-error>
           </div>
           <div class="form-item">
             <label for="message">{{ labelService.labels.get(labelKeys.FORM_MESSAGE) }}</label>

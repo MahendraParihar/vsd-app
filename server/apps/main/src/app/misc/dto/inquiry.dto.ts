@@ -1,5 +1,5 @@
 import { InputLength } from '@vsd-common/lib';
-import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class InquiryDto {
   @IsNotEmpty()
@@ -16,6 +16,6 @@ export class InquiryDto {
   message: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   contactNumber: string;
 }

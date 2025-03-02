@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LabelService } from '@core-lib';
-import { convertAddress, IMandalDetail, LabelKey } from '@vsd-common/lib';
+import { HttpService, LabelService } from '@core-lib';
+import { convertAddress, IInquiry, IMandalDetail, LabelKey } from '@vsd-common/lib';
 import { GoogleMap } from '@angular/google-maps';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { MandalService } from '../mandal/services/mandal.service';
+import { CONTACT_US } from './contact-us.url';
+import { ValidationUtil } from '@shared-ui-lib';
 
 @Component({
   selector: 'vsd-web-app-contact-us',
@@ -17,10 +19,10 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   labelKeys = LabelKey;
 
   formGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    emailId: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    message: new FormControl('', [Validators.required, Validators.maxLength(500)]),
+    name: new FormControl('Mahendra', [Validators.required]),
+    emailId: new FormControl('mahendra@gmail.com', [Validators.required, Validators.email]),
+    contactNumber: new FormControl('8097421877', [Validators.required]),
+    message: new FormControl('hi testing data', [Validators.required, Validators.maxLength(500)]),
   });
 
   primaryMandal!: IMandalDetail;
@@ -30,6 +32,7 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   constructor(public labelService: LabelService,
               private mandalService: MandalService,
               private title: Title,
+              private httpService: HttpService,
               private metaService: Meta) {
     this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_CONTACT_US);
     if (this.pageTitle) {
@@ -55,11 +58,12 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     else return '';
   }
 
-  submitForm() {
+  async submitForm() {
+    ValidationUtil.validateAllFormFields(this.formGroup);
     if (!this.formGroup.valid) {
       return;
     }
-
+    await this.httpService.postRequest(CONTACT_US, <IInquiry>this.formGroup.value);
   }
 
   bindSEOData() {
