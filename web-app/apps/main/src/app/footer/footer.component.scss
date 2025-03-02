@@ -20,7 +20,7 @@
   }
 
   .left {
-    flex-grow: 3;
+    flex-grow: 4;
     flex-basis: var(--default-grid-item-basis);
     display: flex;
     flex-direction: column;
@@ -45,21 +45,27 @@
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        align-items: center;
+        align-items: flex-start;
         align-content: center;
       }
     }
 
     .additional-info {
+      gap: var(--spacing-16);
       display: flex;
       flex-direction: row;
       align-items: center;
+
+      .social-link-section {
+        width: auto !important;
+      }
     }
   }
 
   .center {
     flex-grow: 1;
     flex-basis: var(--default-grid-item-basis);
+
     .nav {
       gap: var(--spacing-8);
       display: flex;
