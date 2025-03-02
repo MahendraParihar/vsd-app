@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpService, LabelService } from '@core-lib';
-import { convertAddress, IInquiry, IMandalDetail, LabelKey } from '@vsd-common/lib';
+import { HttpService, LabelService, SnackBarService } from '@core-lib';
+import { convertAddress, IMandalDetail, LabelKey } from '@vsd-common/lib';
 import { GoogleMap } from '@angular/google-maps';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { MandalService } from '../mandal/services/mandal.service';
@@ -19,10 +19,10 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   labelKeys = LabelKey;
 
   formGroup = new FormGroup({
-    name: new FormControl('Mahendra', [Validators.required]),
-    emailId: new FormControl('mahendra@gmail.com', [Validators.required, Validators.email]),
-    contactNumber: new FormControl('8097421877', [Validators.required]),
-    message: new FormControl('hi testing data', [Validators.required, Validators.maxLength(500)]),
+    name: new FormControl(null, [Validators.required]),
+    emailId: new FormControl(null, [Validators.required, Validators.email]),
+    contactNumber: new FormControl(null, [Validators.required]),
+    message: new FormControl(null, [Validators.required, Validators.maxLength(500)]),
   });
 
   primaryMandal!: IMandalDetail;
@@ -33,7 +33,8 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
               private mandalService: MandalService,
               private title: Title,
               private httpService: HttpService,
-              private metaService: Meta) {
+              private metaService: Meta,
+              private snackBarService: SnackBarService) {
     this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_CONTACT_US);
     if (this.pageTitle) {
       this.title.setTitle(this.pageTitle);
@@ -63,7 +64,9 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     if (!this.formGroup.valid) {
       return;
     }
-    await this.httpService.postRequest(CONTACT_US, <IInquiry>this.formGroup.value);
+    await this.httpService.postRequest(CONTACT_US, this.formGroup.value);
+    this.snackBarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_INQUIRY));
+    this.formGroup.reset();
   }
 
   bindSEOData() {
