@@ -49,7 +49,9 @@ Note: Ensure that you have .env file created in infra folder with ENV variable d
 For running all Servers
 
 ```shell
-docker-compose -f ./infra/docker-compose.yml  --env-file ./infra/.env up -d
+docker-compose -f ./infra/docker-compose.yml --env-file ./infra/.env up -d
+docker-compose -f ./infra/docker-compose.yml up -d
+docker-compose -f ./infra/docker-compose-postgres.yml up -d
 ```
 
 #### Docker run

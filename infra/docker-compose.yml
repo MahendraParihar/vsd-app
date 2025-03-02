@@ -4,8 +4,12 @@ services:
     image: vsd-server
     command: sh -c "cd server && node dist/apps/main/main.js"
     restart: always
+    depends_on:
+      - postgres
     volumes:
       - assets:/home/app/assets
+    env_file:
+      - main.env
     environment:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -18,6 +22,8 @@ services:
       MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8001:3330"
+    networks:
+      - backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3330/api/core/health"]
       interval: 20s
@@ -29,13 +35,26 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/event/main.js"
     restart: always
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
+    volumes:
+      - assets:/home/app/assets
     env_file:
       - event.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8002:3331"
-    depends_on:
-      main:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3331/api/event/health"]
       interval: 20s
@@ -47,15 +66,26 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/facility/main.js"
     restart: always
-    env_file:
-      - facility.env
-    ports:
-      - "8003:3340"
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
     volumes:
       - assets:/home/app/assets
-    depends_on:
-      main:
-        condition: service_healthy
+    env_file:
+      - facility.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
+    ports:
+      - "8003:3340"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3340/api/facility/health"]
       interval: 20s
@@ -67,15 +97,26 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/family/main.js"
     restart: always
-    env_file:
-      family.env
-    ports:
-      - "8004:3332"
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
     volumes:
       - assets:/home/app/assets
-    depends_on:
-      main:
-        condition: service_healthy
+    env_file:
+      family.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
+    ports:
+      - "8004:3332"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3332/api/family/health"]
       interval: 20s
@@ -87,15 +128,26 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/job/main.js"
     restart: always
-    env_file:
-      - job.env
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
     volumes:
       - assets:/home/app/assets
+    env_file:
+      - job.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8005:3333"
-    depends_on:
-      main:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3333/api/job/health"]
       interval: 20s
@@ -107,15 +159,26 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/lovs/main.js"
     restart: always
-    env_file:
-      - lovs.env
-    ports:
-      - "8006:3334"
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
     volumes:
       - assets:/home/app/assets
-    depends_on:
-      main:
-        condition: service_healthy
+    env_file:
+      - lovs.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
+    ports:
+      - "8006:3334"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3334/api/lovs/health"]
       interval: 20s
@@ -127,15 +190,26 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/mandal/main.js"
     restart: always
-    env_file:
-      - mandal.env
-    ports:
-      - "8007:3335"
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
     volumes:
       - assets:/home/app/assets
-    depends_on:
-      main:
-        condition: service_healthy
+    env_file:
+      - mandal.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
+    ports:
+      - "8007:3335"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3335/api/mandal/health"]
       interval: 20s
@@ -147,116 +221,169 @@ services:
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/matrimonial/main.js"
     restart: always
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
+    volumes:
+      - assets:/home/app/assets
     env_file:
       - matrimonial.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8008:3336"
-    depends_on:
-      main:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3336/api/matrimonial/health"]
       interval: 20s
       retries: 5
       start_period: 5s
       timeout: 10s
-    volumes:
-      - assets:/home/app/assets
   news:
     container_name: vsd-server-news
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/news/main.js"
     restart: always
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
+    volumes:
+      - assets:/home/app/assets
     env_file:
       - news.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8009:3337"
-    depends_on:
-      main:
-        condition: service_healthy
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:3337/api/news/health" ]
       interval: 20s
       retries: 5
       start_period: 5s
       timeout: 10s
-    volumes:
-      - assets:/home/app/assets
   temple:
     container_name: vsd-server-temple
     image: vsd-server
     command: sh -c "cd server && node -r dist/apps/temple/main.js"
     restart: always
+    depends_on:
+      - main:
+          condition: service_healthy
+      - postgres
+    volumes:
+      - assets:/home/app/assets
     env_file:
       - temple.env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      API_PORT: ${API_PORT}
+      ASSET_PATH: ${ASSET_PATH}
+      MEDIA_BASE_PATH: ${MEDIA_BASE_PATH}
     ports:
       - "8010:3338"
-    depends_on:
-      main:
-        condition: service_healthy
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:3338/api/temple/health" ]
       interval: 20s
       retries: 5
       start_period: 5s
       timeout: 10s
+#  vsd-client:
+#    container_name: vsd-client
+#    image: vsd-client
+#    restart: always
+#    ports:
+#      - "443:443"
+#    depends_on:
+#      main:
+#        condition: service_healthy
+#      event:
+#        condition: service_healthy
+#      facility:
+#        condition: service_healthy
+#      family:
+#        condition: service_healthy
+#      job:
+#        condition: service_healthy
+#      lovs:
+#        condition: service_healthy
+#      mandal:
+#        condition: service_healthy
+#      matrimonial:
+#        condition: service_healthy
+#      news:
+#        condition: service_healthy
+#      temple:
+#        condition: service_healthy
+#  vsd-client-admin:
+#    container_name: vsd-client-admin
+#    image: vsd-client-admin
+#    restart: always
+#    ports:
+#      - "8090:80"
+#    depends_on:
+#      main:
+#        condition: service_healthy
+#      event:
+#        condition: service_healthy
+#      facility:
+#        condition: service_healthy
+#      family:
+#        condition: service_healthy
+#      job:
+#        condition: service_healthy
+#      lovs:
+#        condition: service_healthy
+#      mandal:
+#        condition: service_healthy
+#      matrimonial:
+#        condition: service_healthy
+#      news:
+#        condition: service_healthy
+#      temple:
+#        condition: service_healthy
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    env_file:
+      - main.env
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
     volumes:
-      - assets:/home/app/assets
-  vsd-client:
-    container_name: vsd-client
-    image: vsd-client
-    restart: always
-    ports:
-      - "443:443"
-    depends_on:
-      main:
-        condition: service_healthy
-      event:
-        condition: service_healthy
-      facility:
-        condition: service_healthy
-      family:
-        condition: service_healthy
-      job:
-        condition: service_healthy
-      lovs:
-        condition: service_healthy
-      mandal:
-        condition: service_healthy
-      matrimonial:
-        condition: service_healthy
-      news:
-        condition: service_healthy
-      temple:
-        condition: service_healthy
-  vsd-client-admin:
-    container_name: vsd-client-admin
-    image: vsd-client-admin
-    restart: always
-    ports:
-      - "8090:80"
-    depends_on:
-      main:
-        condition: service_healthy
-      event:
-        condition: service_healthy
-      facility:
-        condition: service_healthy
-      family:
-        condition: service_healthy
-      job:
-        condition: service_healthy
-      lovs:
-        condition: service_healthy
-      mandal:
-        condition: service_healthy
-      matrimonial:
-        condition: service_healthy
-      news:
-        condition: service_healthy
-      temple:
-        condition: service_healthy
+      - postgres-data:/var/lib/postgresql/data
+
 volumes:
+  postgres-data:
   assets:
     driver: local
 
+networks:
+  backend:
+    driver: bridge
