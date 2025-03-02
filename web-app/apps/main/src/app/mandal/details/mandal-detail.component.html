@@ -2,13 +2,40 @@
   <shared-ui-lib-uikit-banner
     [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
   <div class="mandal-detail-content main-section">
-    <div class="flex-d">
+    <div class="flex-h">
       <shared-ui-lib-uikit-label *ngIf="mandal.mandalName" [class]="['mat-headline-3']"
                                  [label]="mandal.mandalName"></shared-ui-lib-uikit-label>
+      <shared-ui-lib-uikit-label *ngIf="mandal.additionalInfo && mandal.additionalInfo.regNo" [class]="['mat-body-1']"
+                                 [label]="mandal.additionalInfo.regNo"></shared-ui-lib-uikit-label>
     </div>
     <div class="divider divider-line"></div>
 
-    <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="mandal.description"></shared-ui-lib-uikit-label>
+
+    <div class="mandal-detail-box">
+      <div class="left-section">
+        <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="mandal.description"></shared-ui-lib-uikit-label>
+      </div>
+
+      <div class="right-section border-box">
+        <div class="map-box">
+          <shared-ui-lib-uikit-google-map [address]="mandal.address"></shared-ui-lib-uikit-google-map>
+        </div>
+        <div class="address-box">
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'x-large'"
+                                    [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-label [class]="['mat-heading-5']"
+                                     label="{{ mandal.address | addressText }}"></shared-ui-lib-uikit-label>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-link-section" *ngIf="mandal.additionalInfo && mandal.additionalInfo.socialSiteLink">
+      <shared-ui-lib-uikit-icon *ngFor="let social of mandal.additionalInfo.socialSiteLink"
+                                [size]="'x-large'"
+                                (click)="openLink(social.link)"
+                                [name]="social.icon"></shared-ui-lib-uikit-icon>
+    </div>
+
     <div class="member-section" *ngIf="mandal.mandalMembers && mandal.mandalMembers.length > 0">
       <shared-ui-lib-uikit-label [label]="'हमारे सदस्यों से मिलें'"
                                  [class]="['mat-headline-3','secondary-color']"></shared-ui-lib-uikit-label>

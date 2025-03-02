@@ -97,6 +97,13 @@ $icon-lists: (
     $icon-size-large,
     $icon-size-x-large,
   ),
+  social-youtube:(
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+    $icon-size-x-large,
+  ),
 );
 
 @each $key, $list in $icon-lists {
@@ -323,6 +330,10 @@ $icon-lists: (
   background: url('../assets/images/icons/x-large/social-twitter.svg') no-repeat center;
 }
 
+.icon-social-youtube-x-large {
+  background: url('../assets/images/icons/x-large/social-youtube.svg') no-repeat center;
+}
+
 .icon-social-instagram-large {
   background: url('../assets/images/icons/large/social-instagram.svg') no-repeat center;
 }
@@ -333,6 +344,10 @@ $icon-lists: (
 
 .icon-social-twitter-large {
   background: url('../assets/images/icons/large/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-large {
+  background: url('../assets/images/icons/large/social-youtube.svg') no-repeat center;
 }
 
 .icon-social-instagram-medium {
@@ -347,6 +362,10 @@ $icon-lists: (
   background: url('../assets/images/icons/medium/social-twitter.svg') no-repeat center;
 }
 
+.icon-social-youtube-medium {
+  background: url('../assets/images/icons/medium/social-youtube.svg') no-repeat center;
+}
+
 .icon-social-instagram-regular {
   background: url('../assets/images/icons/regular/social-instagram.svg') no-repeat center;
 }
@@ -359,6 +378,10 @@ $icon-lists: (
   background: url('../assets/images/icons/regular/social-twitter.svg') no-repeat center;
 }
 
+.icon-social-youtube-regular {
+  background: url('../assets/images/icons/regular/social-youtube.svg') no-repeat center;
+}
+
 .icon-social-instagram-small {
   background: url('../assets/images/icons/small/social-instagram.svg') no-repeat center;
 }
@@ -369,6 +392,10 @@ $icon-lists: (
 
 .icon-social-twitter-small {
   background: url('../assets/images/icons/small/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-small {
+  background: url('../assets/images/icons/small/social-youtube.svg') no-repeat center;
 }
 
 

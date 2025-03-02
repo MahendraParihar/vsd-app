@@ -13,14 +13,14 @@
       </div>
       <div class="right-section border-box">
         <div class="map-box">
-        <shared-ui-lib-uikit-google-map [address]="temple.address"></shared-ui-lib-uikit-google-map>
+          <shared-ui-lib-uikit-google-map [address]="temple.address"></shared-ui-lib-uikit-google-map>
         </div>
         <div class="address-box">
-          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'x-large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'x-large'"
+                                    [color]="'primary'"></shared-ui-lib-uikit-icon>
           <shared-ui-lib-uikit-label [class]="['mat-heading-5']"
                                      label="{{ temple.address | addressText }}"></shared-ui-lib-uikit-label>
         </div>
-
       </div>
     </div>
   </div>

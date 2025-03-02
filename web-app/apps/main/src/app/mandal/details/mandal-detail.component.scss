@@ -15,6 +15,55 @@
     gap: var(--spacing-16);
   }
 
+  .flex-h {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mandal-detail-box {
+    width: 100%;
+    display: grid;
+    gap: var(--spacing-24);
+    grid-template-columns: 3fr 1fr;
+
+    .left-section {
+
+    }
+
+    .right-section {
+      display: flex;
+      padding: var(--spacing-16);
+      gap: var(--spacing-16);
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .map-box {
+        width: 100%;
+        height: var(--min-map-height);
+      }
+
+      .address-box {
+        display: flex;
+        gap: var(--spacing-12);
+        align-items: center;
+      }
+    }
+  }
+
+  .social-link-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-16);
+
+    shared-ui-lib-uikit-icon:hover {
+      cursor: pointer;
+    }
+  }
+
   .member-section {
     display: flex;
     width: 100%;

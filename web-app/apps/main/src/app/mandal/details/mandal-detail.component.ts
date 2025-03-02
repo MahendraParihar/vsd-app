@@ -59,4 +59,8 @@ export class MandalDetailComponent {
     }
     this.metaService.addTags(seoArray);
   }
+
+  openLink(link: string) {
+    window.open(link, '_blank');
+  }
 }
