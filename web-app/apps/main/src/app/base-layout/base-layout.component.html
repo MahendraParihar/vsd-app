@@ -14,7 +14,8 @@
         <shared-ui-lib-uikit-button
           *ngIf="showSideNav()"
           [type]="'icon-only'"
-          [prefixIcon]="'home'"
+          [prefixIcon]="'menu'"
+          [prefixIconSize]="'large'"
           aria-label="Toggle sidenav"
           (click)="drawer.toggle()">
         </shared-ui-lib-uikit-button>
@@ -40,10 +41,8 @@
       </div>
     </mat-toolbar>
     <div class="main-container">
-      <div class="main-section">
-        <router-outlet></router-outlet>
-      </div>
-      <vsd-web-app-footer></vsd-web-app-footer>
+      <router-outlet></router-outlet>
     </div>
+    <vsd-web-app-footer></vsd-web-app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

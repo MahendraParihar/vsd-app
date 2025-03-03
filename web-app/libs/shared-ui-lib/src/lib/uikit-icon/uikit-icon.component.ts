@@ -14,6 +14,7 @@ export class UikitIconComponent implements OnChanges {
   @Input() tooltipText = this.label;
   @Input() showTooltip = false;
   @Input() color: 'primary' | 'warn' | 'accent' = 'primary';
+  @Input() showHoverState: boolean = false;
 
   constructor() {
     this.setClass();

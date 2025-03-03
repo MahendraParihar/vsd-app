@@ -32,6 +32,7 @@
     <div class="social-link-section" *ngIf="mandal.additionalInfo && mandal.additionalInfo.socialSiteLink">
       <shared-ui-lib-uikit-icon *ngFor="let social of mandal.additionalInfo.socialSiteLink"
                                 [size]="'x-large'"
+                                color="accent"
                                 (click)="openLink(social.link)"
                                 [name]="social.icon"></shared-ui-lib-uikit-icon>
     </div>

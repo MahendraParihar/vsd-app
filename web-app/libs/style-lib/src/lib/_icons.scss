@@ -57,6 +57,13 @@ $icon-lists: (
     $icon-size-large,
     $icon-size-x-large,
   ),
+  menu: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+    $icon-size-x-large,
+  ),
   header-logo:(
     $icon-size-large,
   ),
@@ -168,6 +175,27 @@ $icon-lists: (
 
 .icon-address-small {
   background: url('../assets/images/icons/small/address.svg') no-repeat center;
+}
+
+//---------------------- Home --------------------------
+.icon-menu-x-large {
+  background: url('../assets/images/icons/x-large/menu.svg') no-repeat center;
+}
+
+.icon-menu-large {
+  background: url('../assets/images/icons/large/menu.svg') no-repeat center;
+}
+
+.icon-menu-medium {
+  background: url('../assets/images/icons/medium/menu.svg') no-repeat center;
+}
+
+.icon-menu-regular {
+  background: url('../assets/images/icons/regular/menu.svg') no-repeat center;
+}
+
+.icon-menu-small {
+  background: url('../assets/images/icons/small/menu.svg') no-repeat center;
 }
 
 //---------------------- Calendar --------------------------
