@@ -48,10 +48,28 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 Note: Ensure that you have .env file created in infra folder with ENV variable defined
 For running all Servers
 
+### List all containers
+```shell list 
+docker ps -a
+```
+
+### logs all containers
+```shell list 
+docker logs [Container_NAME]
+```
+
+### Docker container up
 ```shell
-docker-compose -f ./infra/docker-compose.yml --env-file ./infra/.env up -d
-docker-compose -f ./infra/docker-compose.yml up -d
-docker-compose -f ./infra/docker-compose-postgres.yml up -d
+docker compose -f ./infra/docker-compose-db.yml up -d
+docker compose -f ./infra/docker-compose.yml up -d
+docker compose -f ./infra/docker-compose-postgres.yml up -d
+```
+
+### Docker container down
+```shell
+docker compose -f ./infra/docker-compose-db.yml up down
+docker compose -f ./infra/docker-compose.yml down
+docker compose -f ./infra/docker-compose-postgres.yml down
 ```
 
 #### Docker run
