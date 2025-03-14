@@ -44,4 +44,4 @@
 /media-files/facility/*.*
 /media-files/mandal/*.*
 /media-files/temple/*.*
-!/infra/.main.env
+/infra/.main.env
