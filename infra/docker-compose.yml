@@ -27,7 +27,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - event.env
+      - main.env
     ports:
       - "8002:3331"
     healthcheck:
@@ -47,7 +47,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - facility.env
+      - main.env
     ports:
       - "8003:3340"
     healthcheck:
@@ -67,7 +67,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      family.env
+      main.env
     ports:
       - "8004:3332"
     healthcheck:
@@ -87,7 +87,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - job.env
+      - main.env
     ports:
       - "8005:3333"
     healthcheck:
@@ -107,7 +107,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - lovs.env
+      - main.env
     ports:
       - "8006:3334"
     healthcheck:
@@ -127,7 +127,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - mandal.env
+      - main.env
     ports:
       - "8007:3335"
     healthcheck:
@@ -147,7 +147,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - matrimonial.env
+      - main.env
     ports:
       - "8008:3336"
     healthcheck:
@@ -167,7 +167,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - news.env
+      - main.env
     ports:
       - "8009:3337"
     healthcheck:
@@ -187,7 +187,7 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      - temple.env
+      - main.env
     ports:
       - "8010:3338"
     healthcheck:
