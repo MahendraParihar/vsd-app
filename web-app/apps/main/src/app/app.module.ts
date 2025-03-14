@@ -37,6 +37,7 @@ import { MandalComponent } from './mandal/mandal.component';
 import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
 import { MandalService } from './mandal/services/mandal.service';
 import { FacilityCardComponent } from './facility/facility-card/facility-card.component';
+import { MatChip, MatChipSet } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,8 @@ import { FacilityCardComponent } from './facility/facility-card/facility-card.co
     MatInput,
     MatCardModule,
     MatGridListModule,
+    MatChipSet,
+    MatChip,
   ],
   providers: [
     FacilityService,

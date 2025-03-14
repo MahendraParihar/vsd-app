@@ -57,6 +57,13 @@
   --line-height-12: #{rem(12px)};
   --line-height-10: 10px;
 
+  // Icon sizes
+  --icon-x-large: #{rem(36px)};
+  --icon-large: #{rem(24px)};
+  --icon-medium: #{rem(20px)};
+  --icon-regular: #{rem(16px)};
+  --icon-small: #{rem(12px)};
+
   // default box
   --box-shadow: #{rem(0px)} #{rem(6px)} #{rem(16px)} #{rem(0px)} rgba(0, 0, 0, 0.1019607843);
 

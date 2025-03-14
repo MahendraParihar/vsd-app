@@ -1,0 +1,42 @@
+{
+  "name": "vsd",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "private",
+  "scripts": {
+    "install:client": "npm --prefix client install",
+    "install:server": "npm --prefix server install",
+    "install:web-app": "npm --prefix server install",
+    "install:shared-library": "npm --prefix shared-library install",
+    "install": "npm-run-all install:*",
+    "lint:client": "npm --prefix client run lint",
+    "lint:server": "npm --prefix server run lint",
+    "lint:web-app": "npm --prefix server run lint",
+    "lint:shared-library": "npm --prefix shared-library run lint",
+    "build:client": "export NODE_OPTIONS=--max_old_space_size=10240 && npm --prefix client run build",
+    "build:server": "npm --prefix server run build",
+    "build:web-app": "export NODE_OPTIONS=--max_old_space_size=10240 && npm --prefix web-app run build",
+    "build:shared-library": "npm --prefix shared-library run build",
+    "build": "npm-run-all build:*",
+    "clean:server": "rm -rf server/node_modules && rm -rf server/dist",
+    "clean:client": "rm -rf client/node_modules && rm -rf client/dist",
+    "clean:web-app": "rm -rf web-app/node_modules && rm -rf web-app/dist",
+    "clean": "npm-run-all clean:*",
+    "all": "npm-run-all clean install lint build",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md,css,scss}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.11",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.4.2"
+  }
+}

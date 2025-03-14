@@ -10,6 +10,7 @@ COPY ./shared-library ./shared-library
 COPY ./server/package*.json ./server/
 COPY ./server ./server
 RUN npm --prefix server install
+RUN npm --prefix server run build
 EXPOSE 3330
 EXPOSE 3331
 EXPOSE 3340

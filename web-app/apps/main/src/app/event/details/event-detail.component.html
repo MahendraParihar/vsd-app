@@ -16,7 +16,8 @@
           <shared-ui-lib-uikit-google-map [address]="event.address"></shared-ui-lib-uikit-google-map>
         </div>
         <div class="address-box">
-          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'x-large'"
+                                    [color]="'primary'"></shared-ui-lib-uikit-icon>
           <shared-ui-lib-uikit-label [class]="['mat-heading-5']"
                                      label="{{ event.address | addressText }}"></shared-ui-lib-uikit-label>
         </div>
@@ -29,22 +30,31 @@
         <div class="line"></div>
       </div>
       <div class="tabs" *ngIf="event.agenda.length > 1">
-        <shared-ui-lib-uikit-button (buttonClicked)="changeAgenda(i)"
-          [ngClass]="{'active': activeTabIndex === i}" [type]="'raised'"
-          *ngFor="let agenda of event.agenda; let i = index"
-          label="{{agenda.date | date: 'dd MMMM yyyy'}}"></shared-ui-lib-uikit-button>
+        <mat-chip-set aria-label="">
+          <mat-chip *ngFor="let agenda of event.agenda; let i = index" [highlighted]="activeTabIndex === i"
+                    (click)="changeAgenda(i)">
+            {{ agenda.date | date: 'dd MMMM yyyy' }}
+          </mat-chip>
+        </mat-chip-set>
       </div>
       <div class="agenda-detail-section" *ngIf="this.event.agenda[this.activeTabIndex].details">
-        <div class="agenda-detail-item" *ngFor="let item of this.event.agenda[this.activeTabIndex].details">
-          <shared-ui-lib-uikit-label [label]="item.title" [class]="['mat-headline-5']"></shared-ui-lib-uikit-label>
-          <shared-ui-lib-uikit-label [label]="item.details" [class]="['mat-subtitle-2']"></shared-ui-lib-uikit-label>
-          <div class="date">
-            <shared-ui-lib-uikit-icon [label]="'schedule'" [color]="'primary'"
-                                      [size]="'large'"></shared-ui-lib-uikit-icon>
-            <shared-ui-lib-uikit-label label="{{item.time.toString()}}"
-                                       [class]="['mat-heading-6']"></shared-ui-lib-uikit-label>
+        <div class="agenda-detail-item" *ngFor="let item of this.event.agenda[this.activeTabIndex].details; let i = index">
+          <div class="left">
+            <div class="dot"></div>
+            <div class="line"></div>
+            <div class="vertical-line" *ngIf="i === this.event.agenda[this.activeTabIndex].details.length - 1"></div>
           </div>
-
+          <div class="right">
+            <shared-ui-lib-uikit-label [label]="item.title" [class]="['mat-headline-5']"></shared-ui-lib-uikit-label>
+            <shared-ui-lib-uikit-label [label]="item.details" [class]="['mat-body-2']"></shared-ui-lib-uikit-label>
+            <div class="date">
+              <shared-ui-lib-uikit-icon [label]="'schedule'" [color]="'primary'"
+                                        [name]="'schedule'"
+                                        [size]="'medium'"></shared-ui-lib-uikit-icon>
+              <shared-ui-lib-uikit-label [label]="item.time.toString()"
+                                         [class]="['mat-heading-6']"></shared-ui-lib-uikit-label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -55,14 +65,14 @@
       </div>
       <div class="grid-list">
         <ng-container *ngFor="let post of event.eventMembers">
-        <div class="grid-item event-coordinator" *ngFor="let m of post.members">
-          <img/>
-          <shared-ui-lib-uikit-label [class]="['mat-headline-5','text-center']"
-                                     [hasHtmlContent]="true"
-                                     label="{{m.firstName + ' ' + m.middleName + ' ' + m.lastName}}"></shared-ui-lib-uikit-label>
-          <shared-ui-lib-uikit-label [class]="['mat-headline-6','secondary-color']"
-                                     [label]="m.cityVillage ? m.cityVillage : ''"></shared-ui-lib-uikit-label>
-        </div>
+          <div class="grid-item event-coordinator" *ngFor="let m of post.members">
+            <img />
+            <shared-ui-lib-uikit-label [class]="['mat-headline-5','text-center']"
+                                       [hasHtmlContent]="true"
+                                       label="{{m.firstName + ' ' + m.middleName + ' ' + m.lastName}}"></shared-ui-lib-uikit-label>
+            <shared-ui-lib-uikit-label [class]="['mat-headline-6','secondary-color']"
+                                       [label]="m.cityVillage ? m.cityVillage : ''"></shared-ui-lib-uikit-label>
+          </div>
         </ng-container>
       </div>
     </div>

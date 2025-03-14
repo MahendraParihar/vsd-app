@@ -7,3 +7,4 @@ export * from './lib/uikit-input-error/uikit-input-error.component';
 export * from './lib/uikit-google-map/uikit-google-map.component';
 export * from './lib/pipe/truncate-text.pipe';
 export * from './lib/pipe/address-text.pipe';
+export * from './lib/utils/validation.util';

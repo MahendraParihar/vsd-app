@@ -55,6 +55,7 @@ body {
 
 .main-container {
   width: 100%;
+  padding: var(--spacing-0) var(--spacing-16) var(--spacing-16);
 }
 
 .main-section {
@@ -96,6 +97,38 @@ hr {
   border-radius: var(--border-radius-25);
 }
 
+.divider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: var(--divider-line-height);
+}
+
+.grid-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .grid-item {
+    flex-grow: 1;
+    flex-basis: var(--default-grid-item-basis);
+    margin: var(--spacing-12);
+  }
+
+  .grid-item:empty {
+    height: 0;
+  }
+}
+
+.social-link-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-16);
+  flex-wrap: wrap;
+}
+
 .subtitle-line {
   width: 100%;
   display: flex;
@@ -109,6 +142,9 @@ hr {
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+  .main-container {
+    padding: var(--spacing-0) var(--spacing-16) var(--spacing-16);
+  }
   .main-section {
     padding: var(--spacing-0) var(--spacing-16) var(--spacing-16);
   }
@@ -116,6 +152,9 @@ hr {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+  .main-container {
+    padding: var(--spacing-0) var(--spacing-16) var(--spacing-16);
+  }
   .main-section {
     padding: var(--spacing-0) var(--spacing-16) var(--spacing-16);
   }
@@ -123,6 +162,9 @@ hr {
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+  .main-container {
+    padding: var(--spacing-0) var(--spacing-24) var(--spacing-24);
+  }
   .main-section {
     padding: var(--spacing-0) var(--spacing-24) var(--spacing-24);
   }
@@ -130,6 +172,9 @@ hr {
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+  .main-container {
+    padding: var(--spacing-0) var(--spacing-24) var(--spacing-24);
+  }
   .main-section {
     padding: var(--spacing-0) var(--spacing-24) var(--spacing-24);
   }
@@ -137,7 +182,10 @@ hr {
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
+  .main-container {
+    padding: var(--spacing-0) var(--spacing-36) var(--spacing-36);
+  }
   .main-section {
-    padding: var(--spacing-0) var(--spacing-24) var(--spacing-24);
+    padding: var(--spacing-0) var(--spacing-48) var(--spacing-48);
   }
 }

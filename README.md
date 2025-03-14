@@ -23,7 +23,7 @@ Please refer [README.md](server/README.md) for Server Setup and package installa
 
 Please refer [README.md](client/README.md) for Client Setup
 
-#### Docker For Kelp
+#### Docker For VSD
 
 Note: the Following commands should be executed from root of the project.
 
@@ -48,9 +48,42 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 Note: Ensure that you have .env file created in infra folder with ENV variable defined
 For running all Servers
 
+### List all containers
+```shell list 
+docker ps -a
 ```
-CLIENT=VSD
-docker compose -f 'infra/docker-compose.yml' up -d --build
+
+### logs all containers
+```shell list 
+docker logs [Container_NAME]
+```
+
+### Docker container up
+```shell
+docker compose -f ./infra/docker-compose-db.yml up -d
+docker compose -f ./infra/docker-compose.yml up -d
+docker compose -f ./infra/docker-compose-postgres.yml up -d
+```
+
+### Docker container down
+```shell
+docker compose -f ./infra/docker-compose-db.yml up down
+docker compose -f ./infra/docker-compose.yml down
+docker compose -f ./infra/docker-compose-postgres.yml down
+```
+
+#### Docker run
+```shell
+docker  run  [CONTAINER_NAME] sleep infinity
+```
+#### List docker containers list
+```shell
+docker ps -a
+```
+
+#### Go inside docker image
+```shell
+docker exec -it reverent_swirles bash
 ```
 
 URL for UI: http://localhost:8080/ --issues with code and setup of backend

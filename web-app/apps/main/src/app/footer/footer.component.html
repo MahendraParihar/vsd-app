@@ -15,18 +15,17 @@
     <div class="additional-info">
       <div class="address-section">
         <div class="address">
-          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
+          <shared-ui-lib-uikit-icon [name]="'address'" [size]="'x-large'" [color]="'primary'"></shared-ui-lib-uikit-icon>
           <shared-ui-lib-uikit-label [class]="['mat-body-1']" [hasHtmlContent]="true"
                                      [label]="labelService.getLabel(LabelKey.APP_ADDRESS)"></shared-ui-lib-uikit-label>
         </div>
       </div>
-      <div class="social-link-section">
-        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'"
-                                    [prefixIcon]="'social-facebook'"></shared-ui-lib-uikit-button>
-        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'"
-                                    [prefixIcon]="'social-twitter'"></shared-ui-lib-uikit-button>
-        <shared-ui-lib-uikit-button [prefixIconSize]="'large'" [type]="'icon-only'"
-                                    [prefixIcon]="'social-instagram'"></shared-ui-lib-uikit-button>
+
+      <div class="social-link-section" *ngIf="primaryMandal && primaryMandal.additionalInfo && primaryMandal.additionalInfo.socialSiteLink">
+        <shared-ui-lib-uikit-icon *ngFor="let social of primaryMandal.additionalInfo.socialSiteLink"
+                                  [size]="'x-large'"
+                                  (click)="openLink(social.link)"
+                                  [name]="social.icon"></shared-ui-lib-uikit-icon>
       </div>
     </div>
   </div>

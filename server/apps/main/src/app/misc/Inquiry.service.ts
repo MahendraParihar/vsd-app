@@ -34,18 +34,19 @@ export class InquiryService {
     };
   }
 
-  async manage(obj: IInquiry) {
+  async manage(obj: IInquiry, userId: number, ipAddress: string): Promise<InquiryModel> {
     const dataObj = {
-      title: obj.name,
-      description: obj.emailId,
-      tags: obj.contactNumber,
-      metaTitle: obj.message,
-      updatedBy: 1,
-      modifiedIp: ':0',
+      name: obj.name,
+      emailId: obj.emailId,
+      contactNumber: obj.contactNumber,
+      message: obj.message,
+      updatedBy: userId,
+      modifiedIp: ipAddress,
     };
     Object.assign(dataObj, { createdBy: 1 });
-    Object.assign(dataObj, { createdIp: ':0' });
-    await this.inquiryModel.create(dataObj);
+    Object.assign(dataObj, { createdIp: ipAddress });
+    console.log(dataObj);
+    return await this.inquiryModel.create(dataObj) as InquiryModel;
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {

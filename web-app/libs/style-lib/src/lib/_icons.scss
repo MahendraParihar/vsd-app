@@ -1,9 +1,10 @@
 @import "./colors";
 
-$icon-size-small: (12px 'small');
-$icon-size-regular: (16px 'regular');
-$icon-size-medium: (20px 'medium');
-$icon-size-large: (24px 'large');
+$icon-size-small: (var(--icon-small) 'small');
+$icon-size-regular: (var(--icon-regular) 'regular');
+$icon-size-medium: (var(--icon-medium) 'medium');
+$icon-size-large: (var(--icon-large) 'large');
+$icon-size-x-large: (var(--icon-x-large) 'x-large');
 $default-icon-color: var(--default-icon-color);
 
 $icon-lists: (
@@ -12,42 +13,56 @@ $icon-lists: (
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   calendar: (
     $icon-size-small,
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   event: (
     $icon-size-small,
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   schedule: (
     $icon-size-small,
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   call: (
     $icon-size-small,
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   mail: (
     $icon-size-small,
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   share: (
     $icon-size-small,
     $icon-size-regular,
     $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
+  ),
+  menu: (
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+    $icon-size-x-large,
   ),
   header-logo:(
     $icon-size-large,
@@ -62,16 +77,39 @@ $icon-lists: (
     $icon-size-large,
   ),
   clock:(
+    $icon-size-small,
     $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+    $icon-size-x-large,
   ),
   social-instagram:(
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   social-facebook:(
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
   ),
   social-twitter:(
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
     $icon-size-large,
+    $icon-size-x-large,
+  ),
+  social-youtube:(
+    $icon-size-small,
+    $icon-size-regular,
+    $icon-size-medium,
+    $icon-size-large,
+    $icon-size-x-large,
   ),
 );
 
@@ -119,6 +157,10 @@ $icon-lists: (
 }
 
 //---------------------- Address --------------------------
+.icon-address-x-large {
+  background: url('../assets/images/icons/x-large/address.svg') no-repeat center;
+}
+
 .icon-address-large {
   background: url('../assets/images/icons/large/address.svg') no-repeat center;
 }
@@ -135,7 +177,32 @@ $icon-lists: (
   background: url('../assets/images/icons/small/address.svg') no-repeat center;
 }
 
+//---------------------- Home --------------------------
+.icon-menu-x-large {
+  background: url('../assets/images/icons/x-large/menu.svg') no-repeat center;
+}
+
+.icon-menu-large {
+  background: url('../assets/images/icons/large/menu.svg') no-repeat center;
+}
+
+.icon-menu-medium {
+  background: url('../assets/images/icons/medium/menu.svg') no-repeat center;
+}
+
+.icon-menu-regular {
+  background: url('../assets/images/icons/regular/menu.svg') no-repeat center;
+}
+
+.icon-menu-small {
+  background: url('../assets/images/icons/small/menu.svg') no-repeat center;
+}
+
 //---------------------- Calendar --------------------------
+.icon-calendar-x-large {
+  background: url('../assets/images/icons/x-large/calendar.svg') no-repeat center;
+}
+
 .icon-calendar-large {
   background: url('../assets/images/icons/large/calendar.svg') no-repeat center;
 }
@@ -153,6 +220,10 @@ $icon-lists: (
 }
 
 //---------------------- Event --------------------------
+.icon-event-x-large {
+  background: url('../assets/images/icons/x-large/event.svg') no-repeat center;
+}
+
 .icon-event-large {
   background: url('../assets/images/icons/large/event.svg') no-repeat center;
 }
@@ -170,6 +241,10 @@ $icon-lists: (
 }
 
 //---------------------- Schedule --------------------------
+.icon-schedule-x-large {
+  background: url('../assets/images/icons/x-large/schedule.svg') no-repeat center;
+}
+
 .icon-schedule-large {
   background: url('../assets/images/icons/large/schedule.svg') no-repeat center;
 }
@@ -187,6 +262,10 @@ $icon-lists: (
 }
 
 //---------------------- Call --------------------------
+.icon-call-x-large {
+  background: url('../assets/images/icons/x-large/call.svg') no-repeat center;
+}
+
 .icon-call-large {
   background: url('../assets/images/icons/large/call.svg') no-repeat center;
 }
@@ -204,6 +283,10 @@ $icon-lists: (
 }
 
 //---------------------- mail --------------------------
+.icon-mail-x-large {
+  background: url('../assets/images/icons/x-large/mail.svg') no-repeat center;
+}
+
 .icon-mail-large {
   background: url('../assets/images/icons/large/mail.svg') no-repeat center;
 }
@@ -221,6 +304,10 @@ $icon-lists: (
 }
 
 //---------------------- share --------------------------
+.icon-share-x-large {
+  background: url('../assets/images/icons/x-large/share.svg') no-repeat center;
+}
+
 .icon-share-large {
   background: url('../assets/images/icons/large/share.svg') no-repeat center;
 }
@@ -238,19 +325,105 @@ $icon-lists: (
 }
 
 //---------------------- Clock --------------------------
+.icon-clock-x-large {
+  background: url('../assets/images/icons/x-large/clock.svg') no-repeat center;
+}
+
+.icon-clock-large {
+  background: url('../assets/images/icons/large/clock.svg') no-repeat center;
+}
+
+.icon-clock-medium {
+  background: url('../assets/images/icons/medium/clock.svg') no-repeat center;
+}
+
 .icon-clock-regular {
   background: url('../assets/images/icons/regular/clock.svg') no-repeat center;
 }
 
+.icon-clock-small {
+  background: url('../assets/images/icons/small/clock.svg') no-repeat center;
+}
+
 //---------------------- Social Media --------------------------
-.icon-social-instagram-regular {
+.icon-social-instagram-x-large {
+  background: url('../assets/images/icons/x-large/social-instagram.svg') no-repeat center;
+}
+
+.icon-social-facebook-x-large {
+  background: url('../assets/images/icons/x-large/social-facebook.svg') no-repeat center;
+}
+
+.icon-social-twitter-x-large {
+  background: url('../assets/images/icons/x-large/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-x-large {
+  background: url('../assets/images/icons/x-large/social-youtube.svg') no-repeat center;
+}
+
+.icon-social-instagram-large {
   background: url('../assets/images/icons/large/social-instagram.svg') no-repeat center;
 }
-.icon-social-facebook-regular {
+
+.icon-social-facebook-large {
   background: url('../assets/images/icons/large/social-facebook.svg') no-repeat center;
 }
-.icon-social-twitter-regular {
+
+.icon-social-twitter-large {
   background: url('../assets/images/icons/large/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-large {
+  background: url('../assets/images/icons/large/social-youtube.svg') no-repeat center;
+}
+
+.icon-social-instagram-medium {
+  background: url('../assets/images/icons/medium/social-instagram.svg') no-repeat center;
+}
+
+.icon-social-facebook-medium {
+  background: url('../assets/images/icons/medium/social-facebook.svg') no-repeat center;
+}
+
+.icon-social-twitter-medium {
+  background: url('../assets/images/icons/medium/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-medium {
+  background: url('../assets/images/icons/medium/social-youtube.svg') no-repeat center;
+}
+
+.icon-social-instagram-regular {
+  background: url('../assets/images/icons/regular/social-instagram.svg') no-repeat center;
+}
+
+.icon-social-facebook-regular {
+  background: url('../assets/images/icons/regular/social-facebook.svg') no-repeat center;
+}
+
+.icon-social-twitter-regular {
+  background: url('../assets/images/icons/regular/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-regular {
+  background: url('../assets/images/icons/regular/social-youtube.svg') no-repeat center;
+}
+
+.icon-social-instagram-small {
+  background: url('../assets/images/icons/small/social-instagram.svg') no-repeat center;
+}
+
+.icon-social-facebook-small {
+  background: url('../assets/images/icons/small/social-facebook.svg') no-repeat center;
+}
+
+.icon-social-twitter-small {
+  background: url('../assets/images/icons/small/social-twitter.svg') no-repeat center;
+}
+
+.icon-social-youtube-small {
+  background: url('../assets/images/icons/small/social-youtube.svg') no-repeat center;
 }
 
 

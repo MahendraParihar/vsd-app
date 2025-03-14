@@ -77,26 +77,3 @@ pre {
   overflow: scroll;
   padding: 0.5rem 0.75rem;
 }
-
-.divider {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  height: var(--divider-line-height);
-}
-
-.grid-list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-
-  .grid-item {
-    flex-grow: 1;
-    flex-basis: var(--default-grid-item-basis);
-    margin: var(--spacing-12);
-  }
-
-  .grid-item:empty {
-    height: 0;
-  }
-}

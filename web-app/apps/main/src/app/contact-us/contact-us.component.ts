@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LabelService } from '@core-lib';
+import { HttpService, LabelService, SnackBarService } from '@core-lib';
 import { convertAddress, IMandalDetail, LabelKey } from '@vsd-common/lib';
 import { GoogleMap } from '@angular/google-maps';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { MandalService } from '../mandal/services/mandal.service';
+import { CONTACT_US } from './contact-us.url';
+import { ValidationUtil } from '@shared-ui-lib';
 
 @Component({
   selector: 'vsd-web-app-contact-us',
@@ -17,10 +19,10 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   labelKeys = LabelKey;
 
   formGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    emailId: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    message: new FormControl('', [Validators.required, Validators.maxLength(500)]),
+    name: new FormControl(null, [Validators.required]),
+    emailId: new FormControl(null, [Validators.required, Validators.email]),
+    contactNumber: new FormControl(null, [Validators.required]),
+    message: new FormControl(null, [Validators.required, Validators.maxLength(500)]),
   });
 
   primaryMandal!: IMandalDetail;
@@ -30,7 +32,9 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   constructor(public labelService: LabelService,
               private mandalService: MandalService,
               private title: Title,
-              private metaService: Meta) {
+              private httpService: HttpService,
+              private metaService: Meta,
+              private snackBarService: SnackBarService) {
     this.pageTitle = this.labelService.labels.get(LabelKey.SIDE_MENU_CONTACT_US);
     if (this.pageTitle) {
       this.title.setTitle(this.pageTitle);
@@ -55,11 +59,14 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     else return '';
   }
 
-  submitForm() {
+  async submitForm() {
+    ValidationUtil.validateAllFormFields(this.formGroup);
     if (!this.formGroup.valid) {
       return;
     }
-
+    await this.httpService.postRequest(CONTACT_US, this.formGroup.value);
+    this.snackBarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_INQUIRY));
+    this.formGroup.reset();
   }
 
   bindSEOData() {
