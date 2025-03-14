@@ -196,60 +196,60 @@ services:
       retries: 5
       start_period: 5s
       timeout: 10s
-#    vsd-client:
-#      container_name: vsd-client
-#      image: vsd-client
-#      restart: always
-#      ports:
-#        - "443:443"
-#      depends_on:
-#        main:
-#          condition: service_healthy
-#        event:
-#          condition: service_healthy
-#        facility:
-#          condition: service_healthy
-#        family:
-#          condition: service_healthy
-#        job:
-#          condition: service_healthy
-#        lovs:
-#          condition: service_healthy
-#        mandal:
-#          condition: service_healthy
-#        matrimonial:
-#          condition: service_healthy
-#        news:
-#          condition: service_healthy
-#        temple:
-#          condition: service_healthy
-#    vsd-client-admin:
-#      container_name: vsd-client-admin
-#      image: vsd-client-admin
-#      restart: always
-#      ports:
-#        - "8090:80"
-#      depends_on:
-#        main:
-#          condition: service_healthy
-#        event:
-#          condition: service_healthy
-#        facility:
-#          condition: service_healthy
-#        family:
-#          condition: service_healthy
-#        job:
-#          condition: service_healthy
-#        lovs:
-#          condition: service_healthy
-#        mandal:
-#          condition: service_healthy
-#        matrimonial:
-#          condition: service_healthy
-#        news:
-#          condition: service_healthy
-#        temple:
-#          condition: service_healthy
+  vsd-client:
+    container_name: vsd-client
+    image: vsd-client
+    restart: always
+    ports:
+      - "443:443"
+    depends_on:
+      main:
+        condition: service_healthy
+      event:
+        condition: service_healthy
+      facility:
+        condition: service_healthy
+      family:
+        condition: service_healthy
+      job:
+        condition: service_healthy
+      lovs:
+        condition: service_healthy
+      mandal:
+        condition: service_healthy
+      matrimonial:
+        condition: service_healthy
+      news:
+        condition: service_healthy
+      temple:
+        condition: service_healthy
+#  vsd-client-admin:
+#    container_name: vsd-client-admin
+#    image: vsd-client-admin
+#    restart: always
+#    ports:
+#      - "8090:80"
+#    depends_on:
+#      main:
+#        condition: service_healthy
+#      event:
+#        condition: service_healthy
+#      facility:
+#        condition: service_healthy
+#      family:
+#        condition: service_healthy
+#      job:
+#        condition: service_healthy
+#      lovs:
+#        condition: service_healthy
+#      mandal:
+#        condition: service_healthy
+#      matrimonial:
+#        condition: service_healthy
+#      news:
+#        condition: service_healthy
+#      temple:
+#        condition: service_healthy
 
 volumes:
   assets:
