@@ -40,21 +40,8 @@
 /.idea/vsd-app.iml
 
 /media-files/*.*
-/media-files/event/1737295236929-707297184.jpeg
-/media-files/event/1737300544122-828220231.jpeg
-/media-files/facility/WhatsApp Image 2024-12-10 at 15.21.06.jpeg
-/media-files/mandal/1735357775532-133570884.jpg
-/media-files/temple/1735359740706-969886653.jpg
-/media-files/temple/1735359951213-18395076.jpg
-/media-files/temple/1735359973659-80828800.jpg
-/media-files/temple/1735360369572-7812450.jpg
-/media-files/temple/1735360406327-854393131.jpg
-/media-files/temple/1735360600869-351875024.jpg
-/media-files/temple/1735362240282-297143222.jpg
-/media-files/temple/1735363271368-104782141.jpg
-/media-files/temple/1735363454012-310914428.jpeg
-/media-files/temple/1735363506930-296328131.jpg
-/media-files/temple/1735363654670-783695305.jpg
-/media-files/temple/1735363921648-641264367.jpg
-/media-files/temple/1735364004546-435438117.jpeg
-/media-files/temple/1735364225050-197211177.jpeg
+/media-files/event/*.*
+/media-files/facility/*.*
+/media-files/mandal/*.*
+/media-files/temple/*.*
+!/infra/.main.env
