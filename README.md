@@ -45,31 +45,16 @@ For building website image
 docker build . -f ./infra/Dockerfile.client -t vsd-client
 ```
 
-Note: Ensure that you have .env file created in infra folder with ENV variable defined
-For running all Servers
-
-### List all containers
-```shell list 
-docker ps -a
-```
-
-### logs all containers
-```shell list 
-docker logs [Container_NAME]
-```
-
 ### Docker container up
 ```shell
-docker compose -f ./infra/docker-compose-db.yml up -d
 docker compose -f ./infra/docker-compose.yml up -d
-docker compose -f ./infra/docker-compose-postgres.yml up -d
+docker compose -f ./infra/docker-compose-db.yml up -d
 ```
 
 ### Docker container down
 ```shell
-docker compose -f ./infra/docker-compose-db.yml up down
+docker compose -f ./infra/docker-compose-db.yml down
 docker compose -f ./infra/docker-compose.yml down
-docker compose -f ./infra/docker-compose-postgres.yml down
 ```
 
 #### Docker run
@@ -84,6 +69,29 @@ docker ps -a
 #### Go inside docker image
 ```shell
 docker exec -it reverent_swirles bash
+```
+
+Note: Ensure that you have .env file created in infra folder with ENV variable defined
+For running all Servers
+
+### Docer images
+```shell list 
+docker images # list images
+```
+
+### Delete all images
+```shell list
+docker rmi -f $(docker images -aq)
+```
+
+### Delete all containers including its volumes use
+```shell list
+docker rm -vf $(docker ps -aq)
+```
+
+### logs all containers
+```shell list 
+docker logs [Container_NAME]
 ```
 
 URL for UI: http://localhost:8080/ --issues with code and setup of backend
