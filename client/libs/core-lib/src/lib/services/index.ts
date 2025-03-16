@@ -8,3 +8,4 @@ export * from './user.service';
 export * from './address.service';
 export * from './post.service';
 export * from './family.service';
+export * from './auth.service';

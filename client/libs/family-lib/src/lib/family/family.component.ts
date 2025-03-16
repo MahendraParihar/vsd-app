@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
   HttpService,
   LabelService,
@@ -7,15 +7,15 @@ import {
   NavigationService,
   PAGE_SIZE_LIST,
   SnackBarService,
-  TableDataDatasource
-} from "@vsd-frontend/core-lib";
-import {FormControl} from "@angular/forms";
-import {MatPaginator} from "@angular/material/paginator";
-import {Title} from "@angular/platform-browser";
-import {debounceTime, distinctUntilChanged, tap} from "rxjs";
-import {IFamilyList, ITableListFilter, LabelKey} from "@vsd-common/lib";
-import {FamilyService} from "../family.service";
-import {FamilyApiUrl} from "../api-url";
+  TableDataDatasource,
+} from '@vsd-frontend/core-lib';
+import { FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { Title } from '@angular/platform-browser';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { IFamilyList, ITableListFilter, LabelKey } from '@vsd-common/lib';
+import { FamilyService } from '../family.service';
+import { FamilyApiUrl } from '../api-url';
 
 @Component({
   selector: 'lib-family',
@@ -56,13 +56,13 @@ export class FamilyComponent implements OnInit, AfterViewInit {
     private pageTitle: Title,
     private service: FamilyService,
     private navigationService: NavigationService,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_FAMILY);
     this.pageTitle.setTitle(this.title);
     this.dataSource = new TableDataDatasource(this.httpService);
     this.dataSource.totalCount.subscribe(
-      (count: number) => (this.totalCount = count)
+      (count: number) => (this.totalCount = count),
     );
     this.searchControl.valueChanges
       .pipe(debounceTime(400), distinctUntilChanged())
@@ -94,9 +94,13 @@ export class FamilyComponent implements OnInit, AfterViewInit {
     this.navigationService.navigateToById(NavigationPathEnum.FAMILY_MANAGE, obj.familyId);
   }
 
+  details(obj: IFamilyList){
+    this.navigationService.navigateToById(NavigationPathEnum.FAMILY, obj.familyId);
+  }
+
   async changeStatus(status: boolean, index: number, obj: IFamilyList) {
     await this.service.changeStatus(obj.familyId, !obj.active);
-    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
 

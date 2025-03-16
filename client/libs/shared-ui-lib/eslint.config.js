@@ -20,7 +20,7 @@ module.exports = [
         'error',
         {
           type: 'element',
-          prefix: 'lib-shared',
+          prefix: 'vsd-ui',
           style: 'kebab-case',
         },
       ],

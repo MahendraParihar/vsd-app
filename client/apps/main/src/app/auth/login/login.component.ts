@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
-import { LabelService, NavigationService } from '@vsd-frontend/core-lib';
+import { AuthService, LabelService, NavigationService } from '@vsd-frontend/core-lib';
 import { ILogin, InputLength, LabelKey } from '@vsd-common/lib';
-import { AuthService } from '../auth.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -23,7 +22,7 @@ export class LoginComponent {
     private authService: AuthService,
     private navigationService: NavigationService,
     public labelService: LabelService,
-    private pageTitle: Title
+    private pageTitle: Title,
   ) {
     this.formGroup = this.formBuilder.group({
       userName: [
@@ -46,7 +45,7 @@ export class LoginComponent {
       ],
     });
     this.pageTitle.setTitle(
-      this.labelService.getLabel(this.labelKeys.SIDE_MENU_LOGIN)
+      this.labelService.getLabel(this.labelKeys.SIDE_MENU_LOGIN),
     );
   }
 
