@@ -45,3 +45,5 @@
 /media-files/mandal/*.*
 /media-files/temple/*.*
 /infra/.main.env
+/infra/main.env
+/client/package-lock.json

@@ -123,5 +123,5 @@ export const appRoutes: Route[] = [
   {
     path: 'login',
     component: LoginComponent,
-  }
+  },
 ];

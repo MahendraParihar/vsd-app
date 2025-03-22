@@ -1,15 +1,14 @@
 @use "@angular/material" as mat;
+@use "style/gradient";
+@use "style/variables";
+@use "style/margin";
+@use "style/padding";
+@use "style/colors";
+@use "style/spacing";
+@use "style/fonts";
+@use "style/strokes-and-radius";
 
 @include mat.core();
-
-@import "style/gradient";
-@import "style/variables";
-@import "style/margin";
-@import "style/padding";
-@import "style/colors";
-@import "style/spacing";
-@import "style/fonts";
-@import "style/strokes-and-radius";
 
 $html-font-size: 16px;
 @function stripUnit($value) {

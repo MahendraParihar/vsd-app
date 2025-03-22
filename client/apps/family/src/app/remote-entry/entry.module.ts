@@ -31,6 +31,14 @@ import { FamilyLibModule } from '@vsd-frontend/family-lib';
       path: ':id',
       component: FamilyDetailsComponent,
     },
+    {
+      path: ':id',
+      component: FamilyDetailsComponent,
+    },
+    {
+      path: ':id/:path',
+      component: FamilyDetailsComponent,
+    },
   ])],
   providers: [],
 })

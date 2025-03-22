@@ -4,7 +4,7 @@ import { LabelService } from './label/label.service';
 import { CreatedByUserPipe } from './pipes/created-by-user.pipe';
 import { DateTimePipe } from './pipes/date-time.pipe';
 import {
-  AddressService,
+  AddressService, AuthService,
   ErrorHandlerService,
   FamilyService,
   HttpService,
@@ -33,6 +33,7 @@ export function appLabelInitialize(appLabelService: LabelService) {
     LabelService,
     AddressService,
     PostService,
+    AuthService,
     FamilyService,
     provideHttpClient(),
     {

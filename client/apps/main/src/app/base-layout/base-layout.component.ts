@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -43,6 +43,7 @@ export class BaseLayoutComponent implements OnInit {
     private sharedService: SharedService,
     private userService: UserService,
     public labelService: LabelService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.sharedService.breadcrumb.subscribe((itemList: BreadcrumbItem[]) => {
       if (!itemList || itemList.length === 0) {
@@ -53,6 +54,7 @@ export class BaseLayoutComponent implements OnInit {
       }
     });
     this.userService.loginUser.subscribe((authUser: IAuthUser | null) => {
+      console.log(authUser);
       // if (!authUser) {
       //   this.signOut();
       //   this.cdr.detectChanges();
@@ -95,7 +97,6 @@ export class BaseLayoutComponent implements OnInit {
       } else {
         this.navService.navigateTo(item.path);
       }
-      this.closeDrawer();
     }
   }
 

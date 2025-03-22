@@ -21,7 +21,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
-import { AuthService } from './auth/auth.service';
 import { PagesService } from './services/pages.service';
 import { BannerService } from './banner/banner.service';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
@@ -97,7 +96,6 @@ import { MatOption } from '@angular/material/autocomplete';
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     HttpService,
-    AuthService,
     AuthGuardService,
     PagesService,
     BannerService,

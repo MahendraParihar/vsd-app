@@ -60,7 +60,7 @@ export class AdminUserService {
     });
   }
 
-  async getById(id: number) {
+  async getById(id: number): Promise<IAuthUser> {
     const adminUser = await this.adminUserModel.findOne({
       where: {
         adminUserId: id,

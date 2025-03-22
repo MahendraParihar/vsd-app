@@ -16,6 +16,13 @@ import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_FORMATS } from '@vsd-common/lib';
 import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { MatCardModule } from '@angular/material/card';
+import { MatList, MatListItem } from '@angular/material/list';
+import { AddressListComponent } from './address-list/address-list.component';
+import { ContactNumberListComponent } from './contact-number-list/contact-number-list.component';
+import { EducationListComponent } from './education-list/education-list.component';
+import { MatrimonialProfileComponent } from './matrimonial-profile/matrimonial-profile.component';
+import { ProfessionalProfileComponent } from './professional-profile/professional-profile.component';
+import { VarsonListComponent } from './varson-list/varson-list.component';
 
 @NgModule({
   imports: [
@@ -76,9 +83,24 @@ import { MatCardModule } from '@angular/material/card';
     MatNativeDateModule,
     MatDatepickerModule,
     MatDividerModule,
+    MatList,
+    MatListItem,
   ],
-  declarations: [FamilyDetailComponent, FamilyComponent, ManageFamilyComponent],
-  exports: [FamilyDetailComponent, FamilyComponent, ManageFamilyComponent],
+  declarations: [
+    FamilyDetailComponent,
+    FamilyComponent,
+    ManageFamilyComponent,
+    AddressListComponent,
+    ContactNumberListComponent,
+    EducationListComponent,
+    MatrimonialProfileComponent,
+    ProfessionalProfileComponent,
+    VarsonListComponent],
+  exports: [
+    FamilyDetailComponent,
+    FamilyComponent,
+    ManageFamilyComponent,
+  ],
   providers: [FamilyService, provideMomentDateAdapter(MY_FORMATS)],
 })
 export class FamilyLibModule {}

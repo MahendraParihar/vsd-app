@@ -28,6 +28,9 @@
             @case ("seqNo"){
               {{i + 1}}
             }
+            @case ("firstName"){
+              <a (click)="details(d)">{{d['firstName']}}</a>
+            }
             @case ("createdAt"){
               {{d[t] | appDateTime: 'dateTime'}}
             }
