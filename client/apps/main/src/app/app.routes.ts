@@ -9,6 +9,7 @@ import { ManagePagesComponent } from './pages/manage-pages/manage-pages.componen
 import { PagesComponent } from './pages/pages.component';
 import { HomeComponent } from './home/home.component';
 import { InquiryComponent } from './inquiry/inquiry.component';
+import { LoginComponent } from './auth/login/login.component';
 
 export const appRoutes: Route[] = [
   {
@@ -119,4 +120,8 @@ export const appRoutes: Route[] = [
       },
     ],
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+  }
 ];
