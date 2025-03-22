@@ -4,6 +4,7 @@ import { SharedService } from '@vsd-frontend/core-lib';
 
 @Component({
   selector: 'vsd-root',
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

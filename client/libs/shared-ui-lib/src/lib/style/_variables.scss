@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import "colors";
+@use "colors";
 
 $my-custom-level: mat.m2-define-typography-level(
         $font-family: Roboto,
