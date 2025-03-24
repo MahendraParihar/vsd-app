@@ -1,0 +1,14 @@
+<mat-menu #appMenu="matMenu">
+  <ng-template matMenuContent>
+    <div class="change-status-container">
+      <div class="title">{{ title }}</div>
+      <div class="description">{{ description }}</div>
+      <vsd-ui-button [type]="'blue'" (click)="onPositiveClick()" [label]="positiveBtnLabel"></vsd-ui-button>
+      <vsd-ui-button [type]="'negative'" (click)="onNegativeClick()" [label]="negativeBtnLabel"></vsd-ui-button>
+    </div>
+  </ng-template>
+</mat-menu>
+<button mat-icon-button [matMenuTriggerFor]="appMenu">
+  <mat-icon color="accent" *ngIf="status">close</mat-icon>
+  <mat-icon color="primary" *ngIf="!status">check</mat-icon>
+</button>

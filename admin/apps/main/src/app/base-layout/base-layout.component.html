@@ -1,0 +1,46 @@
+<div class="main-container">
+  <mat-toolbar class="main-toolbar mat-elevation-z3">
+    <button mat-icon-button (click)="sidenav.toggle(); opened = !opened">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="title-section">VSD</h1>
+    <div class="m-medium breadcrumb">
+      <div *ngFor="let item of breadcrumbList; let i = index;">
+        <button (click)="onItemClicked(item)" color="primary" disabled="{{i===breadcrumbList.length-1}}"
+                mat-button>{{item.title}}</button>
+        <span *ngIf="i!==breadcrumbList.length-1">/</span>
+      </div>
+    </div>
+    <span class="toolbar-spacer"></span>
+    <div>
+      <button [matMenuTriggerFor]="accountMenu" aria-label="Account"
+              mat-icon-button>
+        <mat-icon fontSet="material-icons-outlined">account_circle</mat-icon>
+      </button>
+      <mat-menu #accountMenu="matMenu">
+        <button (click)="editProfile()" mat-menu-item matTooltip="Edit Profile">
+          <mat-icon>edit</mat-icon>
+          <span>{{labelService.getLabel(labelKeys.ACTION_EDIT)}}</span>
+        </button>
+        <button (click)="changePassword()" mat-menu-item matTooltip="Change Password">
+          <mat-icon>lock</mat-icon>
+          <span>{{labelService.getLabel(labelKeys.ACTION_CHANGE_PASSWORD)}}</span>
+        </button>
+        <button (click)="signOut()" mat-menu-item matTooltip="Sign Out">
+          <mat-icon>logout</mat-icon>
+          <span>{{labelService.getLabel(labelKeys.ACTION_LOGOUT)}}</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container class="main-sidenav-container">
+    <mat-sidenav #sidenav opened [mode]="!!isHandset$ ? 'side':'side'">
+      <mat-list>
+        <vsd-admin-side-menu *ngFor="let item of menuItems" [item]="item"></vsd-admin-side-menu>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

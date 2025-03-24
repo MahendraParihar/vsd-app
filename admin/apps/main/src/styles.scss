@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+$html-font-size: 16px;
+@function stripUnit($value) {
+  @return calc($value / ($value * 0 + 1px));
+}
+
+@function rem($pxValue) {
+  @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.form {
+
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  mat-form-field, vsd-ui-family-select {
+    width: 100% !important;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-12);
+  }
+
+  .address-box {
+    width: 100%;
+  }
+
+  .form-container-box {
+    height: calc(100vh - 180px) !important;
+    overflow-y: auto !important;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-8);
+    flex-grow: 1;
+  }
+
+  .file-upload-box {
+    width: 100%;
+  }
+
+  .editor {
+    width: 100%;
+    border: var(--stroke-thick) solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-small);
+
+    .NgxEditor__MenuBar {
+      border-top-left-radius: var(--border-radius-small);
+      border-top-right-radius: var(--border-radius-small);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .NgxEditor {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border: none;
+    }
+
+    .CodeMirror {
+      border: var(--stroke-thin) solid #eee;
+      height: auto;
+      margin-bottom: 0.7rem;
+
+      pre {
+        white-space: pre !important;
+      }
+    }
+  }
+}
+
+.form-sub-section-box {
+  display: flex;
+  flex-direction: column;
+  border: var(--stroke-thin) solid var(--secondary-a-v4);
+  border-radius: var(--border-radius-small);
+  margin-top: var(--spacing-12);
+
+  .sub-section-header {
+    padding: var(--spacing-12);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--stroke-thin) solid var(--secondary-a-v4);
+  }
+
+  .sub-section-body {
+    display: flex;
+    padding: var(--spacing-12);
+    flex-direction: column;
+  }
+}

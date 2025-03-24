@@ -1,0 +1,11 @@
+{
+  "event": "http://localhost:4201/mf-manifest.json",
+  "facility": "http://localhost:4202/mf-manifest.json",
+  "family": "http://localhost:4203/mf-manifest.json",
+  "job": "http://localhost:4204/mf-manifest.json",
+  "lov": "http://localhost:4205/mf-manifest.json",
+  "mandal": "http://localhost:4206/mf-manifest.json",
+  "matrimonial": "http://localhost:4207/mf-manifest.json",
+  "news": "http://localhost:4208/mf-manifest.json",
+  "temple": "http://localhost:4209/mf-manifest.json"
+}

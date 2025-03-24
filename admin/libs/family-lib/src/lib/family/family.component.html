@@ -1,0 +1,74 @@
+<div class="data-table">
+  <div class="title-section">
+    <div class="search-section">
+      <vsd-ui-label [class]="'title'" [label]="title"></vsd-ui-label>
+      <mat-form-field>
+        <button matPrefix mat-icon-button aria-label="Clear">
+          <mat-icon>search</mat-icon>
+        </button>
+        <input matInput [formControl]="searchControl" type="text">
+        <button *ngIf="searchControlValue && searchControlValue.length > 0" matSuffix mat-icon-button aria-label="Clear"
+                (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <vsd-ui-button [prefixIcon]="true" [prefixIconName]="'add'" [label]="title"
+                     (actionBtnClicked)="add()"></vsd-ui-button>
+    </div>
+  </div>
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container *ngFor="let t of displayedColumns" matColumnDef="{{t}}">
+      <ng-container>
+        <mat-header-cell *matHeaderCellDef>{{labelService.getLabel(t)}}</mat-header-cell>
+        <mat-cell *matCellDef="let d; let i = index;">
+          @switch (t) {
+            @case ("seqNo"){
+              {{i + 1}}
+            }
+            @case ("firstName"){
+              <a (click)="details(d)">{{d['firstName']}}</a>
+            }
+            @case ("createdAt"){
+              {{d[t] | appDateTime: 'dateTime'}}
+            }
+            @case ("updatedAt"){
+              {{d[t] | appDateTime: 'dateTime'}}
+            }
+            @case ("createdByUser"){
+              {{d[t] | appCreatedByUser}}
+            }
+            @case ("updatedByUser"){
+              {{d[t] | appCreatedByUser}}
+            }
+            @case ("active"){
+              {{d[t]}}
+            }
+            @case ("action"){
+              <vsd-ui-status-change-button
+                [negativeBtnLabel]="labelService.getLabel(labelKeys.ACTION_NO)"
+                [positiveBtnLabel]="labelService.getLabel(labelKeys.ACTION_YES)"
+                [title]="labelService.getLabel(labelKeys.ACTION_CHANGE_STATUS_TITLE)"
+                [description]="labelService.getLabel(labelKeys.ACTION_CHANGE_STATUS_DESCRIPTION)"
+                [status]="d.active"
+                (positiveActionBtnClicked)="changeStatus($event, i, d)"></vsd-ui-status-change-button>
+              <button mat-icon-button (click)="edit(d)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
+            @default{
+              {{d[t]}}
+            }
+          }
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator showFirstLastButtons [length]="totalCount" [pageSizeOptions]="pageSizeList"
+                 [pageSize]="defaultPageSize"></mat-paginator>
+</div>
