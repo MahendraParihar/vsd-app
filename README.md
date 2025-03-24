@@ -36,7 +36,7 @@ docker build . -f ./infra/Dockerfile.server -t vsd-server
 For building admin panel image
 
 ```shell
-docker build . -f ./infra/Dockerfile.client-admin -t vsd-client-admin
+docker build . -f ./infra/Dockerfile.admin -t vsd-admin
 ````
 
 For building website image
