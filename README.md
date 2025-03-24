@@ -48,12 +48,10 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 ### Docker container up
 ```shell
 docker compose -f ./infra/docker-compose.yml up -d
-docker compose -f ./infra/docker-compose-db.yml up -d
 ```
 
 ### Docker container down
 ```shell
-docker compose -f ./infra/docker-compose-db.yml down
 docker compose -f ./infra/docker-compose.yml down
 ```
 
