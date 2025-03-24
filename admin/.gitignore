@@ -18,11 +18,7 @@ node_modules
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+/.vscode
 
 # misc
 /.sass-cache
@@ -42,4 +38,4 @@ Thumbs.db
 .nx/workspace-data
 
 .angular
-!/package-lock.json
+package-lock.json
