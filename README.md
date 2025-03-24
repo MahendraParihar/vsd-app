@@ -66,7 +66,7 @@ docker ps -a
 
 #### Go inside docker image
 ```shell
-docker exec -it reverent_swirles bash
+docker exec -it [CONTAINER_NAME] bash
 ```
 
 Note: Ensure that you have .env file created in infra folder with ENV variable defined

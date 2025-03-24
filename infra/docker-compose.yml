@@ -8,6 +8,8 @@ services:
       - assets:/home/app/assets
     env_file:
       - main.env
+    environment:
+      API_PORT: '3330'
     ports:
       - "8001:3330"
   event:
@@ -21,21 +23,10 @@ services:
       - assets:/home/app/assets
     env_file:
       - event.env
+    environment:
+      API_PORT: '3331'
     ports:
       - "8002:3331"
-  facility:
-    container_name: vsd-server-facility
-    image: vsd-server
-    command: sh -c "cd server && node -r dist/apps/facility/main.js"
-    restart: always
-    depends_on:
-      - main
-    volumes:
-      - assets:/home/app/assets
-    env_file:
-      - facility.env
-    ports:
-      - "8003:3340"
   family:
     container_name: vsd-server-family
     image: vsd-server
@@ -46,9 +37,9 @@ services:
     volumes:
       - assets:/home/app/assets
     env_file:
-      family.env
+      - family.env
     ports:
-      - "8004:3332"
+      - "8003:3332"
   job:
     container_name: vsd-server-job
     image: vsd-server
@@ -61,7 +52,7 @@ services:
     env_file:
       - job.env
     ports:
-      - "8005:3333"
+      - "8004:3333"
   lovs:
     container_name: vsd-server-lovs
     image: vsd-server
@@ -74,7 +65,7 @@ services:
     env_file:
       - lovs.env
     ports:
-      - "8006:3334"
+      - "8005:3334"
   mandal:
     container_name: vsd-server-mandal
     image: vsd-server
@@ -87,7 +78,7 @@ services:
     env_file:
       - mandal.env
     ports:
-      - "8007:3335"
+      - "8006:3335"
   matrimonial:
     container_name: vsd-server-matrimonial
     image: vsd-server
@@ -100,7 +91,7 @@ services:
     env_file:
       - matrimonial.env
     ports:
-      - "8008:3336"
+      - "8007:3336"
   news:
     container_name: vsd-server-news
     image: vsd-server
@@ -113,7 +104,7 @@ services:
     env_file:
       - news.env
     ports:
-      - "8009:3337"
+      - "8008:3337"
   temple:
     container_name: vsd-server-temple
     image: vsd-server
@@ -126,15 +117,28 @@ services:
     env_file:
       - temple.env
     ports:
-      - "8010:3338"
-  vsd-client:
-    container_name: vsd-client
-    image: vsd-client
+      - "8009:3338"
+  facility:
+    container_name: vsd-server-facility
+    image: vsd-server
+    command: sh -c "cd server && node -r dist/apps/facility/main.js"
     restart: always
-    ports:
-      - "443:443"
     depends_on:
       - main
+    volumes:
+      - assets:/home/app/assets
+    env_file:
+      - facility.env
+    ports:
+      - "8011:3340"
+#  vsd-client:
+#    container_name: vsd-client
+#    image: vsd-client
+#    restart: always
+#    ports:
+#      - "443:443"
+#    depends_on:
+#      - main
 #  vsd-client-admin:
 #    container_name: vsd-client-admin
 #    image: vsd-client-admin
