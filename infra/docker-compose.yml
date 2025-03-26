@@ -97,7 +97,7 @@ services:
     ports:
       - "8005:3334"
     healthcheck:
-      test: [ 'CMD', 'curl', '-f', 'http://localhost:3334/api/lovs/health' ]
+      test: [ 'CMD', 'curl', '-f', 'http://localhost:3334/api/lov/health' ]
       interval: 20s
       retries: 5
       start_period: 5s
