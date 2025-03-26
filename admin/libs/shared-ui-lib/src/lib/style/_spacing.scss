@@ -1,0 +1,34 @@
+:root,
+::after,
+::before {
+  $html-font-size: 16px;
+  @function stripUnit($value) {
+    @return calc($value / ($value * 0 + 1px));
+  }
+  @function rem($pxValue) {
+    @return #{calc(stripUnit($pxValue) / stripUnit($html-font-size))}rem;
+  }
+  --spacing-0: 0px;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-12: #{rem(12px)};
+  --spacing-16: #{rem(16px)};
+  --spacing-20: #{rem(20px)};
+  --spacing-24: #{rem(24px)};
+  --spacing-28: #{rem(28px)};
+  --spacing-32: #{rem(32px)};
+  --spacing-36: #{rem(36px)};
+  --spacing-40: #{rem(40px)};
+  --spacing-46: #{rem(46px)};
+  --spacing-48: #{rem(48px)};
+  --spacing-56: #{rem(56px)};
+  --spacing-60: #{rem(60px)};
+  --spacing-72: #{rem(72px)};
+  --spacing-64: #{rem(64px)};
+  --spacing-80: #{rem(80px)};
+  --spacing-88: #{rem(88px)};
+  --spacing-128: #{rem(128px)};
+  --spacing-256: #{rem(256px)};
+}

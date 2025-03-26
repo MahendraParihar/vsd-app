@@ -1,0 +1,52 @@
+<div class="data-table">
+  <div class="title-section">
+    <div class="search-section">
+      <vsd-ui-label [class]="'title'" [label]="title"></vsd-ui-label>
+    </div>
+    <div>
+    </div>
+  </div>
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container *ngFor="let t of displayedColumns" matColumnDef="{{t}}">
+      <ng-container>
+        <mat-header-cell *matHeaderCellDef>{{labelService.getLabel(t)}}</mat-header-cell>
+        <mat-cell *matCellDef="let d; let i = index;">
+          @switch (t) {
+            @case ("seqNo"){
+              {{i + 1}}
+            }
+            @case ("createdAt"){
+              {{d[t] | appDateTime: 'dateTime'}}
+            }
+            @case ("updatedAt"){
+              {{d[t] | appDateTime: 'dateTime'}}
+            }
+            @case ("createdByUser"){
+              {{d[t] | appCreatedByUser}}
+            }
+            @case ("updatedByUser"){
+              {{d[t] | appCreatedByUser}}
+            }
+            @case ("active"){
+              {{d[t]}}
+            }
+            @case ("action"){
+              <button mat-icon-button (click)="viewMessage(d)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
+            @default{
+              {{d[t]}}
+            }
+          }
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator showFirstLastButtons [length]="totalCount" [pageSizeOptions]="pageSizeList"
+                 [pageSize]="defaultPageSize"></mat-paginator>
+</div>

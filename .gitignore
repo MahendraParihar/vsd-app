@@ -44,6 +44,14 @@
 /media-files/facility/*.*
 /media-files/mandal/*.*
 /media-files/temple/*.*
-/infra/.main.env
+/infra/event.env
 /infra/main.env
-/client/package-lock.json
+/infra/news.env
+/infra/facility.env
+/infra/family.env
+/infra/temple.env
+/infra/mandal.env
+/infra/job.env
+/infra/lovs.env
+/infra/matrimonial.env
+/node_modules/*.*

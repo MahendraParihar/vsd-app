@@ -36,7 +36,7 @@ docker build . -f ./infra/Dockerfile.server -t vsd-server
 For building admin panel image
 
 ```shell
-docker build . -f ./infra/Dockerfile.client-admin -t vsd-client-admin
+docker build . -f ./infra/Dockerfile.admin -t vsd-admin
 ````
 
 For building website image
@@ -48,12 +48,10 @@ docker build . -f ./infra/Dockerfile.client -t vsd-client
 ### Docker container up
 ```shell
 docker compose -f ./infra/docker-compose.yml up -d
-docker compose -f ./infra/docker-compose-db.yml up -d
 ```
 
 ### Docker container down
 ```shell
-docker compose -f ./infra/docker-compose-db.yml down
 docker compose -f ./infra/docker-compose.yml down
 ```
 
@@ -68,7 +66,7 @@ docker ps -a
 
 #### Go inside docker image
 ```shell
-docker exec -it reverent_swirles bash
+docker exec -it [CONTAINER_NAME] bash
 ```
 
 Note: Ensure that you have .env file created in infra folder with ENV variable defined
