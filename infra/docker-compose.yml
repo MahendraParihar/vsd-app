@@ -2,7 +2,7 @@ services:
   main:
     container_name: vsd-server-main
     image: vsd-server
-    command: sh -c "cd /home/app/server && node dist/apps/main/main.js"
+    command: sh -c "cd server && node dist/apps/main/main.js"
     restart: always
     volumes:
       - assets:/home/app/assets
