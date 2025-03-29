@@ -22,6 +22,8 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './base-layout.component.scss',
 })
 export class BaseLayoutComponent implements OnInit {
+  private router = inject(Router);
+
   labelKeys = LabelKey;
   authUserObj!: IAuthUser;
 
@@ -42,7 +44,6 @@ export class BaseLayoutComponent implements OnInit {
     private sharedService: SharedService,
     private userService: UserService,
     public labelService: LabelService,
-    private router: Router,
   ) {
     this.sharedService.breadcrumb.subscribe((itemList: BreadcrumbItem[]) => {
       if (!itemList || itemList.length === 0) {
@@ -74,15 +75,16 @@ export class BaseLayoutComponent implements OnInit {
   }
 
   editProfile() {
+    this.router.navigateByUrl(NavigationPathEnum.ADMIN_EDIT_PROFILE);
     this.navService.navigateTo(NavigationPathEnum.ADMIN_EDIT_PROFILE);
   }
 
   changePassword() {
-    this.navService.navigateTo(NavigationPathEnum.ADMIN_CHANGE_PASSWORD);
+    this.router.navigateByUrl(NavigationPathEnum.ADMIN_CHANGE_PASSWORD);
   }
 
   setting() {
-    this.navService.navigateTo(NavigationPathEnum.ADMIN_SETTING);
+    this.router.navigateByUrl(NavigationPathEnum.ADMIN_SETTING);
   }
 
   signOut() {
@@ -108,7 +110,7 @@ export class BaseLayoutComponent implements OnInit {
   onMenuClick(item: NavItem) {
     console.log(item);
     if (item.path) {
-      this.router.navigate([item.path]);
+      this.router.navigateByUrl(item.path.toString());
       this.navService.navigateTo(item.path);
     }
   }

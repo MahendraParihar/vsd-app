@@ -89,7 +89,8 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'temple',
-        loadChildren: () => loadRemote<typeof import('temple/Module')>('temple/Module').then((m) => m!.RemoteEntryModule),
+        loadChildren: () =>
+          loadRemote<typeof import('temple/Module')>('temple/Module').then((m) => m!.RemoteEntryModule),
       },
       {
         path: 'news',
@@ -102,7 +103,8 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'mandal',
-        loadChildren: () => loadRemote<typeof import('mandal/Module')>('mandal/Module').then((m) => m!.RemoteEntryModule),
+        loadChildren: () =>
+          loadRemote<typeof import('mandal/Module')>('mandal/Module').then((m) => m!.RemoteEntryModule),
       },
       {
         path: 'lov',
@@ -114,7 +116,8 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'family',
-        loadChildren: () => loadRemote<typeof import('family/Module')>('family/Module').then((m) => m!.RemoteEntryModule),
+        loadChildren: () =>
+          loadRemote<typeof import('family/Module')>('family/Module').then((m) => m!.RemoteEntryModule),
       },
       {
         path: 'event',
