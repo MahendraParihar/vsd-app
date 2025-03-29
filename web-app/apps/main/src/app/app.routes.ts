@@ -12,6 +12,7 @@ import { TempleComponent } from './temple/temple.component';
 import { EventComponent } from './event/event.component';
 import { MandalComponent } from './mandal/mandal.component';
 import { MandalDetailComponent } from './mandal/details/mandal-detail.component';
+import { loadRemoteModule } from '@nx/angular/mf';
 
 export const appRoutes: Route[] = [
   {
@@ -67,5 +68,9 @@ export const appRoutes: Route[] = [
         component: FacilityDetailComponent
       }
     ]
-  }
+  },
+  {
+    path: 'family',
+    loadChildren: () => loadRemoteModule('family', './Module').then((m) => m.RemoteEntryModule),
+  },
 ];
