@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'vsd-lov',
+  selector: 'vsd-admin-lov',
   standalone: false,
   templateUrl: './lov.component.html',
   styleUrl: './lov.component.scss',
@@ -17,6 +17,7 @@ export class LovComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(async () => {
+      console.log(this.activatedRoute.snapshot.paramMap);
       if (this.activatedRoute.snapshot.paramMap.get('type')) {
         this.type = this.activatedRoute.snapshot.paramMap.get('type');
       }

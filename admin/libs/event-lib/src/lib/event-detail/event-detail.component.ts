@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-event-detail',
+  selector: 'event-lib-event-detail',
   templateUrl: './event-detail.component.html',
   standalone: false,
   styleUrl: './event-detail.component.scss',

@@ -22,10 +22,6 @@ export const remoteRoutes: Route[] = [
     component: FamilyDetailsComponent,
   },
   {
-    path: ':id',
-    component: FamilyDetailsComponent,
-  },
-  {
     path: ':id/:path',
     component: FamilyDetailsComponent,
   },

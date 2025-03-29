@@ -17,7 +17,7 @@ import {MandalApiUrl} from "../api-url";
 import {MandalService} from "../mandal.service";
 
 @Component({
-  selector: 'lib-mandal',
+  selector: 'mandal-lib-mandal-list',
   templateUrl: './mandal.component.html',
   standalone: false,
   styleUrl: './mandal.component.scss',

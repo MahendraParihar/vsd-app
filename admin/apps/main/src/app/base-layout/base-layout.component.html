@@ -36,7 +36,7 @@
   <mat-sidenav-container class="main-sidenav-container">
     <mat-sidenav #sidenav opened [mode]="!!isHandset$ ? 'side':'side'">
       <mat-list>
-        <vsd-admin-side-menu *ngFor="let item of menuItems" [item]="item"></vsd-admin-side-menu>
+        <vsd-admin-side-menu *ngFor="let item of menuItems" (navigate)="onMenuClick($event)" [item]="item"></vsd-admin-side-menu>
       </mat-list>
     </mat-sidenav>
     <mat-sidenav-content class="content">

@@ -17,7 +17,7 @@ import {EventApiUrl} from "../api-url";
 import {EventService} from "../event.service";
 
 @Component({
-  selector: 'lib-event',
+  selector: 'event-lib-event-list',
   templateUrl: './event.component.html',
   standalone: false,
   styleUrl: './event.component.scss',

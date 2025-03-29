@@ -17,7 +17,7 @@ import {TempleService} from "../temple.service";
 import {TempleApiUrl} from "../api-url";
 
 @Component({
-  selector: 'lib-temple',
+  selector: 'temple-lib-temple-list',
   templateUrl: './temple.component.html',
   standalone: false,
   styleUrl: './temple.component.scss',

@@ -1,15 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { BreadcrumbItem } from '@vsd-frontend/core-lib';
 
 @Component({
-  selector: 'lib-family-detail',
+  selector: 'family-lib-family-detail',
   standalone: false,
   templateUrl: './family-detail.component.html',
   styleUrl: './family-detail.component.scss',
 })
 export class FamilyDetailComponent {
-
   _path!: string;
 
   @Input()
@@ -24,16 +22,13 @@ export class FamilyDetailComponent {
     this.router.events.subscribe((params) => {
       console.log(params);
       if (params instanceof NavigationEnd) {
-
       }
     });
   }
 
-  setSideNav(){
+  setSideNav() {}
 
-  }
-
-  activeSideNavItem(path:string){
+  activeSideNavItem(path: string) {
     console.log(path);
   }
 }

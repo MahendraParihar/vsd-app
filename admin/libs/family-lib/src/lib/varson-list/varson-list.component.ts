@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-family-detail',
+  selector: 'family-lib-varson-list',
   standalone: false,
   templateUrl: './varson-list.component.html',
   styleUrl: './varson-list.component.scss',

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'vsd-family-family-details',
+  selector: 'vsd-admin-family-details',
   standalone: false,
   templateUrl: './family-details.component.html',
   styleUrl: './family-details.component.scss',

@@ -40,9 +40,7 @@ export class NavigationService {
   }
 
   navigateTo(navEnum: NavigationPathEnum) {
-    this.router.navigate([navEnum]).then(() => {
-      this.setBreadcrumb(navEnum);
-    });
+    this.setBreadcrumb(navEnum);
   }
 
   navigateToLogin() {

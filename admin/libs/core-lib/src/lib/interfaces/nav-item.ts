@@ -3,7 +3,8 @@ import { NavigationPathEnum } from '../enums/navigation-path-enum';
 export interface NavItem {
   title: string;
   disabled?: boolean;
+  isActive?: boolean;
   iconName: string;
-  path?: NavigationPathEnum;
+  path: NavigationPathEnum;
   children?: NavItem[];
 }

@@ -19,7 +19,7 @@ import {
 } from '@vsd-common/lib';
 
 @Component({
-  selector: 'lib-manage-event',
+  selector: 'event-lib-manage-event',
   templateUrl: './manage-event.component.html',
   standalone: false,
   styleUrl: './manage-event.component.scss',

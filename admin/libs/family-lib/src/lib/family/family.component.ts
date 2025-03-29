@@ -18,7 +18,7 @@ import { FamilyService } from '../family.service';
 import { FamilyApiUrl } from '../api-url';
 
 @Component({
-  selector: 'lib-family',
+  selector: 'family-lib-family-list',
   templateUrl: './family.component.html',
   standalone: false,
   styleUrl: './family.component.scss',
