@@ -212,25 +212,25 @@ services:
     image: vsd-client
     restart: always
     volumes:
-      - ./vanshsutharbarwa.conf:/etc/nginx/conf.d/kelp.conf
+      - ./vanshsutharbarwa.conf:/etc/nginx/conf.d/vanshsutharbarwa.conf
       - ./certs/vanshsutharbarwa.conf:/etc/ssl/certs/vanshsutharbarwa.conf
       - ./certs/vanshsutharbarwa.pem:/etc/ssl/certs/vanshsutharbarwa.pem
     ports:
       - "443:443"
     depends_on:
       - main
-  vsd-admin:
-    container_name: vsd-admin
-    image: vsd-admin
-    restart: always
-    volumes:
-      - ./vanshsutharbarwa.conf:/etc/nginx/conf.d/kelp.conf
-      - ./certs/vanshsutharbarwa.conf:/etc/ssl/certs/vanshsutharbarwa.conf
-      - ./certs/vanshsutharbarwa.pem:/etc/ssl/certs/vanshsutharbarwa.pem
-    ports:
-      - "8090:80"
-    depends_on:
-      - main
+#  vsd-admin:
+#    container_name: vsd-admin
+#    image: vsd-admin
+#    restart: always
+#    volumes:
+#      - ./vanshsutharbarwa.conf:/etc/nginx/conf.d/vanshsutharbarwa.conf
+#      - ./certs/vanshsutharbarwa.conf:/etc/ssl/certs/vanshsutharbarwa.conf
+#      - ./certs/vanshsutharbarwa.pem:/etc/ssl/certs/vanshsutharbarwa.pem
+#    ports:
+#      - "8090:80"
+#    depends_on:
+#      - main
 
 volumes:
   assets:
