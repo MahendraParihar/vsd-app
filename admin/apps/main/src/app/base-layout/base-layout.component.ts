@@ -110,7 +110,7 @@ export class BaseLayoutComponent implements OnInit {
   onMenuClick(item: NavItem) {
     console.log(item);
     if (item.path) {
-      this.router.navigateByUrl(item.path.toString());
+      this.router.navigate([item.path, item.queryParams]);
       this.navService.navigateTo(item.path);
     }
   }
@@ -272,9 +272,12 @@ export class BaseLayoutComponent implements OnInit {
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_COUNTRY),
-            path: NavigationPathEnum.COUNTRY,
+            path: NavigationPathEnum.LOV_MASTER,
             isActive: false,
             iconName: 'list',
+            queryParams: {
+              type: NavigationPathEnum.COUNTRY,
+            },
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_ADDICTION),

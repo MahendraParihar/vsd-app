@@ -7,4 +7,5 @@ export interface NavItem {
   iconName: string;
   path: NavigationPathEnum;
   children?: NavItem[];
+  queryParams?: { [key: string]: string };
 }

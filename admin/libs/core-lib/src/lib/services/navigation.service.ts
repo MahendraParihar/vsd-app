@@ -21,8 +21,7 @@ export class NavigationService {
     private location: Location,
     private sharedService: SharedService,
     private labelService: LabelService,
-  ) {
-  }
+  ) {}
 
   back(): void {
     // this.router.navigate("..");
@@ -41,6 +40,15 @@ export class NavigationService {
 
   navigateTo(navEnum: NavigationPathEnum) {
     this.setBreadcrumb(navEnum);
+    // this.router
+    //   .navigate([navEnum])
+    //   .then((suc: any) => {
+    //     console.log('Success', suc);
+    //
+    //   })
+    //   .catch((e: any) => {
+    //     console.log(e);
+    //   });
   }
 
   navigateToLogin() {
@@ -66,7 +74,7 @@ export class NavigationService {
       });
   }
 
-  navigateToById(navEnum: NavigationPathEnum, navId: any) {
+  navigateToById(navEnum: NavigationPathEnum, navId: number | string) {
     const tempUrl = `${navEnum}/${navId}`;
     this.router
       .navigateByUrl(tempUrl)
@@ -253,23 +261,17 @@ export class NavigationService {
           break;
         case NavigationPathEnum.JOB_SUB_CATEGORY:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_SUB_CATEGORY),
             path: NavigationPathEnum.JOB_SUB_CATEGORY,
           });
           break;
         case NavigationPathEnum.JOB_SUB_CATEGORY_MANAGE:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_SUB_CATEGORY),
             path: NavigationPathEnum.JOB_SUB_CATEGORY,
           });
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_JOB_SUB_CATEGORY,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_SUB_CATEGORY),
             path: NavigationPathEnum.JOB_SUB_CATEGORY_MANAGE,
           });
           break;
@@ -435,23 +437,17 @@ export class NavigationService {
           break;
         case NavigationPathEnum.EDUCATION_DEGREE:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_EDUCATION_DEGREE,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_EDUCATION_DEGREE),
             path: NavigationPathEnum.EDUCATION_DEGREE,
           });
           break;
         case NavigationPathEnum.EDUCATION_DEGREE_MANAGE:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_EDUCATION_DEGREE,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_EDUCATION_DEGREE),
             path: NavigationPathEnum.EDUCATION_DEGREE,
           });
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_EDUCATION_DEGREE,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_EDUCATION_DEGREE),
             path: NavigationPathEnum.EDUCATION_DEGREE_MANAGE,
           });
           break;
@@ -473,67 +469,49 @@ export class NavigationService {
           break;
         case NavigationPathEnum.MARITAL_STATUS:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MARITAL_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MARITAL_STATUS),
             path: NavigationPathEnum.MARITAL_STATUS,
           });
           break;
         case NavigationPathEnum.MARITAL_STATUS_MANAGE:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MARITAL_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MARITAL_STATUS),
             path: NavigationPathEnum.MARITAL_STATUS,
           });
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MARITAL_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MARITAL_STATUS),
             path: NavigationPathEnum.MARITAL_STATUS_MANAGE,
           });
           break;
         case NavigationPathEnum.MATRIMONIAL_STATUS:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_STATUS,
           });
           break;
         case NavigationPathEnum.MATRIMONIAL_STATUS_MANAGE:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_STATUS,
           });
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_STATUS_MANAGE,
           });
           break;
         case NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS,
           });
           break;
         case NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS_MANAGE:
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS,
           });
           breadcrumbList.push({
-            title: this.labelService.getLabel(
-              LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS,
-            ),
+            title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS_MANAGE,
           });
           break;

@@ -1,12 +1,12 @@
 @use "@angular/material" as mat;
-@import "style/gradient";
-@import "style/variables";
-@import "style/margin";
-@import "style/padding";
-@import "style/colors";
-@import "style/spacing";
-@import "style/fonts";
-@import "style/strokes-and-radius";
+@use "style/gradient" as gradient;
+@use "style/variables" as variables;
+@use "style/margin" as margin;
+@use "style/padding" as padding;
+@use "style/colors" as colors;
+@use "style/spacing" as spacing;
+@use "style/fonts" as fonts;
+@use "style/strokes-and-radius" as strokes-and-radius;
 
 @include mat.core();
 
@@ -74,7 +74,7 @@ body.dark-theme {
   @include mat.all-component-themes($dark-theme);
 }
 
-@include mat.all-component-themes($light-theme);
+//@include mat.all-component-themes($light-theme);
 
 
 .data-table {

@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, withComponentInputBinding } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { CommonModule } from '@angular/common';
@@ -47,6 +47,40 @@ import { SharedUiLibModule } from '@vsd-frontend/shared-ui-lib';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import { EventLibModule } from '@vsd-frontend/event-lib';
+import { EventListComponent } from './event/event-list/event-list.component';
+import { ManageEventComponent } from './event/manage-event/manage-event.component';
+import { EventDetailsComponent } from './event/event-details/event-details.component';
+import { NewsLibModule } from '@vsd-frontend/news-lib';
+import { MandalLibModule } from '@vsd-frontend/mandal-lib';
+import { TempleLibModule } from '@vsd-frontend/temple-lib';
+import { FamilyLibModule } from '@vsd-frontend/family-lib';
+import { FacilityLibModule } from '@vsd-frontend/facility-lib';
+import { JobLibModule } from '@vsd-frontend/job-lib';
+import { LovsLibModule } from '@vsd-frontend/lovs-lib';
+import { FacilityListComponent } from './facility/facility-list/facility-list.component';
+import { ManageFacilityComponent } from './facility/manage-facility/manage-facility.component';
+import { FacilityDetailsComponent } from './facility/facility-details/facility-details.component';
+import { TempleListComponent } from './temple/temple-list/temple-list.component';
+import { ManageTempleComponent } from './temple/manage-temple/manage-temple.component';
+import { TempleDetailsComponent } from './temple/temple-details/temple-details.component';
+import { NewsListComponent } from './news/news-list/news-list.component';
+import { ManageNewsComponent } from './news/manage-news/manage-news.component';
+import { NewsDetailsComponent } from './news/news-details/news-details.component';
+import { MatrimonialListComponent } from './matrimonial/matrimonial-list/matrimonial-list.component';
+import { ManageMatrimonialComponent } from './matrimonial/manage-matrimonial/manage-matrimonial.component';
+import { MatrimonialDetailsComponent } from './matrimonial/matrimonial-details/matrimonial-details.component';
+import { MandalListComponent } from './mandal/mandal-list/mandal-list.component';
+import { ManageMandalComponent } from './mandal/manage-mandal/manage-mandal.component';
+import { MandalDetailsComponent } from './mandal/mandal-details/mandal-details.component';
+import { LovComponent } from './lov/lov/lov.component';
+import { ManageLovComponent } from './lov/manage-lov/manage-lov.component';
+import { JobListComponent } from './job/job-list/job-list.component';
+import { ManageJobComponent } from './job/manage-job/manage-job.component';
+import { JobDetailsComponent } from './job/job-details/job-details.component';
+import { FamilyListComponent } from './family/family-list/family-list.component';
+import { ManageFamilyComponent } from './family/manage-family/manage-family.component';
+import { FamilyDetailsComponent } from './family/family-details/family-details.component';
 
 @NgModule({
   declarations: [
@@ -68,12 +102,55 @@ import { MatMenuModule } from '@angular/material/menu';
     BannerComponent,
     BannerDetailComponent,
     ManageBannerComponent,
+
+    EventListComponent,
+    ManageEventComponent,
+    EventDetailsComponent,
+
+    FacilityListComponent,
+    ManageFacilityComponent,
+    FacilityDetailsComponent,
+
+    TempleListComponent,
+    ManageTempleComponent,
+    TempleDetailsComponent,
+
+    NewsListComponent,
+    ManageNewsComponent,
+    NewsDetailsComponent,
+
+    MatrimonialListComponent,
+    ManageMatrimonialComponent,
+    MatrimonialDetailsComponent,
+
+    MandalListComponent,
+    ManageMandalComponent,
+    MandalDetailsComponent,
+
+    LovComponent,
+    ManageLovComponent,
+
+    JobListComponent,
+    ManageJobComponent,
+    JobDetailsComponent,
+
+    FamilyListComponent,
+    ManageFamilyComponent,
+    FamilyDetailsComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     CoreLibModule,
+    EventLibModule,
+    NewsLibModule,
+    MandalLibModule,
+    TempleLibModule,
+    FamilyLibModule,
+    FacilityLibModule,
+    JobLibModule,
+    LovsLibModule,
     CommonModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
@@ -102,6 +179,7 @@ import { MatMenuModule } from '@angular/material/menu';
     AuthGuardService,
     PagesService,
     BannerService,
+    provideRouter(appRoutes, withComponentInputBinding()),
     provideMomentDateAdapter(MY_FORMATS),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

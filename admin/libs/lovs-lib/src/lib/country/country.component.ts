@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { TableDataDatasource } from '../table-data.datasource';
 import {
   HttpService,
@@ -6,7 +6,8 @@ import {
   MASTER_PAGE_SIZE,
   NavigationPathEnum,
   NavigationService,
-  PAGE_SIZE_LIST, SnackBarService,
+  PAGE_SIZE_LIST,
+  SnackBarService,
 } from '@vsd-frontend/core-lib';
 import { MatPaginator } from '@angular/material/paginator';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
@@ -15,16 +16,19 @@ import { ICountryList, ITableListFilter, LabelKey } from '@vsd-common/lib';
 import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { CountryService } from './country.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'lib-country',
+  selector: 'lovs-lib-country',
   standalone: false,
   templateUrl: './country.component.html',
   styleUrl: './country.component.scss',
 })
 export class CountryComponent implements OnInit, AfterViewInit {
+  private router: Router = inject(Router);
+
   labelKeys = LabelKey;
-  title!:string;
+  title!: string;
   displayedColumns = [
     'seqNo',
     'country',
@@ -54,20 +58,16 @@ export class CountryComponent implements OnInit, AfterViewInit {
     private pageTitle: Title,
     private service: CountryService,
     private navigationService: NavigationService,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_COUNTRY);
     this.pageTitle.setTitle(this.title);
     this.dataSource = new TableDataDatasource(this.httpService);
-    this.dataSource.totalCount.subscribe(
-      (count: number) => (this.totalCount = count)
-    );
-    this.searchControl.valueChanges
-      .pipe(debounceTime(400), distinctUntilChanged())
-      .subscribe((query) => {
-        this.paginator.pageIndex = 0;
-        this.loadDataSet();
-      });
+    this.dataSource.totalCount.subscribe((count: number) => (this.totalCount = count));
+    this.searchControl.valueChanges.pipe(debounceTime(400), distinctUntilChanged()).subscribe((query) => {
+      this.paginator.pageIndex = 0;
+      this.loadDataSet();
+    });
   }
 
   async ngOnInit() {
@@ -85,16 +85,18 @@ export class CountryComponent implements OnInit, AfterViewInit {
   }
 
   add() {
+    this.router.navigate(['lov/manage', {type: 'country'}]);
     this.navigationService.navigateTo(NavigationPathEnum.COUNTRY_MANAGE);
   }
 
   edit(obj: ICountryList) {
+    this.router.navigate([NavigationPathEnum.COUNTRY_MANAGE + '/' + obj.countryId]);
     this.navigationService.navigateToById(NavigationPathEnum.COUNTRY_MANAGE, obj.countryId);
   }
 
   async changeStatus(status: boolean, index: number, obj: ICountryList) {
     await this.service.changeStatus(obj.countryId, !obj.active);
-    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
 
@@ -104,13 +106,9 @@ export class CountryComponent implements OnInit, AfterViewInit {
   }
 
   async loadDataSet(): Promise<void> {
-    this.payload.search = this.searchControl.value
-      ? this.searchControl.value
-      : '';
+    this.payload.search = this.searchControl.value ? this.searchControl.value : '';
     this.payload.page = this.paginator ? this.paginator.pageIndex : 0;
-    this.payload.limit = this.paginator
-      ? this.paginator.pageSize
-      : MASTER_PAGE_SIZE;
+    this.payload.limit = this.paginator ? this.paginator.pageSize : MASTER_PAGE_SIZE;
     await this.dataSource.loadData(LovApiUrl.COUNTRY, this.payload);
   }
 }
