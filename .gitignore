@@ -1,9 +1,9 @@
-/client/node_modules/
-/client/.angular/
-/client/.nx/
-/client/.idea/
-/client/.vscode/
-/client/package-lock.json
+/admin/node_modules/
+/admin/.angular/
+/admin/.nx/
+/admin/.idea/
+/admin/.vscode/
+/admin/package-lock.json
 
 /web-app/node_modules/
 /web-app/.angular/

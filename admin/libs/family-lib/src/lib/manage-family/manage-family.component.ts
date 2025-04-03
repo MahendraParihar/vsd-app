@@ -26,7 +26,7 @@ import {
 import { FamilyService } from '../family.service';
 
 @Component({
-  selector: 'lib-manage-family',
+  selector: 'family-lib-manage-family',
   templateUrl: './manage-family.component.html',
   standalone: false,
   styleUrl: './manage-family.component.scss',

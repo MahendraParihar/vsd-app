@@ -17,7 +17,7 @@ import {IJobList, ITableListFilter, LabelKey} from "@vsd-common/lib";
 import {JobApiUrl} from "../api-url";
 
 @Component({
-  selector: 'lib-job',
+  selector: 'job-lib-job-list',
   standalone: false,
   templateUrl: './job.component.html',
   styleUrl: './job.component.scss',

@@ -15,5 +15,6 @@
 </mat-list-item>
 <div *ngIf="expanded && item.children">
   <vsd-admin-side-menu *ngFor="let child of item.children"
-                 [depth]="depth+1" [item]="child" class="menu-child"></vsd-admin-side-menu>
+                 [depth]="depth+1" [item]="child" class="menu-child"
+                       (click)="onMenuClick(child)"></vsd-admin-side-menu>
 </div>

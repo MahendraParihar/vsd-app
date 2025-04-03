@@ -18,7 +18,7 @@ import { FacilityService } from '../facility.service';
 import { FacilityApiUrl } from '../api-url';
 
 @Component({
-  selector: 'lib-facility',
+  selector: 'facility-lib-facility-list',
   standalone: false,
   templateUrl: './facility.component.html',
   styleUrl: './facility.component.scss',

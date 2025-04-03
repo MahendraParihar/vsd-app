@@ -17,7 +17,7 @@ import {
 } from '@vsd-common/lib';
 
 @Component({
-  selector: 'lib-manage-facility',
+  selector: 'facility-lib-manage-facility',
   standalone: false,
   templateUrl: './manage-facility.component.html',
   styleUrl: './manage-facility.component.scss',

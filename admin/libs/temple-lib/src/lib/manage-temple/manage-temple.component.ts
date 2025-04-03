@@ -9,7 +9,7 @@ import { FileTypeEnum, IAddressMaster, ICommonSEO, IManageTemple, LabelKey, Medi
 import { TempleService } from '../temple.service';
 
 @Component({
-  selector: 'lib-manage-temple',
+  selector: 'temple-lib-manage-temple',
   templateUrl: './manage-temple.component.html',
   standalone: false,
   styleUrl: './manage-temple.component.scss',

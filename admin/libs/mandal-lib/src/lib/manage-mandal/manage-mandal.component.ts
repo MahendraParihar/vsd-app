@@ -22,7 +22,7 @@ import {
 import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
 
 @Component({
-  selector: 'lib-manage-mandal',
+  selector: 'mandal-lib-manage-mandal',
   templateUrl: './manage-mandal.component.html',
   standalone: false,
   styleUrl: './manage-mandal.component.scss',

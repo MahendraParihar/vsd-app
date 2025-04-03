@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-family-detail',
+  selector: 'family-lib-matrimonial-profile',
   standalone: false,
   templateUrl: './matrimonial-profile.component.html',
   styleUrl: './matrimonial-profile.component.scss',

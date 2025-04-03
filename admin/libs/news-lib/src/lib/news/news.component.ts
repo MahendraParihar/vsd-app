@@ -17,7 +17,7 @@ import {NewsService} from "../news.service";
 import {NewsApiUrl} from "../api-url";
 
 @Component({
-  selector: 'lib-news',
+  selector: 'news-lib-news-list',
   templateUrl: './news.component.html',
   standalone: false,
   styleUrl: './news.component.scss',

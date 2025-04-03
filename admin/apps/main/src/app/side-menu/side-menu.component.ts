@@ -1,18 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NavigationService, NavItem } from '@vsd-frontend/core-lib';
 import { Router } from '@angular/router';
 
@@ -25,10 +12,7 @@ import { Router } from '@angular/router';
     trigger('indicatorRotate', [
       state('collapsed', style({ transform: 'rotate(0deg)' })),
       state('expanded', style({ transform: 'rotate(180deg)' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
-      ),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4,0.0,0.2,1)')),
     ]),
   ],
 })
@@ -37,7 +21,7 @@ export class SideMenuComponent implements OnInit {
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item!: NavItem;
   @Input() depth!: number;
-  @Output() navigate = new EventEmitter<void>();
+  @Output() navigate = new EventEmitter<NavItem>();
 
   constructor(public navService: NavigationService, public router: Router) {
     if (this.depth === undefined) {
@@ -59,13 +43,7 @@ export class SideMenuComponent implements OnInit {
       this.expanded = !this.expanded;
     }
     if (item.path) {
-      this.navigate.emit();
-      this.router.navigate([item.path]);
-      this.navService.navigateTo(item.path);
+      this.navigate.emit(item);
     }
-  }
-
-  onChildNavigate() {
-    this.navigate.emit();
   }
 }
