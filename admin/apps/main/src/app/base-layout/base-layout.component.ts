@@ -10,7 +10,7 @@ import {
   NavigationService,
   NavItem,
   SharedService,
-  UserService,
+  UserService
 } from '@vsd-frontend/core-lib';
 import { IAuthUser, LabelKey } from '@vsd-common/lib';
 import { NavigationEnd, Router } from '@angular/router';
@@ -19,7 +19,7 @@ import { NavigationEnd, Router } from '@angular/router';
   selector: 'vsd-admin-base-layout',
   templateUrl: './base-layout.component.html',
   standalone: false,
-  styleUrl: './base-layout.component.scss',
+  styleUrl: './base-layout.component.scss'
 })
 export class BaseLayoutComponent implements OnInit {
   private router = inject(Router);
@@ -34,7 +34,7 @@ export class BaseLayoutComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
-    shareReplay(),
+    shareReplay()
   );
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
@@ -43,7 +43,7 @@ export class BaseLayoutComponent implements OnInit {
     private navService: NavigationService,
     private sharedService: SharedService,
     private userService: UserService,
-    public labelService: LabelService,
+    public labelService: LabelService
   ) {
     this.sharedService.breadcrumb.subscribe((itemList: BreadcrumbItem[]) => {
       if (!itemList || itemList.length === 0) {
@@ -110,7 +110,11 @@ export class BaseLayoutComponent implements OnInit {
   onMenuClick(item: NavItem) {
     console.log(item);
     if (item.path) {
-      this.router.navigate([item.path, item.queryParams]);
+      if (item.queryParams) {
+        this.router.navigate([item.path, item.queryParams]);
+      } else {
+        this.router.navigate([item.path]);
+      }
       this.navService.navigateTo(item.path);
     }
   }
@@ -131,79 +135,79 @@ export class BaseLayoutComponent implements OnInit {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_HOME),
         path: NavigationPathEnum.HOME,
         isActive: false,
-        iconName: 'home',
+        iconName: 'home'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_BANNER),
         path: NavigationPathEnum.BANNER,
         isActive: false,
-        iconName: 'image',
+        iconName: 'image'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAMILY),
         path: NavigationPathEnum.FAMILY,
         isActive: false,
-        iconName: 'people',
+        iconName: 'people'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_TEMPLE),
         path: NavigationPathEnum.TEMPLE,
         isActive: false,
-        iconName: 'temple_hindu',
+        iconName: 'temple_hindu'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_FACILITY),
         path: NavigationPathEnum.FACILITY,
         isActive: false,
-        iconName: 'menu_book',
+        iconName: 'menu_book'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_MANDAL),
         path: NavigationPathEnum.MANDAL,
         isActive: false,
-        iconName: 'corporate_fare',
+        iconName: 'corporate_fare'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_EVENT),
         path: NavigationPathEnum.EVENT,
         isActive: false,
-        iconName: 'menu_book',
+        iconName: 'menu_book'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_NEWS),
         path: NavigationPathEnum.NEWS,
         isActive: false,
-        iconName: 'newspaper',
+        iconName: 'newspaper'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB),
         path: NavigationPathEnum.JOB,
         isActive: false,
-        iconName: 'work_outline',
+        iconName: 'work_outline'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_INQUIRY),
         path: NavigationPathEnum.INQUIRY,
         isActive: false,
-        iconName: 'contact_support',
+        iconName: 'contact_support'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL),
         path: NavigationPathEnum.MATRIMONIAL,
         isActive: false,
-        iconName: 'diversity_1',
+        iconName: 'diversity_1'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAQ),
         path: NavigationPathEnum.FAQ,
         isActive: false,
-        iconName: 'quiz',
+        iconName: 'quiz'
       },
       {
         title: this.labelService.getLabel(LabelKey.SIDE_MENU_PAGES),
         path: NavigationPathEnum.PAGE,
         isActive: false,
-        iconName: 'list',
+        iconName: 'list'
       },
       {
         title: 'Lovs',
@@ -214,157 +218,154 @@ export class BaseLayoutComponent implements OnInit {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_CATEGORY),
             path: NavigationPathEnum.JOB_CATEGORY,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_SUB_CATEGORY),
             path: NavigationPathEnum.JOB_SUB_CATEGORY,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_TYPE),
             path: NavigationPathEnum.JOB_TYPE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_STATUS),
             path: NavigationPathEnum.JOB_STATUS,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_FAQ_CATEGORY),
             path: NavigationPathEnum.FAQ_CATEGORY,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_BUSINESS),
             path: NavigationPathEnum.BUSINESS,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_SERVICE),
             path: NavigationPathEnum.SERVICE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_CITY_VILLAGE),
             path: NavigationPathEnum.CITY_VILLAGE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_STATE),
             path: NavigationPathEnum.STATE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_DISTRICT),
             path: NavigationPathEnum.DISTRICT,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_COUNTRY),
             path: NavigationPathEnum.LOV_MASTER,
             isActive: false,
             iconName: 'list',
-            queryParams: {
-              type: NavigationPathEnum.COUNTRY,
-            },
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_ADDICTION),
             path: NavigationPathEnum.ADDICTION,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_EDUCATION_DEGREE),
             path: NavigationPathEnum.EDUCATION_DEGREE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_GENDER),
             path: NavigationPathEnum.GENDER,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_CASTE),
             path: NavigationPathEnum.CASTE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_RELATIONSHIP),
             path: NavigationPathEnum.RELATIONSHIP,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_RELIGION),
             path: NavigationPathEnum.RELIGION,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_GOTRA),
             path: NavigationPathEnum.GOTRA,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_MARITAL_STATUS),
             path: NavigationPathEnum.MARITAL_STATUS,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_RAASI),
             path: NavigationPathEnum.RAASI,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_STATUS,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_MATRIMONIAL_REQUESTED_STATUS),
             path: NavigationPathEnum.MATRIMONIAL_REQUESTED_STATUS,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_POST),
             path: NavigationPathEnum.POST,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_ADDRESS_TYPE),
             path: NavigationPathEnum.ADDRESS_TYPE,
             isActive: false,
-            iconName: 'list',
+            iconName: 'list'
           },
           {
             title: this.labelService.getLabel(LabelKey.SIDE_MENU_CONTACT_TYPE),
             path: NavigationPathEnum.CONTACT_TYPE,
             isActive: false,
-            iconName: 'list',
-          },
-        ],
-      },
+            iconName: 'list'
+          }
+        ]
+      }
     ];
   }
 

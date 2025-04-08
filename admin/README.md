@@ -41,7 +41,7 @@ nx g @nx/angular:lib libs/temple-lib --standalone=false  --prefix=temple-lib
 ```
 Generate component
 ```
-nx g @nx/angular:component ui-input-error --directory libs/shared-ui-lib/src/lib/ui-input-error --standalone=false
+nx g @nx/angular:component apps/main/src/app/base-layout/base-layout --standalone=false
 ```
 Generate service file
 ```

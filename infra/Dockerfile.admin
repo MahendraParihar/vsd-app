@@ -1,7 +1,8 @@
 FROM node:22-alpine AS build
 RUN apk add g++ make py3-pip
 WORKDIR /home/app
-RUN mkdir -p admin && mkdir -p shared-library
+RUN mkdir -p admin && mkdir -p shared-library && mkdir -p infra
+COPY ./infra/ ./infra/
 COPY ./shared-library/package*.json ./shared-library/
 RUN npm --prefix shared-library install
 COPY ./admin ./admin
