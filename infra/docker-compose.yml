@@ -219,18 +219,18 @@ services:
       - "443:443"
     depends_on:
       - main
-#  vsd-admin:
-#    container_name: vsd-admin
-#    image: vsd-admin
-#    restart: always
-#    volumes:
-#      - ./vanshsutharbarwa.conf:/etc/nginx/conf.d/vanshsutharbarwa.conf
-#      - ./certs/vanshsutharbarwa.key:/etc/ssl/certs/vanshsutharbarwa.crt
-#      - ./certs/vanshsutharbarwa.pem:/etc/ssl/certs/vanshsutharbarwa.pem
-#    ports:
-#      - "8090:80"
-#    depends_on:
-#      - main
+  vsd-admin:
+    container_name: vsd-admin
+    image: vsd-admin
+    restart: always
+    volumes:
+      - ./vanshsutharbarwa.conf:/etc/nginx/conf.d/vanshsutharbarwa.conf
+      - ./certs/vanshsutharbarwa.key:/etc/ssl/certs/vanshsutharbarwa.key
+      - ./certs/vanshsutharbarwa.pem:/etc/ssl/certs/vanshsutharbarwa.pem
+    ports:
+      - "8090:80"
+    depends_on:
+      - main
 
 volumes:
   assets:
