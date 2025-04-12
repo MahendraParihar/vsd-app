@@ -94,7 +94,6 @@ export class ManageFaqComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageFaq = {
       faq: this.formGroup.value.faq,
       faqCategoryId: this.formGroup.value.faqCategoryId,

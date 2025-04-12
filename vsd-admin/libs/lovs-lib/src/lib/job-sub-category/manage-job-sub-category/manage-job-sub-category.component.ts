@@ -67,7 +67,6 @@ export class ManageJobSubCategoryComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageJobSubCategory = {
       jobSubCategory: this.formGroup.value.jobSubCategory,
       jobCategoryId: this.formGroup.value.jobCategoryId,

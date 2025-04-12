@@ -69,7 +69,6 @@ export class ManageCountryComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageCountry = {
       country: this.formGroup.value.country,
       countryCode: this.formGroup.value.countryCode,

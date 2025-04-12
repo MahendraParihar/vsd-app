@@ -69,7 +69,6 @@ export class ManageFaqCategoryComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageFaqCategory = {
       faqCategory: this.formGroup.value.faqCategory,
       url: this.formGroup.value.url,

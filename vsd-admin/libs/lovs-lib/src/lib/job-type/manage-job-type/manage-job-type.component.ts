@@ -65,7 +65,6 @@ export class ManageJobTypeComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageJobType = {
       jobType: this.formGroup.value.jobType,
       imagePath: this.formGroup.value.uploadFiles,

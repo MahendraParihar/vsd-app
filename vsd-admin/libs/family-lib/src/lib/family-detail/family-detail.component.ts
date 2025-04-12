@@ -20,7 +20,6 @@ export class FamilyDetailComponent {
 
   constructor(private router: Router) {
     this.router.events.subscribe((params) => {
-      console.log(params);
       if (params instanceof NavigationEnd) {
       }
     });
@@ -29,6 +28,5 @@ export class FamilyDetailComponent {
   setSideNav() {}
 
   activeSideNavItem(path: string) {
-    console.log(path);
   }
 }

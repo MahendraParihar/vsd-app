@@ -121,7 +121,6 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageMandal = {
       mandalName: this.formGroup.value.mandalName,
       description: toHTML(this.formGroup.value.description),
