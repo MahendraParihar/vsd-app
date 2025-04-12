@@ -1,0 +1,21 @@
+<mat-toolbar class="mat-elevation-z3">
+  <button mat-icon-button (click)="homeClick()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 class="title-section">{{ labelService.getLabel(labelKeys.APP_NAME) }}</h1>
+  <span class="toolbar-spacer"></span>
+  <div>
+    <button [matMenuTriggerFor]="accountMenu" aria-label="Account"
+            mat-icon-button>
+      <mat-icon fontSet="material-icons-outlined">account_circle</mat-icon>
+    </button>
+    <mat-menu #accountMenu="matMenu">
+      @for (_br of _rightActionMenu; track _br.path; let index = $index) {
+        <button mat-menu-item (click)="onItemClick(index,_br)">
+          <mat-icon>{{ _br.iconName }}</mat-icon>
+          <span>{{ _br.title }}</span>
+        </button>
+      }
+    </mat-menu>
+  </div>
+</mat-toolbar>
