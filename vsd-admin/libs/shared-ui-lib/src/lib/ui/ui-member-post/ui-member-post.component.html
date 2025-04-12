@@ -1,0 +1,47 @@
+<div class="form-sub-section-box">
+  <div class="sub-section-header">
+    <shared-ui-lib-label [class]="'sub-title'"
+                  [label]="labelService.getLabel(LabelKey.SECTION_TITLE_MEMBER_POST)"></shared-ui-lib-label>
+    <shared-ui-lib-button [type]="'blue'" (actionBtnClicked)="addMemberPost(null)"
+                   [label]="labelService.getLabel(LabelKey.ACTION_ADD_POST)"></shared-ui-lib-button>
+  </div>
+  <div class="sub-section-body">
+    <form *ngIf="posts && formGroup" [formGroup]="membersPostFormGroup" class="form member-post-form-array m-t-medium">
+      <div class="member-post-box" formArrayName="membersPost"
+           *ngFor="let item of memberPostFormArray['controls']; let i = index;">
+        <div class="form-row" [formGroupName]="i">
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labelService.getLabel(LabelKey.SIDE_MENU_POST)"></shared-ui-lib-label>
+            <mat-form-field>
+              <mat-select #label formControlName="postId" required>
+                @for (option of posts; track option.postId) {
+                  <mat-option [value]="option.postId">{{ option.post }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labelService.labels"
+                                [controlName]="labelService.getLabel(LabelKey.SIDE_MENU_POST)"
+                                [control]="memberPostFormArray.controls[i].get('postId')"></shared-ui-lib-input-error>
+          </div>
+          <input hidden formControlName="familyIds" matInput required>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"></shared-ui-lib-label>
+            <shared-ui-lib-family-select [isMultiSelection]="true"
+                                  [isRequired]="true"
+                                  [masterList]="masterList"
+                                  [selectedIds]="_membersPost && _membersPost[i] ? _membersPost[i].familyIds : []"
+                                  (userChangeEvent)="onFamilyChange($event, i)"
+                                  [label]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"></shared-ui-lib-family-select>
+            <shared-ui-lib-input-error [labels]="labelService.labels"
+                                [controlName]="labelService.getLabel(LabelKey.SIDE_MENU_FAMILY)"
+                                [control]="memberPostFormArray.controls[i].get('familyIds')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-button [type]="'red'" (actionBtnClicked)="removeMemberPost(i)"
+                           [label]="labelService.getLabel(LabelKey.ACTION_REMOVE_POST)"></shared-ui-lib-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

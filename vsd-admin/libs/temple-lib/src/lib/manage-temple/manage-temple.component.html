@@ -1,0 +1,58 @@
+<mat-card class="form">
+  <mat-card-header>
+    <mat-card-title>{{ pageTitle }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-container-box">
+    <form [formGroup]="formGroup">
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.SIDE_MENU_TEMPLE)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #templeName formControlName="templeName" matInput required [maxlength]="75">
+            <mat-hint align="end">{{ templeName.value.length || 0 }}/75</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.SIDE_MENU_TEMPLE)"
+                              [control]="formGroup.get('templeName')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"></shared-ui-lib-label>
+          <div class="editor">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+            </ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="description">
+            </ngx-editor>
+          </div>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"
+                              [control]="formGroup.get('description')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+      <div class="form-row">
+        <shared-ui-lib-address-form class="address-box"
+                             [formGroup]="formGroup" [masterData]="addressMaster"
+                             [labels]="labelService.labels"></shared-ui-lib-address-form>
+      </div>
+      <div class="form-row">
+        <shared-ui-lib-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
+                            [labels]="labelService.labels"
+                            [isMultiFile]="false"
+                            [isRequired]="true"
+                            [uploadedMediaList]="temple ? temple.imagePath : []"
+                            [mediaFor]="mediaForEnum.TEMPLE"
+                            [mediaType]="fileTypeEnum.IMAGE"></shared-ui-lib-upload-form>
+      </div>
+      <shared-ui-lib-seo-form [seo]="seoData" [formGroup]="formGroup"></shared-ui-lib-seo-form>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <shared-ui-lib-button
+      type="red"
+      [label]="labelService.getLabel(labelKeys.ACTION_CANCEL)"
+      (actionBtnClicked)="onCancel()"></shared-ui-lib-button>
+    <shared-ui-lib-button type="success" (actionBtnClicked)="updateDetails()"
+                   [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></shared-ui-lib-button>
+  </mat-card-actions>
+</mat-card>

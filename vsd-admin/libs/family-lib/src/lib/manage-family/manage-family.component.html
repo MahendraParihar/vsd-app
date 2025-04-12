@@ -1,0 +1,86 @@
+<mat-card class="form">
+  <mat-card-header>
+    <mat-card-title>{{ pageTitle }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-container-box">
+    <form [formGroup]="formGroup">
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FIRST_NAME)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #title formControlName="firstName" matInput required [maxlength]="inputLength.CHAR_50">
+            <mat-hint align="end">{{ title.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.FIRST_NAME)"
+                              [control]="formGroup.get('firstName')"></shared-ui-lib-input-error>
+        </div>
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.MIDDLE_NAME)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #title formControlName="middleName" matInput required [maxlength]="inputLength.CHAR_50">
+            <mat-hint align="end">{{ title.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.MIDDLE_NAME)"
+                              [control]="formGroup.get('middleName')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.LAST_NAME)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #title formControlName="lastName" matInput required [maxlength]="inputLength.CHAR_50">
+            <mat-hint align="end">{{ title.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.LAST_NAME)"
+                              [control]="formGroup.get('lastName')"></shared-ui-lib-input-error>
+        </div>
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.EMAIL_ID)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #title formControlName="emailId" matInput required [maxlength]="inputLength.CHAR_100">
+            <mat-hint align="end">{{ title.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                              [controlName]="labelService.getLabel(labelKeys.EMAIL_ID)"
+                              [control]="formGroup.get('emailId')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="form-row">
+        <shared-ui-lib-address-form class="address-box"
+                             [formGroup]="formGroup" [masterData]="addressMaster"
+                             [labels]="labelService.labels"></shared-ui-lib-address-form>
+      </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="form-row">
+        <shared-ui-lib-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
+                            [labels]="labelService.labels"
+                            [isMultiFile]="false"
+                            [isRequired]="true"
+                            [uploadedMediaList]="family && family.imagePath ? family.imagePath : []"
+                            [mediaFor]="mediaForEnum.FAMILY"
+                            [mediaType]="fileTypeEnum.IMAGE"></shared-ui-lib-upload-form>
+      </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <shared-ui-lib-button
+      type="red"
+      [label]="labelService.getLabel(labelKeys.ACTION_CANCEL)"
+      (actionBtnClicked)="onCancel()"></shared-ui-lib-button>
+    <shared-ui-lib-button type="success" (actionBtnClicked)="updateDetails()"
+                   [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></shared-ui-lib-button>
+  </mat-card-actions>
+</mat-card>

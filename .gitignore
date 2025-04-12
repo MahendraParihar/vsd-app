@@ -5,6 +5,13 @@
 /admin/.vscode/
 /admin/package-lock.json
 
+/vsd-admin/node_modules/
+/vsd-admin/.angular/
+/vsd-admin/.nx/
+/vsd-admin/.idea/
+/vsd-admin/.vscode/
+/vsd-admin/package-lock.json
+
 /web-app/node_modules/
 /web-app/.angular/
 /web-app/.nx/

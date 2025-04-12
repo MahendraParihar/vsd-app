@@ -1,0 +1,185 @@
+<mat-card class="form">
+  <mat-card-header>
+    <mat-card-title>{{ pageTitle }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-container-box">
+    <form [formGroup]="formGroup">
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.SIDE_MENU_EVENT)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #title formControlName="title" matInput required [maxlength]="inputLength.CHAR_100">
+            <mat-hint align="end">{{ title.value.length || 0 }}/{{ inputLength.CHAR_100 }}</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                                     [controlName]="labelService.getLabel(labelKeys.SIDE_MENU_EVENT)"
+                                     [control]="formGroup.get('title')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_DATE)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #date [matDatepicker]="picker" formControlName="date" matInput required>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                                     [controlName]="labelService.getLabel(labelKeys.FORM_DATE)"
+                                     [control]="formGroup.get('date')"></shared-ui-lib-input-error>
+        </div>
+
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_TIME)"></shared-ui-lib-label>
+          <mat-form-field>
+            <input #time [matTimepicker]="timePicker" formControlName="time" matInput required>
+            <mat-timepicker-toggle matIconSuffix [for]="timePicker"></mat-timepicker-toggle>
+            <mat-timepicker interval="15min" #timePicker></mat-timepicker>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                                     [controlName]="labelService.getLabel(labelKeys.FORM_TIME)"
+                                     [control]="formGroup.get('time')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"></shared-ui-lib-label>
+          <div class="editor">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+            </ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="description">
+            </ngx-editor>
+          </div>
+          <shared-ui-lib-input-error [labels]="labelService.labels"
+                                     [controlName]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"
+                                     [control]="formGroup.get('description')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+      <div class="form-sub-section-box">
+        <div class="sub-section-header">
+          <shared-ui-lib-label [class]="'sub-title'"
+                               [label]="labelService.getLabel(labelKeys.AGENDA)"></shared-ui-lib-label>
+          <shared-ui-lib-button [type]="'blue'" (actionBtnClicked)="addAgendaDay(null)"
+                                [label]="labelService.getLabel(labelKeys.ACTION_ADD_AGENDA)"></shared-ui-lib-button>
+        </div>
+        <div class="sub-section-body">
+          <div class="agenda-section-body" formArrayName="agenda">
+            <ng-container *ngFor="let item of agendaDayFormArray['controls']; let i = index;">
+              <div class="agenda-item-box" [formGroupName]="i">
+                <div class="header-item">
+                  <div class="form-group">
+                    <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_DATE)"></shared-ui-lib-label>
+                    <mat-form-field>
+                      <input [matDatepicker]="datePickerViewRef_i" formControlName="date" matInput required>
+                      <mat-datepicker-toggle matIconSuffix [for]="datePickerViewRef_i"></mat-datepicker-toggle>
+                      <mat-datepicker #datePickerViewRef_i></mat-datepicker>
+                    </mat-form-field>
+                    <shared-ui-lib-input-error [labels]="labelService.labels"
+                                               [controlName]="labelService.getLabel(labelKeys.FORM_DATE)"
+                                               [control]="agendaDayFormArray.controls[i].get('date')"></shared-ui-lib-input-error>
+                  </div>
+                  <shared-ui-lib-button [type]="'red'" (actionBtnClicked)="removeAgendaDay(i)"
+                                        [label]="labelService.getLabel(labelKeys.ACTION_REMOVE_AGENDA)"></shared-ui-lib-button>
+                </div>
+
+                <div class="agenda-detail-box" formArrayName="details">
+                  <ng-container *ngFor="let item1 of getAgendaDayDetailsFormArray(i)['controls']; let j = index;">
+                    <div class="agenda-detail-item" [formGroupName]="j">
+                      <div class="input-box">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <shared-ui-lib-label
+                              [label]="labelService.getLabel(labelKeys.FORM_AGENDA_TITLE)"></shared-ui-lib-label>
+                            <mat-form-field>
+                              <input #title_i_j formControlName="title" matInput required
+                                     [maxlength]="inputLength.CHAR_100">
+                              <mat-hint align="end">{{ title_i_j.value.length || 0 }}/{{ inputLength.CHAR_100 }}
+                              </mat-hint>
+                            </mat-form-field>
+                            <shared-ui-lib-input-error [labels]="labelService.labels"
+                                                       [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_TITLE)"
+                                                       [control]="getAgendaDayDetailsFormArray(i).controls[j].get('title')"></shared-ui-lib-input-error>
+                          </div>
+                          <div class="form-group">
+                            <shared-ui-lib-label
+                              [label]="labelService.getLabel(labelKeys.FORM_AGENDA_TIME)"></shared-ui-lib-label>
+                            <mat-form-field>
+                              <input [matTimepicker]="timePickerViewRef_i_j" formControlName="time" matInput required>
+                              <mat-timepicker-toggle matIconSuffix [for]="timePickerViewRef_i_j"></mat-timepicker-toggle>
+                              <mat-timepicker interval="15min" #timePickerViewRef_i_j></mat-timepicker>
+                            </mat-form-field>
+                            <shared-ui-lib-input-error [labels]="labelService.labels"
+                                                       [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_TIME)"
+                                                       [control]="getAgendaDayDetailsFormArray(i).controls[j].get('time')"></shared-ui-lib-input-error>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <shared-ui-lib-label
+                              [label]="labelService.getLabel(labelKeys.FORM_AGENDA_DESC)"></shared-ui-lib-label>
+                            <mat-form-field>
+                              <textarea #desc_i_j formControlName="details" matInput required></textarea>
+                              <mat-hint align="end">{{ desc_i_j.value.length || 0 }}/{{ inputLength.CHAR_200 }}
+                              </mat-hint>
+                            </mat-form-field>
+                            <shared-ui-lib-input-error [labels]="labelService.labels"
+                                                       [controlName]="labelService.getLabel(labelKeys.FORM_AGENDA_DESC)"
+                                                       [control]="getAgendaDayDetailsFormArray(i).controls[j].get('details')"></shared-ui-lib-input-error>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="agenda-detail-remove">
+                        <shared-ui-lib-button *ngIf="j === 0" [type]="'blue'"
+                                              (actionBtnClicked)="addAgendaDayDetails(i,null)"
+                                              [label]="labelService.getLabel(labelKeys.ACTION_ADD)"></shared-ui-lib-button>
+                        <shared-ui-lib-button *ngIf="j > 0" [type]="'red'"
+                                              (actionBtnClicked)="removeAgendaDayDetails(i,j)"
+                                              [label]="labelService.getLabel(labelKeys.ACTION_REMOVE)"></shared-ui-lib-button>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="form-row">
+        <shared-ui-lib-address-form class="address-box"
+                                    [formGroup]="formGroup" [masterData]="addressMaster"
+                                    [labels]="labelService.labels"></shared-ui-lib-address-form>
+      </div>
+
+      <div class="form-row">
+        <shared-ui-lib-upload-form class="file-upload-box" [controlName]="'uploadFiles'" [formGroup]="formGroup"
+                                   [labels]="labelService.labels"
+                                   [isMultiFile]="false"
+                                   [isRequired]="true"
+                                   [uploadedMediaList]="event ? event.imagePath : []"
+                                   [mediaFor]="mediaForEnum.EVENT"
+                                   [mediaType]="fileTypeEnum.IMAGE"></shared-ui-lib-upload-form>
+      </div>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <shared-ui-lib-seo-form [seo]="seoData" [formGroup]="formGroup"></shared-ui-lib-seo-form>
+      <div class="form-row">
+        <mat-divider></mat-divider>
+      </div>
+      <shared-ui-lib-member-post-form [formGroup]="formGroup"></shared-ui-lib-member-post-form>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <shared-ui-lib-button
+      type="red"
+      [label]="labelService.getLabel(labelKeys.ACTION_CANCEL)"
+      (actionBtnClicked)="onCancel()"></shared-ui-lib-button>
+    <shared-ui-lib-button type="success" (actionBtnClicked)="updateDetails()"
+                          [label]="labelService.getLabel(labelKeys.ACTION_SUBMIT)"></shared-ui-lib-button>
+  </mat-card-actions>
+</mat-card>
