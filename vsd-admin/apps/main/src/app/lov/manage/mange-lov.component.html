@@ -1,0 +1,25 @@
+<ng-container *ngIf="_type" [ngSwitch]="_type">
+  <lovs-lib-manage-job-category *ngSwitchCase="'job-category'" [id]="id"></lovs-lib-manage-job-category>
+  <lovs-lib-manage-job-sub-category *ngSwitchCase="'job-sub-category'" [id]="id"></lovs-lib-manage-job-sub-category>
+  <lovs-lib-manage-job-type *ngSwitchCase="'job-type'" [id]="id"></lovs-lib-manage-job-type>
+  <lovs-lib-manage-job-status *ngSwitchCase="'job-status'" [id]="id"></lovs-lib-manage-job-status>
+  <lovs-lib-manage-city-village *ngSwitchCase="'city-village'" [id]="id"></lovs-lib-manage-city-village>
+  <lovs-lib-manage-district *ngSwitchCase="'district'" [id]="id"></lovs-lib-manage-district>
+  <lovs-lib-manage-state *ngSwitchCase="'state'" [id]="id"></lovs-lib-manage-state>
+  <lovs-lib-manage-country *ngSwitchCase="'country'" [id]="id"></lovs-lib-manage-country>
+  <lovs-lib-manage-service *ngSwitchCase="'service'" [id]="id"></lovs-lib-manage-service>
+  <lovs-lib-manage-business *ngSwitchCase="'business'" [id]="id"></lovs-lib-manage-business>
+  <lovs-lib-manage-gender *ngSwitchCase="'gender'" [id]="id"></lovs-lib-manage-gender>
+  <lovs-lib-manage-caste *ngSwitchCase="'caste'" [id]="id"></lovs-lib-manage-caste>
+  <lovs-lib-manage-relationship *ngSwitchCase="'relationship'" [id]="id"></lovs-lib-manage-relationship>
+  <lovs-lib-manage-religion *ngSwitchCase="'religion'" [id]="id"></lovs-lib-manage-religion>
+  <lovs-lib-manage-gotra *ngSwitchCase="'gotra'" [id]="id"></lovs-lib-manage-gotra>
+  <lovs-lib-manage-raasi *ngSwitchCase="'raasi'" [id]="id"></lovs-lib-manage-raasi>
+  <lovs-lib-manage-education-degree *ngSwitchCase="'education-degree'" [id]="id"></lovs-lib-manage-education-degree>
+  <lovs-lib-manage-addition *ngSwitchCase="'addiction'" [id]="id"></lovs-lib-manage-addition>
+  <lovs-lib-manage-marital-status *ngSwitchCase="'marital-status'" [id]="id"></lovs-lib-manage-marital-status>
+  <lovs-lib-manage-contact-type *ngSwitchCase="'contact-type'" [id]="id"></lovs-lib-manage-contact-type>
+  <lovs-lib-manage-address-type *ngSwitchCase="'address-type'" [id]="id"></lovs-lib-manage-address-type>
+  <lovs-lib-manage-faq-category *ngSwitchCase="'faq-category'" [id]="id"></lovs-lib-manage-faq-category>
+  <lovs-lib-manage-post *ngSwitchCase="'post'"></lovs-lib-manage-post>
+</ng-container>

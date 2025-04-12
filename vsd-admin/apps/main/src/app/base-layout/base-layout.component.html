@@ -1,0 +1,25 @@
+<div class="main-container">
+  <shared-ui-lib-ui-header
+    (clickEvent)="headerMenuItemClick($event)"
+    (homeClickEvent)="snav.toggle()"
+    [rightActionMenu]="buildRightActionMenu()"
+  ></shared-ui-lib-ui-header>
+  <mat-sidenav-container [style.marginTop.px]="isMobile() ? 56 : 0"
+                         class="main-sidenav-container">
+    <mat-sidenav #snav [fixedInViewport]="isMobile()"
+                 [mode]="isMobile() ? 'over' : 'side'"
+                 [opened]="!isMobile()" fixedTopGap="56">
+      <mat-list *ngIf="_sideNavList" aria-label="Main navigation" id="app-nav">
+        @for (_item of _sideNavList; track _item; let index = $index) {
+          <mat-list-item [activated]="_item.isActive" (click)="menuItemClick(index, _item)">
+            <mat-icon>{{ _item.iconName }}</mat-icon>
+            <span>{{ _item.title }}</span>
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
