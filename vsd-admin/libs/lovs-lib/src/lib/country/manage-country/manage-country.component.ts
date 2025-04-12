@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
@@ -14,7 +13,6 @@ import { CountryService } from '../country.service';
   styleUrl: './manage-country.component.scss',
 })
 export class ManageCountryComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -23,16 +21,18 @@ export class ManageCountryComponent implements OnInit {
   lovModel!: IManageCountry;
 
   formGroup: FormGroup = new FormGroup({
-    country: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
-    countryCode: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
-    phoneNumberCode: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
+    country: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_100)]),
+    countryCode: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_5)]),
+    phoneNumberCode: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_5)]),
   });
 
-  constructor( private service: CountryService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
+  constructor(
+    private service: CountryService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
     this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_COUNTRY : this.labelKeys.ADD_COUNTRY);
     this.title.setTitle(this.pageTitle);
   }
@@ -55,6 +55,8 @@ export class ManageCountryComponent implements OnInit {
     }
     this.formGroup.patchValue({
       country: this.lovModel.country,
+      countryCode: this.lovModel.countryCode,
+      phoneNumberCode: this.lovModel.phoneNumberCode,
     });
   }
 
@@ -74,11 +76,13 @@ export class ManageCountryComponent implements OnInit {
       phoneNumberCode: this.formGroup.value.phoneNumberCode,
     };
     if (this.id) {
-      payload.countryId = this.id;
+      payload.countryId = Number(this.id);
     }
     try {
       await this.service.manageCountry(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));
