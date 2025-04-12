@@ -70,7 +70,7 @@ export class ManageGotraComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.gotraId = this.id;
+      payload.gotraId = Number(this.id);
     }
     try {
       await this.service.manageGotra(payload);

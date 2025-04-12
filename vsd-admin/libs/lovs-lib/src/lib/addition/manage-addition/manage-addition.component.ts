@@ -70,7 +70,7 @@ export class ManageAdditionComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.addictionId = this.id;
+      payload.addictionId = Number(this.id);
     }
     try {
       await this.service.manageAddiction(payload);

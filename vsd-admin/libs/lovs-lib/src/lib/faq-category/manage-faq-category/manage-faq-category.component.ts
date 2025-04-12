@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
@@ -14,7 +13,6 @@ import { FaqCategoryService } from '../faq-category.service';
   styleUrl: './manage-faq-category.component.scss',
 })
 export class ManageFaqCategoryComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -27,12 +25,16 @@ export class ManageFaqCategoryComponent implements OnInit {
     url: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_100)]),
   });
 
-  constructor( private service: FaqCategoryService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_FAQ_CATEGORY : this.labelKeys.ADD_FAQ_CATEGORY);
+  constructor(
+    private service: FaqCategoryService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
+    this.pageTitle = this.labelService.getLabel(
+      this.id ? this.labelKeys.EDIT_FAQ_CATEGORY : this.labelKeys.ADD_FAQ_CATEGORY,
+    );
     this.title.setTitle(this.pageTitle);
   }
 
@@ -54,6 +56,7 @@ export class ManageFaqCategoryComponent implements OnInit {
     }
     this.formGroup.patchValue({
       faqCategory: this.lovModel.faqCategory,
+      url: this.lovModel.url,
     });
   }
 
@@ -72,11 +75,13 @@ export class ManageFaqCategoryComponent implements OnInit {
       url: this.formGroup.value.url,
     };
     if (this.id) {
-      payload.faqCategoryId = this.id;
+      payload.faqCategoryId = Number(this.id);
     }
     try {
       await this.service.manageFaqCategory(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

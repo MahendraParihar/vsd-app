@@ -65,13 +65,12 @@ export class ManageReligionComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageReligion = {
       religion: this.formGroup.value.religion,
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.religionId = this.id;
+      payload.religionId = Number(this.id);
     }
     try {
       await this.service.manageReligion(payload);

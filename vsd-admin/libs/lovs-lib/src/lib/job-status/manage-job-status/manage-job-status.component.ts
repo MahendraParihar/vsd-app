@@ -70,7 +70,7 @@ export class ManageJobStatusComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.jobStatusId = this.id;
+      payload.jobStatusId = Number(this.id);
     }
     try {
       await this.service.manageJobStatus(payload);

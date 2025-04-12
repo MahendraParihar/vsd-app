@@ -13,7 +13,7 @@ export class FaqCategoryDto implements IManageFaqCategory {
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(250)
+  @MaxLength(200)
   url: string;
 
   @IsOptional()

@@ -8,8 +8,8 @@
         <div class='form-group'>
           <shared-ui-lib-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_ADDICTION)'></shared-ui-lib-label>
           <mat-form-field>
-            <input #addiction formControlName='addiction' matInput required [maxlength]='150'>
-            <mat-hint align='end'>{{ addiction.value.length || 0 }}/150</mat-hint>
+            <input #addiction formControlName='addiction' matInput required [maxlength]='50'>
+            <mat-hint align='end'>{{ addiction.value.length || 0 }}/50</mat-hint>
           </mat-form-field>
           <shared-ui-lib-input-error [labels]='labelService.labels'
                               [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_ADDICTION)'

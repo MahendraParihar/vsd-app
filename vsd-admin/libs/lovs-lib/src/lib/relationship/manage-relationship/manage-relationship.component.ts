@@ -72,7 +72,7 @@ export class ManageRelationshipComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.relationshipId = this.id;
+      payload.relationshipId = Number(this.id);
     }
     try {
       await this.service.manageRelationship(payload);
