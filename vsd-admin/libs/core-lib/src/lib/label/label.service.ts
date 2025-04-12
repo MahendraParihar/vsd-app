@@ -25,7 +25,6 @@ export class LabelService {
 
   getLabel(key: string): string {
     if (this.labels.size === 0) {
-      console.log(this.storageService.getLabels());
       this.labels = this.storageService.getLabels();
     }
     const l = this.labels.get(key) as string;

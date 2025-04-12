@@ -100,7 +100,6 @@ export class ManageBannerComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageBanner = {
       title: this.formGroup.value.title,
       subTitle: this.formGroup.value.subTitle,

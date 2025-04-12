@@ -1,15 +1,15 @@
-import { IManageAddiction, IMediaUpload } from '@vsd-common/lib';
+import { IManageAddressType, IMediaUpload, InputLength } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class AddressTypeDto implements IManageAddiction {
+export class AddressTypeDto implements IManageAddressType {
   @IsOptional()
   @IsNumber()
-  addictionId?: number;
+  addressTypeId?: number;
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(50)
-  addiction: string;
+  @MaxLength(InputLength.CHAR_50)
+  addressType: string;
 
   @IsOptional()
   @IsArray()

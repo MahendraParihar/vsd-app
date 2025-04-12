@@ -70,7 +70,7 @@ export class ManageServiceComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.serviceId = this.id;
+      payload.serviceId = Number(this.id);
     }
     try {
       await this.service.manageService(payload);

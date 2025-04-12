@@ -1,4 +1,4 @@
-import { IManageAddiction, IMediaUpload } from '@vsd-common/lib';
+import { IManageAddiction, IMediaUpload, InputLength } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class AddictionDto implements IManageAddiction {
@@ -8,7 +8,7 @@ export class AddictionDto implements IManageAddiction {
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(50)
+  @MaxLength(InputLength.CHAR_50)
   addiction: string;
 
   @IsOptional()

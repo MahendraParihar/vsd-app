@@ -35,9 +35,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   }
 
   private modifyBody(body: any, status: any) {
-    console.log('------------------------------------modifyBody');
-    console.log(body);
-    console.log(status);
     return body;
   }
 

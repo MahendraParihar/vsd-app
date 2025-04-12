@@ -1,4 +1,4 @@
-import { IManageCaste, IMediaUpload } from '@vsd-common/lib';
+import { IManageCaste, IMediaUpload, InputLength } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CasteDto implements IManageCaste {
@@ -8,7 +8,7 @@ export class CasteDto implements IManageCaste {
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(50)
+  @MaxLength(InputLength.CHAR_50)
   caste: string;
 
   @IsOptional()

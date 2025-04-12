@@ -65,13 +65,12 @@ export class ManageBusinessComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageBusiness = {
       business: this.formGroup.value.business,
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.businessId = this.id;
+      payload.businessId = Number(this.id);
     }
     try {
       await this.service.manageBusiness(payload);

@@ -70,7 +70,7 @@ export class ManageCasteComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.casteId = this.id;
+      payload.casteId = Number(this.id);
     }
     try {
       await this.service.manageCaste(payload);
