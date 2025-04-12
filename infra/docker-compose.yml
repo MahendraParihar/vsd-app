@@ -1,6 +1,6 @@
 services:
-  main:
-    container_name: vsd-server-main
+  core:
+    container_name: vsd-server-core
     image: vsd-server
     command: sh -c "cd server && node dist/apps/main/main.js"
     restart: always
@@ -13,7 +13,7 @@ services:
     ports:
       - "8001:3330"
     healthcheck:
-      test: [ 'CMD', 'curl', '-f', 'http://localhost:3330/api/main/health' ]
+      test: [ 'CMD', 'curl', '-f', 'http://localhost:3330/api/core/health' ]
       interval: 20s
       retries: 5
       start_period: 5s
@@ -24,7 +24,7 @@ services:
     command: sh -c "cd server && node dist/apps/event/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -45,7 +45,7 @@ services:
     command: sh -c "cd server && node dist/apps/family/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -66,7 +66,7 @@ services:
     command: sh -c "cd server && node dist/apps/job/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -87,7 +87,7 @@ services:
     command: sh -c "cd server && node dist/apps/lovs/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -108,7 +108,7 @@ services:
     command: sh -c "cd server && node dist/apps/mandal/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -129,7 +129,7 @@ services:
     command: sh -c "cd server && node dist/apps/news/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -150,7 +150,7 @@ services:
     command: sh -c "cd server && node dist/apps/temple/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -171,7 +171,7 @@ services:
     command: sh -c "cd server && node dist/apps/facility/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -192,7 +192,7 @@ services:
     command: sh -c "cd server && node dist/apps/matrimonial/main.js"
     restart: always
     depends_on:
-      - main
+      - core
     volumes:
       - assets:/home/app/assets
     env_file:
@@ -218,7 +218,7 @@ services:
     ports:
       - "443:443"
     depends_on:
-      - main
+      - core
   vsd-admin:
     container_name: vsd-admin
     image: vsd-admin
@@ -230,7 +230,7 @@ services:
     ports:
       - "8090:80"
     depends_on:
-      - main
+      - core
 
 volumes:
   assets:

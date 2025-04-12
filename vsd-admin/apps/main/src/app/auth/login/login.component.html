@@ -1,0 +1,36 @@
+<div class="login-container gradient-orange-pink">
+  <div class="login-box">
+    <img src="../../../../public/logo_img.svg">
+    <div class="title-section">
+      <shared-ui-lib-label [class]="'title'"
+                           [label]="labelService.getLabel(labelKeys.LOGIN_PAGE_TITLE)"></shared-ui-lib-label>
+      <shared-ui-lib-label [class]="'body'"
+                           [label]="labelService.getLabel(labelKeys.LOGIN_SUB_TITLE)"></shared-ui-lib-label>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="formGroup" class="form-box">
+      <mat-form-field>
+        <mat-label>{{ labelService.getLabel(labelKeys.INPUT_USER_NAME) }}</mat-label>
+        <input formControlName="userName" matInput required>
+        <mat-error>
+          <shared-ui-lib-input-error [controlName]="'Email id or contact number'"
+                                     [control]="formControl['userName']"></shared-ui-lib-input-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ labelService.getLabel(labelKeys.INPUT_PASSWORD) }}</mat-label>
+        <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput required>
+        <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+                mat-icon-button
+                matSuffix>
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error>
+          <shared-ui-lib-input-error [controlName]="'password'"
+                                     [control]="formControl['password']"></shared-ui-lib-input-error>
+        </mat-error>
+      </mat-form-field>
+      <shared-ui-lib-button (actionBtnClicked)="submit()" [label]="labelService.getLabel(labelKeys.ACTION_LOGIN)"
+                            [type]="'red'"></shared-ui-lib-button>
+    </form>
+  </div>
+</div>

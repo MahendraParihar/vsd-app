@@ -1,0 +1,6 @@
+<div *ngFor="let item of _breadcrumbList; let i = index;">
+  <button (click)="onItemClicked(item)" color="primary" disabled="{{i===_breadcrumbList.length-1}}"
+          mat-button>{{ item.title }}
+  </button>
+  <span *ngIf="i!==_breadcrumbList.length-1">/</span>
+</div>

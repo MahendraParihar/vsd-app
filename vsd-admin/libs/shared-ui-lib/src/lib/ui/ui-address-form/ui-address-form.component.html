@@ -1,0 +1,129 @@
+<div class="form-sub-section-box">
+  <div class="sub-section-header">
+    <shared-ui-lib-label [class]="'sub-title'"
+                  [label]="labels.get(LabelKey.SECTION_TITLE_ADDRESS)"></shared-ui-lib-label>
+  </div>
+  <div class="sub-section-body">
+    <form *ngIf="formGroup && masterData" [formGroup]="addressFormGroup">
+      <div class="address-box">
+        <div class="form-row">
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.ADDRESS_TYPE)"></shared-ui-lib-label>
+            <mat-form-field>
+              <mat-select formControlName="addressTypeId">
+                <mat-option>None</mat-option>
+                @for (state of masterData.addressTypes; track state) {
+                  <mat-option [value]="state.id">{{ state.title }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.ADDRESS_TYPE)"
+                                [control]="addressFormGroup.get('addressTypeId')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.ADDRESS)"></shared-ui-lib-label>
+            <mat-form-field>
+              <input #address formControlName="address" matInput required [maxlength]="inputLength.MAX_ADDRESS">
+              <mat-hint align="end">{{ address.value.length || 0 }}/{{ inputLength.MAX_ADDRESS }}</mat-hint>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.ADDRESS)"
+                                [control]="addressFormGroup.get('address')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.COUNTRY)"></shared-ui-lib-label>
+            <mat-form-field>
+              <mat-select formControlName="countryId" (selectionChange)="findStates($event.value)">
+                <mat-option>None</mat-option>
+                @for (state of masterData.countries; track state) {
+                  <mat-option [value]="state.id">{{ state.title }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.COUNTRY)"
+                                [control]="addressFormGroup.get('countryId')"></shared-ui-lib-input-error>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.STATE)"></shared-ui-lib-label>
+            <mat-form-field>
+              <mat-select formControlName="stateId" (selectionChange)="findDistricts($event.value)">
+                <mat-option>None</mat-option>
+                @for (state of stateList; track state) {
+                  <mat-option [value]="state.id">{{ state.title }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.STATE)"
+                                [control]="addressFormGroup.get('stateId')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.DISTRICT)"></shared-ui-lib-label>
+            <mat-form-field>
+              <mat-select formControlName="districtId" (selectionChange)="findCityVillages($event.value)">
+                <mat-option>None</mat-option>
+                @for (state of districtList; track state) {
+                  <mat-option [value]="state.id">{{ state.title }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.DISTRICT)"
+                                [control]="addressFormGroup.get('districtId')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.CITY_VILLAGE)"></shared-ui-lib-label>
+            <mat-form-field>
+              <mat-select formControlName="cityVillageId">
+                <mat-option>None</mat-option>
+                @for (state of cityVillageList; track state) {
+                  <mat-option [value]="state.id">{{ state.title }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.CITY_VILLAGE)"
+                                [control]="addressFormGroup.get('cityVillageId')"></shared-ui-lib-input-error>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.PIN_CODE)"></shared-ui-lib-label>
+            <mat-form-field>
+              <input #pinCode formControlName="pinCode" matInput required [maxlength]="inputLength.CHAR_10">
+              <mat-hint align="end">{{ pinCode.value.length || 0 }}/{{ inputLength.CHAR_10 }}</mat-hint>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.PIN_CODE)"
+                                [control]="addressFormGroup.get('pinCode')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.LATITUDE)"></shared-ui-lib-label>
+            <mat-form-field>
+              <input #latitude formControlName="latitude" matInput [maxlength]="inputLength.CHAR_50">
+              <mat-hint align="end">{{ latitude.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.LATITUDE)"
+                                [control]="addressFormGroup.get('latitude')"></shared-ui-lib-input-error>
+          </div>
+          <div class="form-group">
+            <shared-ui-lib-label [label]="labels.get(LabelKey.LONGITUDE)"></shared-ui-lib-label>
+            <mat-form-field>
+              <input #longitude formControlName="longitude" matInput [maxlength]="inputLength.CHAR_50">
+              <mat-hint align="end">{{ longitude.value.length || 0 }}/{{ inputLength.CHAR_50 }}</mat-hint>
+            </mat-form-field>
+            <shared-ui-lib-input-error [labels]="labels"
+                                [controlName]="labels.get(LabelKey.LONGITUDE)"
+                                [control]="addressFormGroup.get('longitude')"></shared-ui-lib-input-error>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

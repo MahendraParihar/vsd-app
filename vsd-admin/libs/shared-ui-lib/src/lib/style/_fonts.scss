@@ -1,0 +1,126 @@
+/*
+ *	WebFont Package Licensed to VSD.
+ */
+
+/* Roboto Standard Black */
+$Roboto: Roboto Standard;
+
+/* Roboto Standard Thin */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_thin.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_thin.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto Standard Light */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_light.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_light.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto Standard Regular */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_regular.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_regular.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto Standard Medium  */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_medium.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_medium.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto Standard Bold */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_bold.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_bold.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto Standard Extra Bold */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_black.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_black.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto Standard Thin */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_thinItalic.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_thinItalic.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Roboto Standard Light */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_lightItalic.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_lightItalic.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Roboto Standard Regular */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_italic.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_italic.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Roboto Standard Medium  */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_mediumItalic.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_mediumItalic.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Roboto Standard Bold */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_boldItalic.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_boldItalic.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Roboto Standard Extra Bold */
+@font-face {
+  font-family: $Roboto;
+  src: url('./../fonts/roboto/roboto_blackItalic.ttf') format('ttf'),
+    /* Super Modern Browsers */ url('./../fonts/roboto/roboto_blackItalic.ttf') format('ttf'); /* Pretty Modern Browsers */
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}

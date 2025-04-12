@@ -1,0 +1,35 @@
+<mat-form-field>
+  <mat-chip-grid #chipList>
+    <mat-chip (removed)="remove(j)" *ngFor="let item of selectedItemList; let j = index" [removable]="removable">
+      {{ item.title }}
+      <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input #searchInput (matChipInputTokenEnd)="add($event)" [formControl]="searchCtrl" [matAutocomplete]="auto"
+           [matChipInputAddOnBlur]="addOnBlur"
+           [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [required]="isRequired"
+           matInput
+           placeholder="{{labelService.getLabel(LabelKey.SEARCH_FAMILY_MEMBER_HINT)}}">
+  </mat-chip-grid>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngIf="checkLoadStage() === LoadingStages.LOADING">
+      <mat-spinner [mode]="'indeterminate'" [diameter]="'18'"></mat-spinner>
+    </mat-option>
+    <mat-option
+      *ngIf="checkLoadStage() === LoadingStages.EMPTY_SET && (!searchCtrl.value || searchCtrl.value.length === 0)">
+      {{ labelService.getLabel(LabelKey.SEARCH_FAMILY_HINT) }}
+    </mat-option>
+    <mat-option
+      *ngIf="checkLoadStage() === LoadingStages.EMPTY_SET &&  (searchCtrl.value && searchCtrl.value.length > 0) && (!filteredList || filteredList.length === 0)">
+      {{ labelService.getLabel(LabelKey.SEARCH_EMPTY_RESULT) }}
+    </mat-option>
+    <ng-container *ngIf="checkLoadStage() === LoadingStages.LOADED && filteredList && filteredList.length > 0">
+      <mat-option *ngFor="let obj of filteredList" [value]="obj">
+        <div class="user-item">
+          <div class="text-container">
+            {{ obj.title }}
+          </div>
+        </div>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</mat-form-field>

@@ -1,0 +1,14 @@
+<mat-menu #appMenu="matMenu">
+  <ng-template matMenuContent>
+    <div class="change-status-container">
+      <div class="title">{{ title }}</div>
+      <div class="description">{{ description }}</div>
+      <shared-ui-lib-button [type]="'blue'" (click)="onPositiveClick()" [label]="positiveBtnLabel"></shared-ui-lib-button>
+      <shared-ui-lib-button [type]="'negative'" (click)="onNegativeClick()" [label]="negativeBtnLabel"></shared-ui-lib-button>
+    </div>
+  </ng-template>
+</mat-menu>
+<button mat-icon-button [matMenuTriggerFor]="appMenu">
+  <mat-icon color="accent" *ngIf="status">close</mat-icon>
+  <mat-icon color="primary" *ngIf="!status">check</mat-icon>
+</button>

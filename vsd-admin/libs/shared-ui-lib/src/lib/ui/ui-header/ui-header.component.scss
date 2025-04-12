@@ -1,0 +1,20 @@
+mat-toolbar {
+  color: white !important;
+  background: #FF9771 !important;
+  background: -webkit-linear-gradient(90deg, #FF9771, #FF81A3) !important;
+  background: linear-gradient(90deg, #FF9771, #FF81A3) !important;
+  background: -moz-linear-gradient(90deg, #FF9771, #FF81A3) !important;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.main-sidenav-container {
+  flex: 1;
+}
+
+.mat-sidenav-content {
+  overflow: hidden !important;
+  background: #f1f1f1 !important;
+}

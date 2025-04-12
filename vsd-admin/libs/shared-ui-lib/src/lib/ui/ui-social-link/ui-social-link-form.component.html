@@ -1,0 +1,44 @@
+<form *ngIf="formGroup" [formGroup]="socialFormGroup" class="form social-link-form-array m-t-medium">
+  <div class="form-row">
+    <div class="form-group">
+      <shared-ui-lib-button [type]="'blue'" (actionBtnClicked)="addSocialLink(null)"
+                     [label]="labelService.getLabel(labelKeys.ACTION_ADD_SOCIAL_LINK)"></shared-ui-lib-button>
+    </div>
+  </div>
+  <div class="social-link-box" formArrayName="socialSiteLink"
+       *ngFor="let item of socialLinkFormArray['controls']; let i = index;">
+    <div class="form-row" [formGroupName]="i">
+      <div class="form-group">
+        <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.LABEL)"></shared-ui-lib-label>
+        <mat-form-field>
+          <input #label formControlName="label" matInput required>
+        </mat-form-field>
+        <shared-ui-lib-input-error [labels]="labelService.labels"
+                            [controlName]="labelService.getLabel(labelKeys.LABEL)"
+                            [control]="socialLinkFormArray.controls[i].get('label')"></shared-ui-lib-input-error>
+      </div>
+      <div class="form-group">
+        <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.LINK)"></shared-ui-lib-label>
+        <mat-form-field>
+          <input #link formControlName="link" matInput required>
+        </mat-form-field>
+        <shared-ui-lib-input-error [labels]="labelService.labels"
+                            [controlName]="labelService.getLabel(labelKeys.LINK)"
+                            [control]="socialLinkFormArray.controls[i].get('link')"></shared-ui-lib-input-error>
+      </div>
+      <div class="form-group">
+        <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.LOGO)"></shared-ui-lib-label>
+        <mat-form-field>
+          <input #icon formControlName="icon" matInput required>
+        </mat-form-field>
+        <shared-ui-lib-input-error [labels]="labelService.labels"
+                            [controlName]="labelService.getLabel(labelKeys.LOGO)"
+                            [control]="socialLinkFormArray.controls[i].get('icon')"></shared-ui-lib-input-error>
+      </div>
+      <div class="form-group">
+        <shared-ui-lib-button [type]="'red'" (actionBtnClicked)="removeSocialLink(i)"
+                       [label]="labelService.getLabel(labelKeys.ACTION_REMOVE_SOCIAL_LINK)"></shared-ui-lib-button>
+      </div>
+    </div>
+  </div>
+</form>

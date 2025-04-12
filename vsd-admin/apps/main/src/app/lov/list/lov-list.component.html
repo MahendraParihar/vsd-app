@@ -1,0 +1,35 @@
+<ng-container *ngIf="_type" [ngSwitch]="_type">
+  <lovs-lib-job-category *ngSwitchCase="'job-category'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-job-category>
+  <lovs-lib-job-sub-category *ngSwitchCase="'job-sub-category'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-job-sub-category>
+  <lovs-lib-job-type *ngSwitchCase="'job-type'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-job-type>
+  <lovs-lib-job-status *ngSwitchCase="'job-status'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-job-status>
+
+  <lovs-lib-city-village *ngSwitchCase="'city-village'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-city-village>
+  <lovs-lib-district *ngSwitchCase="'district'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-district>
+  <lovs-lib-state *ngSwitchCase="'state'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-state>
+  <lovs-lovs-lib-country *ngSwitchCase="'country'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lovs-lib-country>
+
+  <lovs-lib-service *ngSwitchCase="'service'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-service>
+  <lovs-lib-business *ngSwitchCase="'business'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-business>
+
+  <lovs-lib-gender *ngSwitchCase="'gender'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-gender>
+  <lovs-lib-caste *ngSwitchCase="'caste'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-caste>
+  <lovs-lib-relationship *ngSwitchCase="'relationship'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-relationship>
+  <lovs-lib-religion *ngSwitchCase="'religion'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-religion>
+  <lovs-lib-gotra *ngSwitchCase="'gotra'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-gotra>
+  <lovs-lib-raasi *ngSwitchCase="'raasi'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-raasi>
+
+  <lovs-lib-education-degree *ngSwitchCase="'education-degree'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-education-degree>
+  <lovs-lib-addition *ngSwitchCase="'addiction'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-addition>
+  <lovs-lib-marital-status *ngSwitchCase="'marital-status'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-marital-status>
+  <lovs-lib-matrimonial-status *ngSwitchCase="'matrimonial-status'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-matrimonial-status>
+  <lovs-lib-matrimonial-requested-status *ngSwitchCase="'matrimonial-requested-status'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-matrimonial-requested-status>
+
+  <lovs-lib-contact-type *ngSwitchCase="'contact-type'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-contact-type>
+  <lovs-lib-address-type *ngSwitchCase="'address-type'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-address-type>
+
+  <lovs-lib-faq-category *ngSwitchCase="'faq-category'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-faq-category>
+
+  <lovs-lib-post *ngSwitchCase="'post'" (addEvent)="addClick($event)" (editEvent)="editClick($event)"></lovs-lib-post>
+
+</ng-container>
