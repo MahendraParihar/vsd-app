@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import {TableDataDatasource} from '../table-data.datasource';
+import { TableDataDatasource } from '../table-data.datasource';
 import {
   HttpService,
   LabelService,
@@ -7,15 +7,15 @@ import {
   NavigationPathEnum,
   NavigationService,
   PAGE_SIZE_LIST,
-  SnackBarService
+  SnackBarService,
 } from '@vsd-frontend/core-lib';
-import {MatPaginator} from '@angular/material/paginator';
-import {debounceTime, distinctUntilChanged, tap} from 'rxjs';
-import {LovApiUrl} from '../api-url';
-import {IAddressTypeList, ITableListFilter, LabelKey} from '@vsd-common/lib';
-import {FormControl} from '@angular/forms';
-import {Title} from '@angular/platform-browser';
-import {CountryService} from "../country/country.service";
+import { MatPaginator } from '@angular/material/paginator';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { LovApiUrl } from '../api-url';
+import { IAddressTypeList, ITableListFilter, LabelKey } from '@vsd-common/lib';
+import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { AddressTypeService } from './address-type.service';
 
 @Component({
   selector: 'lovs-lib-address-type',
@@ -55,22 +55,18 @@ export class AddressTypeComponent implements OnInit, AfterViewInit {
     private httpService: HttpService,
     public labelService: LabelService,
     private pageTitle: Title,
-    private service: CountryService,
+    private service: AddressTypeService,
     private navigationService: NavigationService,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_ADDRESS_TYPE);
     this.pageTitle.setTitle(this.title);
     this.dataSource = new TableDataDatasource(this.httpService);
-    this.dataSource.totalCount.subscribe(
-      (count: number) => (this.totalCount = count)
-    );
-    this.searchControl.valueChanges
-      .pipe(debounceTime(400), distinctUntilChanged())
-      .subscribe((query) => {
-        this.paginator.pageIndex = 0;
-        this.loadDataSet();
-      });
+    this.dataSource.totalCount.subscribe((count: number) => (this.totalCount = count));
+    this.searchControl.valueChanges.pipe(debounceTime(400), distinctUntilChanged()).subscribe((query) => {
+      this.paginator.pageIndex = 0;
+      this.loadDataSet();
+    });
   }
 
   async ngOnInit() {
@@ -92,12 +88,12 @@ export class AddressTypeComponent implements OnInit, AfterViewInit {
   }
 
   edit(obj: IAddressTypeList) {
-    this.editEvent.emit({path: NavigationPathEnum.ADDRESS_TYPE_MANAGE, id: obj.addressTypeId});
+    this.editEvent.emit({ path: NavigationPathEnum.ADDRESS_TYPE_MANAGE, id: obj.addressTypeId });
   }
 
   async changeStatus(status: boolean, index: number, obj: IAddressTypeList) {
     await this.service.changeStatus(obj.addressTypeId, !obj.active);
-    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
 
@@ -107,13 +103,9 @@ export class AddressTypeComponent implements OnInit, AfterViewInit {
   }
 
   async loadDataSet(): Promise<void> {
-    this.payload.search = this.searchControl.value
-      ? this.searchControl.value
-      : '';
+    this.payload.search = this.searchControl.value ? this.searchControl.value : '';
     this.payload.page = this.paginator ? this.paginator.pageIndex : 0;
-    this.payload.limit = this.paginator
-      ? this.paginator.pageSize
-      : MASTER_PAGE_SIZE;
+    this.payload.limit = this.paginator ? this.paginator.pageSize : MASTER_PAGE_SIZE;
     await this.dataSource.loadData(LovApiUrl.ADDRESS_TYPE, this.payload);
   }
 }

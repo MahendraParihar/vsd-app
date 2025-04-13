@@ -81,6 +81,7 @@ import { RelationshipService } from './relationship/relationship.service';
 import { ReligionService } from './religion/religion.service';
 import { ServiceService } from './service/service.service';
 import { StateService } from './state/state.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -143,6 +144,7 @@ import { StateService } from './state/state.service';
     FormsModule,
     SharedUiLibModule,
     MatCardModule,
+    MatSelectModule,
   ],
   providers: [
     AddictionService,

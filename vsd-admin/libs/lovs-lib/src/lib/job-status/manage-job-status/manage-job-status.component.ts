@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
@@ -14,7 +13,6 @@ import { JobStatusService } from '../job-status.service';
   styleUrl: './manage-job-status.component.scss',
 })
 export class ManageJobStatusComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -26,12 +24,16 @@ export class ManageJobStatusComponent implements OnInit {
     jobStatus: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
   });
 
-  constructor( private service: JobStatusService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_JOB_STATUS : this.labelKeys.ADD_JOB_STATUS);
+  constructor(
+    private service: JobStatusService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
+    this.pageTitle = this.labelService.getLabel(
+      this.id ? this.labelKeys.EDIT_JOB_STATUS : this.labelKeys.ADD_JOB_STATUS,
+    );
     this.title.setTitle(this.pageTitle);
   }
 
@@ -74,7 +76,9 @@ export class ManageJobStatusComponent implements OnInit {
     }
     try {
       await this.service.manageJobStatus(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

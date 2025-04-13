@@ -1,1 +1,59 @@
-<p>manage-district works!</p>
+<mat-card class='form' *ngIf="addressMaster">
+  <mat-card-header>
+    <mat-card-title>{{ pageTitle }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class='form-container-box'>
+    <form [formGroup]='formGroup'>
+      <div class='form-row'>
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.COUNTRY)"></shared-ui-lib-label>
+          <mat-form-field>
+            <mat-select formControlName="countryId" (selectionChange)="findStates($event.value)">
+              <mat-option>None</mat-option>
+              @for (state of addressMaster.countries; track state) {
+                <mat-option [value]="state.id">{{ state.title }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]='labelService.labels'
+                                     [controlName]='labelService.getLabel(labelKeys.COUNTRY)'
+                                     [control]="formGroup.get('countryId')"></shared-ui-lib-input-error>
+        </div>
+        <div class="form-group">
+          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.STATE)"></shared-ui-lib-label>
+          <mat-form-field>
+            <mat-select formControlName="stateId">
+              <mat-option>None</mat-option>
+              @for (state of stateList; track state) {
+                <mat-option [value]="state.id">{{ state.title }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]='labelService.labels'
+                                     [controlName]='labelService.getLabel(labelKeys.STATE)'
+                                     [control]="formGroup.get('stateId')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='form-group'>
+          <shared-ui-lib-label [label]='labelService.getLabel(labelKeys.DISTRICT)'></shared-ui-lib-label>
+          <mat-form-field>
+            <input #title formControlName='district' matInput required [maxlength]='100'>
+            <mat-hint align='end'>{{ title.value.length || 0 }}/100</mat-hint>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]='labelService.labels'
+                                     [controlName]='labelService.getLabel(labelKeys.DISTRICT)'
+                                     [control]="formGroup.get('district')"></shared-ui-lib-input-error>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align='end'>
+    <shared-ui-lib-button
+      type='red'
+      [label]='labelService.getLabel(labelKeys.ACTION_CANCEL)'
+      (actionBtnClicked)='onCancel()'></shared-ui-lib-button>
+    <shared-ui-lib-button type='success' (actionBtnClicked)='updateDetails()'
+                          [label]='labelService.getLabel(labelKeys.ACTION_SUBMIT)'></shared-ui-lib-button>
+  </mat-card-actions>
+</mat-card>

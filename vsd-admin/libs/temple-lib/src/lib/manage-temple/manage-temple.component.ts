@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UiAddressFormComponent, ValidationUtil } from '@vsd-frontend/shared-ui-lib';
-import { ActivatedRoute } from '@angular/router';
 import { AddressService, LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { FileTypeEnum, IAddressMaster, ICommonSEO, IManageTemple, LabelKey, MediaForEnum } from '@vsd-common/lib';
@@ -15,7 +14,6 @@ import { TempleService } from '../temple.service';
   styleUrl: './manage-temple.component.scss',
 })
 export class ManageTempleComponent implements OnInit, OnDestroy {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -34,13 +32,14 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
 
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
 
-  constructor( private templeService: TempleService,
-              public labelService: LabelService, private title: Title,
-              private addressService: AddressService,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
-
+  constructor(
+    private templeService: TempleService,
+    public labelService: LabelService,
+    private title: Title,
+    private addressService: AddressService,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
     this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_TEMPLE : this.labelKeys.ADD_TEMPLE);
     this.title.setTitle(this.pageTitle);
   }
@@ -106,7 +105,9 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
     }
     try {
       await this.templeService.manageTemple(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

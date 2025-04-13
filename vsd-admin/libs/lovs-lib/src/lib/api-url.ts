@@ -77,4 +77,5 @@ export enum LovApiUrl {
   SERVICE_STATUS = `${BASE_URL}service/status`,
   STATE = `${BASE_URL}state`,
   STATE_STATUS = `${BASE_URL}state/status`,
+  MANAGE_STATUS = `${BASE_URL}state/manage`,
 }

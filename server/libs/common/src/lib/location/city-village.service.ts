@@ -72,7 +72,7 @@ export class CityVillageService {
   }
 
   async getById(id: number) {
-    const obj = await this.cityVillageModel.findOne({ where: { cityVillageId: id }, nest:true, raw: true });
+    const obj = await this.cityVillageModel.findOne({ where: { cityVillageId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_ADDICTION));
     }
@@ -104,8 +104,10 @@ export class CityVillageService {
 
   async manage(obj: IManageCityVillage, userId: number) {
     const dataObj = {
-      addiction: obj.cityVillage,
+      cityVillage: obj.cityVillage,
       districtId: obj.districtId,
+      stdCode: obj.stdCode ? obj.stdCode : null,
+      pinCode: obj.pinCode ? obj.pinCode : null,
       updatedBy: userId,
     };
     if (obj.cityVillageId) {

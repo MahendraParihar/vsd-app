@@ -5,7 +5,6 @@ import {
   LabelService,
   MASTER_PAGE_SIZE,
   NavigationPathEnum,
-  NavigationService,
   PAGE_SIZE_LIST,
   SnackBarService,
 } from '@vsd-frontend/core-lib';
@@ -15,7 +14,7 @@ import { LovApiUrl } from '../api-url';
 import { IPostList, ITableListFilter, LabelKey } from '@vsd-common/lib';
 import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { CountryService } from '../country/country.service';
+import { PostService } from './post.service';
 
 @Component({
   selector: 'lovs-lib-post',
@@ -55,8 +54,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     private httpService: HttpService,
     public labelService: LabelService,
     private pageTitle: Title,
-    private service: CountryService,
-    private navigationService: NavigationService,
+    private service: PostService,
     private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_POST);
