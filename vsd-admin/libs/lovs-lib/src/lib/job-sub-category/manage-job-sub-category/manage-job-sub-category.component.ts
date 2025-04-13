@@ -1,11 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
-import { FileTypeEnum, IManageJobSubCategory, InputLength, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import {
+  FileTypeEnum,
+  IJobCategory,
+  IManageJobSubCategory,
+  InputLength,
+  LabelKey,
+  MediaForEnum,
+} from '@vsd-common/lib';
 import { JobSubCategoryService } from '../job-sub-category.service';
+import { JobCategoryService } from '../../job-category/job-category.service';
 
 @Component({
   selector: 'lovs-lib-manage-job-sub-category',
@@ -14,30 +21,35 @@ import { JobSubCategoryService } from '../job-sub-category.service';
   styleUrl: './manage-job-sub-category.component.scss',
 })
 export class ManageJobSubCategoryComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
   fileTypeEnum = FileTypeEnum;
   mediaForEnum = MediaForEnum;
   lovModel!: IManageJobSubCategory;
+  jobCategory: IJobCategory[] = [];
 
   formGroup: FormGroup = new FormGroup({
     jobSubCategory: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
     jobCategoryId: new FormControl(null, [Validators.required]),
   });
 
-  constructor( private service: JobSubCategoryService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
-
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_JOB_SUB_CATEGORY : this.labelKeys.ADD_JOB_SUB_CATEGORY);
+  constructor(
+    private service: JobSubCategoryService,
+    private jobCategoryService: JobCategoryService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
+    this.pageTitle = this.labelService.getLabel(
+      this.id ? this.labelKeys.EDIT_JOB_SUB_CATEGORY : this.labelKeys.ADD_JOB_SUB_CATEGORY,
+    );
     this.title.setTitle(this.pageTitle);
   }
 
   async ngOnInit() {
+    this.jobCategory = await this.jobCategoryService.loadJobCategory();
     await this.loadDetail();
   }
 
@@ -55,6 +67,7 @@ export class ManageJobSubCategoryComponent implements OnInit {
     }
     this.formGroup.patchValue({
       jobSubCategory: this.lovModel.jobSubCategory,
+      jobCategoryId: this.lovModel.jobCategoryId,
     });
   }
 
@@ -73,11 +86,13 @@ export class ManageJobSubCategoryComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.jobSubCategoryId = this.id;
+      payload.jobSubCategoryId = Number(this.id);
     }
     try {
       await this.service.manageJobSubCategory(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

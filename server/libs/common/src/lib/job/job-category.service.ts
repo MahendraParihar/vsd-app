@@ -3,13 +3,13 @@ import { JobCategoryModel } from '../models/job';
 import { InjectModel } from '@nestjs/sequelize';
 import {
   IBaseAdminUser,
-  IJobCategoryList,
-  ITableListFilter,
-  ITableList,
-  LabelKey,
-  IStatusChange,
-  IManageJobCategory,
   IJobCategory,
+  IJobCategoryList,
+  IManageJobCategory,
+  IStatusChange,
+  ITableList,
+  ITableListFilter,
+  LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
 import { LabelService } from '../label';
@@ -59,6 +59,13 @@ export class JobCategoryService {
       data: data,
       count: count,
     };
+  }
+
+  async loadAll(): Promise<IJobCategory[]> {
+    const rows = await this.jobCategoryModel.scope('list').findAll({
+      order: [['jobCategory', 'asc']],
+    });
+    return rows as IJobCategory[];
   }
 
   async getById(id: number): Promise<IJobCategory> {

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { JobCategoryService, TableListDto, StatusChangeDto } from '@server/common';
-import { IJobCategoryList, ITableList } from '@vsd-common/lib';
+import { JobCategoryService, StatusChangeDto, TableListDto } from '@server/common';
+import { IJobCategory, IJobCategoryList, ITableList } from '@vsd-common/lib';
 import { JobCategoryDto } from './dto/job-category.dto';
 
 @Controller('job-category')
@@ -39,6 +39,15 @@ export class JobCategoryController {
   manageJobCategory(@Body() body: JobCategoryDto, userId: number) {
     try {
       return this.jobCategoryService.manage(body, userId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Get()
+  loadAllJobCategories(): Promise<IJobCategory[]> {
+    try {
+      return this.jobCategoryService.loadAll();
     } catch (e) {
       throw new Error(e);
     }
