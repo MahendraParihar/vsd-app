@@ -20,6 +20,15 @@ export class FaqCategoryService {
               private labelService: LabelService) {
   }
 
+  async loadAllFaqs(): Promise<IFaqCategory[]> {
+    const where = {};
+    const rows = await this.faqCategoryModel.findAll({
+      where: where,
+      order: [['faqCategory', 'asc']],
+    });
+    return rows as IFaqCategory[];
+  }
+
   async load(payload: ITableListFilter): Promise<ITableList<IFaqCategoryList>> {
     const where = {};
     if (payload.search) {

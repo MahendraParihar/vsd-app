@@ -1,21 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {
-  FileTypeEnum,
-  IAddressMaster,
-  ICommonSEO,
-  IManageFaq,
-  InputLength,
-  IOption,
-  LabelKey,
-  MediaForEnum,
-} from '@vsd-common/lib';
+import { IAddressMaster, ICommonSEO, IFaqCategory, IManageFaq, InputLength, IOption, LabelKey } from '@vsd-common/lib';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { FaqService } from '../faq.service';
 import { Title } from '@angular/platform-browser';
 import { LabelService, NavigationService, SnackBarService, TOOLBAR } from '@vsd-frontend/core-lib';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { Editor, toDoc, toHTML, Toolbar } from 'ngx-editor';
+import { FaqCategoryService } from '@vsd-frontend/lovs-lib';
 
 @Component({
   selector: 'faq-lib-manage-faq',
@@ -29,30 +20,28 @@ export class ManageFaqComponent implements OnInit, OnDestroy {
   @Input() id!: number;
   pageTitle!: string;
   addressMaster!: IAddressMaster;
-  fileTypeEnum = FileTypeEnum;
-  mediaForEnum = MediaForEnum;
   faq!: IManageFaq;
   seoData!: ICommonSEO;
   category: IOption[] = [];
   toolbar: Toolbar = TOOLBAR;
   editor!: Editor;
+  faqCategories!: IFaqCategory[];
 
   formGroup: FormGroup = new FormGroup({
-    faq: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_100)]),
+    faq: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_500)]),
     answer: new FormControl(null),
     faqCategoryId: new FormControl(null, [Validators.required]),
   });
 
   constructor(
-
     private service: FaqService,
+    private faqCategoryService: FaqCategoryService,
     public labelService: LabelService,
     private title: Title,
     private snackBarService: SnackBarService,
     private navigation: NavigationService,
   ) {
-
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_BANNER : this.labelKeys.ADD_BANNER);
+    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_FAQ : this.labelKeys.ADD_FAQ);
     this.title.setTitle(this.pageTitle);
   }
 
@@ -63,6 +52,7 @@ export class ManageFaqComponent implements OnInit, OnDestroy {
       keyboardShortcuts: true,
       inputRules: true,
     });
+    this.faqCategories = await this.faqCategoryService.loadAll();
     await this.loadDetail();
   }
 
@@ -100,7 +90,7 @@ export class ManageFaqComponent implements OnInit, OnDestroy {
       answer: toHTML(this.formGroup.value.answer),
     };
     if (this.id) {
-      payload.faqId = this.id;
+      payload.faqId = Number(this.id);
     }
     try {
       await this.service.manageFaq(payload);

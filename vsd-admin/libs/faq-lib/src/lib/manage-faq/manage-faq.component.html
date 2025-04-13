@@ -4,6 +4,23 @@
   </mat-card-header>
   <mat-card-content class="form-container-box">
     <form [formGroup]="formGroup" class="form">
+      <div class='form-row'>
+        <div class='form-group'>
+          <shared-ui-lib-label
+            [label]='labelService.getLabel(labelKeys.SIDE_MENU_FAQ_CATEGORY)'></shared-ui-lib-label>
+          <mat-form-field>
+            <mat-select formControlName="faqCategoryId">
+              <mat-option>None</mat-option>
+              @for (state of faqCategories; track state) {
+                <mat-option [value]="state.faqCategoryId">{{ state.faqCategory }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <shared-ui-lib-input-error [labels]='labelService.labels'
+                                     [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_FAQ_CATEGORY)'
+                                     [control]="formGroup.get('faqCategoryId')"></shared-ui-lib-input-error>
+        </div>
+      </div>
       <div class="form-row">
         <div class="form-group">
           <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_TITLE)"></shared-ui-lib-label>
@@ -28,20 +45,6 @@
           <shared-ui-lib-input-error [labels]="labelService.labels"
                                      [controlName]="labelService.getLabel(labelKeys.FORM_DESCRIPTION)"
                                      [control]="formGroup.get('answer')"></shared-ui-lib-input-error>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <shared-ui-lib-label [label]="labelService.getLabel(labelKeys.FORM_BANNER_FOR)"></shared-ui-lib-label>
-          <mat-form-field>
-            <mat-select formControlName="faqCategoryId" required>
-              <mat-option>---------</mat-option>
-              <mat-option *ngFor="let o of category" [value]="o.id">{{ o.title }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <shared-ui-lib-input-error [labels]="labelService.labels"
-                                     [controlName]="labelService.getLabel(labelKeys.FORM_BANNER_FOR)"
-                                     [control]="formGroup.get('faqCategoryId')"></shared-ui-lib-input-error>
         </div>
       </div>
     </form>

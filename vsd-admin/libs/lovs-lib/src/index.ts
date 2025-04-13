@@ -29,6 +29,7 @@ export * from './lib/education-degree/manage-education-degree/manage-education-d
 
 export * from './lib/faq-category/faq-category.component';
 export * from './lib/faq-category/manage-faq-category/manage-faq-category.component';
+export * from './lib/faq-category/faq-category.service';
 
 export * from './lib/gender/gender.component';
 export * from './lib/gender/manage-gender/manage-gender.component';

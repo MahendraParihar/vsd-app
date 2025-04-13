@@ -1,11 +1,20 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { FaqCategoryService, TableListDto, StatusChangeDto } from '@server/common';
-import { IFaqCategoryList, ITableList } from '@vsd-common/lib';
+import { FaqCategoryService, StatusChangeDto, TableListDto } from '@server/common';
+import { IFaqCategory, IFaqCategoryList, ITableList } from '@vsd-common/lib';
 import { FaqCategoryDto } from './dto/faq-category.dto';
 
 @Controller('faq-category')
 export class FaqCategoryController {
   constructor(private faqCategoryService: FaqCategoryService) {
+  }
+
+  @Get()
+  loadAllFaqCategories(): Promise<IFaqCategory[]> {
+    try {
+      return this.faqCategoryService.loadAllFaqs();
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   @Post()

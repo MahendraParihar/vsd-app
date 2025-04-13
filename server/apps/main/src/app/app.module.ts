@@ -15,10 +15,13 @@ import { InquiryModel } from './misc/models/inquiry.model';
 import { BannerController } from './banner/banner.controller';
 import { BannerService } from './banner/banner.service';
 import { BannerModel } from './banner/models/banner.model';
+import { FaqController } from './faq/faq.controller';
+import { FaqService } from './faq/faq.service';
+import { FaqModel } from './faq/models/faq.model';
 
 @Module({
   imports: [
-    CommonModule.forRoot([InquiryModel, BannerModel], []),
+    CommonModule.forRoot([InquiryModel, BannerModel, FaqModel], []),
     LabelModule.asyncRegister(['admin']),
     ServeStaticModule.forRoot({
       rootPath: Env.persistentStorageAssetPath,
@@ -30,7 +33,8 @@ import { BannerModel } from './banner/models/banner.model';
     PagesController,
     InquiryController,
     BannerController,
+    FaqController,
   ],
-  providers: [AppService, InquiryService, BannerService],
+  providers: [AppService, InquiryService, BannerService, FaqService],
 })
 export class AppModule {}
