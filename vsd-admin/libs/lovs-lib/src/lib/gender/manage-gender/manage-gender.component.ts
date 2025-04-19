@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
@@ -14,7 +13,6 @@ import { GenderService } from '../gender.service';
   styleUrl: './manage-gender.component.scss',
 })
 export class ManageGenderComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -26,11 +24,13 @@ export class ManageGenderComponent implements OnInit {
     gender: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
   });
 
-  constructor( private service: GenderService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
+  constructor(
+    private service: GenderService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
     this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_GENDER : this.labelKeys.ADD_GENDER);
     this.title.setTitle(this.pageTitle);
   }
@@ -65,17 +65,18 @@ export class ManageGenderComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageGender = {
       gender: this.formGroup.value.gender,
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.genderId = this.id;
+      payload.genderId = Number(this.id);
     }
     try {
       await this.service.manageGender(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { IMandalList, ITableList, LabelKey } from '@vsd-common/lib';
+import { Component, inject, OnInit } from '@angular/core';
+import { IBannerList, IMandalList, ITableList, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { MandalService } from './services/mandal.service';
-import { insertDummyEntry, LabelService } from '@core-lib';
+import { BannerService, LabelService } from '@core-lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -12,9 +12,11 @@ import { Router } from '@angular/router';
   styleUrl: './mandal.component.scss',
 })
 export class MandalComponent implements OnInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
+
   dataSet!: ITableList<IMandalList>;
   pageTitle!: string | undefined;
-  labelKey = LabelKey;
 
   constructor(private mandalService: MandalService,
               public labelService: LabelService,
@@ -28,23 +30,13 @@ export class MandalComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.MANDAL);
     await this.loadData();
   }
 
   async loadData() {
     this.dataSet = await this.mandalService.loadMandals(0);
     this.bindSEOData();
-  }
-
-  get dummyEntry() {
-    if (this.dataSet.data && this.dataSet.data.length > 0) {
-      return insertDummyEntry(this.dataSet.data);
-    }
-    return [];
-  }
-
-  getAddress(item: IMandalList) {
-    return `${item.address.district}, ${item.address.state}`;
   }
 
   onClick(item: IMandalList) {

@@ -15,7 +15,7 @@ import { LovApiUrl } from '../api-url';
 import { IAddictionList, ITableListFilter, LabelKey } from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
-import { CountryService } from '../country/country.service';
+import { AddictionService } from './addiction.service';
 
 @Component({
   selector: 'lovs-lib-addition',
@@ -55,7 +55,7 @@ export class AdditionComponent implements OnInit, AfterViewInit {
     private httpService: HttpService,
     public labelService: LabelService,
     private pageTitle: Title,
-    private service: CountryService,
+    private service: AddictionService,
     private navigationService: NavigationService,
     private snackbarService: SnackBarService,
   ) {

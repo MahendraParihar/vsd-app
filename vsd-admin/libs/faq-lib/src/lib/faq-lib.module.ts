@@ -12,6 +12,7 @@ import { FaqComponent } from './faq/faq.component';
 import { ManageFaqComponent } from './manage-faq/manage-faq.component';
 import { FaqService } from './faq.service';
 import { NgxEditorModule } from 'ngx-editor';
+import { LovsLibModule } from '@vsd-frontend/lovs-lib';
 
 @NgModule({
   declarations: [FaqComponent, ManageFaqComponent],
@@ -25,6 +26,7 @@ import { NgxEditorModule } from 'ngx-editor';
     MatNativeDateModule,
     MatDividerModule,
     CoreLibModule,
+    LovsLibModule,
     NgxEditorModule.forRoot(ngxEditor),
   ],
   exports: [FaqComponent, ManageFaqComponent],

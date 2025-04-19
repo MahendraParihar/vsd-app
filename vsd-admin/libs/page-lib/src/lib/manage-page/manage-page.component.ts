@@ -79,12 +79,10 @@ export class ManagePageComponent implements OnInit, OnDestroy {
   }
 
   async updateDetails() {
-    console.log(this.formGroup);
     ValidationUtil.validateAllFormFields(this.formGroup);
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageLegalPage = {
       title: this.formGroup.value.title,
       details: this.formGroup.value.details,

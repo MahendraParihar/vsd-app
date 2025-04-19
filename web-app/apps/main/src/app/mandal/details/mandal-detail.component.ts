@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MandalService } from '../services/mandal.service';
-import { IMandalDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
+import { IBannerList, IMandalDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { LabelService } from '@core-lib';
 
@@ -12,6 +12,7 @@ import { LabelService } from '@core-lib';
 })
 export class MandalDetailComponent {
   mandal!: IMandalDetail;
+  banners: IBannerList[] = [];
   _url!: string;
 
   @Input()
@@ -28,6 +29,14 @@ export class MandalDetailComponent {
 
   async loadData() {
     this.mandal = await this.mandalService.loadMandalDetails(this._url);
+    if (this.mandal.imagePath && this.mandal.imagePath.length > 0) {
+      this.banners = this.mandal.imagePath.map((imagePath) => {
+        return <IBannerList>{
+          title: this.mandal.mandalName,
+          imagePath: this.mandal.imagePath[0],
+        }
+      })
+    }
     this.bindSEOData();
   }
 

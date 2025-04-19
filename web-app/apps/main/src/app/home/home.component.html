@@ -1,6 +1,5 @@
 <div class="home-section main-section">
-  <shared-ui-lib-uikit-banner
-    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <shared-ui-lib-uikit-banner [banner]="banners"></shared-ui-lib-uikit-banner>
   <div class="home-event-section" *ngIf="upcomingEvents && upcomingEvents.length> 0">
     <shared-ui-lib-uikit-label *ngIf="eventTitle" [class]="['mat-headline-3']"
                                [label]="eventTitle"></shared-ui-lib-uikit-label>

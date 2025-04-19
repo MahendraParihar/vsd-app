@@ -10,7 +10,6 @@ export class PageTitleStrategy extends TitleStrategy {
   private readonly labelService = inject(LabelService);
 
   override updateTitle(routerState: RouterStateSnapshot) {
-    console.log(routerState);
     const title = this.buildTitle(routerState);
     if (title !== undefined) {
       this.title.setTitle(`${this.labelService.getLabel(LabelKey.APP_NAME)} | ${title}`);

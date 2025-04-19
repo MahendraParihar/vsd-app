@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
@@ -14,7 +13,6 @@ import { EducationDegreeService } from '../education-degree.service';
   styleUrl: './manage-education-degree.component.scss',
 })
 export class ManageEducationDegreeComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -26,12 +24,16 @@ export class ManageEducationDegreeComponent implements OnInit {
     degree: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
   });
 
-  constructor( private service: EducationDegreeService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_EDUCATION_DEGREE : this.labelKeys.ADD_EDUCATION_DEGREE);
+  constructor(
+    private service: EducationDegreeService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
+    this.pageTitle = this.labelService.getLabel(
+      this.id ? this.labelKeys.EDIT_EDUCATION_DEGREE : this.labelKeys.ADD_EDUCATION_DEGREE,
+    );
     this.title.setTitle(this.pageTitle);
   }
 
@@ -65,17 +67,18 @@ export class ManageEducationDegreeComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageEducationDegree = {
       degree: this.formGroup.value.degree,
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.educationDegreeId = this.id;
+      payload.educationDegreeId = Number(this.id);
     }
     try {
       await this.service.manageEducationDegree(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

@@ -1,6 +1,5 @@
 <div class="event-detail-section" *ngIf="event">
-  <shared-ui-lib-uikit-banner
-    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <shared-ui-lib-uikit-banner [banner]="banners"></shared-ui-lib-uikit-banner>
   <div class="event-detail-content main-section">
     <div class="flex-d">
       <shared-ui-lib-uikit-label *ngIf="event.title" [class]="['mat-headline-3']"

@@ -48,5 +48,5 @@ export class BannerDto implements IManageBanner {
 
   @IsNotEmpty()
   @IsArray()
-  imagePath: IMediaUpload[];
+  imagePath: IMediaUpload;
 }

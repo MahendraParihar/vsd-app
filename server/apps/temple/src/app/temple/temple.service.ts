@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IAddressDetail,
   IBaseAdminUser,
   IManageTemple,
@@ -13,7 +14,7 @@ import {
 } from '@vsd-common/lib';
 import { TempleModel } from '../models/temple.model';
 import { Op } from 'sequelize';
-import { AddressService, LabelService } from '@server/common';
+import { AddressService, AppConfigService, buildImageUrl, LabelService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
@@ -21,6 +22,7 @@ export class TempleService {
   constructor(@InjectModel(TempleModel) private templeModel: typeof TempleModel,
               private labelService: LabelService,
               private sequelize: Sequelize,
+              private appConfigService: AppConfigService,
               private addressService: AddressService) {
   }
 
@@ -129,7 +131,7 @@ export class TempleService {
     return <ITempleList>{
       templeId: data.templeId,
       templeName: data.templeName,
-      imagePath: data.imagePath,
+      imagePath: buildImageUrl(data.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL)),
       tags: data.tags,
       description: data.description,
       metaTitle: data.metaTitle,

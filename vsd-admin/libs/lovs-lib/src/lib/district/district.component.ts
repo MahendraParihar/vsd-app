@@ -1,21 +1,20 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import {TableDataDatasource} from '../table-data.datasource';
+import { TableDataDatasource } from '../table-data.datasource';
 import {
   HttpService,
   LabelService,
   MASTER_PAGE_SIZE,
   NavigationPathEnum,
-  NavigationService,
   PAGE_SIZE_LIST,
-  SnackBarService
+  SnackBarService,
 } from '@vsd-frontend/core-lib';
-import {MatPaginator} from '@angular/material/paginator';
-import {debounceTime, distinctUntilChanged, tap} from 'rxjs';
-import {LovApiUrl} from '../api-url';
-import {IDistrictList, ITableListFilter, LabelKey} from '@vsd-common/lib';
-import {FormControl} from '@angular/forms';
-import {Title} from '@angular/platform-browser';
-import {CountryService} from "../country/country.service";
+import { MatPaginator } from '@angular/material/paginator';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { LovApiUrl } from '../api-url';
+import { IDistrictList, ITableListFilter, LabelKey } from '@vsd-common/lib';
+import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { DistrictService } from './district.service';
 
 @Component({
   selector: 'lovs-lib-district',
@@ -56,22 +55,17 @@ export class DistrictComponent implements OnInit, AfterViewInit {
     private httpService: HttpService,
     public labelService: LabelService,
     private pageTitle: Title,
-    private service: CountryService,
-    private navigationService: NavigationService,
-    private snackbarService: SnackBarService
+    private service: DistrictService,
+    private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_DISTRICT);
     this.pageTitle.setTitle(this.title);
     this.dataSource = new TableDataDatasource(this.httpService);
-    this.dataSource.totalCount.subscribe(
-      (count: number) => (this.totalCount = count)
-    );
-    this.searchControl.valueChanges
-      .pipe(debounceTime(400), distinctUntilChanged())
-      .subscribe((query) => {
-        this.paginator.pageIndex = 0;
-        this.loadDataSet();
-      });
+    this.dataSource.totalCount.subscribe((count: number) => (this.totalCount = count));
+    this.searchControl.valueChanges.pipe(debounceTime(400), distinctUntilChanged()).subscribe((query) => {
+      this.paginator.pageIndex = 0;
+      this.loadDataSet();
+    });
   }
 
   async ngOnInit() {
@@ -93,12 +87,12 @@ export class DistrictComponent implements OnInit, AfterViewInit {
   }
 
   edit(obj: IDistrictList) {
-    this.editEvent.emit({path: NavigationPathEnum.DISTRICT_MANAGE, id: obj.districtId});
+    this.editEvent.emit({ path: NavigationPathEnum.DISTRICT_MANAGE, id: obj.districtId });
   }
 
   async changeStatus(status: boolean, index: number, obj: IDistrictList) {
     await this.service.changeStatus(obj.districtId, !obj.active);
-    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
 
@@ -108,13 +102,9 @@ export class DistrictComponent implements OnInit, AfterViewInit {
   }
 
   async loadDataSet(): Promise<void> {
-    this.payload.search = this.searchControl.value
-      ? this.searchControl.value
-      : '';
+    this.payload.search = this.searchControl.value ? this.searchControl.value : '';
     this.payload.page = this.paginator ? this.paginator.pageIndex : 0;
-    this.payload.limit = this.paginator
-      ? this.paginator.pageSize
-      : MASTER_PAGE_SIZE;
+    this.payload.limit = this.paginator ? this.paginator.pageSize : MASTER_PAGE_SIZE;
     await this.dataSource.loadData(LovApiUrl.DISTRICT, this.payload);
   }
 }

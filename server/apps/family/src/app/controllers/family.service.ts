@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IAddressDetail,
   IBaseAdminUser,
   IFamily,
@@ -12,7 +13,7 @@ import {
   LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
-import { AddressService, FamilyModel, LabelService } from '@server/common';
+import { AddressService, AppConfigService, buildImageUrl, FamilyModel, LabelService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
@@ -20,6 +21,7 @@ export class FamilyService {
   constructor(@InjectModel(FamilyModel) private familyModel: typeof FamilyModel,
               private addressService: AddressService,
               private sequelize: Sequelize,
+              private appConfigService: AppConfigService,
               private labelService: LabelService) {
   }
 
@@ -149,7 +151,7 @@ export class FamilyService {
       familyId: data.familyId,
       firstName: data.firstName,
       lastName: data.lastName,
-      imagePath: data.imagePath,
+      imagePath: buildImageUrl(data.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL)),
       emailId: data.emailId,
       middleName: data.middleName,
       visitedCount: data.visitedCount,

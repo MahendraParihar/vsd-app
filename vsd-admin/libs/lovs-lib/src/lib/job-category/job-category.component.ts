@@ -1,22 +1,21 @@
 import { AfterViewInit, Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
-import {TableDataDatasource} from '../table-data.datasource';
+import { TableDataDatasource } from '../table-data.datasource';
 import {
   HttpService,
   LabelService,
   MASTER_PAGE_SIZE,
   NavigationPathEnum,
-  NavigationService,
   PAGE_SIZE_LIST,
-  SnackBarService
+  SnackBarService,
 } from '@vsd-frontend/core-lib';
-import {IJobCategoryList, ITableListFilter, LabelKey} from '@vsd-common/lib';
-import {MatPaginator} from '@angular/material/paginator';
-import {LovApiUrl} from '../api-url';
-import {debounceTime, distinctUntilChanged, tap} from 'rxjs';
-import {FormControl} from "@angular/forms";
-import {Title} from "@angular/platform-browser";
-import {CountryService} from "../country/country.service";
+import { IJobCategoryList, ITableListFilter, LabelKey } from '@vsd-common/lib';
+import { MatPaginator } from '@angular/material/paginator';
+import { LovApiUrl } from '../api-url';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { JobCategoryService } from './job-category.service';
 
 @Component({
   selector: 'lovs-lib-job-category',
@@ -57,22 +56,17 @@ export class JobCategoryComponent implements OnInit, AfterViewInit {
     private httpService: HttpService,
     public labelService: LabelService,
     private pageTitle: Title,
-    private service: CountryService,
-    private navigationService: NavigationService,
-    private snackbarService: SnackBarService
+    private service: JobCategoryService,
+    private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_JOB_CATEGORY);
     this.pageTitle.setTitle(this.title);
     this.dataSource = new TableDataDatasource(this.httpService);
-    this.dataSource.totalCount.subscribe(
-      (count: number) => (this.totalCount = count)
-    );
-    this.searchControl.valueChanges
-      .pipe(debounceTime(400), distinctUntilChanged())
-      .subscribe((query) => {
-        this.paginator.pageIndex = 0;
-        this.loadDataSet();
-      });
+    this.dataSource.totalCount.subscribe((count: number) => (this.totalCount = count));
+    this.searchControl.valueChanges.pipe(debounceTime(400), distinctUntilChanged()).subscribe((query) => {
+      this.paginator.pageIndex = 0;
+      this.loadDataSet();
+    });
   }
 
   async ngOnInit() {
@@ -94,12 +88,12 @@ export class JobCategoryComponent implements OnInit, AfterViewInit {
   }
 
   edit(obj: IJobCategoryList) {
-    this.editEvent.emit({path: NavigationPathEnum.JOB_CATEGORY_MANAGE, id:obj.jobCategoryId});
+    this.editEvent.emit({ path: NavigationPathEnum.JOB_CATEGORY_MANAGE, id: obj.jobCategoryId });
   }
 
   async changeStatus(status: boolean, index: number, obj: IJobCategoryList) {
     await this.service.changeStatus(obj.jobCategoryId, !obj.active);
-    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE))
+    this.snackbarService.showSuccess(this.labelService.getLabel(LabelKey.SUCCESS_STATUS_CHANGE));
     await this.loadDataSet();
   }
 
@@ -109,14 +103,9 @@ export class JobCategoryComponent implements OnInit, AfterViewInit {
   }
 
   async loadDataSet(): Promise<void> {
-    this.payload.search = this.searchControl.value
-      ? this.searchControl.value
-      : '';
+    this.payload.search = this.searchControl.value ? this.searchControl.value : '';
     this.payload.page = this.paginator ? this.paginator.pageIndex : 0;
-    this.payload.limit = this.paginator
-      ? this.paginator.pageSize
-      : MASTER_PAGE_SIZE;
+    this.payload.limit = this.paginator ? this.paginator.pageSize : MASTER_PAGE_SIZE;
     await this.dataSource.loadData(LovApiUrl.JOB_CATEGORY, this.payload);
   }
-
 }

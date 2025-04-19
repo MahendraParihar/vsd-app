@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { AddressTypeService, TableListDto, StatusChangeDto } from '@server/common';
+import { AddressTypeService, StatusChangeDto, TableListDto } from '@server/common';
 import { IAddressTypeList, ITableList } from '@vsd-common/lib';
+import { AddressTypeDto } from './dto/address-type.dto';
 
 @Controller('address-type')
 export class AddressTypeController {
@@ -19,7 +20,7 @@ export class AddressTypeController {
   @Get(':id')
   loadAddressType(@Param('id') id: number) {
     try {
-    return this.addressTypeService.getById(id);
+      return this.addressTypeService.getById(id);
     } catch (e) {
       throw new Error(e);
     }
@@ -28,16 +29,16 @@ export class AddressTypeController {
   @Get('details/:id')
   loadAddressTypeDetail(@Param('id') id: number) {
     try {
-    return this.addressTypeService.loadDetailById(id);
+      return this.addressTypeService.loadDetailById(id);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post('manage')
-  manageAddressType(@Body() body, userId: number) {
+  manageAddressType(@Body() body: AddressTypeDto, userId: number) {
     try {
-    return this.addressTypeService.manage(body, userId);
+      return this.addressTypeService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }
@@ -46,7 +47,7 @@ export class AddressTypeController {
   @Put('status/:id')
   updateAddressTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
     try {
-    return this.addressTypeService.updateStatus(id, statusChange, 1);
+      return this.addressTypeService.updateStatus(id, statusChange, 1);
     } catch (e) {
       throw new Error(e);
     }

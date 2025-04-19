@@ -18,7 +18,7 @@
           <div class="flex-h">
             <shared-ui-lib-uikit-icon [size]="'x-large'" [name]="'address'"></shared-ui-lib-uikit-icon>
             <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
-                                       [label]="address(events[activeEventIndex])"></shared-ui-lib-uikit-label>
+                                       [label]="address(events[activeEventIndex].address)"></shared-ui-lib-uikit-label>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
             <div class="flex-h">
               <shared-ui-lib-uikit-icon [size]="'x-large'" [name]="'address'"></shared-ui-lib-uikit-icon>
               <shared-ui-lib-uikit-label [class]="['mat-subtitle-2']"
-                                         [label]="address(event)"></shared-ui-lib-uikit-label>
+                                         [label]="address(event.address)"></shared-ui-lib-uikit-label>
             </div>
           </div>
         </div>

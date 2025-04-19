@@ -9,6 +9,7 @@
 img {
   width: 100%;
   border-radius: var(--border-radius-20);
+  border: var(--stroke-thin) rgba(0, 0, 0, 0.8) solid;
   vertical-align: middle;
   background: linear-gradient(360deg, rgba(2, 52, 106, 0.7) 19.45%, rgba(2, 52, 106, 0) 66.92%);
 }

@@ -1,4 +1,4 @@
-import { IManageBusiness, IMediaUpload } from '@vsd-common/lib';
+import { IManageBusiness, IMediaUpload, InputLength } from '@vsd-common/lib';
 import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class BusinessDto implements IManageBusiness {
@@ -8,7 +8,7 @@ export class BusinessDto implements IManageBusiness {
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(50)
+  @MaxLength(InputLength.CHAR_50)
   business: string;
 
   @IsOptional()

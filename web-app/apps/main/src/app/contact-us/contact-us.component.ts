@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpService, LabelService, SnackBarService } from '@core-lib';
-import { convertAddress, IMandalDetail, LabelKey } from '@vsd-common/lib';
+import { BannerService, HttpService, LabelService, SnackBarService } from '@core-lib';
+import { convertAddress, IBannerList, IMandalDetail, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { GoogleMap } from '@angular/google-maps';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { MandalService } from '../mandal/services/mandal.service';
@@ -15,6 +15,8 @@ import { ValidationUtil } from '@shared-ui-lib';
   styleUrl: './contact-us.component.scss',
 })
 export class ContactUsComponent implements OnInit, AfterViewInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
   pageTitle!: string | undefined;
   labelKeys = LabelKey;
 
@@ -23,9 +25,11 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     emailId: new FormControl(null, [Validators.required, Validators.email]),
     contactNumber: new FormControl(null, [Validators.required]),
     message: new FormControl(null, [Validators.required, Validators.maxLength(500)]),
+    recaptcha: new FormControl(null, Validators.required),
   });
 
   primaryMandal!: IMandalDetail;
+  captchaKey: string = '6Le0mB0rAAAAAJU7t9fHTnMGjRtLl2Xiq743WTNd';
 
   @ViewChild(GoogleMap) map!: GoogleMap;
 
@@ -42,6 +46,7 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.CONTACT_US);
     await this.loadPrimaryMandal();
   }
 
@@ -57,6 +62,18 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     if (this.primaryMandal)
       return convertAddress(this.primaryMandal.address);
     else return '';
+  }
+
+  resolved(captchaResponse: string | null) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  errored(error: never[]): void {
+    console.warn(`reCAPTCHA error encountered`, error);
+  }
+
+  openLink(link: string) {
+    window.open(link, '_blank');
   }
 
   async submitForm() {

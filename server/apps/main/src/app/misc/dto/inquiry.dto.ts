@@ -1,7 +1,7 @@
-import { InputLength } from '@vsd-common/lib';
+import { IInquiry, InputLength } from '@vsd-common/lib';
 import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class InquiryDto {
+export class InquiryDto implements IInquiry {
   @IsNotEmpty()
   @IsString()
   @MaxLength(InputLength.CHAR_100)
@@ -18,4 +18,8 @@ export class InquiryDto {
   @IsOptional()
   @IsString()
   contactNumber: string;
+
+  @IsNotEmpty()
+  @IsString()
+  recaptcha: string;
 }

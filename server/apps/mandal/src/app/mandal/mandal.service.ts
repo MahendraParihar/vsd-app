@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IAddressDetail,
   IBaseAdminUser,
   IManageMandal,
   IMandal,
   IMandalAdditionalInfo,
   IMandalDetail,
-  IMandalList, IMemberPost,
+  IMandalList,
+  IMemberPost,
   IMemberPostInfo,
   IStatusChange,
   ITableList,
@@ -16,7 +18,7 @@ import {
 } from '@vsd-common/lib';
 import { MandalModel } from '../models/mandal.model';
 import { Op } from 'sequelize';
-import { AddressService, LabelService, PostModel, PostService } from '@server/common';
+import { AddressService, AppConfigService, buildImageUrl, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
 import { filter, groupBy, map } from 'lodash';
 import { MandalMemberModel } from '../models/mandal-member.model';
@@ -27,6 +29,7 @@ export class MandalService {
               @InjectModel(MandalMemberModel) private mandalMemberModel: typeof MandalMemberModel,
               private labelService: LabelService,
               private addressService: AddressService,
+              private appConfigService: AppConfigService,
               private postService: PostService,
               private sequelize: Sequelize) {
   }
@@ -189,7 +192,7 @@ export class MandalService {
             firstName: member.family.firstName,
             lastName: member.family.lastName,
             middleName: member.family.middleName,
-            imagePath: member.family.imagePath && member.family.imagePath.length > 0 ? member.family.imagePath[0] : null,
+            imagePath: member.family.imagePath && member.family.imagePath.length > 0 ? buildImageUrl(member.family.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL))[0] : null,
             cityVillage: member.family.address ? member.family.address.cityVillage.cityVillage : null,
           });
         }
@@ -201,7 +204,7 @@ export class MandalService {
       mandalName: data.mandalName,
       description: data.description,
       tags: data.tags,
-      imagePath: data.imagePath,
+      imagePath: buildImageUrl(data.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL)),
       metaTitle: data.metaTitle,
       metaDescription: data.metaDescription,
       url: data.url,

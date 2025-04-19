@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ILegalPage, ILegalPageList, LabelKey } from '@vsd-common/lib';
+import { Component, inject, OnInit } from '@angular/core';
+import { IBannerList, ILegalPageList, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { CommonService } from '../common.service';
-import { LabelService } from '@core-lib';
+import { BannerService, LabelService } from '@core-lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,6 +11,9 @@ import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
   styleUrl: './about-us.component.scss',
 })
 export class AboutUsComponent implements OnInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
+
   legalPage!: ILegalPageList;
   pageTitle!: string | undefined;
 
@@ -25,6 +28,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.ABOUT_US);
     await this.loadPage();
   }
 

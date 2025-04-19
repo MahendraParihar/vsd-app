@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { IEventList, ITableList, LabelKey } from '@vsd-common/lib';
+import { Component, inject, OnInit } from '@angular/core';
+import { IBannerList, IEventList, ITableList, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { EventService } from './services/event.service';
-import { LabelService } from '@core-lib';
+import { BannerService, LabelService } from '@core-lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,6 +11,9 @@ import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
   styleUrl: './event.component.scss',
 })
 export class EventComponent implements OnInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
+
   dataSet!: ITableList<IEventList>;
   pageTitle!: string | undefined;
 
@@ -25,6 +28,7 @@ export class EventComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.EVENT);
     await this.loadData();
   }
 

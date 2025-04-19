@@ -1,6 +1,5 @@
 <div class="history-section" *ngIf="legalPage">
-  <shared-ui-lib-uikit-banner
-    [banner]="['https://as1.ftcdn.net/v2/jpg/04/01/42/38/1000_F_401423804_tLq8txQQjVPLid3vFkXz9JnulsL3lexU.jpg']"></shared-ui-lib-uikit-banner>
+  <shared-ui-lib-uikit-banner [banner]="banners"></shared-ui-lib-uikit-banner>
   <div class="history-content main-section">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']" [label]="pageTitle"></shared-ui-lib-uikit-label>
     <shared-ui-lib-uikit-label [hasHtmlContent]="true" [label]="legalPage.details"></shared-ui-lib-uikit-label>

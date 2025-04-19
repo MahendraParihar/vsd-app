@@ -10,6 +10,7 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 import { AdminUserModel } from '@server/common';
+import { IMediaUpload } from '@vsd-common/lib';
 
 @Table({
   tableName: 'txn_current_affair',
@@ -84,7 +85,7 @@ export class CurrentAffairModel extends Model<CurrentAffairModel> {
     allowNull: true,
     type: DataType.JSONB,
   })
-  imagePath: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'is_approved',

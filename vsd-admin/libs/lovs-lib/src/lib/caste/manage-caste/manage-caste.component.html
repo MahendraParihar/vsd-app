@@ -6,24 +6,24 @@
     <form [formGroup]='formGroup'>
       <div class='form-row'>
         <div class='form-group'>
-          <shared-ui-lib-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'></shared-ui-lib-label>
+          <shared-ui-lib-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_CASTE)'></shared-ui-lib-label>
           <mat-form-field>
-            <input #mandalName formControlName='mandalName' matInput required [maxlength]='150'>
-            <mat-hint align='end'>{{ mandalName.value.length || 0 }}/150</mat-hint>
+            <input #title formControlName='caste' matInput required [maxlength]='50'>
+            <mat-hint align='end'>{{ title.value.length || 0 }}/50</mat-hint>
           </mat-form-field>
           <shared-ui-lib-input-error [labels]='labelService.labels'
-                              [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'
-                              [control]="formGroup.get('mandalName')"></shared-ui-lib-input-error>
+                                     [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_CASTE)'
+                                     [control]="formGroup.get('caste')"></shared-ui-lib-input-error>
         </div>
       </div>
       <div class='form-row'>
         <shared-ui-lib-upload-form class='file-upload-box' [controlName]="'uploadFiles'" [formGroup]='formGroup'
-                            [labels]='labelService.labels'
-                            [isMultiFile]='false'
-                            [isRequired]='true'
-                            [mediaFor]='mediaForEnum.CASTE'
-                            [mediaType]='fileTypeEnum.IMAGE'
-                            [uploadedMediaList]='lovModel ? lovModel.imagePath : []'></shared-ui-lib-upload-form>
+                                   [labels]='labelService.labels'
+                                   [isMultiFile]='false'
+                                   [isRequired]='true'
+                                   [mediaFor]='mediaForEnum.CASTE'
+                                   [mediaType]='fileTypeEnum.IMAGE'
+                                   [uploadedMediaList]='lovModel ? lovModel.imagePath : []'></shared-ui-lib-upload-form>
       </div>
     </form>
   </mat-card-content>
@@ -33,6 +33,6 @@
       [label]='labelService.getLabel(labelKeys.ACTION_CANCEL)'
       (actionBtnClicked)='onCancel()'></shared-ui-lib-button>
     <shared-ui-lib-button type='success' (actionBtnClicked)='updateDetails()'
-                   [label]='labelService.getLabel(labelKeys.ACTION_SUBMIT)'></shared-ui-lib-button>
+                          [label]='labelService.getLabel(labelKeys.ACTION_SUBMIT)'></shared-ui-lib-button>
   </mat-card-actions>
 </mat-card>

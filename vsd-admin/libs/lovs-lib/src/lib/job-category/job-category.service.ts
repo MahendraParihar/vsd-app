@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IManageJobCategory, IResponse, IStatusChange } from '@vsd-common/lib';
+import { IJobCategory, IManageJobCategory, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class JobCategoryService {
-  constructor(private httpService: HttpService) {
-  }
+  constructor(private httpService: HttpService) {}
 
   async changeStatus(id: number, status: boolean): Promise<void> {
-    await this.httpService.putRequest(LovApiUrl.JOB_CATEGORY_STATUS + '/' + id, <
-      IStatusChange
-      >{
+    await this.httpService.putRequest(LovApiUrl.JOB_CATEGORY_STATUS + '/' + id, <IStatusChange>{
       status: status,
     });
   }
@@ -22,7 +19,15 @@ export class JobCategoryService {
   }
 
   async manageJobCategory(payload: IManageJobCategory): Promise<IManageJobCategory> {
-    const res = await this.httpService.postRequest<IResponse<IManageJobCategory>>(LovApiUrl.MANAGE_JOB_CATEGORY, payload);
+    const res = await this.httpService.postRequest<IResponse<IManageJobCategory>>(
+      LovApiUrl.MANAGE_JOB_CATEGORY,
+      payload,
+    );
     return res as IManageJobCategory;
+  }
+
+  async loadJobCategory(): Promise<IJobCategory[]> {
+    const res = await this.httpService.getRequest<IResponse<IJobCategory[]>>(LovApiUrl.JOB_CATEGORY);
+    return res as IJobCategory[];
   }
 }

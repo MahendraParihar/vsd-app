@@ -8,9 +8,7 @@ export class CountryService {
   constructor(private httpService: HttpService) {}
 
   async changeStatus(id: number, status: boolean): Promise<void> {
-    await this.httpService.putRequest(LovApiUrl.COUNTRY_STATUS + '/' + id, <
-      IStatusChange
-    >{
+    await this.httpService.putRequest(LovApiUrl.COUNTRY_STATUS + '/' + id, <IStatusChange>{
       status: status,
     });
   }

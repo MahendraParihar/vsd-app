@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { LabelService } from '@core-lib';
-import { IEventDetail, LabelKey } from '@vsd-common/lib';
+import { IBannerList, IEventDetail, LabelKey } from '@vsd-common/lib';
 import { EventService } from '../services/event.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { EventService } from '../services/event.service';
 })
 export class EventDetailComponent {
   event!: IEventDetail;
+  banners: IBannerList[] = [];
   _url!: string;
   activeTabIndex: number = 0;
 
@@ -30,6 +31,14 @@ export class EventDetailComponent {
 
   async loadData() {
     this.event = await this.eventService.loadEventDetails(this._url);
+    if (this.event.imagePath && this.event.imagePath.length > 0) {
+      this.banners = this.event.imagePath.map((imagePath) => {
+        return <IBannerList>{
+          title: this.event.title,
+          imagePath: this.event.imagePath[0],
+        };
+      });
+    }
     this.bindSEOData();
   }
 

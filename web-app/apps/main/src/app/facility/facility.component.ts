@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { IFacilityList, ITableList, LabelKey } from '@vsd-common/lib';
+import { Component, inject, OnInit } from '@angular/core';
+import { IBannerList, IFacilityList, ITableList, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { FacilityService } from './services/facility.service';
-import { insertDummyEntry, LabelService } from '@core-lib';
+import { BannerService, insertDummyEntry, LabelService } from '@core-lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -12,9 +12,12 @@ import { Router } from '@angular/router';
   styleUrl: './facility.component.scss',
 })
 export class FacilityComponent implements OnInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
+
   dataSet!: ITableList<IFacilityList>;
   pageTitle!: string | undefined;
-  labelKey= LabelKey;
+  labelKey = LabelKey;
 
   constructor(private facilityService: FacilityService,
               public labelService: LabelService,
@@ -28,6 +31,7 @@ export class FacilityComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.FACILITY);
     await this.loadData();
   }
 

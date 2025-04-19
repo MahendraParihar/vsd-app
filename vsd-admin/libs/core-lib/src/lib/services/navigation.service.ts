@@ -43,10 +43,7 @@ export class NavigationService {
     this.setBreadcrumb(navEnum);
     this.router
       .navigate([navEnum])
-      .then((suc: any) => {
-        console.log('Success', suc);
-
-      })
+      .then((suc: any) => {})
       .catch((e: any) => {
         console.log(e);
       });

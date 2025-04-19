@@ -1,6 +1,5 @@
 <div class="contact-us-section" *ngIf="primaryMandal">
-  <shared-ui-lib-uikit-banner
-    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <shared-ui-lib-uikit-banner [banner]="banners"></shared-ui-lib-uikit-banner>
   <div class="contact-us-content main-section">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
@@ -49,10 +48,10 @@
         <hr>
         <div class="social-icons"
              *ngIf="this.primaryMandal.additionalInfo && this.primaryMandal.additionalInfo.socialSiteLink">
-          <shared-ui-lib-uikit-button *ngFor="let item of this.primaryMandal.additionalInfo.socialSiteLink"
-                                      [type]="'icon-only'"
-                                      [prefixIcon]="item.icon"
-                                      [prefixIconSize]="'large'"></shared-ui-lib-uikit-button>
+          <shared-ui-lib-uikit-icon *ngFor="let social of primaryMandal.additionalInfo.socialSiteLink"
+                                    [size]="'x-large'"
+                                    (click)="openLink(social.link)"
+                                    [name]="social.icon"></shared-ui-lib-uikit-icon>
         </div>
       </div>
       <div class="form-section">
@@ -99,6 +98,14 @@
                              [labels]="labelService.labels"
                              [control]="formGroup.get('message')"></app-input-error>
 
+          </div>
+          <div class="form-item">
+            <re-captcha
+              (resolved)="resolved($event)"
+              (errored)="errored($event)"
+              siteKey="{{captchaKey}}"
+              formControlName="recaptcha"
+            ></re-captcha>
           </div>
           <div class="form-item">
             <shared-ui-lib-uikit-button (buttonClicked)="submitForm()" [type]="'raised'"

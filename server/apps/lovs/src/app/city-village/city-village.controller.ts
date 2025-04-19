@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CityVillageService, TableListDto, StatusChangeDto } from '@server/common';
+import { CityVillageService, StatusChangeDto, TableListDto } from '@server/common';
 import { ICityVillageList, ITableList } from '@vsd-common/lib';
 import { CityVillageDto } from './dto/city-village.dto';
 
@@ -45,9 +45,9 @@ export class CityVillageController {
   }
 
   @Put('status/:id')
-  updateCityVillageStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateCityVillageStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, userId: number) {
     try {
-      return this.cityVillageService.updateStatus(id, statusChange, 1);
+      return this.cityVillageService.updateStatus(id, statusChange, userId);
     } catch (e) {
       throw new Error(e);
     }

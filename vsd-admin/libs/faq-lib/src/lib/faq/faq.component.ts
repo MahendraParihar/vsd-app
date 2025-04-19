@@ -4,7 +4,6 @@ import {
   LabelService,
   MASTER_PAGE_SIZE,
   NavigationPathEnum,
-  NavigationService,
   PAGE_SIZE_LIST,
   SnackBarService,
   TableDataDatasource,
@@ -28,12 +27,8 @@ export class FaqComponent implements OnInit, AfterViewInit {
   title!: string;
   displayedColumns = [
     'seqNo',
-    'imagePath',
-    'title',
-    'subTitle',
-    'bannerFor',
-    'fromDate',
-    'toDate',
+    'faqCategory',
+    'faq',
     'active',
     'createdByUser',
     'createdAt',
@@ -60,7 +55,6 @@ export class FaqComponent implements OnInit, AfterViewInit {
     public labelService: LabelService,
     private pageTitle: Title,
     private service: FaqService,
-    private navigationService: NavigationService,
     private snackbarService: SnackBarService,
   ) {
     this.title = this.labelService.getLabel(LabelKey.SIDE_MENU_FAQ);
@@ -92,7 +86,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
   }
 
   edit(obj: IFaqList) {
-    this.editEvent.emit({path: NavigationPathEnum.FAQ_MANAGE, id:obj.faqId});
+    this.editEvent.emit({ path: NavigationPathEnum.FAQ_MANAGE, id: obj.faqId });
   }
 
   async changeStatus(index: number, obj: IFaqList) {

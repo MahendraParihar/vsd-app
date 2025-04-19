@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { LabelService, NavigationService, SnackBarService } from '@vsd-frontend/core-lib';
 import { Title } from '@angular/platform-browser';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
@@ -8,13 +7,12 @@ import { FileTypeEnum, IManageMatrimonialRequestedStatus, InputLength, LabelKey,
 import { MatrimonialRequestedStatusService } from '../matrimonial-requested-status.service';
 
 @Component({
-  selector: 'lib-manage-matrimonial-requested-status',
+  selector: 'lovs-lib-manage-matrimonial-requested-status',
   standalone: false,
   templateUrl: './manage-matrimonial-requested-status.component.html',
   styleUrl: './manage-matrimonial-requested-status.component.scss',
 })
 export class ManageMatrimonialRequestedStatusComponent implements OnInit {
-
   labelKeys = LabelKey;
   @Input() id!: number;
   pageTitle!: string;
@@ -26,12 +24,16 @@ export class ManageMatrimonialRequestedStatusComponent implements OnInit {
     matrimonialRequestedStatus: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
   });
 
-  constructor( private service: MatrimonialRequestedStatusService,
-              public labelService: LabelService, private title: Title,
-              private snackBarService: SnackBarService,
-              private navigation: NavigationService) {
-
-    this.pageTitle = this.labelService.getLabel(this.id ? this.labelKeys.EDIT_MATRIMONIAL_REQUESTED_STATUS : this.labelKeys.ADD_MATRIMONIAL_REQUESTED_STATUS);
+  constructor(
+    private service: MatrimonialRequestedStatusService,
+    public labelService: LabelService,
+    private title: Title,
+    private snackBarService: SnackBarService,
+    private navigation: NavigationService,
+  ) {
+    this.pageTitle = this.labelService.getLabel(
+      this.id ? this.labelKeys.EDIT_MATRIMONIAL_REQUESTED_STATUS : this.labelKeys.ADD_MATRIMONIAL_REQUESTED_STATUS,
+    );
     this.title.setTitle(this.pageTitle);
   }
 
@@ -70,11 +72,13 @@ export class ManageMatrimonialRequestedStatusComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.matrimonialRequestedStatusId = this.id;
+      payload.matrimonialRequestedStatusId = Number(this.id);
     }
     try {
       await this.service.manageMatrimonialRequestedStatus(payload);
-      this.snackBarService.showSuccess(this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED));
+      this.snackBarService.showSuccess(
+        this.labelService.getLabel(this.id ? this.labelKeys.SUCCESS_DATA_UPDATED : this.labelKeys.SUCCESS_DATA_ADDED),
+      );
       this.onCancel();
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));

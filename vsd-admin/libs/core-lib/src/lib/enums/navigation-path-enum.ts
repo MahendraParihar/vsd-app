@@ -76,7 +76,7 @@ export enum NavigationPathEnum {
   EDUCATION_DEGREE = `${LOV_MASTER}/education-degree`,
   EDUCATION_DEGREE_MANAGE = `${LOV_MASTER}/manage/education-degree`,
   ADDICTION = `${LOV_MASTER}/addiction`,
-  ADDICTION_MANAGE = `${LOV_MASTER}/manage/manage`,
+  ADDICTION_MANAGE = `${LOV_MASTER}/manage/addiction`,
   MARITAL_STATUS = `${LOV_MASTER}/marital-status`,
   MARITAL_STATUS_MANAGE = `${LOV_MASTER}/manage/marital-status`,
   POST = `${LOV_MASTER}/post`,

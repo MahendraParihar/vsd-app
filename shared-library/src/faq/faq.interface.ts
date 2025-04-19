@@ -1,5 +1,4 @@
-import { IBaseAdminUser, ICommonTable } from "../base.interface";
-import { IFaqCategory } from "./faq-category.interface";
+import { IBaseAdminUser, ICommonTable } from '../base.interface';
 
 export interface IBaseFaq {
   faq: string;
@@ -17,7 +16,7 @@ export interface IFaq extends IBaseFaq, ICommonTable {
 }
 
 export interface IFaqList extends IFaq {
-  faqCategory: IFaqCategory;
+  faqCategory: string;
   createdByUser: IBaseAdminUser;
   updatedByUser: IBaseAdminUser;
 }

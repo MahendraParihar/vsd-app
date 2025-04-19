@@ -48,7 +48,7 @@ export class BannerModel extends Model<BannerModel> {
     allowNull: false,
     type: DataType.JSONB,
   })
-  imagePath: IMediaUpload[];
+  imagePath: IMediaUpload;
 
   @Column({
     field: 'from_date',

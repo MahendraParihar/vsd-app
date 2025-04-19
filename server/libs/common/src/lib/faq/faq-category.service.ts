@@ -3,13 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { FaqCategoryModel } from '../models/faq';
 import {
   IBaseAdminUser,
-  IFaqCategoryList,
-  ITableListFilter,
-  ITableList,
-  LabelKey,
-  IStatusChange,
-  IManageFaqCategory,
   IFaqCategory,
+  IFaqCategoryList,
+  IManageFaqCategory,
+  IStatusChange,
+  ITableList,
+  ITableListFilter,
+  LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
 import { LabelService } from '../label';
@@ -18,6 +18,15 @@ import { LabelService } from '../label';
 export class FaqCategoryService {
   constructor(@InjectModel(FaqCategoryModel) private faqCategoryModel: typeof FaqCategoryModel,
               private labelService: LabelService) {
+  }
+
+  async loadAllFaqs(): Promise<IFaqCategory[]> {
+    const where = {};
+    const rows = await this.faqCategoryModel.findAll({
+      where: where,
+      order: [['faqCategory', 'asc']],
+    });
+    return rows as IFaqCategory[];
   }
 
   async load(payload: ITableListFilter): Promise<ITableList<IFaqCategoryList>> {
@@ -33,7 +42,7 @@ export class FaqCategoryService {
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order:[["faqCategory","asc"]],
+      order: [['faqCategory', 'asc']],
     });
     const data = rows.map((data: FaqCategoryModel) => {
       return <IFaqCategoryList>{
@@ -62,7 +71,7 @@ export class FaqCategoryService {
   }
 
   async getById(id: number): Promise<IFaqCategory> {
-    const obj = await this.faqCategoryModel.findOne({ where: { faqCategoryId: id }, nest:true, raw: true });
+    const obj = await this.faqCategoryModel.findOne({ where: { faqCategoryId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_FAQ_CATEGORY));
     }
@@ -96,6 +105,7 @@ export class FaqCategoryService {
   async manage(obj: IManageFaqCategory, userId: number) {
     const dataObj = {
       faqCategory: obj.faqCategory,
+      url: obj.url,
       updatedBy: userId,
     };
     if (obj.faqCategoryId) {

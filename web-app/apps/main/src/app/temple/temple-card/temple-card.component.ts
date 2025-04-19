@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ITempleList, LabelKey } from '@vsd-common/lib';
 import { Router } from '@angular/router';
-import { insertDummyEntry, LabelService } from '@core-lib';
+import { getAddress, insertDummyEntry, LabelService } from '@core-lib';
 
 @Component({
   selector: 'vsd-web-app-temple-card',
@@ -10,6 +10,7 @@ import { insertDummyEntry, LabelService } from '@core-lib';
   styleUrl: './temple-card.component.scss',
 })
 export class TempleCardComponent {
+  address = getAddress;
   @Input() temples!: ITempleList[];
   labelKey = LabelKey;
 
@@ -19,10 +20,6 @@ export class TempleCardComponent {
 
   get dummyEntry() {
     return insertDummyEntry(this.temples);
-  }
-
-  getAddress(item: ITempleList) {
-    return `${item.address.district}, ${item.address.state}`;
   }
 
   onClick(item: ITempleList) {

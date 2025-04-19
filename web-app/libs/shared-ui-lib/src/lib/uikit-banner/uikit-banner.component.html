@@ -1,4 +1,4 @@
-<ng-container *ngIf="banner">
+<ng-container *ngIf="banner && banner.length>0">
   <div class="multi-banner">
     <div class="slideshow-container" #myDiv>
       <div class="fade">
@@ -6,12 +6,12 @@
                                    label="{{ slideIndex + 1 }} / {{ banner.length }}"></shared-ui-lib-uikit-label>
         <img
           [height]="bannerHeight()"
-          [src]="banner[slideIndex]"
+          [src]="banner[slideIndex].imagePath.webUrl"
           alt="" />
         <div class="content">
-          <div class="breadcrumb">Caption Text</div>
-          <div class="title" *ngIf="title">Caption Text</div>
-          <div class="sub-title" *ngIf="subTitle">Caption Text</div>
+          <div class="breadcrumb">{{ banner[slideIndex].title }}</div>
+          <div class="title" *ngIf="banner[slideIndex].title">{{ banner[slideIndex].title }}</div>
+          <div class="sub-title" *ngIf="banner[slideIndex].subTitle">{{ banner[slideIndex].subTitle }}</div>
         </div>
 
       </div>

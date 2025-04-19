@@ -23,7 +23,7 @@ export class ManageRaasiComponent implements OnInit {
   lovModel!: IManageRaasi;
 
   formGroup: FormGroup = new FormGroup({
-    addressType: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
+    raasi: new FormControl(null, [Validators.required, Validators.maxLength(InputLength.CHAR_50)]),
   });
 
   constructor( private service: RaasiService,
@@ -65,13 +65,12 @@ export class ManageRaasiComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    console.log(this.formGroup);
     const payload: IManageRaasi = {
       raasi: this.formGroup.value.raasi,
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.raasiId = this.id;
+      payload.raasiId = Number(this.id);
     }
     try {
       await this.service.manageRaasi(payload);

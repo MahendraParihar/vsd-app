@@ -6,14 +6,14 @@
     <form [formGroup]='formGroup'>
       <div class='form-row'>
         <div class='form-group'>
-          <shared-ui-lib-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'></shared-ui-lib-label>
+          <shared-ui-lib-label [label]='labelService.getLabel(labelKeys.SIDE_MENU_RAASI)'></shared-ui-lib-label>
           <mat-form-field>
-            <input #mandalName formControlName='mandalName' matInput required [maxlength]='150'>
-            <mat-hint align='end'>{{ mandalName.value.length || 0 }}/150</mat-hint>
+            <input #title formControlName='raasi' matInput required [maxlength]='50'>
+            <mat-hint align='end'>{{ title.value.length || 0 }}/50</mat-hint>
           </mat-form-field>
           <shared-ui-lib-input-error [labels]='labelService.labels'
-                              [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_MANDAL)'
-                              [control]="formGroup.get('mandalName')"></shared-ui-lib-input-error>
+                              [controlName]='labelService.getLabel(labelKeys.SIDE_MENU_RAASI)'
+                              [control]="formGroup.get('raasi')"></shared-ui-lib-input-error>
         </div>
       </div>
       <div class='form-row'>

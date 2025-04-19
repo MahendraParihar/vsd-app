@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IAddressDetail,
   IBaseAdminUser,
   IFacility,
@@ -15,7 +16,7 @@ import {
   LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
-import { AddressService, LabelService, PostModel, PostService } from '@server/common';
+import { AddressService, AppConfigService, buildImageUrl, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
 import { filter, groupBy, map } from 'lodash';
 import { FacilityModel } from '../models/facility.model';
@@ -28,6 +29,7 @@ export class FacilityService {
               private labelService: LabelService,
               private sequelize: Sequelize,
               private addressService: AddressService,
+              private appConfigService: AppConfigService,
               private postService: PostService) {
   }
 
@@ -202,7 +204,7 @@ export class FacilityService {
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
       updatedBy: data.updatedBy,
-      imagePath: data.imagePath,
+      imagePath: buildImageUrl(data.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL)),
       tags: data.tags,
       metaTitle: data.metaTitle,
       metaDescription: data.metaDescription,

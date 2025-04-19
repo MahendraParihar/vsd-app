@@ -5,6 +5,7 @@ export interface IInquiry {
   message: string;
   emailId: string;
   contactNumber: string;
+  recaptcha: string;
 }
 
 export interface IInquiryDetails extends IInquiry {

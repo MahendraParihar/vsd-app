@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FacilityService } from '../services/facility.service';
-import { IFacilityDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
+import { IBannerList, IFacilityDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { insertDummyEntry, LabelService } from '@core-lib';
 
@@ -12,6 +12,7 @@ import { insertDummyEntry, LabelService } from '@core-lib';
 })
 export class FacilityDetailComponent {
   facility!: IFacilityDetail;
+  banners: IBannerList[] = [];
   _url!: string;
 
   @Input()
@@ -28,6 +29,14 @@ export class FacilityDetailComponent {
 
   async loadData() {
     this.facility = await this.facilityService.loadFacilityDetails(this._url);
+    if (this.facility.imagePath && this.facility.imagePath.length > 0) {
+      this.banners = this.facility.imagePath.map((imagePath) => {
+        return <IBannerList>{
+          title: this.facility.title,
+          imagePath: this.facility.imagePath[0],
+        }
+      })
+    }
   }
 
   bindSEOData() {

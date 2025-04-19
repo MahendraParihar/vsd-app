@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IAddressDetail,
   IBaseAdminUser,
   IEvent,
@@ -16,7 +17,7 @@ import {
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
 import { EventModel } from '../models/event.model';
-import { AddressService, LabelService, PostModel, PostService } from '@server/common';
+import { AddressService, AppConfigService, buildImageUrl, LabelService, PostModel, PostService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
 import { filter, groupBy, map } from 'lodash';
 import { EventCoordinatorModel } from '../models/event-coordinator.model';
@@ -26,6 +27,7 @@ export class EventService {
   constructor(@InjectModel(EventModel) private eventModel: typeof EventModel,
               @InjectModel(EventCoordinatorModel) private eventCoordinatorModel: typeof EventCoordinatorModel,
               private labelService: LabelService,
+              private appConfigService: AppConfigService,
               private sequelize: Sequelize,
               private addressService: AddressService,
               private postService: PostService) {
@@ -192,7 +194,7 @@ export class EventService {
             firstName: member.family.firstName,
             lastName: member.family.lastName,
             middleName: member.family.middleName,
-            imagePath: member.family.imagePath && member.family.imagePath.length > 0 ? member.family.imagePath[0] : null,
+            imagePath: member.family.imagePath && member.family.imagePath.length > 0 ? buildImageUrl(member.family.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL))[0] : null,
             cityVillage: member.family.address ? member.family.address.cityVillage.cityVillage : null,
           });
         }
@@ -212,7 +214,7 @@ export class EventService {
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
       updatedBy: data.updatedBy,
-      imagePath: data.imagePath,
+      imagePath: buildImageUrl(data.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL)),
       tags: data.tags,
       metaTitle: data.metaTitle,
       metaDescription: data.metaDescription,

@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@vsd-frontend/core-lib';
 import { LovApiUrl } from '../api-url';
-import { IManageFaqCategory, IResponse, IStatusChange } from '@vsd-common/lib';
+import { IFaqCategory, IManageFaqCategory, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class FaqCategoryService {
-  constructor(private httpService: HttpService) {
-  }
+  constructor(private httpService: HttpService) {}
 
   async changeStatus(id: number, status: boolean): Promise<void> {
-    await this.httpService.putRequest(LovApiUrl.FAQ_CATEGORY_STATUS + '/' + id, <
-      IStatusChange
-      >{
+    await this.httpService.putRequest(LovApiUrl.FAQ_CATEGORY_STATUS + '/' + id, <IStatusChange>{
       status: status,
     });
   }
@@ -22,7 +19,15 @@ export class FaqCategoryService {
   }
 
   async manageFaqCategory(payload: IManageFaqCategory): Promise<IManageFaqCategory> {
-    const res = await this.httpService.postRequest<IResponse<IManageFaqCategory>>(LovApiUrl.MANAGE_FAQ_CATEGORY, payload);
+    const res = await this.httpService.postRequest<IResponse<IManageFaqCategory>>(
+      LovApiUrl.MANAGE_FAQ_CATEGORY,
+      payload,
+    );
     return res as IManageFaqCategory;
+  }
+
+  async loadAll(): Promise<IFaqCategory[]> {
+    const res = await this.httpService.getRequest<IResponse<IFaqCategory[]>>(LovApiUrl.FAQ_CATEGORY);
+    return res as IFaqCategory[];
   }
 }

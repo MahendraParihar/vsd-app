@@ -5,19 +5,16 @@ import { IManagePost, IResponse, IStatusChange } from '@vsd-common/lib';
 
 @Injectable()
 export class PostService {
-  constructor(private httpService: HttpService) {
-  }
+  constructor(private httpService: HttpService) {}
 
   async changeStatus(id: number, status: boolean): Promise<void> {
-    await this.httpService.putRequest(LovApiUrl.POST_STATUS + '/' + id, <
-      IStatusChange
-      >{
+    await this.httpService.putRequest(LovApiUrl.POST_STATUS + '/' + id, <IStatusChange>{
       status: status,
     });
   }
 
   async loadDetails(id: number): Promise<IManagePost> {
-    const res = await this.httpService.getRequest<IResponse<IManagePost>>(LovApiUrl.POST_STATUS + '/' + id);
+    const res = await this.httpService.getRequest<IResponse<IManagePost>>(LovApiUrl.POST + '/' + id);
     return res as IManagePost;
   }
 
