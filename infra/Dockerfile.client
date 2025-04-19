@@ -6,7 +6,7 @@ COPY ./infra/ ./infra/
 COPY ./shared-library/package*.json ./shared-library/
 RUN npm --prefix shared-library install
 COPY ./web-app ./web-app
-RUN npm --prefix web-app install
+RUN npm --prefix web-app install --legacy-peer-deps
 COPY ./shared-library ./shared-library
 RUN npm --prefix web-app run build
 
