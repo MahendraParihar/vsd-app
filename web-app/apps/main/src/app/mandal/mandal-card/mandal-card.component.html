@@ -1,5 +1,5 @@
 <div class="mandal-list grid-list" *ngIf="mandals && mandals.length>0">
-  <div class="mandal-item grid-item" *ngFor="let mandal of mandals">
+  <div class="home-mandal-item grid-item" *ngFor="let mandal of mandals">
     <img [src]="mandal.imagePath[0].webUrl" />
     <div class="mandal-address">
       <shared-ui-lib-uikit-label
