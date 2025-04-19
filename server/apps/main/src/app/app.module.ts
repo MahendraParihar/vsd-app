@@ -25,6 +25,7 @@ import { FaqModel } from './faq/models/faq.model';
     LabelModule.asyncRegister(['admin']),
     ServeStaticModule.forRoot({
       rootPath: Env.persistentStorageAssetPath,
+      serveRoot: '/media-files'
     }),
   ],
   controllers: [
