@@ -29,6 +29,14 @@ export class FacilityDetailComponent {
 
   async loadData() {
     this.facility = await this.facilityService.loadFacilityDetails(this._url);
+    if (this.facility.imagePath && this.facility.imagePath.length > 0) {
+      this.banners = this.facility.imagePath.map((imagePath) => {
+        return <IBannerList>{
+          title: this.facility.title,
+          imagePath: this.facility.imagePath[0],
+        }
+      })
+    }
   }
 
   bindSEOData() {

@@ -29,6 +29,14 @@ export class MandalDetailComponent {
 
   async loadData() {
     this.mandal = await this.mandalService.loadMandalDetails(this._url);
+    if (this.mandal.imagePath && this.mandal.imagePath.length > 0) {
+      this.banners = this.mandal.imagePath.map((imagePath) => {
+        return <IBannerList>{
+          title: this.mandal.mandalName,
+          imagePath: this.mandal.imagePath[0],
+        }
+      })
+    }
     this.bindSEOData();
   }
 

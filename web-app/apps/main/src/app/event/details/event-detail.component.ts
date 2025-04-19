@@ -31,6 +31,14 @@ export class EventDetailComponent {
 
   async loadData() {
     this.event = await this.eventService.loadEventDetails(this._url);
+    if (this.event.imagePath && this.event.imagePath.length > 0) {
+      this.banners = this.event.imagePath.map((imagePath) => {
+        return <IBannerList>{
+          title: this.event.title,
+          imagePath: this.event.imagePath[0],
+        };
+      });
+    }
     this.bindSEOData();
   }
 
