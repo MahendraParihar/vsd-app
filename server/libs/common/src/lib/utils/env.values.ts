@@ -17,6 +17,5 @@ export class Env {
   public static apiPort = envToNumber('API_PORT');
 
   public static readonly staticAssetPath = envToString('ASSET_PATH');
-  public static readonly baseMediaPath = envToString('MEDIA_BASE_PATH');
-  public static readonly persistentStorageAssetPath = `${Env.staticAssetPath}/${Env.baseMediaPath}`;
+  public static readonly persistentStorageAssetPath = `${Env.staticAssetPath}`;
 }

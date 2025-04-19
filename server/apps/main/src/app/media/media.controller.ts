@@ -10,11 +10,13 @@ import {
 import fs from 'fs';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaDto } from './dto/media-for.dto';
-import { CommonUtil } from '../common.util';
 import { Env } from '@server/common';
 
 @Controller('media')
 export class MediaController {
+
+  rootFolderPath = `${Env.persistentStorageAssetPath}`;
+
   @Post('upload-media')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@Body() mediaDto: MediaDto,
@@ -23,8 +25,9 @@ export class MediaController {
                        .addMaxSizeValidator({ maxSize: 5 * 1024 * 1024 })
                        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
                    ) file: File) {
+
     const fileName = file['originalname'].replace(/[/\\?%*:|"<>]/g, '-');
-    const destinationFolderPath = `${CommonUtil.getMediaFolderPath}/${mediaDto.mediaFor}`;
+    const destinationFolderPath = `${this.rootFolderPath}/${mediaDto.mediaFor}`;
     const destinationPath = `${destinationFolderPath}/${fileName}`;
 
     //CREATE DIRECTORY IF NOT EXISTS
@@ -41,7 +44,7 @@ export class MediaController {
       encoding: file['encoding'],
       mimetype: file['mimetype'],
       size: file['size'],
-      webUrl: `${Env.baseMediaPath}${mediaDto.mediaFor}/${fileName}`,
+      webUrl: `media-files/${mediaDto.mediaFor}/${fileName}`,
     };
   }
 }
