@@ -42,8 +42,9 @@ export class InquiryService {
       message: obj.message,
       updatedBy: userId,
       modifiedIp: ipAddress,
+      recaptcha: obj.recaptcha,
     };
-    Object.assign(dataObj, { createdBy: 1 });
+    Object.assign(dataObj, { createdBy: userId });
     Object.assign(dataObj, { createdIp: ipAddress });
     console.log(dataObj);
     return await this.inquiryModel.create(dataObj) as InquiryModel;

@@ -23,9 +23,11 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     emailId: new FormControl(null, [Validators.required, Validators.email]),
     contactNumber: new FormControl(null, [Validators.required]),
     message: new FormControl(null, [Validators.required, Validators.maxLength(500)]),
+    recaptcha: new FormControl(null, Validators.required),
   });
 
   primaryMandal!: IMandalDetail;
+  captchaKey: string = '6Le0mB0rAAAAAJU7t9fHTnMGjRtLl2Xiq743WTNd';
 
   @ViewChild(GoogleMap) map!: GoogleMap;
 
@@ -57,6 +59,18 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
     if (this.primaryMandal)
       return convertAddress(this.primaryMandal.address);
     else return '';
+  }
+
+  resolved(captchaResponse: string | null) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  errored(error: never[]): void {
+    console.warn(`reCAPTCHA error encountered`, error);
+  }
+
+  openLink(link: string) {
+    window.open(link, '_blank');
   }
 
   async submitForm() {

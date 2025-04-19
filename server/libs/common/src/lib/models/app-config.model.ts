@@ -26,9 +26,9 @@ export class AppConfigModel extends Model<AppConfigModel> {
   @Column({
     field: 'config_value',
     allowNull: false,
-    type: DataType.JSONB,
+    type: DataType.TEXT,
   })
-  configValue: object;
+  configValue: string;
 
   @Column({
     field: 'module',

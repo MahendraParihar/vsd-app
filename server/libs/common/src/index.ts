@@ -42,3 +42,5 @@ export * from './lib/filters/validation.filter';
 export * from './lib/filters/validation.exception';
 export * from './lib/filters/validation.filter';
 export * from './lib/filters/validation.exception';
+
+export * from './lib/third-party-services/index';

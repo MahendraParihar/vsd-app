@@ -38,6 +38,7 @@ import { MandalDetailComponent } from './mandal/details/mandal-detail.component'
 import { MandalService } from './mandal/services/mandal.service';
 import { FacilityCardComponent } from './facility/facility-card/facility-card.component';
 import { MatChip, MatChipSet } from '@angular/material/chips';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -58,13 +59,15 @@ import { MatChip, MatChipSet } from '@angular/material/chips';
     TempleDetailComponent,
     EventCardComponent,
     TempleCardComponent,
-    FacilityCardComponent
+    FacilityCardComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     CommonModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     SharedUiLibModule,
     CoreLibModule,
     MatSidenavModule,

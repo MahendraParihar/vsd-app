@@ -64,6 +64,14 @@ export class InquiryModel extends Model<InquiryModel> {
   message: string;
 
   @Column({
+    field: 'recaptcha',
+    allowNull: false,
+    defaultValue: null,
+    type: DataType.TEXT,
+  })
+  recaptcha: string;
+
+  @Column({
     field: 'is_responded',
     allowNull: false,
     defaultValue: false,
