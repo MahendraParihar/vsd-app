@@ -1,6 +1,7 @@
-import {Injectable} from '@nestjs/common';
-import {InjectModel} from '@nestjs/sequelize';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IBaseAdminUser,
   IManageNews,
   INews,
@@ -8,15 +9,16 @@ import {
   IStatusChange,
   ITableList,
   ITableListFilter,
-  LabelKey
+  LabelKey,
 } from '@vsd-common/lib';
-import {Op} from 'sequelize';
-import {CurrentAffairModel} from '../models/current-affair.model';
-import {LabelService} from "@server/common";
+import { Op } from 'sequelize';
+import { CurrentAffairModel } from '../models/current-affair.model';
+import { AppConfigService, buildImageUrl, LabelService } from '@server/common';
 
 @Injectable()
 export class NewsService {
   constructor(@InjectModel(CurrentAffairModel) private currentAffairModel: typeof CurrentAffairModel,
+              private readonly appConfigService: AppConfigService,
               private labelService: LabelService) {
   }
 
@@ -29,17 +31,17 @@ export class NewsService {
         },
       });
     }
-    const {rows, count} = await this.currentAffairModel.scope('list').findAndCountAll({
+    const { rows, count } = await this.currentAffairModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']]
+      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']],
     });
     const data = rows.map((data: CurrentAffairModel) => {
       return <INewsList>{
         currentAffairId: data.currentAffairId,
         isApproved: data.isApproved,
-        imagePath: data.imagePath,
+        imagePath: buildImageUrl(data.imagePath, this.appConfigService.getString(AppConfigEnum.CLIENT_URL)),
         title: data.title,
         description: data.description,
         date: data.date,
@@ -73,7 +75,7 @@ export class NewsService {
   }
 
   async getById(id: number): Promise<INews> {
-    const obj = await this.currentAffairModel.findOne({where: {currentAffairId: id}});
+    const obj = await this.currentAffairModel.findOne({ where: { currentAffairId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_NEWS));
     }
@@ -93,21 +95,21 @@ export class NewsService {
       tags: obj.tags,
       metaTitle: obj.metaTitle,
       metaDescription: obj.metaDescription,
-      url: obj.url
+      url: obj.url,
     };
     if (obj.imagePath) {
-      Object.assign(dataObj, {imagePath: obj.imagePath});
+      Object.assign(dataObj, { imagePath: obj.imagePath });
     }
     if (obj.currentAffairId) {
-      await this.currentAffairModel.update(dataObj, {where: {currentAffairId: obj.currentAffairId}});
+      await this.currentAffairModel.update(dataObj, { where: { currentAffairId: obj.currentAffairId } });
     } else {
-      Object.assign(dataObj, {createdBy: userId});
+      Object.assign(dataObj, { createdBy: userId });
       await this.currentAffairModel.create(dataObj);
     }
   }
 
   async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.currentAffairModel.findOne({where: {currentAffairId: id}});
+    const obj = await this.currentAffairModel.findOne({ where: { currentAffairId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
     await obj.save();

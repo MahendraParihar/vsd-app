@@ -9,7 +9,7 @@ export interface IBaseBanner {
   url?: string;
   isInternalUrl: boolean;
   bannerFor: string;
-  imagePath: IMediaUpload[];
+  imagePath: IMediaUpload;
 }
 
 export interface IManageBanner extends IBaseBanner {

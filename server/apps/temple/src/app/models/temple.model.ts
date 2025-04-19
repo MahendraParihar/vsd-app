@@ -17,6 +17,7 @@ import {
   DistrictModel,
   StateModel,
 } from '@server/common';
+import { IMediaUpload } from '@vsd-common/lib';
 
 @Table({
   tableName: 'mst_temple',
@@ -103,7 +104,7 @@ export class TempleModel extends Model<TempleModel> {
     allowNull: false,
     type: DataType.JSONB,
   })
-  imagePath: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'tags',

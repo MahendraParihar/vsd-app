@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpService, LabelService, SnackBarService } from '@core-lib';
-import { convertAddress, IMandalDetail, LabelKey } from '@vsd-common/lib';
+import { BannerService, HttpService, LabelService, SnackBarService } from '@core-lib';
+import { convertAddress, IBannerList, IMandalDetail, LabelKey, MediaForEnum } from '@vsd-common/lib';
 import { GoogleMap } from '@angular/google-maps';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { MandalService } from '../mandal/services/mandal.service';
@@ -15,6 +15,8 @@ import { ValidationUtil } from '@shared-ui-lib';
   styleUrl: './contact-us.component.scss',
 })
 export class ContactUsComponent implements OnInit, AfterViewInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
   pageTitle!: string | undefined;
   labelKeys = LabelKey;
 
@@ -44,6 +46,7 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.CONTACT_US);
     await this.loadPrimaryMandal();
   }
 

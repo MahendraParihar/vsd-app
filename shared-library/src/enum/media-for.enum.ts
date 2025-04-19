@@ -32,4 +32,5 @@ export enum MediaForEnum {
   RELIGION = 'religion',
   SERVICE = 'service',
   PAGE = 'page',
+  HISTORY = 'history',
 }

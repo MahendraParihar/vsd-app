@@ -3,7 +3,8 @@ import {
   Column,
   CreatedAt,
   DataType,
-  ForeignKey, HasMany,
+  ForeignKey,
+  HasMany,
   Model,
   Scopes,
   Table,
@@ -14,10 +15,12 @@ import {
   AdminUserModel,
   CityVillageModel,
   CountryModel,
-  DistrictModel, FamilyModel, PostModel,
+  DistrictModel,
+  FamilyModel,
+  PostModel,
   StateModel,
 } from '@server/common';
-import { IMandalAdditionalInfo } from '@vsd-common/lib';
+import { IMandalAdditionalInfo, IMediaUpload } from '@vsd-common/lib';
 import { MandalMemberModel } from './mandal-member.model';
 
 @Table({
@@ -225,7 +228,7 @@ export class MandalModel extends Model<MandalModel> {
     allowNull: false,
     type: DataType.JSONB,
   })
-  imagePath: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'additional_info',

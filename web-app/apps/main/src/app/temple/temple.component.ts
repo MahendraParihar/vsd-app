@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TempleService } from './services/temple.service';
-import { ITableList, ITempleList, LabelKey } from '@vsd-common/lib';
-import { LabelService } from '@core-lib';
+import { IBannerList, ITableList, ITempleList, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import { BannerService, LabelService } from '@core-lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,6 +11,9 @@ import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
   styleUrl: './temple.component.scss',
 })
 export class TempleComponent implements OnInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
+
   dataSet!: ITableList<ITempleList>;
   pageTitle!: string | undefined;
 
@@ -25,6 +28,7 @@ export class TempleComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.TEMPLE);
     await this.loadData();
   }
 

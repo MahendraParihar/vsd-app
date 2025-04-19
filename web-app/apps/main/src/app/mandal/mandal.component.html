@@ -1,35 +1,11 @@
 <div class="mandal-list-section">
-  <shared-ui-lib-uikit-banner
-    [banner]="['https://as1.ftcdn.net/v2/jpg/00/91/42/68/1000_F_91426895_WvXeMVveaKeJ03wtwqRYQI3HoUQi5LgS.jpg']"></shared-ui-lib-uikit-banner>
+  <shared-ui-lib-uikit-banner [banner]="banners"></shared-ui-lib-uikit-banner>
   <div class="mandal-list-content main-section">
     <shared-ui-lib-uikit-label *ngIf="pageTitle" [class]="['mat-headline-3']"
                                [label]="pageTitle"></shared-ui-lib-uikit-label>
     <div class="divider divider-line"></div>
-    <div class="mandal-list grid-list" *ngIf="dataSet && dataSet.data && dataSet.data.length>0">
-      <div class="mandal-item grid-item" *ngFor="let mandal of dataSet.data">
-        <img [src]="mandal.imagePath[0].webUrl" />
-        <div class="mandal-address">
-          <shared-ui-lib-uikit-label
-            [class]="['mat-subtitle-1']"
-            [label]="getAddress(mandal)"></shared-ui-lib-uikit-label>
-        </div>
-        <div class="mandal-body">
-          <div class="mandal-name">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-headline-5']"
-              [label]="mandal.mandalName"></shared-ui-lib-uikit-label>
-          </div>
-          <div class="mandal-desc">
-            <shared-ui-lib-uikit-label
-              [class]="['mat-subtitle-2']"
-              [hasHtmlContent]="true"
-              [label]="mandal.description" [charLimit]="150"></shared-ui-lib-uikit-label>
-          </div>
-          <shared-ui-lib-uikit-button [hasUnderline]="true" (buttonClicked)="onClick(mandal)" [type]="'link'"
-                                      [label]="labelService.getLabel(labelKey.ACTION_VIEW_MORE)"></shared-ui-lib-uikit-button>
-        </div>
-      </div>
-      <div class="grid-item" *ngFor="let item of dummyEntry"></div>
-    </div>
+    <ng-container *ngIf="dataSet && dataSet.data && dataSet.data.length>0">
+      <vsd-web-app-mandal-card [mandals]="dataSet.data"></vsd-web-app-mandal-card>
+    </ng-container>
   </div>
 </div>

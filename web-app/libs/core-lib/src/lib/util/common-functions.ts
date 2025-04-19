@@ -1,3 +1,5 @@
+import { IAddressDetail } from '@vsd-common/lib';
+
 export function insertDummyEntry<T>(entry: T[], size: number = 4) {
   const dummyEntry: null[] = [];
   if (entry && entry.length > 0) {
@@ -12,4 +14,9 @@ export function insertDummyEntry<T>(entry: T[], size: number = 4) {
     }
   }
   return dummyEntry;
+}
+
+
+export function getAddress(address: IAddressDetail) {
+  return `${address.district}, ${address.state}`;
 }

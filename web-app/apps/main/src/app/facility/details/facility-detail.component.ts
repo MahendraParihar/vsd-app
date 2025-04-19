@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FacilityService } from '../services/facility.service';
-import { IFacilityDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
+import { IBannerList, IFacilityDetail, IMemberPostInfo, LabelKey } from '@vsd-common/lib';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { insertDummyEntry, LabelService } from '@core-lib';
 
@@ -12,6 +12,7 @@ import { insertDummyEntry, LabelService } from '@core-lib';
 })
 export class FacilityDetailComponent {
   facility!: IFacilityDetail;
+  banners: IBannerList[] = [];
   _url!: string;
 
   @Input()

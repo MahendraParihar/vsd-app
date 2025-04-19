@@ -1,6 +1,7 @@
 export * from './lib/common.module';
 export * from './lib/utils/crypto.util';
 export * from './lib/utils/env.values';
+export * from './lib/utils/common-functions.utils';
 export * from './lib/models/admin';
 export * from './lib/models/family';
 export * from './lib/models/faq';

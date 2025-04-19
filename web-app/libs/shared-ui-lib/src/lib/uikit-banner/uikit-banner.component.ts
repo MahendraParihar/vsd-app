@@ -1,5 +1,6 @@
 import { Component, computed, Input } from '@angular/core';
 import { ResponsiveService } from '@core-lib';
+import { IBannerList } from '@vsd-common/lib';
 
 @Component({
   selector: 'shared-ui-lib-uikit-banner',
@@ -8,7 +9,7 @@ import { ResponsiveService } from '@core-lib';
   styleUrl: './uikit-banner.component.scss',
 })
 export class UikitBannerComponent {
-  @Input() banner!: string[];
+  @Input() banner!: IBannerList[];
   @Input() title!: string;
   @Input() subTitle!: string;
 

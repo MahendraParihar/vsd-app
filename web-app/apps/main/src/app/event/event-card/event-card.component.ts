@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IEventList, LabelKey } from '@vsd-common/lib';
-import { LabelService } from '@core-lib';
+import { IBannerList, IEventList, LabelKey } from '@vsd-common/lib';
+import { getAddress, LabelService } from '@core-lib';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
   styleUrl: './event-card.component.scss',
 })
 export class EventCardComponent {
+  banners: IBannerList[] = [];
+  address = getAddress;
+
   @Input() events!: IEventList[];
   @Input() orientation: 'horizontal' | 'vertical' = 'vertical';
   protected readonly LabelKey = LabelKey;
@@ -17,13 +20,6 @@ export class EventCardComponent {
 
   constructor(public labelService: LabelService,
               private router: Router) {
-  }
-
-  address(item: IEventList) {
-    if (!item || !item.address) {
-      return '';
-    }
-    return `${item.address.district} ${item.address.state}`;
   }
 
   onClick(item: IEventList) {

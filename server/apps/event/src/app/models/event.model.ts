@@ -21,6 +21,7 @@ import {
   StateModel,
 } from '@server/common';
 import { EventCoordinatorModel } from './event-coordinator.model';
+import { IMediaUpload } from '@vsd-common/lib';
 
 @Table({
   tableName: 'txn_event',
@@ -248,7 +249,7 @@ export class EventModel extends Model<EventModel> {
     allowNull: true,
     type: DataType.JSONB,
   })
-  imagePath: object;
+  imagePath: IMediaUpload[];
 
   @Column({
     field: 'download_path',

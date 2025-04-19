@@ -39,6 +39,7 @@ import { MandalService } from './mandal/services/mandal.service';
 import { FacilityCardComponent } from './facility/facility-card/facility-card.component';
 import { MatChip, MatChipSet } from '@angular/material/chips';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { MandalCardComponent } from './mandal/mandal-card/mandal-card.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
     EventCardComponent,
     TempleCardComponent,
     FacilityCardComponent,
+    MandalCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { EventService } from '../event/services/event.service';
-import { IEventDetail, IFacilityList, ILegalPageList, ITempleList, LabelKey } from '@vsd-common/lib';
-import { LabelService } from '@core-lib';
+import { IBannerList, IEventDetail, IFacilityList, ILegalPageList, ITempleList, LabelKey, MediaForEnum } from '@vsd-common/lib';
+import { BannerService, LabelService } from '@core-lib';
 import { TempleService } from '../temple/services/temple.service';
 import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,8 @@ import { FacilityService } from '../facility/services/facility.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  bannerService = inject(BannerService);
+  banners: IBannerList[] = [];
   templeTitle = 'मंदिर';
   eventTitle = 'आगामी कार्यक्रम';
   aboutUsTitle = 'हमारे बारे में';
@@ -35,6 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.banners = await this.bannerService.loadBanner(MediaForEnum.HOME);
     this.facilitiesTitle = this.labelService.getLabel(this.LabelKey.SIDE_MENU_FACILITY);
     this.aboutUsTitle = this.labelService.getLabel(this.LabelKey.SIDE_MENU_ABOUT_US);
     this.templeTitle = this.labelService.getLabel(this.LabelKey.SIDE_MENU_TEMPLE);

@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import {
+  AppConfigEnum,
   IBanner,
   IBannerList,
-  IBaseAdminUser, IManageBanner,
+  IBaseAdminUser,
+  IManageBanner,
   IStatusChange,
   ITableList,
   ITableListFilter,
   LabelKey,
 } from '@vsd-common/lib';
 import { Op } from 'sequelize';
-import { LabelService } from '@server/common';
+import { AppConfigService, buildImageUrl, LabelService } from '@server/common';
 import { Sequelize } from 'sequelize-typescript';
 import { BannerModel } from './models/banner.model';
 
@@ -18,6 +20,7 @@ import { BannerModel } from './models/banner.model';
 export class BannerService {
   constructor(@InjectModel(BannerModel) private bannerModel: typeof BannerModel,
               private labelService: LabelService,
+              private appConfigService: AppConfigService,
               private sequelize: Sequelize) {
   }
 
@@ -118,7 +121,7 @@ export class BannerService {
       createdBy: data.createdBy,
       updatedAt: data.updatedAt,
       updatedBy: data.updatedBy,
-      imagePath: data.imagePath,
+      imagePath: buildImageUrl([data.imagePath], this.appConfigService.getString(AppConfigEnum.CLIENT_URL))[0],
       createdByUser: <IBaseAdminUser>{
         firstName: data.createdByUser.firstName,
         lastName: data.createdByUser.lastName,
