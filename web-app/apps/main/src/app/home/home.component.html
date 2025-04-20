@@ -46,8 +46,9 @@
     <div class="divider divider-line"></div>
     <div class="home-trustee-box grid-list">
       <div class="home-trustee-item grid-item" *ngFor="let post of primaryMandal.mandalMembers">
-        <!--        <img *ngIf="post.members[0].imagePath.webUrl && post.members[0].imagePath" [src]="post.members[0].imagePath.webUrl" />-->
-        <!--        <img *ngIf="!post.members[0].imagePath.webUrl" />-->
+        <img *ngIf="post.members[0].imagePath && post.members[0].imagePath.webUrl"
+             [src]="post.members[0].imagePath.webUrl" />
+
         <div class="trustee-body">
           <div class="trustee-name">
             <shared-ui-lib-uikit-label
