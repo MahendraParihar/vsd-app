@@ -5,6 +5,7 @@ import {
   IEventDetail,
   IFacilityList,
   ILegalPageList,
+  IMandalDetail,
   ITempleList,
   LabelKey,
   MediaForEnum,
@@ -14,6 +15,7 @@ import { TempleService } from '../temple/services/temple.service';
 import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
 import { FacilityService } from '../facility/services/facility.service';
+import { MandalService } from '../mandal/services/mandal.service';
 
 @Component({
   selector: 'vsd-web-app-home',
@@ -33,6 +35,7 @@ export class HomeComponent implements OnInit {
   facilitiesTitle = this.labelService.getLabel(LabelKey.HOME_FACILITY_TITLE);
   protected readonly LabelKey = LabelKey;
 
+  primaryMandal!: IMandalDetail;
   upcomingEvents: IEventDetail[] = [];
   temples: ITempleList[] = [];
   facilities: IFacilityList[] = [];
@@ -42,6 +45,7 @@ export class HomeComponent implements OnInit {
               private templeService: TempleService,
               private facilityService: FacilityService,
               private commonService: CommonService,
+              private mandalService: MandalService,
               private route: Router) {
   }
 
@@ -51,16 +55,18 @@ export class HomeComponent implements OnInit {
   }
 
   async loadDetails() {
-    const [events, temples, facilities, legalPage] = await Promise.all([
+    const [events, temples, facilities, legalPage, primaryMandal] = await Promise.all([
       await this.eventService.loadUpcomingEvents(),
       this.templeService.loadHomeTemples(),
       this.facilityService.loadHomeFacilities(),
       this.commonService.loadPage('about-us'),
+      this.mandalService.loadPrimaryMandalDetails(),
     ]);
     this.upcomingEvents = events;
     this.temples = temples;
     this.facilities = facilities;
     this.legalPage = legalPage;
+    this.primaryMandal = primaryMandal;
   }
 
   aboutUsClick() {
