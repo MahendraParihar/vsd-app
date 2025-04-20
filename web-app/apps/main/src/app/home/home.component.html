@@ -39,53 +39,30 @@
     <vsd-web-app-facility-card [facilities]="facilities"></vsd-web-app-facility-card>
   </div>
 
-<!--  <div class="home-trustee-section">-->
-<!--    <shared-ui-lib-uikit-label *ngIf="trusteeTitle" [class]="['mat-headline-3']"-->
-<!--                               [label]="trusteeTitle"></shared-ui-lib-uikit-label>-->
-<!--    <div class="divider divider-line"></div>-->
-<!--    <div class="home-trustee-box">-->
-<!--      <div class="home-trustee-item"><img />-->
-<!--        <div class="trustee-body">-->
-<!--          <div class="trustee-name">-->
-<!--            <shared-ui-lib-uikit-label-->
-<!--              [class]="['mat-headline-5']"-->
-<!--              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>-->
-<!--          </div>-->
-<!--          <div class="trustee-desc">-->
-<!--            <shared-ui-lib-uikit-label-->
-<!--              [class]="['mat-body-2']"-->
-<!--              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="home-trustee-item"><img />-->
-<!--        <div class="trustee-body">-->
-<!--          <div class="trustee-name">-->
-<!--            <shared-ui-lib-uikit-label-->
-<!--              [class]="['mat-headline-5']"-->
-<!--              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>-->
-<!--          </div>-->
-<!--          <div class="trustee-desc">-->
-<!--            <shared-ui-lib-uikit-label-->
-<!--              [class]="['mat-body-2']"-->
-<!--              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="home-trustee-item"><img />-->
-<!--        <div class="trustee-body">-->
-<!--          <div class="trustee-name">-->
-<!--            <shared-ui-lib-uikit-label-->
-<!--              [class]="['mat-headline-5']"-->
-<!--              [label]="'मोहनलाल गमनाजी परिहार'"></shared-ui-lib-uikit-label>-->
-<!--          </div>-->
-<!--          <div class="trustee-desc">-->
-<!--            <shared-ui-lib-uikit-label-->
-<!--              [class]="['mat-body-2']"-->
-<!--              [label]="'कोषाध्यक्ष'"></shared-ui-lib-uikit-label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+  <div class="home-trustee-section"
+       *ngIf="primaryMandal && primaryMandal.mandalMembers && primaryMandal.mandalMembers.length > 0">
+    <shared-ui-lib-uikit-label *ngIf="trusteeTitle" [class]="['mat-headline-3']"
+                               [label]="trusteeTitle"></shared-ui-lib-uikit-label>
+    <div class="divider divider-line"></div>
+    <div class="home-trustee-box grid-list">
+      <div class="home-trustee-item grid-item" *ngFor="let post of primaryMandal.mandalMembers">
+        <img *ngIf="post.members[0].imagePath && post.members[0].imagePath.webUrl"
+             [src]="post.members[0].imagePath.webUrl" />
+
+        <div class="trustee-body">
+          <div class="trustee-name">
+            <shared-ui-lib-uikit-label
+              [class]="['mat-headline-5']"
+              [label]="post.members[0].firstName + ' ' + post.members[0].lastName"></shared-ui-lib-uikit-label>
+          </div>
+          <div class="trustee-desc">
+            <shared-ui-lib-uikit-label
+              [class]="['mat-subtitle-2']"
+              [hasHtmlContent]="true"
+              [label]="post.post" [charLimit]="150"></shared-ui-lib-uikit-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

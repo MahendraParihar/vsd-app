@@ -62,3 +62,14 @@
 /infra/lovs.env
 /infra/matrimonial.env
 /node_modules/*.*
+
+/server/apps/event/.env
+/server/apps/facility/.env
+/server/apps/family/.env
+/server/apps/job/.env
+/server/apps/lovs/.env
+/server/apps/main/.env
+/server/apps/mandal/.env
+/server/apps/matrimonial/.env
+/server/apps/news/.env
+/server/apps/temple/.env
