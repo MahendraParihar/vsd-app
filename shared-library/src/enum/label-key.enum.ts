@@ -286,4 +286,10 @@ export enum LabelKey {
   PASSWORD = 'password',
 
   COPYRIGHT = 'copyright',
+
+  HOME_TEMPLE_TITLE = 'home_temple_title',
+  HOME_EVENT_TITLE = 'home_event_title',
+  HOME_FACILITY_TITLE = 'home_facility_title',
+  HOME_ABOUT_US_TITLE = 'home_about_us_title',
+  HOME_TRUSTEE_TITLE = 'home_trustee_title',
 }
