@@ -228,7 +228,7 @@ services:
       - ./certs/vanshsutharbarwa.key:/etc/ssl/certs/vanshsutharbarwa.key
       - ./certs/vanshsutharbarwa.pem:/etc/ssl/certs/vanshsutharbarwa.pem
     ports:
-      - "8090:80"
+      - "8090:443"
     depends_on:
       - core
 
