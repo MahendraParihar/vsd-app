@@ -91,7 +91,7 @@
                             [isRequired]="true"
                             [mediaFor]="mediaForEnum.HOME"
                             [mediaType]="fileTypeEnum.IMAGE"
-                            [uploadedMediaList]="banner ? banner.imagePath : []"></shared-ui-lib-upload-form>
+                            [uploadedMediaList]="banner ? [banner.imagePath] : []"></shared-ui-lib-upload-form>
       </div>
     </form>
   </mat-card-content>

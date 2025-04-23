@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_FORMATS } from '@vsd-common/lib';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [BannerComponent, ManageBannerComponent],
@@ -28,6 +29,7 @@ import { MY_FORMATS } from '@vsd-common/lib';
     MatDatepickerModule,
     MatDividerModule,
     CoreLibModule,
+    MatSlideToggle,
   ],
   providers: [BannerService, provideMomentDateAdapter(MY_FORMATS)],
   exports: [BannerComponent, ManageBannerComponent],
