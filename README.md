@@ -57,11 +57,16 @@ docker compose -f ./infra/docker-compose.yml down
 
 #### Docker run
 ```shell
-docker  run  [CONTAINER_NAME] sleep infinity
+docker run  [CONTAINER_NAME] sleep infinity
 ```
 #### List docker containers list
 ```shell
 docker ps -a
+```
+
+#### Docker all images
+```ssh
+/var/lib/docker# du -sch /var/lib/docker/overlay2/*
 ```
 
 #### Go inside docker image
