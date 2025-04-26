@@ -111,7 +111,7 @@ export class ManageBannerComponent implements OnInit {
       imagePath: this.formGroup.value.uploadFiles,
     };
     if (this.id) {
-      payload.bannerId = this.id;
+      payload.bannerId = Number(this.id);
     }
     try {
       await this.service.manageBanner(payload);

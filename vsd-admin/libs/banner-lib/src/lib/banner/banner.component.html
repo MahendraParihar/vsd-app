@@ -28,9 +28,8 @@
             @case ("seqNo") {
               {{ i + 1 }}
             }
-            @case ("imagePath") {
-              <shared-ui-lib-image [alt]="''" [mediaPath]="'http://localhost:3000/'" [isAvatar]="true"
-                                   [webUrl]="d.imagePath"></shared-ui-lib-image>
+            @case ("imagePath"){
+              <shared-ui-lib-image [isAvatar]="true" [webUrl]="[d.imagePath]"></shared-ui-lib-image>
             }
             @case ("cityVillage") {
               {{ d.address.cityVillage }}, {{ d.address.district }}, {{ d.address.state }}

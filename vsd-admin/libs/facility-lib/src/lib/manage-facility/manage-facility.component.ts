@@ -120,7 +120,7 @@ export class ManageFacilityComponent implements OnInit, OnDestroy {
       payload.addressId = this.formGroup.value.address.addressId;
     }
     if (this.id) {
-      payload.facilityId = this.id;
+      payload.facilityId = Number(this.id);
     }
     try {
       await this.facilityService.manageFacility(payload);

@@ -28,9 +28,8 @@
             @case ("seqNo") {
               {{ i + 1 }}
             }
-            @case ("imagePath") {
-              <shared-ui-lib-image [alt]="''" [mediaPath]="''" [isAvatar]="true"
-                                   [webUrl]="d.imagePath"></shared-ui-lib-image>
+            @case ("imagePath"){
+              <shared-ui-lib-image [isAvatar]="true" [webUrl]="d.imagePath"></shared-ui-lib-image>
             }
             @case ("createdAt") {
               {{ d[t] | appDateTime: 'dateTime' }}
