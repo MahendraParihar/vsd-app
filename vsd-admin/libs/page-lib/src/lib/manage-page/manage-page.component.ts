@@ -89,7 +89,7 @@ export class ManagePageComponent implements OnInit, OnDestroy {
       ...this.formGroup.value.seo,
     };
     if (this.id) {
-      payload.legalPageId = this.id;
+      payload.legalPageId = Number(this.id);
     }
     try {
       await this.pagesService.managePages(payload);

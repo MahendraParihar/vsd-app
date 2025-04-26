@@ -134,7 +134,7 @@ export class ManageEventComponent implements OnInit, OnDestroy {
       payload.addressId = this.formGroup.value.address.addressId;
     }
     if (this.id) {
-      payload.eventId = this.id;
+      payload.eventId = Number(this.id);
     }
     try {
       await this.eventService.manageEvent(payload);

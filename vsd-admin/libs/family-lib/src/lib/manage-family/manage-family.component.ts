@@ -106,7 +106,7 @@ export class ManageFamilyComponent implements OnInit, OnDestroy {
       payload.addressId = this.formGroup.value.address.addressId;
     }
     if (this.id) {
-      payload.familyId = this.id;
+      payload.familyId = Number(this.id);
     }
     try {
       await this.familyService.manageFamily(payload);

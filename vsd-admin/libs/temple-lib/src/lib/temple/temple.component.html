@@ -28,6 +28,9 @@
             @case ("seqNo"){
               {{i + 1}}
             }
+            @case ("imagePath"){
+              <shared-ui-lib-image [isAvatar]="true" [webUrl]="d.imagePath"></shared-ui-lib-image>
+            }
             @case ("cityVillage"){
               {{d.address.cityVillage}}, {{d.address.district}}, {{d.address.state}}
             }

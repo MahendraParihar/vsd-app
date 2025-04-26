@@ -101,7 +101,7 @@ export class ManageTempleComponent implements OnInit, OnDestroy {
       payload.addressId = this.formGroup.value.address.addressId;
     }
     if (this.id) {
-      payload.templeId = this.id;
+      payload.templeId = Number(this.id);
     }
     try {
       await this.templeService.manageTemple(payload);

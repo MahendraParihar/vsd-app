@@ -139,7 +139,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
       payload.addressId = this.formGroup.value.address.addressId;
     }
     if (this.id) {
-      payload.mandalId = this.id;
+      payload.mandalId = Number(this.id);
     }
     try {
       await this.mandalService.manageMandal(payload);
