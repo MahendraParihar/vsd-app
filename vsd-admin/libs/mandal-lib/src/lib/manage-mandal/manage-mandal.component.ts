@@ -149,16 +149,4 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));
     }
   }
-
-  get socialLinks() {
-    return this.formGroup.get('socialSiteLink') as FormArray;
-  }
-
-  addSocialLink() {
-    this.socialLinks.push(new FormGroup({
-      label: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
-      link: new FormControl(null),
-      icon: new FormControl(null),
-    }));
-  }
 }
