@@ -145,6 +145,8 @@ export class MandalService {
             mandalId: obj.mandalId,
             familyId: f,
             postId: m.postId,
+            fromYear: new Date().getFullYear(),
+            toYear: new Date().getFullYear(),
           });
         }
       }

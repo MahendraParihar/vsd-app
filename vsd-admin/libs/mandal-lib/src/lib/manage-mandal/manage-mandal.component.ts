@@ -46,7 +46,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     description: new FormControl(null),
     regNo: new FormControl(null),
     emailId: new FormControl(null, [Validators.email, Validators.pattern(ValidationUtil.EMAIL_REGEX), Validators.maxLength(InputLength.MAX_EMAIL)]),
-    phoneNumber: new FormControl(null, [Validators.pattern(ValidationUtil.PHONE_REGEX), Validators.maxLength(InputLength.MAX_CONTACT_NUMBER)]),
+    phoneNumber: new FormControl(null, [Validators.maxLength(InputLength.MAX_CONTACT_NUMBER)]),
   });
 
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;

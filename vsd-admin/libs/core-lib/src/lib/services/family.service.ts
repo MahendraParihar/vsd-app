@@ -11,7 +11,7 @@ export class FamilyService {
   async searchFamilies(ids: number[] = [], str: string | null = null): Promise<IFamilyList[]> {
     const payload: ITableListFilter = {
       page: 0,
-      limit: 10,
+      limit: 100,
     };
     if (str) {
       payload.search = str;
