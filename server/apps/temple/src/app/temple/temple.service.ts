@@ -65,7 +65,7 @@ export class TempleService {
   }
 
   async getById(id: number): Promise<ITemple> {
-    const obj = await this.templeModel.findOne({ where: { templeId: id }, nest: true, raw: true });
+    const obj = await this.templeModel.scope('details').findOne({ where: { templeId: id }, nest: true, raw: true });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_TEMPLE));
     }

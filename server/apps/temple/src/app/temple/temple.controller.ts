@@ -70,7 +70,7 @@ export class TempleController {
   @Post('manage')
   manageTemple(@Body() body: TempleDto, userId: number) {
     try {
-      return this.templeService.manage(body, userId);
+      return this.templeService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }
