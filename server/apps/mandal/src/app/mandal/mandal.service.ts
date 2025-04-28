@@ -22,6 +22,7 @@ import { AddressService, AppConfigService, buildImageUrl, LabelService, PostMode
 import { Sequelize } from 'sequelize-typescript';
 import { filter, groupBy, map } from 'lodash';
 import { MandalMemberModel } from '../models/mandal-member.model';
+import moment from 'moment';
 
 @Injectable()
 export class MandalService {
@@ -145,6 +146,8 @@ export class MandalService {
             mandalId: obj.mandalId,
             familyId: f,
             postId: m.postId,
+            fromDate: moment(),
+            toDate: moment(),
           });
         }
       }

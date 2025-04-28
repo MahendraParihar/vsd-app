@@ -61,7 +61,16 @@ import { IMediaUpload } from '@vsd-common/lib';
         ],
       },
     ],
-  }
+  },
+  details: {
+    include: [
+      {
+        model: AddressModel,
+        required: true,
+        as: 'address',
+      },
+    ],
+  },
 }))
 export class TempleModel extends Model<TempleModel> {
   @Column({

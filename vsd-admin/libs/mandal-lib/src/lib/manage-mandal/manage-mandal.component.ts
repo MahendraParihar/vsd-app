@@ -46,7 +46,7 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     description: new FormControl(null),
     regNo: new FormControl(null),
     emailId: new FormControl(null, [Validators.email, Validators.pattern(ValidationUtil.EMAIL_REGEX), Validators.maxLength(InputLength.MAX_EMAIL)]),
-    phoneNumber: new FormControl(null, [Validators.pattern(ValidationUtil.PHONE_REGEX), Validators.maxLength(InputLength.MAX_CONTACT_NUMBER)]),
+    phoneNumber: new FormControl(null, [Validators.maxLength(InputLength.MAX_CONTACT_NUMBER)]),
   });
 
   @ViewChild(UiAddressFormComponent) addressComponent!: UiAddressFormComponent;
@@ -148,17 +148,5 @@ export class ManageMandalComponent implements OnInit, OnDestroy {
     } catch (e) {
       this.snackBarService.showError(this.labelService.getLabel(this.labelKeys.ERROR_SOMETHING_WENT_WRONG));
     }
-  }
-
-  get socialLinks() {
-    return this.formGroup.get('socialSiteLink') as FormArray;
-  }
-
-  addSocialLink() {
-    this.socialLinks.push(new FormGroup({
-      label: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
-      link: new FormControl(null),
-      icon: new FormControl(null),
-    }));
   }
 }

@@ -57,18 +57,18 @@ export class MandalMemberModel extends Model<MandalMemberModel> {
   mandalId: number;
 
   @Column({
-    field: 'from_year',
+    field: 'from_date',
     allowNull: false,
     type: DataType.DATEONLY,
   })
-  fromYear: Date;
+  fromDate: Date;
 
   @Column({
-    field: 'to_year',
+    field: 'to_date',
     allowNull: true,
     type: DataType.DATEONLY,
   })
-  toYear: Date;
+  toDate: Date;
 
   @BelongsTo(() => PostModel, { as: 'post', foreignKey: 'postId', targetKey: 'postId' })
   post: PostModel;
