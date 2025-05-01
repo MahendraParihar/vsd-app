@@ -10,7 +10,7 @@ import {
   LabelKey,
   MediaForEnum,
 } from '@vsd-common/lib';
-import { BannerService, LabelService } from '@core-lib';
+import { BannerService, insertDummyEntry, LabelService } from '@core-lib';
 import { TempleService } from '../temple/services/temple.service';
 import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
@@ -71,5 +71,9 @@ export class HomeComponent implements OnInit {
 
   aboutUsClick() {
     this.route.navigate(['/about-us']);
+  }
+
+  getDummyMemberEntry() {
+    return insertDummyEntry(this.primaryMandal.mandalMembers, 4);
   }
 }

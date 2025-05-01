@@ -38,15 +38,15 @@
 
     <div class="member-section" *ngIf="mandal.mandalMembers && mandal.mandalMembers.length > 0">
       <shared-ui-lib-uikit-label [label]="'हमारे सदस्यों से मिलें'"
-                                 [class]="['mat-headline-3','secondary-color']"></shared-ui-lib-uikit-label>
+                                 [class]="['mat-headline-4','secondary-color']"></shared-ui-lib-uikit-label>
       <div *ngFor="let post of mandal.mandalMembers" class="mandal-member-section">
         <div class="subtitle-line" *ngIf="post.members && post.members.length > 0">
-          <shared-ui-lib-uikit-label [label]="post.post" [class]="['mat-headline-4']"></shared-ui-lib-uikit-label>
+          <shared-ui-lib-uikit-label [label]="post.post" [class]="['mat-headline-5']"></shared-ui-lib-uikit-label>
           <div class="line fill-remaining-space"></div>
         </div>
         <div class="grid-list">
           <div class="grid-item member-box" *ngFor="let m of post.members">
-            <div class="img-box"></div>
+            <div class="img-box"><img *ngIf="m.imagePath" [src]="m.imagePath.webUrl" /></div>
             <div class="member-info">
               <shared-ui-lib-uikit-label [class]="['mat-headline-5']"
                                          label="{{m.firstName + ' ' + m.middleName + ' ' + m.lastName}}"></shared-ui-lib-uikit-label>
