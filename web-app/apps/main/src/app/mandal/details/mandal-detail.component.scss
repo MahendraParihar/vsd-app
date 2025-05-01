@@ -79,6 +79,12 @@
           width: var(--mandal-member-image-size);
           height: var(--mandal-member-image-size);
           border-radius: var(--border-radius-12);
+
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
 
         .member-info {
