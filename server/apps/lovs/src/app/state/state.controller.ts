@@ -9,9 +9,9 @@ export class StateController {
   }
 
   @Post()
-  loadStates(@Body() payload: TableListDto): Promise<ITableList<IStateList>> {
+  async loadStates(@Body() payload: TableListDto): Promise<ITableList<IStateList>> {
     try {
-      return this.stateService.load(payload);
+      return await this.stateService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class StateController {
   }
 
   @Post('manage')
-  manageState(@Body() body: StateDto, userId: number) {
+  async manageState(@Body() body: StateDto, userId: number) {
     try {
-      return this.stateService.manage(body, userId);
+      return await this.stateService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

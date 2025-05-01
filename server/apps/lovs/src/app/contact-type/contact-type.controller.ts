@@ -9,9 +9,9 @@ export class ContactTypeController {
   }
 
   @Post()
-  loadContactTypes(@Body() payload: TableListDto): Promise<ITableList<IContactTypeList>> {
+  async loadContactTypes(@Body() payload: TableListDto): Promise<ITableList<IContactTypeList>> {
     try {
-      return this.contactTypeService.load(payload);
+      return await this.contactTypeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class ContactTypeController {
   }
 
   @Post('manage')
-  manageContactType(@Body() body: ContactTypeDto, userId: number) {
+  async manageContactType(@Body() body: ContactTypeDto, userId: number) {
     try {
-      return this.contactTypeService.manage(body, userId);
+      return await this.contactTypeService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

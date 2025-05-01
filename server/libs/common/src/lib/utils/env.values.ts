@@ -14,6 +14,10 @@ export class Env {
   public static databasePort = envToNumber('DB_PORT');
   public static databaseSchema = envToString('DB_SCHEMA');
 
+  public static jwtSecret = envToString('JWT_SECRET');
+  public static accessTokenTime = envToString('ACCESS_TOKEN_TIME');
+  public static refreshTokenTime   = envToString('REFRESH_TOKEN_TIME');
+
   public static apiPort = envToNumber('API_PORT');
 
   public static readonly staticAssetPath = envToString('ASSET_PATH');

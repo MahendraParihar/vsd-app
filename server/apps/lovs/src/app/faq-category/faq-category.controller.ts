@@ -18,9 +18,9 @@ export class FaqCategoryController {
   }
 
   @Post()
-  loadFaqCategories(@Body() payload: TableListDto): Promise<ITableList<IFaqCategoryList>> {
+  async loadFaqCategories(@Body() payload: TableListDto): Promise<ITableList<IFaqCategoryList>> {
     try {
-      return this.faqCategoryService.load(payload);
+      return await this.faqCategoryService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -45,9 +45,9 @@ export class FaqCategoryController {
   }
 
   @Post('manage')
-  manageFaqCategory(@Body() body: FaqCategoryDto, userId: number) {
+  async manageFaqCategory(@Body() body: FaqCategoryDto, userId: number) {
     try {
-      return this.faqCategoryService.manage(body, userId);
+      return await this.faqCategoryService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

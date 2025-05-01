@@ -11,18 +11,18 @@ export class FaqController {
 
   @Public()
   @Post()
-  loadPublicFaqs(@Body() payload: TableListDto): Promise<ITableList<IFaqList>> {
+  async loadPublicFaqs(@Body() payload: TableListDto): Promise<ITableList<IFaqList>> {
     try {
-      return this.faqService.load(payload);
+      return await this.faqService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post()
-  loadBanners(@Body() payload: TableListDto): Promise<ITableList<IFaqList>> {
+  async loadBanners(@Body() payload: TableListDto): Promise<ITableList<IFaqList>> {
     try {
-      return this.faqService.load(payload);
+      return await this.faqService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -38,9 +38,9 @@ export class FaqController {
   }
 
   @Post('manage')
-  manageBanner(@Body() body: FaqDto, userId: number) {
+  async manageBanner(@Body() body: FaqDto, userId: number) {
     try {
-      return this.faqService.manage(body, userId);
+      return await this.faqService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

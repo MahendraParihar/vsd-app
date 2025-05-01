@@ -11,7 +11,7 @@ export class EventController {
 
   @Public()
   @Post('public')
-  loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
+  async loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
     try {
       return this.eventService.load(payload);
     } catch (e) {
@@ -21,9 +21,9 @@ export class EventController {
 
   @Public()
   @Get('public/upcoming-event')
-  loadUpcomingEvent(): Promise<IEventDetail[]> {
+  async loadUpcomingEvent(): Promise<IEventDetail[]> {
     try {
-      return this.eventService.loadUpcomingEvents();
+      return await this.eventService.loadUpcomingEvents();
     } catch (e) {
       throw new Error(e);
     }
@@ -31,18 +31,18 @@ export class EventController {
 
   @Public()
   @Get('public/:url')
-  loadEventDetailByUrl(@Param('url') url: string): Promise<IEventDetail> {
+  async loadEventDetailByUrl(@Param('url') url: string): Promise<IEventDetail> {
     try {
-      return this.eventService.loadDetailByUrl(url);
+      return await this.eventService.loadDetailByUrl(url);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post()
-  loadEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
+  async loadEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
     try {
-      return this.eventService.load(payload);
+      return await this.eventService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -67,9 +67,9 @@ export class EventController {
   }
 
   @Post('manage')
-  manageEvent(@Body() body: EventDto, userId: number) {
+  async manageEvent(@Body() body: EventDto, userId: number) {
     try {
-      return this.eventService.manage(body, userId);
+      return await this.eventService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

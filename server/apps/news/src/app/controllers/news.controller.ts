@@ -11,9 +11,9 @@ export class NewsController {
   }
 
   @Post()
-  loadAllNews(@Body() payload: TableListDto): Promise<ITableList<INewsList>> {
+  async loadAllNews(@Body() payload: TableListDto): Promise<ITableList<INewsList>> {
     try {
-      return this.newsService.load(payload);
+      return await this.newsService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -38,9 +38,9 @@ export class NewsController {
   }
 
   @Post()
-  manageNews(@Body() body: NewsDto, userId: number) {
+  async manageNews(@Body() body: NewsDto, userId: number) {
     try {
-      return this.newsService.manage(body, userId);
+      return await this.newsService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

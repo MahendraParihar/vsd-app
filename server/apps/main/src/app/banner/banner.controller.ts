@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { Public, StatusChangeDto, TableListDto } from '@server/common';
-import { IBannerList, ITableList, ITableListFilter } from '@vsd-common/lib';
+import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, IBannerList, ITableList, ITableListFilter } from '@vsd-common/lib';
 import { BannerService } from './banner.service';
 import { BannerDto } from './dto/banner.dto';
 
@@ -23,7 +23,8 @@ export class BannerController {
   }
 
   @Post()
-  async loadBanners(@Body() payload: TableListDto): Promise<ITableList<IBannerList>> {
+  async loadBanners(@Body() payload: TableListDto, @CurrentUser() currentUser: IAuthUser): Promise<ITableList<IBannerList>> {
+    console.log(currentUser);
     try {
       return this.bannerService.load(payload);
     } catch (e) {
@@ -41,9 +42,9 @@ export class BannerController {
   }
 
   @Post('manage')
-  async manageBanner(@Body() body: BannerDto, userId: number) {
+  async manageBanner(@Body() body: BannerDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.bannerService.manage(body, userId);
+      return this.bannerService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

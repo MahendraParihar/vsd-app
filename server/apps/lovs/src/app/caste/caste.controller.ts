@@ -9,9 +9,9 @@ export class CasteController {
   }
 
   @Post()
-  loadCastes(@Body() payload: TableListDto): Promise<ITableList<ICasteList>> {
+  async loadCastes(@Body() payload: TableListDto): Promise<ITableList<ICasteList>> {
     try {
-      return this.casteService.load(payload);
+      return await this.casteService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class CasteController {
   }
 
   @Post('manage')
-  manageCaste(@Body() body: CasteDto, userId: number) {
+  async manageCaste(@Body() body: CasteDto, userId: number) {
     try {
-      return this.casteService.manage(body, userId);
+      return await this.casteService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

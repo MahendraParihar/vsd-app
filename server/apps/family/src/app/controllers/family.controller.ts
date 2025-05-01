@@ -10,18 +10,18 @@ export class FamilyController {
   }
 
   @Post()
-  loadFamilies(@Body() payload: TableListDto): Promise<ITableList<IFamilyList>> {
+  async loadFamilies(@Body() payload: TableListDto): Promise<ITableList<IFamilyList>> {
     try {
-      return this.familyService.load(payload);
+      return await this.familyService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post('search')
-  searchFamilies(@Body() payload: TableListDto): Promise<Partial<IFamilyList>[]> {
+  async searchFamilies(@Body() payload: TableListDto): Promise<Partial<IFamilyList>[]> {
     try {
-      return this.familyService.searchFamily(payload, false);
+      return await this.familyService.searchFamily(payload, false);
     } catch (e) {
       throw new Error(e);
     }
@@ -46,9 +46,9 @@ export class FamilyController {
   }
 
   @Post('manage')
-  manageFamily(@Body() body: FamilyDto, userId: number) {
+  async manageFamily(@Body() body: FamilyDto, userId: number) {
     try {
-      return this.familyService.manage(body, 1);
+      return await this.familyService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }

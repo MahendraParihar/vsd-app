@@ -9,9 +9,9 @@ export class JobTypeController {
   }
 
   @Post()
-  loadJobTypes(@Body() payload: TableListDto): Promise<ITableList<IJobTypeList>> {
+  async loadJobTypes(@Body() payload: TableListDto): Promise<ITableList<IJobTypeList>> {
     try {
-      return this.jobTypeService.load(payload);
+      return await this.jobTypeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class JobTypeController {
   }
 
   @Post('manage')
-  manageJobType(@Body() body: JobTypeDto, userId: number) {
+  async manageJobType(@Body() body: JobTypeDto, userId: number) {
     try {
-      return this.jobTypeService.manage(body, userId);
+      return await this.jobTypeService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

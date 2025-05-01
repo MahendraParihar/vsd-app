@@ -30,6 +30,7 @@ import { InquiryListComponent } from './inquiry/list/inquiry-list.component';
 import { LovListComponent } from './lov/list/lov-list.component';
 import { MangeLovComponent } from './lov/manage/mange-lov.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from '@vsd-frontend/core-lib';
 
 export const appRoutes: Route[] = [
   {
@@ -47,6 +48,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     component: BaseLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -56,9 +58,11 @@ export const appRoutes: Route[] = [
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'banner',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -76,6 +80,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'temple',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -93,6 +98,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'event',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -110,6 +116,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'news',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -127,6 +134,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'family',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -144,6 +152,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'facility',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -161,6 +170,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'job',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -178,6 +188,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'faq',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -195,6 +206,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'page',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -212,6 +224,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'mandal',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -229,6 +242,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'matrimonial',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -246,6 +260,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'lov',
+        canActivate: [AuthGuard],
         children: [
           {
             path: ':type',
@@ -263,6 +278,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'inquiry',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',

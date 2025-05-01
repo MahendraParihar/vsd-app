@@ -9,9 +9,9 @@ export class GenderController {
   }
 
   @Post()
-  loadGenders(@Body() payload: TableListDto): Promise<ITableList<IGenderList>> {
+  async loadGenders(@Body() payload: TableListDto): Promise<ITableList<IGenderList>> {
     try {
-      return this.genderService.load(payload);
+      return await this.genderService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class GenderController {
   }
 
   @Post('manage')
-  manageGender(@Body() body: GenderDto, userId: number) {
+  async manageGender(@Body() body: GenderDto, userId: number) {
     try {
-      return this.genderService.manage(body, userId);
+      return await this.genderService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

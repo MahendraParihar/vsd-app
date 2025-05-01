@@ -12,9 +12,9 @@ export class TempleController {
 
   @Public()
   @Post('public')
-  loadPublicTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
+  async loadPublicTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
     try {
-      return this.templeService.load(payload);
+      return await this.templeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -41,9 +41,9 @@ export class TempleController {
   }
 
   @Post()
-  loadTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
+  async loadTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
     try {
-      return this.templeService.load(payload);
+      return await this.templeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -68,9 +68,9 @@ export class TempleController {
   }
 
   @Post('manage')
-  manageTemple(@Body() body: TempleDto, userId: number) {
+  async manageTemple(@Body() body: TempleDto, userId: number) {
     try {
-      return this.templeService.manage(body, 1);
+      return await this.templeService.manage(body, 1);
     } catch (e) {
       throw new Error(e);
     }

@@ -11,9 +11,9 @@ export class FacilityController {
 
   @Public()
   @Post('public')
-  loadPublicFacility(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
+  async loadPublicFacility(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
     try {
-      return this.facilityService.load(payload);
+      return await this.facilityService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -40,9 +40,9 @@ export class FacilityController {
   }
 
   @Post()
-  loadFacilities(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
+  async loadFacilities(@Body() payload: TableListDto): Promise<ITableList<IFacilityList>> {
     try {
-      return this.facilityService.load(payload);
+      return await this.facilityService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -68,9 +68,9 @@ export class FacilityController {
 
   @Public()
   @Post('manage')
-  manageFacility(@Body() body: FacilityDto, userId: number) {
+  async manageFacility(@Body() body: FacilityDto, userId: number) {
     try {
-      return this.facilityService.manage(body, userId);
+      return await this.facilityService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

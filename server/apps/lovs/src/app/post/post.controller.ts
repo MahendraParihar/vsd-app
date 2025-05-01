@@ -9,9 +9,9 @@ export class PostController {
   }
 
   @Post()
-  loadPosts(@Body() payload: TableListDto): Promise<ITableList<IPostList>> {
+  async loadPosts(@Body() payload: TableListDto): Promise<ITableList<IPostList>> {
     try {
-      return this.postService.load(payload);
+      return await this.postService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class PostController {
   }
 
   @Post('manage')
-  managePost(@Body() body: PostDto, userId: number) {
+  async managePost(@Body() body: PostDto, userId: number) {
     try {
-      return this.postService.manage(body, userId);
+      return await this.postService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }
