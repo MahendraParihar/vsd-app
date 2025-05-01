@@ -84,11 +84,11 @@ docker images # list images
 
 ### Delete all images
 ```shell list
-docker rmi -f $(docker images -aq)
+docker rmi [IMAGE_ID]
 ```
 ### Delete unused images
 ```shell list
-docker image prune -a
+docker image prune
 ```
 
 ### Delete all containers including its volumes use
