@@ -10,6 +10,7 @@ import { IAuthUser } from '@vsd-common/lib';
 export class StorageService {
   private static AUTH_USER = 'auth_user';
   private static AUTH_TOKEN = 'bToken';
+  private static REFRESH_TOKEN = 'rToken';
   private static LABELS = 'labels';
 
   constructor(
@@ -56,7 +57,7 @@ export class StorageService {
     StorageService.clearStorage();
   }
 
-  public getAuthToken() {
+  public getAccessToken() {
     const t = StorageService.get(StorageService.AUTH_TOKEN) as string;
     if (t) {
       return t;
@@ -64,8 +65,20 @@ export class StorageService {
     return null;
   }
 
-  public setAuthToken(token: string) {
+  public setAccessToken(token: string) {
     StorageService.set(StorageService.AUTH_TOKEN, token);
+  }
+
+  public getRefreshToken() {
+    const t = StorageService.get(StorageService.REFRESH_TOKEN) as string;
+    if (t) {
+      return t;
+    }
+    return null;
+  }
+
+  public setRefreshToken(token: string) {
+    StorageService.set(StorageService.REFRESH_TOKEN, token);
   }
 
   //endregion

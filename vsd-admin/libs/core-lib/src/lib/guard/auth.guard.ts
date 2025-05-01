@@ -1,12 +1,17 @@
-import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivateChildFn,
+  CanActivateFn,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { inject, Injectable } from '@angular/core';
-import { NavigationService, StorageService } from '../services';
+import { StorageService } from '../services';
+import { NavigationPathEnum } from '../enums/navigation-path-enum';
 
 @Injectable()
 export class AuthGuardService {
-  constructor(private storageService: StorageService,
-              private navigationService: NavigationService) {
-  }
+  constructor(private storageService: StorageService, private router: Router) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.checkAuth();
@@ -17,20 +22,17 @@ export class AuthGuardService {
   }
 
   private checkAuth(): boolean {
-    if (this.storageService.getAuthToken()) {
+    if (this.storageService.getAccessToken()) {
       return true;
     } else {
       // Redirect to the login page if the user is not authenticated
-      this.navigationService.navigateToLogin();
+      this.router.navigate([NavigationPathEnum.LOGIN], { replaceUrl: true });
       return false;
     }
   }
 }
 
-export const AuthGuard: CanActivateFn = (
-  next: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot,
-): boolean => {
+export const AuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   return inject(AuthGuardService).canActivate(next, state);
 };
 

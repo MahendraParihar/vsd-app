@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { Public, StatusChangeDto, TableListDto } from '@server/common';
-import { IEventDetail, IEventList, ITableList } from '@vsd-common/lib';
+import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, IEventDetail, IEventList, ITableList } from '@vsd-common/lib';
 import { EventService } from './event.service';
 import { EventDto } from './dto/event.dto';
 
@@ -11,7 +11,7 @@ export class EventController {
 
   @Public()
   @Post('public')
-  loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
+  async loadPublicEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
     try {
       return this.eventService.load(payload);
     } catch (e) {
@@ -21,9 +21,9 @@ export class EventController {
 
   @Public()
   @Get('public/upcoming-event')
-  loadUpcomingEvent(): Promise<IEventDetail[]> {
+  async loadUpcomingEvent(): Promise<IEventDetail[]> {
     try {
-      return this.eventService.loadUpcomingEvents();
+      return await this.eventService.loadUpcomingEvents();
     } catch (e) {
       throw new Error(e);
     }
@@ -31,18 +31,18 @@ export class EventController {
 
   @Public()
   @Get('public/:url')
-  loadEventDetailByUrl(@Param('url') url: string): Promise<IEventDetail> {
+  async loadEventDetailByUrl(@Param('url') url: string): Promise<IEventDetail> {
     try {
-      return this.eventService.loadDetailByUrl(url);
+      return await this.eventService.loadDetailByUrl(url);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Post()
-  loadEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
+  async loadEvents(@Body() payload: TableListDto): Promise<ITableList<IEventList>> {
     try {
-      return this.eventService.load(payload);
+      return await this.eventService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -67,18 +67,18 @@ export class EventController {
   }
 
   @Post('manage')
-  manageEvent(@Body() body: EventDto, userId: number) {
+  async manageEvent(@Body() body: EventDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.eventService.manage(body, userId);
+      return await this.eventService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.eventService.updateStatus(id, statusChange, 1);
+      return this.eventService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

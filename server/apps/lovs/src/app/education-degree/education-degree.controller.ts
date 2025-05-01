@@ -9,9 +9,9 @@ export class EducationDegreeController {
   }
 
   @Post()
-  loadEducationDegrees(@Body() payload: TableListDto): Promise<ITableList<IEducationDegreeList>> {
+  async loadEducationDegrees(@Body() payload: TableListDto): Promise<ITableList<IEducationDegreeList>> {
     try {
-      return this.educationDegreeService.load(payload);
+      return await this.educationDegreeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class EducationDegreeController {
   }
 
   @Post('manage')
-  manageEducationDegree(@Body() body: EducationDegreeDto, userId: number) {
+  async manageEducationDegree(@Body() body: EducationDegreeDto, userId: number) {
     try {
-      return this.educationDegreeService.manage(body, userId);
+      return await this.educationDegreeService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

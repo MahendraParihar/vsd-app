@@ -9,9 +9,9 @@ export class MaritalStatusController {
   }
 
   @Post()
-  loadJobTypes(@Body() payload: TableListDto): Promise<ITableList<IMaritalStatusList>> {
+  async loadJobTypes(@Body() payload: TableListDto): Promise<ITableList<IMaritalStatusList>> {
     try {
-      return this.maritalStatusService.load(payload);
+      return await this.maritalStatusService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class MaritalStatusController {
   }
 
   @Post('manage')
-  manageJobType(@Body() body: MaritalStatusDto, userId: number) {
+  async manageJobType(@Body() body: MaritalStatusDto, userId: number) {
     try {
-      return this.maritalStatusService.manage(body, userId);
+      return await this.maritalStatusService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

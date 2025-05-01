@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
-import { AuthService, LabelService, NavigationService } from '@vsd-frontend/core-lib';
+import { AuthService, LabelService, NavigationPathEnum, NavigationService } from '@vsd-frontend/core-lib';
 import { ILogin, InputLength, LabelKey } from '@vsd-common/lib';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main-login',
@@ -12,6 +13,8 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  router = inject(Router);
+
   labelKeys = LabelKey;
   hide = true;
 
@@ -63,7 +66,7 @@ export class LoginComponent {
     };
     const res = await this.authService.signIn(payload);
     if (res) {
-      this.navigationService.navigateToHome();
+      this.router.navigate([NavigationPathEnum.HOME], { replaceUrl: true });
     }
   }
 }

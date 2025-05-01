@@ -9,9 +9,9 @@ export class GotraController {
   }
 
   @Post()
-  loadGotras(@Body() payload: TableListDto): Promise<ITableList<IGotraList>> {
+  async loadGotras(@Body() payload: TableListDto): Promise<ITableList<IGotraList>> {
     try {
-      return this.gotraService.load(payload);
+      return await this.gotraService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class GotraController {
   }
 
   @Post('manage')
-  manageGotra(@Body() body: GotraDto, userId: number) {
+  async manageGotra(@Body() body: GotraDto, userId: number) {
     try {
-      return this.gotraService.manage(body, userId);
+      return await this.gotraService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

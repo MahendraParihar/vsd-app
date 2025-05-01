@@ -9,9 +9,9 @@ export class ReligionController {
   }
 
   @Post()
-  loadReligions(@Body() payload: TableListDto): Promise<ITableList<IReligionList>> {
+  async loadReligions(@Body() payload: TableListDto): Promise<ITableList<IReligionList>> {
     try {
-      return this.religionService.load(payload);
+      return await this.religionService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class ReligionController {
   }
 
   @Post('manage')
-  manageReligion(@Body() body: ReligionDto, userId: number) {
+  async manageReligion(@Body() body: ReligionDto, userId: number) {
     try {
-      return this.religionService.manage(body, userId);
+      return await this.religionService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

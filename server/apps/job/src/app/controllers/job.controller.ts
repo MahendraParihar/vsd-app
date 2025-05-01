@@ -1,8 +1,8 @@
 import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
-import {StatusChangeDto, TableListDto} from '@server/common';
+import { CurrentUser, StatusChangeDto, TableListDto } from '@server/common';
 import {JobService} from "./job.service";
 import {JobDto} from "./dto/job.dto";
-import {IJobList, ITableList} from "@vsd-common/lib";
+import {IAuthUser, IJobList, ITableList} from "@vsd-common/lib";
 
 @Controller('job')
 export class JobController {
@@ -11,9 +11,9 @@ export class JobController {
   }
 
   @Post()
-  loadJobs(@Body() payload: TableListDto): Promise<ITableList<IJobList>> {
+  async loadJobs(@Body() payload: TableListDto): Promise<ITableList<IJobList>> {
     try {
-      return this.jobService.load(payload);
+      return await this.jobService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -38,18 +38,18 @@ export class JobController {
   }
 
   @Post()
-  manageJob(@Body() body: JobDto, userId: number) {
+  async manageJob(@Body() body: JobDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.jobService.manage(body, userId);
+      return await this.jobService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateJobStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateJobStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.jobService.updateStatus(id, statusChange, 1);
+      return this.jobService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

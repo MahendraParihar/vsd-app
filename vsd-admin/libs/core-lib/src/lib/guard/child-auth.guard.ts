@@ -1,21 +1,12 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivateChildFn,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateChildFn, RouterStateSnapshot } from '@angular/router';
 import { inject } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 
 export class ChildAuthGuardService {
+  constructor(private storageService: StorageService) {}
 
-  constructor(private storageService: StorageService) {
-  }
-
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): boolean {
-    if (this.storageService.getAuthToken()) {
+  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (this.storageService.getAccessToken()) {
       return true;
     }
     return false;

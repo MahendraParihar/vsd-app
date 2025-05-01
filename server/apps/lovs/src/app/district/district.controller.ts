@@ -9,9 +9,9 @@ export class DistrictController {
   }
 
   @Post()
-  loadDistricts(@Body() payload: TableListDto): Promise<ITableList<IDistrictList>> {
+  async loadDistricts(@Body() payload: TableListDto): Promise<ITableList<IDistrictList>> {
     try {
-      return this.districtService.load(payload);
+      return await this.districtService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class DistrictController {
   }
 
   @Post('manage')
-  manageDistrict(@Body() body: DistrictDto, userId: number) {
+  async manageDistrict(@Body() body: DistrictDto, userId: number) {
     try {
-      return this.districtService.manage(body, userId);
+      return await this.districtService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

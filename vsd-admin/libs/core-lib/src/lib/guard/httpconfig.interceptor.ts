@@ -13,6 +13,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
+    console.log(req);
     return from(this.handle(req, next));
   }
 
@@ -23,6 +24,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', `Bearer ${authToken}`),
       });
     }
+    console.log(request);
     return await lastValueFrom(next.handle(request).pipe(
         tap((event) => {
           if (event instanceof HttpResponse) {
@@ -39,6 +41,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   }
 
   private getToken() {
-    return this.storageService.getAuthToken();
+    return this.storageService.getAccessToken();
   }
 }

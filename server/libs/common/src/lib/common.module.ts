@@ -47,45 +47,48 @@ import { JwtStrategy } from './auth/jwt.strategy';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { GlobalExceptionsFilter } from './error-handler/global-exception.filter';
-import { jwtConstants } from './auth/constants';
 import { LabelModel } from './models/label.model';
 import { LabelDataService, LabelModule } from './label';
 import { AppConfigModule } from './app-config';
-import { GalleryService, MediaSrcService } from './gallery';
+import { GalleryMediaService, GalleryService, MediaSrcService, MediaTypeService } from './gallery';
 import { FaqCategoryService } from './faq/faq-category.service';
 import { JobCategoryService, JobStatusService, JobSubCategoryService, JobTypeService } from './job';
-import { GalleryMediaService } from './gallery';
-import { PostService } from './family';
+import {
+  AddictionService,
+  BusinessService,
+  CasteService,
+  EducationDegreeService,
+  FamilyProfileService,
+  FamilyService,
+  GenderService,
+  GotraService,
+  HealthParameterUnitService,
+  MaritalStatusService,
+  MatrimonialRequestedStatusService,
+  MatrimonialStatusService,
+  PostService,
+  RaasiService,
+  RelationshipService,
+  ReligionService,
+  ServiceService,
+} from './family';
 import { AdminUserService } from './auth/admin-user.service';
 import { ContactTypeService } from './common/contact-type.service';
 import { LogErrorService } from './common/log-error.service';
-import { AddictionService } from './family';
-import { BusinessService } from './family';
-import { CasteService } from './family';
-import { EducationDegreeService } from './family';
-import { FamilyService } from './family';
-import { FamilyProfileService } from './family';
-import { GenderService } from './family';
-import { GotraService } from './family';
-import { HealthParameterUnitService } from './family';
-import { MaritalStatusService } from './family';
-import { RaasiService } from './family';
-import { MatrimonialRequestedStatusService } from './family';
-import { MatrimonialStatusService } from './family';
-import { RelationshipService } from './family';
-import { ReligionService } from './family';
-import { ServiceService } from './family';
-import { AddressService } from './location';
-import { AddressTypeService } from './location';
-import { CityVillageService } from './location';
-import { CountryService } from './location';
-import { DistrictService } from './location';
-import { StateService } from './location';
-import { MediaTypeService } from './gallery';
+import {
+  AddressService,
+  AddressTypeService,
+  CityVillageService,
+  CountryService,
+  DistrictService,
+  StateService,
+} from './location';
 import { LegalPagesModel } from './models/legal-pages.model';
 import { PagesService } from './common/pages.service';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health/health.controller';
+import { Env } from './utils/env.values';
+import { ExternalStrategy } from './auth/external.strategy';
 
 const commonModels = [
   LabelModel,
@@ -138,13 +141,28 @@ export class CommonModule {
     const modulesNeededForCommon = ['core'];
     const modelsList = [...commonModels, ...models];
     const modulesList = [...configModules, ...modulesNeededForCommon]; // add modules needed for common
+    const jwtModuleConfig = {
+      useFactory: () => ({
+        secret: Env.jwtSecret,
+        signOptions: { expiresIn: Env.accessTokenTime },
+      }),
+    };
     return {
       module: CommonModule,
       controllers: [
-        HealthController
+        HealthController,
+      ],
+      imports: [
+        SequelizeModule.forRoot({ ...databaseConfig, models: modelsList }),
+        ConfigModule.forRoot({ isGlobal: true }),
+        LabelModule.asyncRegister(['admin']),
+        AppConfigModule.asyncRegister(modulesList),
+        SequelizeModule.forFeature(modelsList),
+        PassportModule.register({ defaultStrategy: 'jwt' }),
+        JwtModule.registerAsync(jwtModuleConfig),
+        TerminusModule,
       ],
       providers: [
-        JwtStrategy,
         AdminUserService,
         ContactTypeService,
         LogErrorService,
@@ -187,28 +205,21 @@ export class CommonModule {
           useClass: JwtAuthGuard,
         },
         {
+          provide: APP_GUARD,
+          useClass: ExternalStrategy,
+        },
+        {
           provide: APP_FILTER,
           useClass: GlobalExceptionsFilter,
         },
-      ],
-      imports: [
-        SequelizeModule.forRoot({ ...databaseConfig, models: modelsList }),
-        ConfigModule.forRoot(),
-        LabelModule.asyncRegister(['admin']),
-        AppConfigModule.asyncRegister(modulesList),
-        SequelizeModule.forFeature(modelsList),
-        PassportModule.register({ defaultStrategy: 'jwt' }),
-        JwtModule.register({
-          secret: jwtConstants.secret,
-          signOptions: { expiresIn: '10h' },
-        }),
-        TerminusModule
+        JwtStrategy,
+        ExternalStrategy
       ],
       exports: [
         SequelizeModule,
         JwtModule,
-        AppConfigModule,
         PassportModule,
+        AppConfigModule,
         AdminUserService,
         ContactTypeService,
         LogErrorService,

@@ -9,9 +9,9 @@ export class RelationshipController {
   }
 
   @Post()
-  loadRelationships(@Body() payload: TableListDto): Promise<ITableList<IRelationshipList>> {
+  async loadRelationships(@Body() payload: TableListDto): Promise<ITableList<IRelationshipList>> {
     try {
-      return this.relationshipService.load(payload);
+      return await this.relationshipService.load(payload);
     } catch (e) {
       throw new Error(e);
     }

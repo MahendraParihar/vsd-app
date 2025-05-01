@@ -9,9 +9,9 @@ export class CountryController {
   }
 
   @Post()
-  loadCountries(@Body() payload: TableListDto): Promise<ITableList<ICountryList>> {
+  async loadCountries(@Body() payload: TableListDto): Promise<ITableList<ICountryList>> {
     try {
-      return this.countryService.load(payload);
+      return await this.countryService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class CountryController {
   }
 
   @Post('manage')
-  manageCountry(@Body() body: CountryDto, userId: number) {
+  async manageCountry(@Body() body: CountryDto, userId: number) {
     try {
-      return this.countryService.manage(body, userId);
+      return await this.countryService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

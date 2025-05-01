@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { NewsService } from './news.service';
-import { TableListDto, StatusChangeDto } from '@server/common';
-import { INewsList, ITableList } from '@vsd-common/lib';
+import { TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, INewsList, ITableList } from '@vsd-common/lib';
 import {NewsDto} from "./dto/news.dto";
 
 @Controller('news')
@@ -11,9 +11,9 @@ export class NewsController {
   }
 
   @Post()
-  loadAllNews(@Body() payload: TableListDto): Promise<ITableList<INewsList>> {
+  async loadAllNews(@Body() payload: TableListDto): Promise<ITableList<INewsList>> {
     try {
-      return this.newsService.load(payload);
+      return await this.newsService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -38,18 +38,18 @@ export class NewsController {
   }
 
   @Post()
-  manageNews(@Body() body: NewsDto, userId: number) {
+  async manageNews(@Body() body: NewsDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.newsService.manage(body, userId);
+      return await this.newsService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateNewsStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateNewsStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.newsService.updateStatus(id, statusChange, 1);
+      return this.newsService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

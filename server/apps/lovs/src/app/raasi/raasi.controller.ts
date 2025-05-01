@@ -9,9 +9,9 @@ export class RaasiController {
   }
 
   @Post()
-  loadRaasies(@Body() payload: TableListDto): Promise<ITableList<IRaasiList>> {
+  async loadRaasies(@Body() payload: TableListDto): Promise<ITableList<IRaasiList>> {
     try {
-      return this.raasiService.load(payload);
+      return await this.raasiService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class RaasiController {
   }
 
   @Post('manage')
-  manageRaasi(@Body() body: RaasiDto, userId: number) {
+  async manageRaasi(@Body() body: RaasiDto, userId: number) {
     try {
-      return this.raasiService.manage(body, userId);
+      return await this.raasiService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

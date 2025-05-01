@@ -9,9 +9,9 @@ export class ServiceController {
   }
 
   @Post()
-  loadServices(@Body() payload: TableListDto): Promise<ITableList<IServiceList>> {
+  async loadServices(@Body() payload: TableListDto): Promise<ITableList<IServiceList>> {
     try {
-      return this.serviceService.load(payload);
+      return await this.serviceService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class ServiceController {
   }
 
   @Post('manage')
-  manageService(@Body() body: ServiceDto, userId: number) {
+  async manageService(@Body() body: ServiceDto, userId: number) {
     try {
-      return this.serviceService.manage(body, userId);
+      return await this.serviceService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

@@ -9,9 +9,9 @@ export class JobSubCategoryController {
   }
 
   @Post()
-  loadJobSubCategories(@Body() payload: TableListDto): Promise<ITableList<IJobSubCategoryList>> {
+  async loadJobSubCategories(@Body() payload: TableListDto): Promise<ITableList<IJobSubCategoryList>> {
     try {
-      return this.jobSubCategoryService.load(payload);
+      return await this.jobSubCategoryService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class JobSubCategoryController {
   }
 
   @Post('manage')
-  manageJobSubCategory(@Body() body: JobSubCategoryDto, userId: number) {
+  async manageJobSubCategory(@Body() body: JobSubCategoryDto, userId: number) {
     try {
-      return this.jobSubCategoryService.manage(body, userId);
+      return await this.jobSubCategoryService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

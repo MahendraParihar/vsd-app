@@ -3,17 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { AdminUserModel } from '../models/admin';
 import { LabelService } from '../label';
 import { Op } from 'sequelize';
-import { jwtConstants } from './constants';
 import { JwtService } from '@nestjs/jwt';
 import { IAuthUser, ILogin, LabelKey } from '@vsd-common/lib';
 import { CryptoUtil } from '../utils/crypto.util';
+import { Env } from '../utils/env.values';
 
 @Injectable()
 export class AdminUserService {
-  jwtOptions = {
-    secret: jwtConstants.secret,
-  };
-
   constructor(
     @InjectModel(AdminUserModel) private adminUserModel: typeof AdminUserModel,
     private labelService: LabelService,
@@ -39,17 +35,30 @@ export class AdminUserService {
     if (!isMatch) {
       throw new UnauthorizedException();
     }
-    const token = this.jwtService.sign(
-      <IAuthUser>{
-        emailId: adminUser.emailId,
-        adminUserId: adminUser.adminUserId,
-        contactNumber: adminUser.contactNumber,
-        profilePicture: adminUser.profilePicture,
-        countryCode: adminUser.countryCode,
-      },
-      this.jwtOptions,
-    );
-    return { token: token };
+
+    const jwtPayload = <IAuthUser>{
+      emailId: adminUser.emailId,
+      adminUserId: adminUser.adminUserId,
+    };
+
+    return {
+      accessToken: this.jwtService.sign(jwtPayload, {
+        expiresIn: Env.accessTokenTime,
+      }),
+      refreshToken: this.jwtService.sign(jwtPayload, {
+        expiresIn: Env.refreshTokenTime,
+        secret: Env.jwtSecret,
+      }),
+    };
+  }
+
+  async refreshToken(token: string) {
+    const payload = this.jwtService.verify(token, { secret: 'refresh_secret' });
+    const newAccessToken = this.jwtService.sign({
+      emailId: payload.emailId,
+      adminUserId: payload.adminUserId,
+    }, { expiresIn: '15m' });
+    return { accessToken: newAccessToken };
   }
 
   async findByEmailId(userName: string) {
@@ -64,6 +73,26 @@ export class AdminUserService {
     const adminUser = await this.adminUserModel.findOne({
       where: {
         adminUserId: id,
+      },
+    });
+    if (!adminUser) {
+      throw new Error(this.labelService.get(LabelKey.ERROR_NOT_FOUND_ADMIN));
+    }
+    return <IAuthUser>{
+      adminUserId: adminUser.adminUserId,
+      emailId: adminUser.emailId,
+      firstName: adminUser.firstName,
+      lastName: adminUser.lastName,
+      contactNumber: adminUser.contactNumber,
+      countryCode: adminUser.countryCode,
+      profilePicture: adminUser.profilePicture,
+    };
+  }
+
+  async getByEmail(emailId: string): Promise<IAuthUser> {
+    const adminUser = await this.adminUserModel.findOne({
+      where: {
+        emailId: emailId,
       },
     });
     if (!adminUser) {

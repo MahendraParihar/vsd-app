@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
-import {ITableList, ITempleList} from '@vsd-common/lib';
+import {IAuthUser, ITableList, ITempleList} from '@vsd-common/lib';
 import {TempleService} from './temple.service';
-import { Public, StatusChangeDto, TableListDto } from '@server/common';
+import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
 import {TempleDto} from "./dto/temple.dto";
 
 @Controller()
@@ -12,9 +12,9 @@ export class TempleController {
 
   @Public()
   @Post('public')
-  loadPublicTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
+  async loadPublicTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
     try {
-      return this.templeService.load(payload);
+      return await this.templeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -41,9 +41,9 @@ export class TempleController {
   }
 
   @Post()
-  loadTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
+  async loadTemples(@Body() payload: TableListDto): Promise<ITableList<ITempleList>> {
     try {
-      return this.templeService.load(payload);
+      return await this.templeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -68,18 +68,18 @@ export class TempleController {
   }
 
   @Post('manage')
-  manageTemple(@Body() body: TempleDto, userId: number) {
+  async manageTemple(@Body() body: TempleDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.templeService.manage(body, 1);
+      return await this.templeService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateTempleStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateTempleStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.templeService.updateStatus(id, statusChange, 1);
+      return this.templeService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

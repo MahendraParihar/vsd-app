@@ -24,6 +24,7 @@ export * from './lib/location/index';
 export * from './lib/auth/admin-user.service';
 export * from './lib/auth/auth.decorator';
 export * from './lib/auth/user.decorator';
+export * from './lib/auth/jwt-auth.guard';
 
 export * from './lib/common/log-error.service';
 export * from './lib/common/contact-type.service';
@@ -37,10 +38,6 @@ export * from './lib/common/dto/member-post.dto';
 export * from './lib/faq/faq-category.service';
 export * from './lib/label/label.module';
 
-export * from './lib/filters/validation.filter';
-export * from './lib/filters/validation.exception';
-export * from './lib/filters/validation.filter';
-export * from './lib/filters/validation.exception';
 export * from './lib/filters/validation.filter';
 export * from './lib/filters/validation.exception';
 

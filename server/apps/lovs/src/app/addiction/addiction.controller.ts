@@ -9,9 +9,9 @@ export class AddictionController {
   }
 
   @Post()
-  loadAddictions(@Body() payload: TableListDto): Promise<ITableList<IAddictionList>> {
+  async loadAddictions(@Body() payload: TableListDto): Promise<ITableList<IAddictionList>> {
     try {
-      return this.addictionService.load(payload);
+      return await this.addictionService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class AddictionController {
   }
 
   @Post('manage')
-  manageAddiction(@Body() body: AddictionDto, userId: number) {
+  async manageAddiction(@Body() body: AddictionDto, userId: number) {
     try {
-      return this.addictionService.manage(body, userId);
+      return await this.addictionService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

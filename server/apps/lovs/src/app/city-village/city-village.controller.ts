@@ -9,9 +9,9 @@ export class CityVillageController {
   }
 
   @Post()
-  loadCityVillages(@Body() payload: TableListDto): Promise<ITableList<ICityVillageList>> {
+  async loadCityVillages(@Body() payload: TableListDto): Promise<ITableList<ICityVillageList>> {
     try {
-      return this.cityVillageService.load(payload);
+      return await this.cityVillageService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class CityVillageController {
   }
 
   @Post('manage')
-  manageCityVillage(@Body() body: CityVillageDto, userId: number) {
+  async manageCityVillage(@Body() body: CityVillageDto, userId: number) {
     try {
-      return this.cityVillageService.manage(body, userId);
+      return await this.cityVillageService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

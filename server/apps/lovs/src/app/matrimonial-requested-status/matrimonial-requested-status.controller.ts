@@ -9,9 +9,9 @@ export class MatrimonialRequestedStatusController {
   }
 
   @Post()
-  loadMatrimonialRequestedStatuses(@Body() payload: TableListDto): Promise<ITableList<IMatrimonialRequestedStatusList>> {
+  async loadMatrimonialRequestedStatuses(@Body() payload: TableListDto): Promise<ITableList<IMatrimonialRequestedStatusList>> {
     try {
-      return this.matrimonialRequestedStatusService.load(payload);
+      return await this.matrimonialRequestedStatusService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class MatrimonialRequestedStatusController {
   }
 
   @Post('manage')
-  manageMatrimonialRequestedStatus(@Body() body: MatrimonialRequestedStatusDto, userId: number) {
+  async manageMatrimonialRequestedStatus(@Body() body: MatrimonialRequestedStatusDto, userId: number) {
     try {
-      return this.matrimonialRequestedStatusService.manage(body, userId);
+      return await this.matrimonialRequestedStatusService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

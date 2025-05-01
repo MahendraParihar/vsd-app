@@ -13,7 +13,7 @@ import {
   SnackBarService,
 } from './services';
 import { AuthGuardService } from './guard/auth.guard';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LabelService } from './label/label.service';
 import { HttpConfigInterceptor } from './guard/httpconfig.interceptor';
 import { LoaderInterceptor } from './guard/loader.interceptor';
@@ -32,17 +32,17 @@ import { LoaderInterceptor } from './guard/loader.interceptor';
     PostService,
     AuthService,
     FamilyService,
-    provideHttpClient(),
-    provideAppInitializer(async () => {
-      const appLabelService = inject(LabelService);
-      return await appLabelService.loadLabels();
-    }),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
+    provideAppInitializer(async () => {
+      const appLabelService = inject(LabelService);
+      return await appLabelService.loadLabels();
+    }),
   ],
   exports: [DateTimePipe, CreatedByUserPipe],
 })

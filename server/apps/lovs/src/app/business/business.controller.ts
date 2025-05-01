@@ -9,9 +9,9 @@ export class BusinessController {
   }
 
   @Post()
-  loadBusinesses(@Body() payload: TableListDto): Promise<ITableList<IBusinessList>> {
+  async loadBusinesses(@Body() payload: TableListDto): Promise<ITableList<IBusinessList>> {
     try {
-      return this.businessService.load(payload);
+      return await this.businessService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class BusinessController {
   }
 
   @Post('manage')
-  manageBusiness(@Body() body: BusinessDto, userId: number) {
+  async manageBusiness(@Body() body: BusinessDto, userId: number) {
     try {
-      return this.businessService.manage(body, userId);
+      return await this.businessService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }

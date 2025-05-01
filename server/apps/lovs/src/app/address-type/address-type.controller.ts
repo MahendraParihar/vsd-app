@@ -9,9 +9,9 @@ export class AddressTypeController {
   }
 
   @Post()
-  loadAddressTypes(@Body() payload: TableListDto): Promise<ITableList<IAddressTypeList>> {
+  async loadAddressTypes(@Body() payload: TableListDto): Promise<ITableList<IAddressTypeList>> {
     try {
-      return this.addressTypeService.load(payload);
+      return await this.addressTypeService.load(payload);
     } catch (e) {
       throw new Error(e);
     }
@@ -36,9 +36,9 @@ export class AddressTypeController {
   }
 
   @Post('manage')
-  manageAddressType(@Body() body: AddressTypeDto, userId: number) {
+  async manageAddressType(@Body() body: AddressTypeDto, userId: number) {
     try {
-      return this.addressTypeService.manage(body, userId);
+      return await this.addressTypeService.manage(body, userId);
     } catch (e) {
       throw new Error(e);
     }
