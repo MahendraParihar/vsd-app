@@ -83,6 +83,7 @@ import { MandalCardComponent } from './mandal/mandal-card/mandal-card.component'
     MatGridListModule,
     MatChipSet,
     MatChip,
+    SharedUiLibModule,
   ],
   providers: [
     FacilityService,
