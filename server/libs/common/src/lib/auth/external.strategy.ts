@@ -1,5 +1,5 @@
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy } from 'passport-jwt';
+import { Strategy } from "passport-local";
 import { IAuthUser } from '@vsd-common/lib';
 import { JwtService } from '@nestjs/jwt';
 import { extractLocalJwtFromHeader } from '../utils/auth.util';
