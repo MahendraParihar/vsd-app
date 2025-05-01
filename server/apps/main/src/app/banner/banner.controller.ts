@@ -44,16 +44,16 @@ export class BannerController {
   @Post('manage')
   async manageBanner(@Body() body: BannerDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.bannerService.manage(body, currentUser.adminUserId);
+      return this.bannerService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  async updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  async updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.bannerService.updateStatus(id, statusChange, 1);
+      return this.bannerService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

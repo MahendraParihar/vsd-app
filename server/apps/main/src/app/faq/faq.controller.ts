@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { Public, StatusChangeDto, TableListDto } from '@server/common';
-import { IFaq, IFaqList, ITableList } from '@vsd-common/lib';
+import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, IFaq, IFaqList, ITableList } from '@vsd-common/lib';
 import { FaqService } from './faq.service';
 import { FaqDto } from './dto/faq.dto';
 
@@ -38,18 +38,18 @@ export class FaqController {
   }
 
   @Post('manage')
-  async manageBanner(@Body() body: FaqDto, userId: number) {
+  async manageBanner(@Body() body: FaqDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.faqService.manage(body, userId);
+      return await this.faqService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, userId: number) {
+  updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.faqService.updateStatus(id, statusChange, userId);
+      return this.faqService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

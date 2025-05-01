@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
-import {StatusChangeDto, TableListDto} from "@server/common";
+import { CurrentUser, StatusChangeDto, TableListDto } from '@server/common';
 import {FamilyService} from "./family.service";
-import {IFamilyList, ITableList} from "@vsd-common/lib";
+import {IAuthUser, IFamilyList, ITableList} from "@vsd-common/lib";
 import {FamilyDto} from "./dto/family.dto";
 
 @Controller()
@@ -46,18 +46,18 @@ export class FamilyController {
   }
 
   @Post('manage')
-  async manageFamily(@Body() body: FamilyDto, userId: number) {
+  async manageFamily(@Body() body: FamilyDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.familyService.manage(body, 1);
+      return await this.familyService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateFamilyStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateFamilyStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.familyService.updateStatus(id, statusChange, 1);
+      return this.familyService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

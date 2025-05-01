@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { Public, StatusChangeDto, TableListDto } from '@server/common';
-import { IEventDetail, IEventList, ITableList } from '@vsd-common/lib';
+import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, IEventDetail, IEventList, ITableList } from '@vsd-common/lib';
 import { EventService } from './event.service';
 import { EventDto } from './dto/event.dto';
 
@@ -67,18 +67,18 @@ export class EventController {
   }
 
   @Post('manage')
-  async manageEvent(@Body() body: EventDto, userId: number) {
+  async manageEvent(@Body() body: EventDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.eventService.manage(body, userId);
+      return await this.eventService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.eventService.updateStatus(id, statusChange, 1);
+      return this.eventService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }

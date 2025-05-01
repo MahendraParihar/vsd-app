@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { PagesService, Public, TableListDto } from '@server/common';
-import { ILegalPageList, IManageLegalPage, ITableList } from '@vsd-common/lib';
+import { CurrentUser, PagesService, Public, TableListDto } from '@server/common';
+import { IAuthUser, ILegalPageList, IManageLegalPage, ITableList } from '@vsd-common/lib';
 import { LegalPagesDto } from './dto/legal-pages.dto';
 
 @Controller('page')
@@ -38,9 +38,9 @@ export class PagesController {
   }
 
   @Post('manage')
-  async manageLegalPage(@Body() body: LegalPagesDto, userId: number): Promise<IManageLegalPage> {
+  async manageLegalPage(@Body() body: LegalPagesDto, @CurrentUser() currentUser: IAuthUser): Promise<IManageLegalPage> {
     try {
-      return await this.pagesService.manage(body, userId);
+      return await this.pagesService.manage(body, currentUser ? currentUser.adminUserId : 1);
     } catch (e) {
       throw new Error(e);
     }
