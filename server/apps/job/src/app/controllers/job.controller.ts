@@ -40,7 +40,7 @@ export class JobController {
   @Post()
   async manageJob(@Body() body: JobDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.jobService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.jobService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -49,7 +49,7 @@ export class JobController {
   @Put('status/:id')
   updateJobStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.jobService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.jobService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

@@ -69,7 +69,7 @@ export class MandalController {
   @Post('manage')
   async manageMandal(@Body() body: MandalDto, @CurrentUser() currentUser: IAuthUser): Promise<IManageMandal> {
     try {
-      return await this.mandalService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.mandalService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -78,7 +78,7 @@ export class MandalController {
   @Put('status/:id')
   async updateMandalStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.mandalService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return await this.mandalService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

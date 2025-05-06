@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { MatrimonialRequestedStatusService, TableListDto, StatusChangeDto } from '@server/common';
-import { IMatrimonialRequestedStatusList, ITableList } from '@vsd-common/lib';
+import { MatrimonialRequestedStatusService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IMatrimonialRequestedStatusList, ITableList } from '@vsd-common/lib';
 import { MatrimonialRequestedStatusDto } from './dto/matrimonial-requested-status.dto';
 
 @Controller('matrimonial-requested-status')
@@ -36,18 +36,18 @@ export class MatrimonialRequestedStatusController {
   }
 
   @Post('manage')
-  async manageMatrimonialRequestedStatus(@Body() body: MatrimonialRequestedStatusDto, userId: number) {
+  async manageMatrimonialRequestedStatus(@Body() body: MatrimonialRequestedStatusDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.matrimonialRequestedStatusService.manage(body, userId);
+      return await this.matrimonialRequestedStatusService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateMatrimonialRequestedStatusStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateMatrimonialRequestedStatusStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.matrimonialRequestedStatusService.updateStatus(id, statusChange, 1);
+      return this.matrimonialRequestedStatusService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

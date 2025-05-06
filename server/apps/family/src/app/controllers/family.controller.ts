@@ -48,7 +48,7 @@ export class FamilyController {
   @Post('manage')
   async manageFamily(@Body() body: FamilyDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.familyService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.familyService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -57,7 +57,7 @@ export class FamilyController {
   @Put('status/:id')
   updateFamilyStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.familyService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.familyService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

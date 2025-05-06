@@ -25,7 +25,7 @@ import { FaqModel } from './faq/models/faq.model';
     LabelModule.asyncRegister(['admin']),
     ServeStaticModule.forRoot({
       rootPath: Env.persistentStorageAssetPath,
-      serveRoot: '/media-files'
+      serveRoot: '/media-files',
     }),
   ],
   controllers: [
@@ -36,6 +36,11 @@ import { FaqModel } from './faq/models/faq.model';
     BannerController,
     FaqController,
   ],
-  providers: [AppService, InquiryService, BannerService, FaqService],
+  providers: [
+    AppService,
+    InquiryService,
+    BannerService,
+    FaqService,
+  ],
 })
 export class AppModule {}

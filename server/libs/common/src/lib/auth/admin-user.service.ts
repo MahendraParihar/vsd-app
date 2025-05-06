@@ -7,6 +7,7 @@ import { JwtService } from '@nestjs/jwt';
 import { IAuthUser, ILogin, LabelKey } from '@vsd-common/lib';
 import { CryptoUtil } from '../utils/crypto.util';
 import { Env } from '../utils/env.values';
+import { UserStatusEnum } from '../enum/user-status.enum';
 
 @Injectable()
 export class AdminUserService {
@@ -65,6 +66,7 @@ export class AdminUserService {
     return await this.adminUserModel.findOne({
       where: {
         emailId: userName,
+        adminUserStatusId: UserStatusEnum.ACTIVE,
       },
     });
   }

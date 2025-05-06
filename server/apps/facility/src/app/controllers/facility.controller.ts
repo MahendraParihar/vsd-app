@@ -69,7 +69,7 @@ export class FacilityController {
   @Post('manage')
   async manageFacility(@Body() body: FacilityDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.facilityService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.facilityService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -78,7 +78,7 @@ export class FacilityController {
   @Put('status/:id')
   updateFacilityStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.facilityService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.facilityService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

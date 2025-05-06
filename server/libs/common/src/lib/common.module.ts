@@ -88,7 +88,6 @@ import { PagesService } from './common/pages.service';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health/health.controller';
 import { Env } from './utils/env.values';
-import { ExternalStrategy } from './auth/external.strategy';
 
 const commonModels = [
   LabelModel,
@@ -141,12 +140,6 @@ export class CommonModule {
     const modulesNeededForCommon = ['core'];
     const modelsList = [...commonModels, ...models];
     const modulesList = [...configModules, ...modulesNeededForCommon]; // add modules needed for common
-    const jwtModuleConfig = {
-      useFactory: () => ({
-        secret: Env.jwtSecret,
-        signOptions: { expiresIn: Env.accessTokenTime },
-      }),
-    };
     return {
       module: CommonModule,
       controllers: [
@@ -158,8 +151,11 @@ export class CommonModule {
         LabelModule.asyncRegister(['admin']),
         AppConfigModule.asyncRegister(modulesList),
         SequelizeModule.forFeature(modelsList),
-        PassportModule.register({ defaultStrategy: 'jwt' }),
-        JwtModule.registerAsync(jwtModuleConfig),
+        JwtModule.register({
+          secret: Env.jwtSecret,
+          signOptions: { expiresIn: Env.accessTokenTime },
+        }),
+        PassportModule,
         TerminusModule,
       ],
       providers: [
@@ -205,15 +201,10 @@ export class CommonModule {
           useClass: JwtAuthGuard,
         },
         {
-          provide: APP_GUARD,
-          useClass: ExternalStrategy,
-        },
-        {
           provide: APP_FILTER,
           useClass: GlobalExceptionsFilter,
         },
         JwtStrategy,
-        ExternalStrategy
       ],
       exports: [
         SequelizeModule,

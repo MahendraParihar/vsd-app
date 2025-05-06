@@ -40,7 +40,7 @@ export class PagesController {
   @Post('manage')
   async manageLegalPage(@Body() body: LegalPagesDto, @CurrentUser() currentUser: IAuthUser): Promise<IManageLegalPage> {
     try {
-      return await this.pagesService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.pagesService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

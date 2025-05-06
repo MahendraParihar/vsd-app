@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { FaqCategoryService, StatusChangeDto, TableListDto } from '@server/common';
-import { IFaqCategory, IFaqCategoryList, ITableList } from '@vsd-common/lib';
+import { CurrentUser, FaqCategoryService, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, IFaqCategory, IFaqCategoryList, ITableList } from '@vsd-common/lib';
 import { FaqCategoryDto } from './dto/faq-category.dto';
 
 @Controller('faq-category')
@@ -45,18 +45,18 @@ export class FaqCategoryController {
   }
 
   @Post('manage')
-  async manageFaqCategory(@Body() body: FaqCategoryDto, userId: number) {
+  async manageFaqCategory(@Body() body: FaqCategoryDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.faqCategoryService.manage(body, userId);
+      return await this.faqCategoryService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateFaqCategoryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateFaqCategoryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.faqCategoryService.updateStatus(id, statusChange, 1);
+      return this.faqCategoryService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

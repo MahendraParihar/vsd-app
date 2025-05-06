@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { BusinessService, TableListDto, StatusChangeDto } from '@server/common';
-import { IBusinessList, ITableList } from '@vsd-common/lib';
+import { BusinessService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IBusinessList, ITableList } from '@vsd-common/lib';
 import { BusinessDto } from './dto/business.dto';
 
 @Controller('business')
@@ -36,18 +36,18 @@ export class BusinessController {
   }
 
   @Post('manage')
-  async manageBusiness(@Body() body: BusinessDto, userId: number) {
+  async manageBusiness(@Body() body: BusinessDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.businessService.manage(body, userId);
+      return await this.businessService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateBusinessStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateBusinessStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.businessService.updateStatus(id, statusChange, 1);
+      return this.businessService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

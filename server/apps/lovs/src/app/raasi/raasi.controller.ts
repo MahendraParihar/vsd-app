@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { RaasiService, TableListDto, StatusChangeDto } from '@server/common';
-import { IRaasiList, ITableList } from '@vsd-common/lib';
+import { RaasiService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IRaasiList, ITableList } from '@vsd-common/lib';
 import { RaasiDto } from './dto/raasi.dto';
 
 @Controller('raasi')
@@ -36,18 +36,18 @@ export class RaasiController {
   }
 
   @Post('manage')
-  async manageRaasi(@Body() body: RaasiDto, userId: number) {
+  async manageRaasi(@Body() body: RaasiDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.raasiService.manage(body, userId);
+      return await this.raasiService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateRaasiStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateRaasiStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.raasiService.updateStatus(id, statusChange, 1);
+      return this.raasiService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

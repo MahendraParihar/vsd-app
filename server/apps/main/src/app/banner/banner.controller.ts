@@ -23,8 +23,7 @@ export class BannerController {
   }
 
   @Post()
-  async loadBanners(@Body() payload: TableListDto, @CurrentUser() currentUser: IAuthUser): Promise<ITableList<IBannerList>> {
-    console.log(currentUser);
+  async loadBanners(@Body() payload: TableListDto): Promise<ITableList<IBannerList>> {
     try {
       return this.bannerService.load(payload);
     } catch (e) {
@@ -44,7 +43,7 @@ export class BannerController {
   @Post('manage')
   async manageBanner(@Body() body: BannerDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.bannerService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return this.bannerService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -53,7 +52,7 @@ export class BannerController {
   @Put('status/:id')
   async updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.bannerService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.bannerService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

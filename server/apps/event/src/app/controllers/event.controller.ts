@@ -69,7 +69,7 @@ export class EventController {
   @Post('manage')
   async manageEvent(@Body() body: EventDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.eventService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.eventService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -78,7 +78,7 @@ export class EventController {
   @Put('status/:id')
   updateEventStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.eventService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.eventService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

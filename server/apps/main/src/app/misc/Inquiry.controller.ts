@@ -33,7 +33,7 @@ export class InquiryController {
   @Post('manage')
   async manageInquiry(@Req() request: Request, @Body() body: InquiryDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.inquiryService.manage(body, currentUser ? currentUser.adminUserId : 1, request.ip);
+      return await this.inquiryService.manage(body, currentUser.adminUserId, request.ip);
     } catch (e) {
       throw new Error(e);
     }
@@ -42,7 +42,7 @@ export class InquiryController {
   @Put('status/:id')
   async updateInquiryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.inquiryService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return await this.inquiryService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

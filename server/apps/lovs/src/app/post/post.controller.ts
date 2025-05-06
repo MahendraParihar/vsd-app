@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { PostService, TableListDto, StatusChangeDto } from '@server/common';
-import { IPostList, ITableList } from '@vsd-common/lib';
+import { PostService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IPostList, ITableList } from '@vsd-common/lib';
 import { PostDto } from './dto/post.dto';
 
 @Controller('post')
@@ -36,18 +36,18 @@ export class PostController {
   }
 
   @Post('manage')
-  async managePost(@Body() body: PostDto, userId: number) {
+  async managePost(@Body() body: PostDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.postService.manage(body, userId);
+      return await this.postService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updatePostStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updatePostStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.postService.updateStatus(id, statusChange, 1);
+      return this.postService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

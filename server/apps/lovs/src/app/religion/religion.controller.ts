@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { ReligionService, TableListDto, StatusChangeDto } from '@server/common';
-import { IReligionList, ITableList } from '@vsd-common/lib';
+import { ReligionService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IReligionList, ITableList } from '@vsd-common/lib';
 import { ReligionDto } from './dto/religion.dto';
 
 @Controller('religion')
@@ -36,18 +36,18 @@ export class ReligionController {
   }
 
   @Post('manage')
-  async manageReligion(@Body() body: ReligionDto, userId: number) {
+  async manageReligion(@Body() body: ReligionDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.religionService.manage(body, userId);
+      return await this.religionService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateReligionStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateReligionStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.religionService.updateStatus(id, statusChange, 1);
+      return this.religionService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

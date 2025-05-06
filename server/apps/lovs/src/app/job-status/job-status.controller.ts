@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { JobStatusService, TableListDto, StatusChangeDto } from '@server/common';
-import { IJobStatusList, ITableList } from '@vsd-common/lib';
+import { JobStatusService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IJobStatusList, ITableList } from '@vsd-common/lib';
 import { JobStatusDto } from './dto/job-status.dto';
 
 @Controller('job-status')
@@ -36,18 +36,18 @@ export class JobStatusController {
   }
 
   @Post('manage')
-  async manageJobType(@Body() body: JobStatusDto, userId: number) {
+  async manageJobType(@Body() body: JobStatusDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.jobStatusService.manage(body, userId);
+      return await this.jobStatusService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateJobTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateJobTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.jobStatusService.updateStatus(id, statusChange, 1);
+      return this.jobStatusService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

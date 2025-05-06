@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { EducationDegreeService, TableListDto, StatusChangeDto } from '@server/common';
-import { IEducationDegreeList, ITableList } from '@vsd-common/lib';
+import { EducationDegreeService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IEducationDegreeList, ITableList } from '@vsd-common/lib';
 import { EducationDegreeDto } from './dto/education-degree.dto';
 
 @Controller('education-degree')
@@ -36,18 +36,18 @@ export class EducationDegreeController {
   }
 
   @Post('manage')
-  async manageEducationDegree(@Body() body: EducationDegreeDto, userId: number) {
+  async manageEducationDegree(@Body() body: EducationDegreeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.educationDegreeService.manage(body, userId);
+      return await this.educationDegreeService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateEducationDegreeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateEducationDegreeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.educationDegreeService.updateStatus(id, statusChange, 1);
+      return this.educationDegreeService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

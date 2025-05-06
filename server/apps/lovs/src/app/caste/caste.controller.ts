@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CasteService, TableListDto, StatusChangeDto } from '@server/common';
-import { ICasteList, ITableList } from '@vsd-common/lib';
+import { CasteService, CurrentUser, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, ICasteList, ITableList } from '@vsd-common/lib';
 import { CasteDto } from './dto/caste.dto';
 
 @Controller('caste')
@@ -36,18 +36,18 @@ export class CasteController {
   }
 
   @Post('manage')
-  async manageCaste(@Body() body: CasteDto, userId: number) {
+  async manageCaste(@Body() body: CasteDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.casteService.manage(body, userId);
+      return await this.casteService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateCasteStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateCasteStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.casteService.updateStatus(id, statusChange, 1);
+      return this.casteService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
