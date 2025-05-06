@@ -62,6 +62,8 @@ import { AdminLibModule } from '@vsd-frontend/admin-lib';
 import { BannerLibModule } from '@vsd-frontend/banner-lib';
 import { PageLibModule } from '@vsd-frontend/page-lib';
 import { FaqLibModule } from '@vsd-frontend/faq-lib';
+import { AdminListComponent } from './auth/list/admin-list.component';
+import { ManageAdminComponent } from './auth/manage/manage-admin.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +100,8 @@ import { FaqLibModule } from '@vsd-frontend/faq-lib';
     MangeLovComponent,
     PageNotFoundComponent,
     ChangePasswordComponent,
+    AdminListComponent,
+    ManageAdminComponent,
   ],
   imports: [
     CommonModule,

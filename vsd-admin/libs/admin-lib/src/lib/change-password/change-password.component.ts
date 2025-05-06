@@ -1,10 +1,10 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { AuthService, LabelService, NavigationPathEnum, SnackBarService } from '@vsd-frontend/core-lib';
 import { ValidationUtil } from '@vsd-frontend/shared-ui-lib';
 import { IChangePassword, InputLength, LabelKey } from '@vsd-common/lib';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'admin-lib-change-password',
@@ -15,11 +15,12 @@ import { IChangePassword, InputLength, LabelKey } from '@vsd-common/lib';
 export class ChangePasswordComponent {
   router = inject(Router);
   formBuilder = inject(FormBuilder);
-  pageTitle = inject(Title);
   labelService = inject(LabelService);
   authService = inject(AuthService);
   snackBarService = inject(SnackBarService);
+  title = inject(Title);
 
+  pageTitle!: string;
   labelKeys = LabelKey;
   inputLength = InputLength;
 
@@ -27,7 +28,8 @@ export class ChangePasswordComponent {
   @Output() editEvent = new EventEmitter<{ path: string; id: number }>();
 
   constructor() {
-    this.pageTitle.setTitle(this.labelService.getLabel(LabelKey.CHANGE_PASSWORD));
+    this.pageTitle = this.labelService.getLabel(LabelKey.CHANGE_PASSWORD);
+    this.title.setTitle(this.labelService.getLabel(LabelKey.CHANGE_PASSWORD));
   }
 
   formGroup: FormGroup = this.formBuilder.group({

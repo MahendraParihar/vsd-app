@@ -56,6 +56,9 @@ nx g @nx/angular:lib libs/admin-lib --standalone=false  --prefix=admin-lib
 ```sh
 nx g @nx/angular:component apps/main/src/app/home/home --standalone=false
 
+nx g @nx/angular:component apps/main/src/app/auth/list/admin-list --standalone=false
+nx g @nx/angular:component apps/main/src/app/auth/manage/manage-admin --standalone=false
+
 nx g @nx/angular:component apps/main/src/app/temple/list/temple-list --standalone=false
 nx g @nx/angular:component apps/main/src/app/temple/manage/mange-temple --standalone=false
 
