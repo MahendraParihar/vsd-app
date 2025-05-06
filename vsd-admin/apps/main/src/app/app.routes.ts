@@ -2,8 +2,6 @@ import { Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { BaseLayoutComponent } from './base-layout/base-layout.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { TempleListComponent } from './temple/list/temple-list.component';
 import { MangeTempleComponent } from './temple/manage/mange-temple.component';
 import { BannerListComponent } from './banner/list/banner-list.component';
@@ -31,19 +29,13 @@ import { LovListComponent } from './lov/list/lov-list.component';
 import { MangeLovComponent } from './lov/manage/mange-lov.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from '@vsd-frontend/core-lib';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { AdminListComponent, ManageAdminComponent } from '@vsd-frontend/admin-lib';
 
 export const appRoutes: Route[] = [
   {
     path: 'login',
     component: LoginComponent,
-  },
-  {
-    path: 'reset-password',
-    component: ResetPasswordComponent,
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent,
   },
   {
     path: '',
@@ -54,6 +46,32 @@ export const appRoutes: Route[] = [
         path: '',
         pathMatch: 'full',
         redirectTo: 'home',
+      },
+      {
+        path: 'admin-user',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: '',
+            component: AdminListComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'manage',
+            component: ManageAdminComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'manage/:id',
+            component: ManageAdminComponent,
+            canActivate: [AuthGuard],
+          },
+        ],
       },
       {
         path: 'home',

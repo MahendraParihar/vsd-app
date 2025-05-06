@@ -1749,3 +1749,6 @@ create table public.txn_trustee
 alter table public.txn_trustee
     owner to postgres;
 
+
+SELECT setval('txn_family_family_id_seq', max(family_id)) FROM txn_family;
+SELECT setval('txn_address_address_id_seq', max(address_id)) FROM txn_address;

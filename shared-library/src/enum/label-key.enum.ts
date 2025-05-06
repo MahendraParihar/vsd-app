@@ -46,6 +46,10 @@ export enum LabelKey {
   SIDE_MENU_INQUIRY = 'side_menu_inquiry',
   SIDE_MENU_BANNER = 'side_menu_banner',
 
+  CHANGE_PASSWORD = 'change_password',
+  RESET_PASSWORD = 'reset_password',
+  FORGOT_PASSWORD = 'forgot_password',
+
   ITEM_NOT_FOUND_TEMPLE = 'item_not_found_temple',
   ITEM_NOT_FOUND_FACILITY = 'item_not_found_facility',
   ITEM_NOT_FOUND_STATE = 'item_not_found_state',
@@ -134,6 +138,7 @@ export enum LabelKey {
   ERROR_IN_VALID_MIN_VALUE = 'error_min_value',
   ERROR_REQUIRED = 'error_required',
   ERROR_SOMETHING_WENT_WRONG = 'error_something_went_wrong',
+  ERROR_PASSWORD_NOT_MATCHED = 'error_password_not_matched',
 
   FORM_NAME = 'form_name',
   FORM_EMAIL_ID = 'form_email_id',
@@ -157,6 +162,9 @@ export enum LabelKey {
   FORM_COUNTRY_CODE = 'form_country_code',
   FORM_STATE_CODE = 'form_state_code',
   FORM_STD_CODE = 'form_std_code',
+  FORM_CURRENT_PASSWORD = 'form_current_password',
+  FORM_NEW_PASSWORD = 'form_new_password',
+  FORM_REPEAT_PASSWORD = 'form_repeat_password',
 
   ADD_MANDAL = 'add_mandal',
   EDIT_MANDAL = 'edit_mandal',
@@ -264,6 +272,7 @@ export enum LabelKey {
   SUCCESS_DATA_UPDATED = 'success_data_updated',
   SUCCESS_DATA_ADDED = 'success_data_added',
   SUCCESS_INQUIRY = 'success_inquiry',
+  SUCCESS_PASSWORD_CHANGE= 'success_password_change',
 
   SEO_META_TAGS = `seo_meta_tags`,
   SEO_META_TITLE = `seo_meta_title`,

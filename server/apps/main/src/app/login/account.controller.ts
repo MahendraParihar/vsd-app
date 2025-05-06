@@ -25,4 +25,9 @@ export class AccountController {
   async getProfile(@CurrentUser() currentUser: IAuthUser) {
     return await this.adminUserService.getById(currentUser.adminUserId);
   }
+
+  @Get('change-password')
+  async changePassword(@CurrentUser() currentUser: IAuthUser) {
+    return await this.adminUserService.getById(currentUser.adminUserId);
+  }
 }

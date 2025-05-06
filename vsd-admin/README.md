@@ -49,6 +49,7 @@ nx g @nx/angular:lib libs/temple-lib --standalone=false  --prefix=temple-lib
 nx g @nx/angular:lib libs/banner-lib --standalone=false  --prefix=banner-lib
 nx g @nx/angular:lib libs/faq-lib --standalone=false  --prefix=faq-lib
 nx g @nx/angular:lib libs/page-lib --standalone=false  --prefix=page-lib
+nx g @nx/angular:lib libs/admin-lib --standalone=false  --prefix=admin-lib
 ```
 
 ## Generate component
@@ -95,8 +96,11 @@ nx g @nx/angular:component apps/main/src/app/lov/manage/mange-lov --standalone=f
 
 nx g @nx/angular:component apps/main/src/app/inquiry/list/inquiry-list --standalone=false
 
-
 nx g @nx/angular:component libs/shared-ui-lib/src/lib/ui/header/header --standalone=false
+
+nx g @nx/angular:component libs/admin-lib/src/lib/list/admin-list --standalone=false
+nx g @nx/angular:component libs/admin-lib/src/lib/manage/manage-admin --standalone=false
+nx g @nx/angular:component libs/admin-lib/src/lib/change-password/change-password --standalone=false
 ```
 
 ## Generate service file

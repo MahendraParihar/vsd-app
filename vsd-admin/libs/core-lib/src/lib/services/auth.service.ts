@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAuthUser, ILogin, IResponse } from '@vsd-common/lib';
+import { IAuthUser, IChangePassword, ILogin, IResponse } from '@vsd-common/lib';
 import { HttpService } from './http.service';
 import { StorageService } from './storage.service';
 import { ApiUrls } from '../api-urls';
@@ -21,8 +21,8 @@ export class AuthService {
   }
 
   async refreshToken(): Promise<string | null> {
-    const res = (await this.httpService.postRequest<IResponse<{ accessToken: string }>>(ApiUrls.REFRESH_TOKEN,{
-      refreshToken: this.storageService.getRefreshToken()
+    const res = (await this.httpService.postRequest<IResponse<{ accessToken: string }>>(ApiUrls.REFRESH_TOKEN, {
+      refreshToken: this.storageService.getRefreshToken(),
     })) as {
       accessToken: string;
     };
@@ -31,6 +31,14 @@ export class AuthService {
       return res.accessToken;
     }
     throw new Error('Invalid refresh token');
+  }
+
+  async changePassword(payload: IChangePassword): Promise<boolean> {
+    const res = await this.httpService.postRequest<IResponse<boolean>>(ApiUrls.CHANGE_PASSWORD, payload);
+    if (res && res.data) {
+      return res.data as boolean;
+    }
+    return false;
   }
 
   async getUserProfile(): Promise<IAuthUser> {

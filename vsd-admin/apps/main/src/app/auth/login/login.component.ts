@@ -24,7 +24,6 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private navigationService: NavigationService,
     public labelService: LabelService,
     private pageTitle: Title,
   ) {

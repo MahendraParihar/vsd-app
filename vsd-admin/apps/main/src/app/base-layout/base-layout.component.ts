@@ -20,6 +20,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   protected readonly _mobileQuery: MediaQueryList;
   protected _sideNavList!: NavItem[];
   protected readonly _mobileQueryListener: () => void;
+  protected _rightActionMenu!: NavItem[];
 
   constructor() {
     this._mobileQuery = this.media.matchMedia('(max-width: 600px)');
@@ -29,6 +30,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.buildRightActionMenu();
     this.buildMenuList();
   }
 
@@ -36,8 +38,8 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
     this._mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
-  buildRightActionMenu(): NavItem[] {
-    return [
+  buildRightActionMenu() {
+    this._rightActionMenu = [
       {
         path: NavigationPathEnum.ADMIN_EDIT_PROFILE,
         iconName: 'edit',

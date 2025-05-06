@@ -2,7 +2,7 @@
   <shared-ui-lib-ui-header
     (clickEvent)="headerMenuItemClick($event)"
     (homeClickEvent)="snav.toggle()"
-    [rightActionMenu]="buildRightActionMenu()"
+    [rightActionMenu]="_rightActionMenu"
   ></shared-ui-lib-ui-header>
   <mat-sidenav-container [style.marginTop.px]="isMobile() ? 56 : 0"
                          class="main-sidenav-container">
