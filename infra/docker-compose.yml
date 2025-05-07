@@ -81,8 +81,8 @@ services:
       retries: 5
       start_period: 5s
       timeout: 10s
-  lovs:
-    container_name: vsd-server-lovs
+  lov:
+    container_name: vsd-server-lov
     image: vsd-server
     command: sh -c "cd server && node dist/apps/lovs/main.js"
     restart: always
