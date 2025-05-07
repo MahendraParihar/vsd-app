@@ -4,7 +4,7 @@ import { AdminUserModel } from '../models/admin';
 import { LabelService } from '../label';
 import { Op } from 'sequelize';
 import { JwtService } from '@nestjs/jwt';
-import { IAuthUser, ILogin, LabelKey, IChangePassword } from '@vsd-common/lib';
+import { IAuthUser, IChangePassword, ILogin, LabelKey } from '@vsd-common/lib';
 import { CryptoUtil } from '../utils/crypto.util';
 import { Env } from '../utils/env.values';
 import { UserStatusEnum } from '../enum/user-status.enum';
@@ -87,12 +87,16 @@ export class AdminUserService {
   }
 
   async refreshToken(token: string) {
-    const payload = this.jwtService.verify(token, { secret: 'refresh_secret' });
-    const newAccessToken = this.jwtService.sign({
-      emailId: payload.emailId,
-      adminUserId: payload.adminUserId,
-    }, { expiresIn: '15m' });
-    return { accessToken: newAccessToken };
+    try {
+      const payload = this.jwtService.verify(token, { secret: Env.jwtSecret });
+      const newAccessToken = this.jwtService.sign({
+        emailId: payload.emailId,
+        adminUserId: payload.adminUserId,
+      }, { expiresIn: '15m' });
+      return { accessToken: newAccessToken };
+    } catch (e) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
   }
 
   async findByEmailId(userName: string) {

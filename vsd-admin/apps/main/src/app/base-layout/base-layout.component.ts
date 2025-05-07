@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { LabelService, NavigationPathEnum, NavigationService, NavItem } from '@vsd-frontend/core-lib';
+import { LabelService, NavigationPathEnum, NavigationService, NavItem, StorageService } from '@vsd-frontend/core-lib';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { LabelKey } from '@vsd-common/lib';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   protected readonly labelService = inject(LabelService);
   protected readonly media = inject(MediaMatcher);
   protected readonly navigationService = inject(NavigationService);
+  protected readonly storageService = inject(StorageService);
   protected readonly isMobile = signal(true);
   protected readonly _mobileQuery: MediaQueryList;
   protected _sideNavList!: NavItem[];
@@ -53,7 +54,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
         isActive: false,
       },
       {
-        path: NavigationPathEnum.ADMIN_SETTING,
+        path: NavigationPathEnum.LOGIN,
         iconName: 'logout',
         title: this.labelService.getLabel(LabelKey.ACTION_LOGOUT),
         isActive: false,
@@ -295,6 +296,11 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   }
 
   headerMenuItemClick(event: { index: number; path: NavItem }) {
+    if (event.path.path === NavigationPathEnum.LOGIN) {
+      this.storageService.clearAuthUser();
+      this.router.navigate([`/${event.path.path}`], { replaceUrl: true });
+      return;
+    }
     this.router.navigate([`/${event.path.path}`]);
   }
 

@@ -20,17 +20,14 @@ export class AuthService {
     return true;
   }
 
-  async refreshToken(): Promise<string | null> {
+  async refreshToken(): Promise<string> {
     const res = (await this.httpService.postRequest<IResponse<{ accessToken: string }>>(ApiUrls.REFRESH_TOKEN, {
       refreshToken: this.storageService.getRefreshToken(),
     })) as {
       accessToken: string;
     };
-    if (res && res.accessToken) {
-      this.storageService.setRefreshToken(res.accessToken);
-      return res.accessToken;
-    }
-    throw new Error('Invalid refresh token');
+    this.storageService.setAccessToken(res.accessToken);
+    return res.accessToken;
   }
 
   async changePassword(payload: IChangePassword): Promise<boolean> {

@@ -14,7 +14,6 @@ export class AccountController {
     return await this.adminUserService.login(login);
   }
 
-
   @Public()
   @Post('refresh-token')
   async refresh(@Body() body: { refreshToken: string }): Promise<{ accessToken: string }> {
