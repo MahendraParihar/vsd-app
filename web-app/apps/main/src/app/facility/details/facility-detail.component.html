@@ -31,7 +31,7 @@
         </div>
         <div class="grid-list">
           <div class="grid-item member-box" *ngFor="let m of post.members">
-            <div class="img-box"></div>
+            <div class="img-box"><img *ngIf="m.imagePath" [src]="m.imagePath.webUrl" /></div>
             <div class="member-info">
               <shared-ui-lib-uikit-label [class]="['mat-headline-5']"
                                          label="{{m.firstName + ' ' + m.middleName + ' ' + m.lastName}}"></shared-ui-lib-uikit-label>
