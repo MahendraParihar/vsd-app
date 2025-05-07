@@ -14,13 +14,13 @@ export class EventAgendaDetailDto implements IEventAgendaDetail {
   @MaxLength(InputLength.CHAR_200)
   details: string;
 
-  @IsDateString()
+  @IsString()
   @IsNotEmpty()
-  date: Date;
+  date: string;
 
-  @IsDateString()
+  @IsString()
   @IsNotEmpty()
-  time: Date;
+  time: string;
 }
 
 export class EventAgendaDto implements IEventAgenda {
@@ -52,12 +52,12 @@ export class EventDto extends SeoDto implements IManageEvent {
   description: string;
 
   @IsNotEmpty()
-  @IsDateString()
-  date: Date;
+  @IsString()
+  date: string;
 
   @IsNotEmpty()
   @IsString()
-  time: Date;
+  time: string;
 
   @IsOptional()
   @IsNumber()

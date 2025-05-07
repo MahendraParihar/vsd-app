@@ -1,2 +1,6 @@
-<span *ngIf="!hasHtmlContent" [ngClass]="generateClass()" [matTooltip]="tooltip">{{label | truncateText: charLimit}}</span>
-<span *ngIf="hasHtmlContent" [ngClass]="generateClass()" [matTooltip]="tooltip" innerHTML="{{label | truncateText: charLimit}}"></span>
+<ng-container *ngIf="label">
+  <span *ngIf="!hasHtmlContent" [ngClass]="generateClass()"
+        [matTooltip]="tooltip">{{ label | truncateText: charLimit }}</span>
+  <span *ngIf="hasHtmlContent" [ngClass]="generateClass()" [matTooltip]="tooltip"
+        innerHTML="{{label | truncateText: charLimit}}"></span>
+</ng-container>
