@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { NewsService } from './news.service';
-import { TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { CurrentUser, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import { IAuthUser, INewsList, ITableList } from '@vsd-common/lib';
-import {NewsDto} from "./dto/news.dto";
+import { NewsDto } from './dto/news.dto';
 
 @Controller('news')
 export class NewsController {
@@ -38,18 +38,18 @@ export class NewsController {
   }
 
   @Post()
-  async manageNews(@Body() body: NewsDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageNews(@Body() body: NewsDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.newsService.manage(body, currentUser.adminUserId);
+      return await this.newsService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateNewsStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  updateNewsStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.newsService.updateStatus(id, statusChange, currentUser.adminUserId);
+      return this.newsService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }

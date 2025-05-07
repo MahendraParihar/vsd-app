@@ -64,7 +64,7 @@ export class BannerService {
     return <IBanner>tempObj;
   }
 
-  async manage(obj: IManageBanner, userId: number) {
+  async manage(obj: IManageBanner, userId: number, requestedIp: string): Promise<IBanner> {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -76,7 +76,7 @@ export class BannerService {
         fromDate: obj.fromDate,
         toDate: obj.toDate,
         updatedBy: userId,
-        modifiedIp: ':0',
+        modifiedIp: requestedIp,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -87,7 +87,7 @@ export class BannerService {
         res = await this.bannerModel.update(dataObj, { where: { bannerId: obj.bannerId }, transaction: transaction });
       } else {
         Object.assign(dataObj, { createdBy: userId });
-        Object.assign(dataObj, { createdIp: ':0' });
+        Object.assign(dataObj, { createdIp: requestedIp });
         res = await this.bannerModel.create(dataObj, { transaction: transaction });
         obj.bannerId = res.bannerId;
       }
@@ -99,10 +99,11 @@ export class BannerService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.bannerModel.findOne({ where: { bannerId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

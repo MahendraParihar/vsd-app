@@ -1,5 +1,5 @@
-import {Injectable} from '@nestjs/common';
-import {InjectModel} from '@nestjs/sequelize';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import {
   IBaseAdminUser,
   IJob,
@@ -8,11 +8,11 @@ import {
   IStatusChange,
   ITableList,
   ITableListFilter,
-  LabelKey
+  LabelKey,
 } from '@vsd-common/lib';
-import {Op} from 'sequelize';
-import {JobModel} from "../models/job.model";
-import {LabelService} from "@server/common";
+import { Op } from 'sequelize';
+import { JobModel } from '../models/job.model';
+import { LabelService } from '@server/common';
 
 @Injectable()
 export class JobService {
@@ -29,11 +29,11 @@ export class JobService {
         },
       });
     }
-    const {rows, count} = await this.jobModel.scope('list').findAndCountAll({
+    const { rows, count } = await this.jobModel.scope('list').findAndCountAll({
       where: where,
       limit: payload.limit,
       offset: payload.limit * payload.page,
-      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']]
+      order: [['date', 'desc'], ['time', 'desc'], ['title', 'asc']],
     });
     const data = rows.map((data: JobModel) => {
       return <IJobList>{
@@ -61,7 +61,7 @@ export class JobService {
   }
 
   async getById(id: number): Promise<IJob> {
-    const obj = await this.jobModel.findOne({where: {jobId: id}});
+    const obj = await this.jobModel.findOne({ where: { jobId: id } });
     if (!obj) {
       throw Error(this.labelService.get(LabelKey.ITEM_NOT_FOUND_JOB));
     }
@@ -73,7 +73,7 @@ export class JobService {
 
   async loadDetailById(id: number) {
     const data = await this.jobModel.scope('list').findOne({
-      where: {jobId: id}
+      where: { jobId: id },
     });
     return <IJobList>{
       jobId: data.jobId,
@@ -94,26 +94,31 @@ export class JobService {
     };
   }
 
-  async manage(obj: IManageJob, userId: number) {
+  async manage(obj: IManageJob, userId: number, requestedIp: string): Promise<IJob> {
     const dataObj = {
       title: obj.title,
       updatedBy: userId,
+      modifiedIp: requestedIp,
     };
     if (obj.imagePath) {
-      Object.assign(dataObj, {imagePath: obj.imagePath});
+      Object.assign(dataObj, { imagePath: obj.imagePath });
     }
+    let req;
     if (obj.jobId) {
-      await this.jobModel.update(dataObj, {where: {jobId: obj.jobId}});
+      req(await this.jobModel.update(dataObj, { where: { jobId: obj.jobId } }));
     } else {
-      Object.assign(dataObj, {createdBy: userId});
-      await this.jobModel.create(dataObj);
+      Object.assign(dataObj, { createdIp: requestedIp });
+      Object.assign(dataObj, { createdBy: userId });
+      req = await this.jobModel.create(dataObj);
     }
+    return req;
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
-    const obj = await this.jobModel.findOne({where: {jobId: id}});
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
+    const obj = await this.jobModel.findOne({ where: { jobId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 }

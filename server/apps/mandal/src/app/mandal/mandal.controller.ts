@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { CurrentUser, Public, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import { IAuthUser, IManageMandal, IMandalList, ITableList } from '@vsd-common/lib';
 import { MandalService } from './mandal.service';
 import { MandalDto } from './dto/mandal.dto';
@@ -67,18 +67,18 @@ export class MandalController {
   }
 
   @Post('manage')
-  async manageMandal(@Body() body: MandalDto, @CurrentUser() currentUser: IAuthUser): Promise<IManageMandal> {
+  async manageMandal(@Body() body: MandalDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string): Promise<IManageMandal> {
     try {
-      return await this.mandalService.manage(body, currentUser.adminUserId);
+      return await this.mandalService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  async updateMandalStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  async updateMandalStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.mandalService.updateStatus(id, statusChange, currentUser.adminUserId);
+      return await this.mandalService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }

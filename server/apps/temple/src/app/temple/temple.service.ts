@@ -88,7 +88,7 @@ export class TempleService {
     return this.formatObj(data);
   }
 
-  async manage(obj: IManageTemple, userId: number): Promise<IManageTemple> {
+  async manage(obj: IManageTemple, userId: number, requestedIp: string): Promise<IManageTemple> {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -99,6 +99,7 @@ export class TempleService {
         metaTitle: obj.metaTitle,
         metaDescription: obj.metaDescription,
         url: obj.url,
+        modifiedIp: requestedIp,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -110,6 +111,7 @@ export class TempleService {
         res = await this.templeModel.update(dataObj, { where: { templeId: obj.templeId }, transaction: transaction });
       } else {
         Object.assign(dataObj, { createdBy: userId });
+        Object.assign(dataObj, { createdIp: requestedIp });
         res = await this.templeModel.create(dataObj, { transaction: transaction });
       }
       await transaction.commit();
@@ -120,10 +122,11 @@ export class TempleService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.templeModel.findOne({ where: { templeId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

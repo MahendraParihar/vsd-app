@@ -136,6 +136,20 @@ export class LegalPagesModel extends Model<LegalPagesModel> {
   })
   updatedBy: number;
 
+  @Column({
+    field: 'created_ip',
+    allowNull: true,
+    type: DataType.STRING(50),
+  })
+  createdIp: string;
+
+  @Column({
+    field: 'modified_ip',
+    allowNull: true,
+    type: DataType.STRING(50),
+  })
+  modifiedIp: string;
+
   @BelongsTo(() => AdminUserModel, { as: 'createdByUser', foreignKey: 'createdBy', targetKey: 'adminUserId' })
   createdByUser: AdminUserModel;
 

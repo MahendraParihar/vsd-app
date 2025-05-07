@@ -22,8 +22,9 @@ export * from './lib/job/index';
 export * from './lib/location/index';
 
 export * from './lib/auth/admin-user.service';
-export * from './lib/auth/auth.decorator';
-export * from './lib/auth/user.decorator';
+export * from './lib/auth/decorator/auth.decorator';
+export * from './lib/auth/decorator/user.decorator';
+export * from './lib/auth/decorator/requested-ip.decorator';
 export * from './lib/auth/jwt-auth.guard';
 
 export * from './lib/common/log-error.service';

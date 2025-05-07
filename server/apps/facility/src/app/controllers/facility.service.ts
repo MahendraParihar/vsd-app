@@ -115,7 +115,7 @@ export class FacilityService {
     return this.formatFacility(data);
   }
 
-  async manage(obj: IManageFacility, userId: number) {
+  async manage(obj: IManageFacility, userId: number, requestedIp: string) {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -126,7 +126,7 @@ export class FacilityService {
         metaDescription: obj.metaDescription,
         url: obj.url,
         updatedBy: userId,
-        modifiedIp: ':0',
+        modifiedIp: requestedIp,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -142,7 +142,7 @@ export class FacilityService {
         });
       } else {
         Object.assign(dataObj, { createdBy: userId });
-        Object.assign(dataObj, { createdIp: ':0' });
+        Object.assign(dataObj, { createdIp: requestedIp });
         res = await this.facilityModel.create(dataObj, { transaction: transaction });
         obj.facilityId = res.facilityId;
       }
@@ -166,10 +166,11 @@ export class FacilityService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.facilityModel.findOne({ where: { facilityId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

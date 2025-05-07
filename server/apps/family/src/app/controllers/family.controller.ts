@@ -1,8 +1,8 @@
-import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
-import { CurrentUser, StatusChangeDto, TableListDto } from '@server/common';
-import {FamilyService} from "./family.service";
-import {IAuthUser, IFamilyList, ITableList} from "@vsd-common/lib";
-import {FamilyDto} from "./dto/family.dto";
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { CurrentUser, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
+import { FamilyService } from './family.service';
+import { IAuthUser, IFamilyList, ITableList } from '@vsd-common/lib';
+import { FamilyDto } from './dto/family.dto';
 
 @Controller()
 export class FamilyController {
@@ -46,18 +46,18 @@ export class FamilyController {
   }
 
   @Post('manage')
-  async manageFamily(@Body() body: FamilyDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageFamily(@Body() body: FamilyDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.familyService.manage(body, currentUser.adminUserId);
+      return await this.familyService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateFamilyStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  updateFamilyStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.familyService.updateStatus(id, statusChange, currentUser.adminUserId);
+      return this.familyService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }

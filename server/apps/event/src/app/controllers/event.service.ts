@@ -122,7 +122,7 @@ export class EventService {
     return this.formatEvent(data);
   }
 
-  async manage(obj: IManageEvent, userId: number) {
+  async manage(obj: IManageEvent, userId: number, requestedIp: string) {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -136,20 +136,20 @@ export class EventService {
         metaDescription: obj.metaDescription,
         url: obj.url,
         updatedBy: userId,
-        modifiedIp: ':0',
+        modifiedIp: requestedIp,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
       }
 
       let res;
-      const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
+      const address = await this.addressService.manage(obj.address, transaction, userId, requestedIp, requestedIp);
       Object.assign(dataObj, { addressId: address.addressId });
       if (obj.eventId) {
         res = await this.eventModel.update(dataObj, { where: { eventId: obj.eventId }, transaction: transaction });
       } else {
         Object.assign(dataObj, { createdBy: userId });
-        Object.assign(dataObj, { createdIp: ':0' });
+        Object.assign(dataObj, { createdIp: requestedIp });
         res = await this.eventModel.create(dataObj, { transaction: transaction });
         obj.eventId = res.eventId;
       }
@@ -173,10 +173,11 @@ export class EventService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.eventModel.findOne({ where: { eventId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

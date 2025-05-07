@@ -76,7 +76,7 @@ export class PagesService {
     return <ILegalPageList>this.formatPage(data);
   }
 
-  async manage(obj: IManageLegalPage, userId: number): Promise<ILegalPage> {
+  async manage(obj: IManageLegalPage, userId: number, requestedIp: string): Promise<ILegalPage> {
     const dataObj = {
       title: obj.title,
       details: obj.details,
@@ -85,24 +85,28 @@ export class PagesService {
       metaTitle: obj.metaTitle,
       metaDescription: obj.metaDescription,
       url: obj.url,
+      modifiedIp: requestedIp,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });
     }
     let res;
     if (obj.legalPageId) {
+      Object.assign(dataObj, { createdIp: requestedIp });
       res = await this.legalPagesModel.update(dataObj, { where: { legalPageId: obj.legalPageId } });
     } else {
       Object.assign(dataObj, { createdBy: userId });
+      Object.assign(dataObj, { createdIp: requestedIp });
       res = await this.legalPagesModel.create(dataObj);
     }
     return res;
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.legalPagesModel.findOne({ where: { legalPageId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

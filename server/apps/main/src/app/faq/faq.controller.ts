@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { CurrentUser, Public, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import { IAuthUser, IFaq, IFaqList, ITableList } from '@vsd-common/lib';
 import { FaqService } from './faq.service';
 import { FaqDto } from './dto/faq.dto';
@@ -38,18 +38,18 @@ export class FaqController {
   }
 
   @Post('manage')
-  async manageBanner(@Body() body: FaqDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageBanner(@Body() body: FaqDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.faqService.manage(body, currentUser.adminUserId);
+      return await this.faqService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.faqService.updateStatus(id, statusChange, currentUser.adminUserId);
+      return this.faqService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
