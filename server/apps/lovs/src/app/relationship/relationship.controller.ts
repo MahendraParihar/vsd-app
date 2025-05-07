@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { RelationshipService, TableListDto, StatusChangeDto } from '@server/common';
-import { IRelationshipList, ITableList } from '@vsd-common/lib';
+import { RelationshipService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IRelationshipList, ITableList } from '@vsd-common/lib';
 import { RelationshipDto } from './dto/relationship.dto';
 
 @Controller('relationship')
@@ -36,18 +36,18 @@ export class RelationshipController {
   }
 
   @Post('manage')
-  manageRelationship(@Body() body: RelationshipDto, userId: number) {
+  manageRelationship(@Body() body: RelationshipDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.relationshipService.manage(body, userId);
+      return this.relationshipService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateRelationshipStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateRelationshipStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.relationshipService.updateStatus(id, statusChange, 1);
+      return this.relationshipService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

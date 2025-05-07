@@ -57,7 +57,7 @@ export class FaqService {
     return <IFaq>tempObj;
   }
 
-  async manage(obj: IManageFaq, userId: number) {
+  async manage(obj: IManageFaq, userId: number, requestedIp: string): Promise<FaqModel> {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -65,14 +65,14 @@ export class FaqService {
         faq: obj.faq,
         answer: obj.answer,
         updatedBy: userId,
-        modifiedIp: ':0',
+        modifiedIp: requestedIp,
       };
       let res;
       if (obj.faqId) {
         res = await this.faqModel.update(dataObj, { where: { faqId: obj.faqId }, transaction: transaction });
       } else {
         Object.assign(dataObj, { createdBy: userId });
-        Object.assign(dataObj, { createdIp: ':0' });
+        Object.assign(dataObj, { createdIp: requestedIp });
         res = await this.faqModel.create(dataObj, { transaction: transaction });
         obj.faqId = res.faqId;
       }
@@ -84,10 +84,11 @@ export class FaqService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.faqModel.findOne({ where: { faqId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

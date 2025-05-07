@@ -14,7 +14,6 @@ export class AccountController {
     return await this.adminUserService.login(login);
   }
 
-
   @Public()
   @Post('refresh-token')
   async refresh(@Body() body: { refreshToken: string }): Promise<{ accessToken: string }> {
@@ -23,6 +22,11 @@ export class AccountController {
 
   @Get('profile')
   async getProfile(@CurrentUser() currentUser: IAuthUser) {
+    return await this.adminUserService.getById(currentUser.adminUserId);
+  }
+
+  @Get('change-password')
+  async changePassword(@CurrentUser() currentUser: IAuthUser) {
     return await this.adminUserService.getById(currentUser.adminUserId);
   }
 }

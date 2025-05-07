@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
-import { ILogin } from '@vsd-common/lib';
+import { IChangePassword, ILogin } from '@vsd-common/lib';
 
 export class LoginDto implements ILogin {
   @MaxLength(100)
@@ -10,4 +10,18 @@ export class LoginDto implements ILogin {
   @IsString()
   @IsNotEmpty()
   password: string;
+}
+
+export class ChangePasswordDto implements IChangePassword {
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  newPassword: string;
+
+  @IsString()
+  @IsNotEmpty()
+  repeatPassword: string;
 }

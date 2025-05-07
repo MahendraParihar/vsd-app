@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CityVillageService, StatusChangeDto, TableListDto } from '@server/common';
-import { ICityVillageList, ITableList } from '@vsd-common/lib';
+import { CityVillageService, CurrentUser, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, ICityVillageList, ITableList } from '@vsd-common/lib';
 import { CityVillageDto } from './dto/city-village.dto';
 
 @Controller('city-village')
@@ -36,18 +36,18 @@ export class CityVillageController {
   }
 
   @Post('manage')
-  async manageCityVillage(@Body() body: CityVillageDto, userId: number) {
+  async manageCityVillage(@Body() body: CityVillageDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.cityVillageService.manage(body, userId);
+      return await this.cityVillageService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateCityVillageStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, userId: number) {
+  updateCityVillageStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.cityVillageService.updateStatus(id, statusChange, userId);
+      return this.cityVillageService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

@@ -9,8 +9,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { BaseLayoutComponent } from './base-layout/base-layout.component';
 import { TempleListComponent } from './temple/list/temple-list.component';
 import { MangeTempleComponent } from './temple/manage/mange-temple.component';
@@ -45,9 +43,6 @@ import { LovsLibModule } from '@vsd-frontend/lovs-lib';
 import { MatrimonialLibModule } from '@vsd-frontend/matrimonial-lib';
 import { MandalLibModule } from '@vsd-frontend/mandal-lib';
 import { FamilyDetailsComponent } from './family/details/family-details.component';
-import { BannerLibModule } from 'banner-lib';
-import { PageLibModule } from 'page-lib';
-import { FaqLibModule } from 'faq-lib';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_FORMATS } from '@vsd-common/lib';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -59,14 +54,22 @@ import { CommonModule } from '@angular/common';
 import { InquiryService } from './inquiry/list/inquiry.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { AdminLibModule } from '@vsd-frontend/admin-lib';
+import { BannerLibModule } from '@vsd-frontend/banner-lib';
+import { PageLibModule } from '@vsd-frontend/page-lib';
+import { FaqLibModule } from '@vsd-frontend/faq-lib';
+import { AdminListComponent } from './auth/list/admin-list.component';
+import { ManageAdminComponent } from './auth/manage/manage-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent,
     BaseLayoutComponent,
     TempleListComponent,
     MangeTempleComponent,
@@ -96,6 +99,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     LovListComponent,
     MangeLovComponent,
     PageNotFoundComponent,
+    ChangePasswordComponent,
+    AdminListComponent,
+    ManageAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -118,9 +124,19 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PageLibModule,
     FaqLibModule,
     CoreLibModule,
+    AdminLibModule,
     MatCell,
     MatPaginatorModule,
     MatTableModule,
+    MatCard,
+    MatCardActions,
+    MatCardContent,
+    MatCardHeader,
+    MatCardTitle,
+    MatDatepicker,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatSlideToggle,
   ],
   providers: [
     InquiryService,

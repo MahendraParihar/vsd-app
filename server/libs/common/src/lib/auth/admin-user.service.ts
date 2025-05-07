@@ -4,9 +4,10 @@ import { AdminUserModel } from '../models/admin';
 import { LabelService } from '../label';
 import { Op } from 'sequelize';
 import { JwtService } from '@nestjs/jwt';
-import { IAuthUser, ILogin, LabelKey } from '@vsd-common/lib';
+import { IAuthUser, IChangePassword, ILogin, LabelKey } from '@vsd-common/lib';
 import { CryptoUtil } from '../utils/crypto.util';
 import { Env } from '../utils/env.values';
+import { UserStatusEnum } from '../enum/user-status.enum';
 
 @Injectable()
 export class AdminUserService {
@@ -52,19 +53,57 @@ export class AdminUserService {
     };
   }
 
+  async changePassword(user: IChangePassword, userId: number) {
+    const adminUser = await this.adminUserModel.findOne({
+      where: {
+        adminUserId: userId,
+        adminUserStatusId: UserStatusEnum.ACTIVE,
+      },
+    });
+    if (!adminUser) {
+      throw new UnauthorizedException();
+    }
+
+    const isMatch = await CryptoUtil.compareHash(user.password, adminUser.password);
+
+    if (!isMatch) {
+      throw new Error();
+    }
+
+    const jwtPayload = <IAuthUser>{
+      emailId: adminUser.emailId,
+      adminUserId: adminUser.adminUserId,
+    };
+
+    return {
+      accessToken: this.jwtService.sign(jwtPayload, {
+        expiresIn: Env.accessTokenTime,
+      }),
+      refreshToken: this.jwtService.sign(jwtPayload, {
+        expiresIn: Env.refreshTokenTime,
+        secret: Env.jwtSecret,
+      }),
+    };
+  }
+
   async refreshToken(token: string) {
-    const payload = this.jwtService.verify(token, { secret: 'refresh_secret' });
-    const newAccessToken = this.jwtService.sign({
-      emailId: payload.emailId,
-      adminUserId: payload.adminUserId,
-    }, { expiresIn: '15m' });
-    return { accessToken: newAccessToken };
+    try {
+      const payload = this.jwtService.verify(token, { secret: Env.jwtSecret });
+      const newAccessToken = this.jwtService.sign({
+        emailId: payload.emailId,
+        adminUserId: payload.adminUserId,
+      }, { expiresIn: '15m' });
+      return { accessToken: newAccessToken };
+    } catch (e) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
   }
 
   async findByEmailId(userName: string) {
     return await this.adminUserModel.findOne({
       where: {
         emailId: userName,
+        adminUserStatusId: UserStatusEnum.ACTIVE,
       },
     });
   }
@@ -93,6 +132,7 @@ export class AdminUserService {
     const adminUser = await this.adminUserModel.findOne({
       where: {
         emailId: emailId,
+        adminUserStatusId: UserStatusEnum.ACTIVE,
       },
     });
     if (!adminUser) {

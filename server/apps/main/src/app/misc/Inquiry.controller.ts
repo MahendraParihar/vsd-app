@@ -1,9 +1,8 @@
-import { Body, Controller, Param, Post, Put, Req } from '@nestjs/common';
-import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { CurrentUser, Public, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import { IAuthUser, IInquiryList, ITableList } from '@vsd-common/lib';
 import { InquiryService } from './Inquiry.service';
 import { InquiryDto } from './dto/inquiry.dto';
-import { Request } from 'express';
 
 @Controller('inquiry')
 export class InquiryController {
@@ -12,9 +11,9 @@ export class InquiryController {
 
   @Public()
   @Post('public')
-  async submitInquiry(@Req() request: Request, @Body() body: InquiryDto): Promise<boolean> {
+  async submitInquiry(@Body() body: InquiryDto, @RequestedIp() requestedIp: string): Promise<boolean> {
     try {
-      await this.inquiryService.manage(body, 1, request.ip);
+      await this.inquiryService.manage(body, 1, requestedIp);
       return true;
     } catch (e) {
       throw new Error(e);
@@ -31,18 +30,18 @@ export class InquiryController {
   }
 
   @Post('manage')
-  async manageInquiry(@Req() request: Request, @Body() body: InquiryDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageInquiry(@Body() body: InquiryDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.inquiryService.manage(body, currentUser ? currentUser.adminUserId : 1, request.ip);
+      return await this.inquiryService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  async updateInquiryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  async updateInquiryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.inquiryService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return await this.inquiryService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }

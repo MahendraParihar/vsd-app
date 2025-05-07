@@ -50,10 +50,11 @@ export class InquiryService {
     return await this.inquiryModel.create(dataObj) as InquiryModel;
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.inquiryModel.findOne({ where: { inquiryId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

@@ -25,6 +25,7 @@ async function bootstrap() {
     }),
   );
   app.useGlobalFilters(new ValidationFilter());
+  app.set('trust proxy', true); // This is crucial behind Nginx or any proxy
   app.use(json({ limit: '50mb' }));
   app.setGlobalPrefix(globalPrefix);
   const port = Env.apiPort || 3340;

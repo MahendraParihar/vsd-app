@@ -88,7 +88,7 @@ export class NewsService {
   async loadDetailById(id: number) {
   }
 
-  async manage(obj: IManageNews, userId: number) {
+  async manage(obj: IManageNews, userId: number, requestedIp: string): Promise<INews> {
     const dataObj = {
       title: obj.title,
       updatedBy: userId,
@@ -96,22 +96,27 @@ export class NewsService {
       metaTitle: obj.metaTitle,
       metaDescription: obj.metaDescription,
       url: obj.url,
+      modifiedIp: requestedIp,
     };
     if (obj.imagePath) {
       Object.assign(dataObj, { imagePath: obj.imagePath });
     }
+    let req;
     if (obj.currentAffairId) {
-      await this.currentAffairModel.update(dataObj, { where: { currentAffairId: obj.currentAffairId } });
+      req = await this.currentAffairModel.update(dataObj, { where: { currentAffairId: obj.currentAffairId } });
     } else {
       Object.assign(dataObj, { createdBy: userId });
-      await this.currentAffairModel.create(dataObj);
+      Object.assign(dataObj, { createdAt: requestedIp });
+      req = await this.currentAffairModel.create(dataObj);
     }
+    return req;
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.currentAffairModel.findOne({ where: { currentAffairId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 }

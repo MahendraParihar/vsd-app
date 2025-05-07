@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { GenderService, TableListDto, StatusChangeDto } from '@server/common';
-import { IGenderList, ITableList } from '@vsd-common/lib';
+import { GenderService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IGenderList, ITableList } from '@vsd-common/lib';
 import { GenderDto } from './dto/gender.dto';
 
 @Controller('gender')
@@ -36,18 +36,18 @@ export class GenderController {
   }
 
   @Post('manage')
-  async manageGender(@Body() body: GenderDto, userId: number) {
+  async manageGender(@Body() body: GenderDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.genderService.manage(body, userId);
+      return await this.genderService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateGenderStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateGenderStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.genderService.updateStatus(id, statusChange, 1);
+      return this.genderService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

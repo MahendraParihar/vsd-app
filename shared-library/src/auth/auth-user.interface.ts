@@ -12,3 +12,9 @@ export interface IAuthUser {
   countryCode: string;
   contactNumber: string;
 }
+
+export interface IChangePassword {
+  password: string;
+  newPassword: string;
+  repeatPassword: string;
+}

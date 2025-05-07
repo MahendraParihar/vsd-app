@@ -97,7 +97,7 @@ export class FamilyService {
     return this.formatFamily(data, true) as IFamilyList;
   }
 
-  async manage(obj: IManageFamily, userId: number) {
+  async manage(obj: IManageFamily, userId: number, requestedIp: string) {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -106,18 +106,20 @@ export class FamilyService {
         lastName: obj.lastName,
         emailId: obj.emailId,
         updatedBy: userId,
+        modifiedIp: requestedIp,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
       }
 
-      const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
+      const address = await this.addressService.manage(obj.address, transaction, userId, requestedIp, requestedIp);
       Object.assign(dataObj, { addressId: address.addressId });
 
       if (obj.familyId) {
         await this.familyModel.update(dataObj, { where: { familyId: obj.familyId }, transaction: transaction });
       } else {
         Object.assign(dataObj, { createdBy: userId });
+        Object.assign(dataObj, { createdIp: requestedIp });
         await this.familyModel.create(dataObj, { transaction: transaction });
       }
       await transaction.commit();
@@ -127,10 +129,11 @@ export class FamilyService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.familyModel.findOne({ where: { familyId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

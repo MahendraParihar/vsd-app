@@ -111,7 +111,7 @@ export class MandalService {
     return this.formatMandal(data.get({ plain: true }));
   }
 
-  async manage(obj: IManageMandal, userId: number): Promise<IManageMandal> {
+  async manage(obj: IManageMandal, userId: number, requestedIp: string): Promise<IManageMandal> {
     const transaction = await this.sequelize.transaction();
     try {
       const dataObj = {
@@ -122,6 +122,7 @@ export class MandalService {
         metaTitle: obj.metaTitle,
         metaDescription: obj.metaDescription,
         url: obj.url,
+        modifiedIp: requestedIp,
       };
       if (obj.imagePath) {
         Object.assign(dataObj, { imagePath: obj.imagePath });
@@ -129,13 +130,14 @@ export class MandalService {
       if (obj.additionalInfo) {
         Object.assign(dataObj, { additionalInfo: obj.additionalInfo });
       }
-      const address = await this.addressService.manage(obj.address, transaction, userId, ':0', ':0');
+      const address = await this.addressService.manage(obj.address, transaction, userId, requestedIp, requestedIp);
       Object.assign(dataObj, { addressId: address.addressId });
       let res;
       if (obj.mandalId) {
         res = await this.mandalModel.update(dataObj, { where: { mandalId: obj.mandalId }, transaction: transaction });
       } else {
         Object.assign(dataObj, { createdBy: userId });
+        Object.assign(dataObj, { createdIp: requestedIp });
         res = await this.mandalModel.create(dataObj, { transaction: transaction });
         obj.mandalId = res.mandalId;
       }
@@ -161,10 +163,11 @@ export class MandalService {
     }
   }
 
-  async updateStatus(id: number, body: IStatusChange, userId: number) {
+  async updateStatus(id: number, body: IStatusChange, userId: number, requestedIp: string) {
     const obj = await this.mandalModel.findOne({ where: { mandalId: id } });
     obj.active = body.status;
     obj.updatedBy = userId;
+    obj.modifiedIp = requestedIp;
     await obj.save();
   }
 

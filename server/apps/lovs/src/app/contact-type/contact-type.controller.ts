@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { ContactTypeService, TableListDto, StatusChangeDto } from '@server/common';
-import { IContactTypeList, ITableList } from '@vsd-common/lib';
+import { ContactTypeService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IContactTypeList, ITableList } from '@vsd-common/lib';
 import { ContactTypeDto } from './dto/contact-type.dto';
 
 @Controller('contact-type')
@@ -36,18 +36,18 @@ export class ContactTypeController {
   }
 
   @Post('manage')
-  async manageContactType(@Body() body: ContactTypeDto, userId: number) {
+  async manageContactType(@Body() body: ContactTypeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.contactTypeService.manage(body, userId);
+      return await this.contactTypeService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateContactTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateContactTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.contactTypeService.updateStatus(id, statusChange, 1);
+      return this.contactTypeService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

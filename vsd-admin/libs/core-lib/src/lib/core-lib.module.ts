@@ -15,8 +15,8 @@ import {
 import { AuthGuardService } from './guard/auth.guard';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LabelService } from './label/label.service';
-import { HttpConfigInterceptor } from './guard/httpconfig.interceptor';
-import { LoaderInterceptor } from './guard/loader.interceptor';
+import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
+import { LoaderInterceptor } from './interceptor/loader.interceptor';
 
 @NgModule({
   declarations: [DateTimePipe, CreatedByUserPipe],

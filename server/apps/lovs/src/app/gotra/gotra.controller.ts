@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { GotraService, TableListDto, StatusChangeDto } from '@server/common';
-import { IGotraList, ITableList } from '@vsd-common/lib';
+import { GotraService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IGotraList, ITableList } from '@vsd-common/lib';
 import { GotraDto } from './dto/gotra.dto';
 
 @Controller('gotra')
@@ -36,18 +36,18 @@ export class GotraController {
   }
 
   @Post('manage')
-  async manageGotra(@Body() body: GotraDto, userId: number) {
+  async manageGotra(@Body() body: GotraDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.gotraService.manage(body, userId);
+      return await this.gotraService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateGotraStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateGotraStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.gotraService.updateStatus(id, statusChange, 1);
+      return this.gotraService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
 import {IAuthUser, ITableList, ITempleList} from '@vsd-common/lib';
 import {TempleService} from './temple.service';
-import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { CurrentUser, Public, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import {TempleDto} from "./dto/temple.dto";
 
 @Controller()
@@ -68,18 +68,18 @@ export class TempleController {
   }
 
   @Post('manage')
-  async manageTemple(@Body() body: TempleDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageTemple(@Body() body: TempleDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.templeService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.templeService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateTempleStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  updateTempleStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.templeService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.templeService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }

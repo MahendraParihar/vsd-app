@@ -1,17 +1,16 @@
-import {ErrorHandler, Injectable, Injector} from '@angular/core';
-import {HttpErrorResponse} from '@angular/common/http';
-import {SnackBarService} from './snack-bar.service';
-import {NavigationService} from "./navigation.service";
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SnackBarService } from './snack-bar.service';
+import { NavigationPathEnum } from '../enums/navigation-path-enum';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorHandlerService implements ErrorHandler {
-
   isNetAvailable = true;
 
-  constructor(private injector: Injector) {
-  }
+  constructor(private injector: Injector, private router: Router) {}
 
   private static getClientMessage(error: Error): string {
     if (!navigator.onLine) {
@@ -21,7 +20,7 @@ export class ErrorHandlerService implements ErrorHandler {
   }
 
   private static getClientStack(error: Error): string {
-    return (error && error.stack) ? error.stack.toString() : '';
+    return error && error.stack ? error.stack.toString() : '';
   }
 
   private static getClientType(error: Error): string {
@@ -82,7 +81,6 @@ export class ErrorHandlerService implements ErrorHandler {
     return tempString;
   }
 
-
   private static getServerStack(error: HttpErrorResponse): string {
     return error.status.toString();
   }
@@ -98,13 +96,11 @@ export class ErrorHandlerService implements ErrorHandler {
   handleError(error: Error | HttpErrorResponse): void {
     const logger = this.injector.get(ErrorHandlerService);
     const notifier = this.injector.get(SnackBarService);
-    const navigation = this.injector.get(NavigationService);
 
     let type;
     let message;
     let stackTrace;
     let status;
-
     if (error instanceof HttpErrorResponse) {
       // Server Error
       type = ErrorHandlerService.getServerType(error);
@@ -114,7 +110,14 @@ export class ErrorHandlerService implements ErrorHandler {
 
       if (status === 401) {
         notifier.showError(message, false);
-        navigation.navigateToLogin();
+        this.router
+          .navigate([NavigationPathEnum.LOGIN], { replaceUrl: true })
+          .then((suc: any) => {
+            console.log('Success', suc);
+          })
+          .catch((e: any) => {
+            console.log(e);
+          });
         return;
       }
 
@@ -146,7 +149,7 @@ export class ErrorHandlerService implements ErrorHandler {
       stackTrace: stack,
       className: 'Angular',
       methodName: 'Angular',
-      platform: 'WEB'
+      platform: 'WEB',
     };
     return true;
     // TODO API hit for log error on db

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { JobCategoryService, StatusChangeDto, TableListDto } from '@server/common';
-import { IJobCategory, IJobCategoryList, ITableList } from '@vsd-common/lib';
+import { CurrentUser, JobCategoryService, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, IJobCategory, IJobCategoryList, ITableList } from '@vsd-common/lib';
 import { JobCategoryDto } from './dto/job-category.dto';
 
 @Controller('job-category')
@@ -36,9 +36,9 @@ export class JobCategoryController {
   }
 
   @Post('manage')
-  async manageJobCategory(@Body() body: JobCategoryDto, userId: number) {
+  async manageJobCategory(@Body() body: JobCategoryDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.jobCategoryService.manage(body, userId);
+      return await this.jobCategoryService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
@@ -54,9 +54,9 @@ export class JobCategoryController {
   }
 
   @Put('status/:id')
-  updateJobCategoryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateJobCategoryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.jobCategoryService.updateStatus(id, statusChange, 1);
+      return this.jobCategoryService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

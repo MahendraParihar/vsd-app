@@ -10,13 +10,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(public authService: AdminUserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
       secretOrKey: Env.jwtSecret,
     });
   }
 
   async validate(payload) {
-    console.log('---------------------', payload);
     const adminUser = await this.authService.findByEmailId(payload.emailId);
     if (!adminUser) {
       throw new UnauthorizedException();

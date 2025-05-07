@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { CurrentUser, Public, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import { IAuthUser, IBannerList, ITableList, ITableListFilter } from '@vsd-common/lib';
 import { BannerService } from './banner.service';
 import { BannerDto } from './dto/banner.dto';
@@ -23,8 +23,7 @@ export class BannerController {
   }
 
   @Post()
-  async loadBanners(@Body() payload: TableListDto, @CurrentUser() currentUser: IAuthUser): Promise<ITableList<IBannerList>> {
-    console.log(currentUser);
+  async loadBanners(@Body() payload: TableListDto): Promise<ITableList<IBannerList>> {
     try {
       return this.bannerService.load(payload);
     } catch (e) {
@@ -42,18 +41,18 @@ export class BannerController {
   }
 
   @Post('manage')
-  async manageBanner(@Body() body: BannerDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageBanner(@Body() body: BannerDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.bannerService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return this.bannerService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  async updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  async updateBannerStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.bannerService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.bannerService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }

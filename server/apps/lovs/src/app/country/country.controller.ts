@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CountryService, StatusChangeDto, TableListDto } from '@server/common';
-import { ICountryList, ITableList } from '@vsd-common/lib';
+import { CountryService, CurrentUser, StatusChangeDto, TableListDto } from '@server/common';
+import { IAuthUser, ICountryList, ITableList } from '@vsd-common/lib';
 import { CountryDto } from './dto/country.dto';
 
 @Controller('country')
@@ -36,18 +36,18 @@ export class CountryController {
   }
 
   @Post('manage')
-  async manageCountry(@Body() body: CountryDto, userId: number) {
+  async manageCountry(@Body() body: CountryDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.countryService.manage(body, userId);
+      return await this.countryService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  async updateCountryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto): Promise<void> {
+  async updateCountryStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser): Promise<void> {
     try {
-      await this.countryService.updateStatus(id, statusChange, 1);
+      await this.countryService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

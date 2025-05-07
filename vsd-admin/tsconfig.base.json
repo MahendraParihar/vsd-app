@@ -16,20 +16,21 @@
     "baseUrl": ".",
     "paths": {
       "@vsd-common/lib": ["../shared-library/dist"],
+      "@vsd-frontend/admin-lib": ["libs/admin-lib/src/index.ts"],
+      "@vsd-frontend/banner-lib": ["libs/banner-lib/src/index.ts"],
       "@vsd-frontend/core-lib": ["libs/core-lib/src/index.ts"],
       "@vsd-frontend/event-lib": ["libs/event-lib/src/index.ts"],
       "@vsd-frontend/facility-lib": ["libs/facility-lib/src/index.ts"],
       "@vsd-frontend/family-lib": ["libs/family-lib/src/index.ts"],
+      "@vsd-frontend/faq-lib": ["libs/faq-lib/src/index.ts"],
       "@vsd-frontend/job-lib": ["libs/job-lib/src/index.ts"],
       "@vsd-frontend/lovs-lib": ["libs/lovs-lib/src/index.ts"],
       "@vsd-frontend/mandal-lib": ["libs/mandal-lib/src/index.ts"],
       "@vsd-frontend/matrimonial-lib": ["libs/matrimonial-lib/src/index.ts"],
       "@vsd-frontend/news-lib": ["libs/news-lib/src/index.ts"],
+      "@vsd-frontend/page-lib": ["libs/page-lib/src/index.ts"],
       "@vsd-frontend/shared-ui-lib": ["libs/shared-ui-lib/src/index.ts"],
-      "@vsd-frontend/temple-lib": ["libs/temple-lib/src/index.ts"],
-      "banner-lib": ["libs/banner-lib/src/index.ts"],
-      "faq-lib": ["libs/faq-lib/src/index.ts"],
-      "page-lib": ["libs/page-lib/src/index.ts"]
+      "@vsd-frontend/temple-lib": ["libs/temple-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

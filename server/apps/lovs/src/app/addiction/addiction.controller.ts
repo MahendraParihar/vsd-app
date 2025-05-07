@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { AddictionService, TableListDto, StatusChangeDto } from '@server/common';
-import { IAddictionList, ITableList } from '@vsd-common/lib';
+import { AddictionService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IAddictionList, ITableList } from '@vsd-common/lib';
 import { AddictionDto } from './dto/addiction.dto';
 
 @Controller('addiction')
@@ -36,18 +36,18 @@ export class AddictionController {
   }
 
   @Post('manage')
-  async manageAddiction(@Body() body: AddictionDto, userId: number) {
+  async manageAddiction(@Body() body: AddictionDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.addictionService.manage(body, userId);
+      return await this.addictionService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateAddictionStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateAddictionStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.addictionService.updateStatus(id, statusChange, 1);
+      return this.addictionService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

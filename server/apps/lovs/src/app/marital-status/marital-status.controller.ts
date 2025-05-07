@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { MaritalStatusService, TableListDto, StatusChangeDto } from '@server/common';
-import { IMaritalStatusList, ITableList } from '@vsd-common/lib';
+import { MaritalStatusService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IMaritalStatusList, ITableList } from '@vsd-common/lib';
 import { MaritalStatusDto } from './dto/marital-status.dto';
 
 @Controller('marital-status')
@@ -36,18 +36,18 @@ export class MaritalStatusController {
   }
 
   @Post('manage')
-  async manageJobType(@Body() body: MaritalStatusDto, userId: number) {
+  async manageJobType(@Body() body: MaritalStatusDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.maritalStatusService.manage(body, userId);
+      return await this.maritalStatusService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateJobTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateJobTypeStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.maritalStatusService.updateStatus(id, statusChange, 1);
+      return this.maritalStatusService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { ServiceService, TableListDto, StatusChangeDto } from '@server/common';
-import { IServiceList, ITableList, IService } from '@vsd-common/lib';
+import { ServiceService, TableListDto, StatusChangeDto, CurrentUser } from '@server/common';
+import { IAuthUser, IServiceList, ITableList, IService } from '@vsd-common/lib';
 import { ServiceDto } from './dto/service.dto';
 
 @Controller('service')
@@ -36,18 +36,18 @@ export class ServiceController {
   }
 
   @Post('manage')
-  async manageService(@Body() body: ServiceDto, userId: number) {
+  async manageService(@Body() body: ServiceDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return await this.serviceService.manage(body, userId);
+      return await this.serviceService.manage(body, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateServiceStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto) {
+  updateServiceStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
     try {
-      return this.serviceService.updateStatus(id, statusChange, 1);
+      return this.serviceService.updateStatus(id, statusChange, currentUser.adminUserId);
     } catch (e) {
       throw new Error(e);
     }

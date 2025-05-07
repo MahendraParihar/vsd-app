@@ -7,7 +7,7 @@ export enum NavigationPathEnum {
 
   ADMIN_USERS = 'admin-user/list',
   ADMIN_MANAGE = 'admin-user/manage',
-  ADMIN_CHANGE_PASSWORD = 'admin-user/setting/change-password',
+  ADMIN_CHANGE_PASSWORD = 'admin-user/change-password',
   ADMIN_EDIT_PROFILE = 'admin-user/setting/edit-profile',
   ADMIN_SETTING = 'admin-user/setting',
 

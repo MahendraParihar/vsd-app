@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CurrentUser, Public, StatusChangeDto, TableListDto } from '@server/common';
+import { CurrentUser, Public, RequestedIp, StatusChangeDto, TableListDto } from '@server/common';
 import { IAuthUser, IFacilityDetail, IFacilityList, ITableList } from '@vsd-common/lib';
 import { FacilityService } from './facility.service';
 import { FacilityDto } from './dto/faclity.dto';
@@ -67,18 +67,18 @@ export class FacilityController {
   }
 
   @Post('manage')
-  async manageFacility(@Body() body: FacilityDto, @CurrentUser() currentUser: IAuthUser) {
+  async manageFacility(@Body() body: FacilityDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return await this.facilityService.manage(body, currentUser ? currentUser.adminUserId : 1);
+      return await this.facilityService.manage(body, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
   }
 
   @Put('status/:id')
-  updateFacilityStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser) {
+  updateFacilityStatus(@Param('id') id: number, @Body() statusChange: StatusChangeDto, @CurrentUser() currentUser: IAuthUser, @RequestedIp() requestedIp: string) {
     try {
-      return this.facilityService.updateStatus(id, statusChange, currentUser ? currentUser.adminUserId : 1);
+      return this.facilityService.updateStatus(id, statusChange, currentUser.adminUserId, requestedIp);
     } catch (e) {
       throw new Error(e);
     }
