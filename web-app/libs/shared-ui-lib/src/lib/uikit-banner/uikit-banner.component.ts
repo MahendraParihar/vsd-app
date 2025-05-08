@@ -1,4 +1,4 @@
-import { Component, computed, Input } from '@angular/core';
+import { Component, computed, Input, OnDestroy, OnInit } from '@angular/core';
 import { ResponsiveService } from '@core-lib';
 import { IBannerList } from '@vsd-common/lib';
 
@@ -8,12 +8,13 @@ import { IBannerList } from '@vsd-common/lib';
   standalone: false,
   styleUrl: './uikit-banner.component.scss',
 })
-export class UikitBannerComponent {
+export class UikitBannerComponent implements OnInit, OnDestroy {
   @Input() banner!: IBannerList[];
   @Input() title!: string;
   @Input() subTitle!: string;
 
   height = 500;
+  autoScrollInterval: any; // Store the interval reference
 
   bannerHeight = computed(() => {
     if (this.responsiveService.isXSmall()) {
@@ -42,9 +43,26 @@ export class UikitBannerComponent {
   constructor(private responsiveService: ResponsiveService) {
   }
 
-  nextSlide() {
+  ngOnInit(): void {
+    // Start auto-scroll
+    this.autoScrollInterval = setInterval(() => {
+      this.nextSlide(true);
+    }, 5000); // Change slide every 5 seconds
+  }
+
+  ngOnDestroy(): void {
+    // Clear auto-scroll on destroy
+    if (this.autoScrollInterval) {
+      clearInterval(this.autoScrollInterval);
+    }
+  }
+
+  nextSlide(auto = false) {
     if (this.slideIndex < this.banner.length - 1) {
       this.slideIndex++;
+    } else if (auto) {
+      // Loop back to first slide if auto
+      this.slideIndex = 0;
     }
   }
 

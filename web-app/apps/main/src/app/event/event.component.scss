@@ -10,8 +10,13 @@
   .event-list-content {
     margin-top: var(--spacing-48);
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-32);
+
+    vsd-web-app-event-card{
+      width: 100%;
+    }
   }
 }
