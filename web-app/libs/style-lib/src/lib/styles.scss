@@ -51,6 +51,7 @@ $html-font-size: 16px;
 
 html,
 body {
+  background: #fdf5f1;
   height: 100%;
 }
 
@@ -87,6 +88,14 @@ hr {
   display: flex;
   align-items: center;
   gap: var(--spacing-12);
+}
+
+.card-bg{
+  transition: box-shadow 0.3s ease;
+}
+
+.card-bg:hover {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .border-box {
@@ -184,6 +193,13 @@ h6 {
   font-size: var(--font-size-20);
   line-height: var(--line-height-24);
   font-weight: var(--font-weight-medium);
+}
+
+span{
+  font-family: $regular-font-family;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-regular);
 }
 
 

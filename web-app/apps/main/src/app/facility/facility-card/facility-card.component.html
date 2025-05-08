@@ -1,5 +1,5 @@
 <div class="facility-list grid-list" *ngIf="facilities && facilities.length>0">
-  <div class="home-facility-item grid-item" *ngFor="let facility of facilities">
+  <div class="home-facility-item grid-item card-bg" *ngFor="let facility of facilities">
     <img [src]="facility.imagePath[0].webUrl" />
     <div class="facility-address">
       <shared-ui-lib-uikit-label
