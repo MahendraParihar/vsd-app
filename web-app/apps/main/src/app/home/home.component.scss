@@ -16,6 +16,10 @@
     flex-direction: column;
     align-items: center;
     margin-top: var(--spacing-24);
+
+    vsd-web-app-event-card {
+      width: 100%;
+    }
   }
 
   .home-temple-section {
@@ -76,7 +80,7 @@
     align-items: center;
 
     .home-trustee-box {
-      padding: var(--spacing-48) var(--spacing-0) var(--spacing-0) var(--spacing-0) ;
+      padding: var(--spacing-48) var(--spacing-0) var(--spacing-0) var(--spacing-0);
 
       .home-trustee-item {
         display: flex;
