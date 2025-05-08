@@ -138,6 +138,55 @@ hr {
   align-items: center;
 }
 
+// mat-headline-1
+h1 {
+  font-family: $regular-font-family;
+  font-size: var(--font-size-40);
+  line-height: var(--line-height-48);
+  font-weight: var(--font-weight-medium);
+}
+
+// mat-headline-2
+h2 {
+  font-family: $regular-font-family;
+  font-size: var(--font-size-40);
+  line-height: var(--line-height-48);
+  font-weight: var(--font-weight-light)
+}
+
+// mat-headline-3
+h3 {
+  font-family: $regular-font-family;
+  font-size: var(--font-size-36);
+  line-height: var(--line-height-40);
+  font-weight: var(--font-weight-medium);
+}
+
+// mat-headline-4
+h4 {
+  font-family: $regular-font-family;
+  font-size: var(--font-size-32);
+  line-height: var(--line-height-40);
+  font-weight: var(--font-weight-medium);
+}
+
+// mat-headline-5
+h5 {
+  font-family: $regular-font-family;
+  font-size: var(--font-size-24);
+  line-height: var(--line-height-32);
+  font-weight: var(--font-weight-medium);
+}
+
+// mat-headline-6
+h6 {
+  font-family: $regular-font-family;
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-24);
+  font-weight: var(--font-weight-medium);
+}
+
+
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
 
