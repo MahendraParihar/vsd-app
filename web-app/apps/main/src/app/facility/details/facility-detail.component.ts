@@ -56,7 +56,7 @@ export class FacilityDetailComponent {
 
   getDummyMemberEntry(post: IMemberPostInfo) {
     if (post.members && post.members.length > 0) {
-      return insertDummyEntry(post.members, 3);
+      return insertDummyEntry(post.members, 4);
     }
     return [];
   }

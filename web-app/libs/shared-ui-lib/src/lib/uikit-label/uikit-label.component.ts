@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './uikit-label.component.scss',
 })
 export class UikitLabelComponent {
-  @Input() label!: string;
+  @Input() label!: string | null;
   @Input() class: string[] = ['mat-body-2'];
   @Input() charLimit!: number;
   @Input() tooltip!: string;

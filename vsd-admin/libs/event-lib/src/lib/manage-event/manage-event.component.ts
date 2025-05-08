@@ -116,6 +116,7 @@ export class ManageEventComponent implements OnInit, OnDestroy {
 
   async updateDetails() {
     ValidationUtil.validateAllFormFields(this.formGroup);
+    console.log(this.formGroup);
     if (!this.formGroup.valid) {
       return;
     }

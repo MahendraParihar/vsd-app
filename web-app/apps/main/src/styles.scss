@@ -35,8 +35,6 @@ body {
   margin: 0;
 }
 
-h1,
-h2,
 p,
 pre {
   margin: 0;
@@ -51,23 +49,10 @@ pre {
   border-color: currentColor;
 }
 
-h1,
-h2 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
 a {
   color: inherit;
   text-decoration: inherit;
 }
-
-//svg {
-//  display: block;
-//  vertical-align: middle;
-//  shape-rendering: auto;
-//  text-rendering: optimizeLegibility;
-//}
 
 pre {
   background-color: rgba(55, 65, 81, 1);

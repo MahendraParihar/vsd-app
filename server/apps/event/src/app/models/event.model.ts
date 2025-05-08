@@ -216,14 +216,14 @@ export class EventModel extends Model<EventModel> {
     allowNull: true,
     type: DataType.DATEONLY,
   })
-  date: Date;
+  date: string;
 
   @Column({
     field: 'time',
     allowNull: true,
     type: DataType.TIME,
   })
-  time: Date;
+  time: string;
 
   @ForeignKey(() => AddressModel)
   @Column({

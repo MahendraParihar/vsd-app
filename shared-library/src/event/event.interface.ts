@@ -5,8 +5,8 @@ import { IMediaUpload, IMemberPost, IMemberPostInfo } from '../core';
 export interface IEventAgendaDetail {
   title: string;
   details: string;
-  date: Date;
-  time: Date;
+  date: string;
+  time: string;
 }
 
 export interface IEventAgenda {
@@ -17,8 +17,8 @@ export interface IEventAgenda {
 export interface IBaseEvent {
   title: string;
   description: string;
-  date: Date;
-  time: Date;
+  date: string;
+  time: string;
   imagePath: IMediaUpload[];
   addressId?: number;
   agenda: IEventAgenda[];

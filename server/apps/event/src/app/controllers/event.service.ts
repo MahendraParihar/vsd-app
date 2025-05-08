@@ -21,6 +21,7 @@ import { AddressService, AppConfigService, buildImageUrl, LabelService, PostMode
 import { Sequelize } from 'sequelize-typescript';
 import { filter, groupBy, map } from 'lodash';
 import { EventCoordinatorModel } from '../models/event-coordinator.model';
+import moment from 'moment';
 
 @Injectable()
 export class EventService {
@@ -130,7 +131,7 @@ export class EventService {
         description: obj.description,
         agenda: obj.agenda,
         date: obj.date,
-        time: obj.time,
+        time: moment(obj.time).format('HH:mm:ss'),
         tags: obj.tags,
         metaTitle: obj.metaTitle,
         metaDescription: obj.metaDescription,
