@@ -1,5 +1,5 @@
 <div class="temple-list grid-list" *ngIf="temples && temples.length>0">
-  <div class="home-temple-item grid-item" *ngFor="let temple of temples">
+  <div class="home-temple-item grid-item card-bg" *ngFor="let temple of temples">
     <img [src]="temple.imagePath[0].webUrl" />
     <div class="temple-address">
       <shared-ui-lib-uikit-label

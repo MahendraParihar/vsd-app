@@ -47,7 +47,7 @@ export class UikitBannerComponent implements OnInit, OnDestroy {
     // Start auto-scroll
     this.autoScrollInterval = setInterval(() => {
       this.nextSlide(true);
-    }, 5000); // Change slide every 5 seconds
+    }, 2000); // Change slide every 5 seconds
   }
 
   ngOnDestroy(): void {
