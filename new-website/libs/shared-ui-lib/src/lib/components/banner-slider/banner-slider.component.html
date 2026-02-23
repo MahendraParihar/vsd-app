@@ -1,0 +1,70 @@
+<div class="banner-slider" [style.height]="height">
+  <!-- Slides Container -->
+  <div class="slides-container">
+    <div 
+      *ngFor="let slide of slides; let i = index"
+      class="slide"
+      [class.active]="i === currentIndex"
+      [class.prev]="i === currentIndex - 1 || (currentIndex === 0 && i === slides.length - 1)"
+      [class.next]="i === currentIndex + 1 || (currentIndex === slides.length - 1 && i === 0)">
+      
+      <!-- Background Image -->
+      <div 
+        class="slide-background"
+        [style.background-image]="'url(' + slide.image + ')'">
+      </div>
+
+      <!-- Overlay -->
+      <div class="slide-overlay" [class.dark]="slide.overlayDark"></div>
+
+      <!-- Content -->
+      <div class="slide-content" *ngIf="slide.title || slide.subtitle || slide.buttonText">
+        <div class="container">
+          <div class="content-wrapper animate-fade-in">
+            <h1 class="slide-title" *ngIf="slide.title">{{ slide.title }}</h1>
+            <p class="slide-subtitle" *ngIf="slide.subtitle">{{ slide.subtitle }}</p>
+            <button 
+              *ngIf="slide.buttonText"
+              mat-raised-button 
+              color="accent"
+              class="slide-button"
+              (click)="onButtonClick(slide)">
+              {{ slide.buttonText }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <div class="slider-navigation" *ngIf="showNavigation && slides.length > 1">
+    <button 
+      mat-icon-button 
+      class="nav-button prev"
+      (click)="previous()"
+      aria-label="Previous slide">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    
+    <button 
+      mat-icon-button 
+      class="nav-button next"
+      (click)="next()"
+      aria-label="Next slide">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <!-- Indicators -->
+  <div class="slider-indicators" *ngIf="showIndicators && slides.length > 1">
+    <button
+      *ngFor="let slide of slides; let i = index"
+      class="indicator"
+      [class.active]="i === currentIndex"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Go to slide ' + (i + 1)">
+    </button>
+  </div>
+</div>
+

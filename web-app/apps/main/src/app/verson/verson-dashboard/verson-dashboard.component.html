@@ -1,0 +1,116 @@
+<div class="verson-dashboard-container" *ngIf="memberData">
+  <div class="dashboard-header">
+    <h1 class="hindi-text">सदस्य डैशबोर्ड</h1>
+    <button mat-button color="warn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span class="hindi-text">लॉगआउट</span>
+    </button>
+  </div>
+
+  <!-- Member Info Card -->
+  <mat-card class="member-card">
+    <mat-card-content>
+      <div class="member-info-grid">
+        <div class="member-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        
+        <div class="member-details">
+          <h2 class="member-name hindi-text">{{ memberData.name }}</h2>
+          <p class="member-id">सदस्य आईडी: {{ memberData.memberId }}</p>
+          <p class="member-mandal hindi-text">मंडल: {{ memberData.mandalName }}</p>
+          
+          <div class="status-row">
+            <vsd-badge [type]="getStatusBadgeType(memberData.status)">
+              {{ memberData.status }}
+            </vsd-badge>
+          </div>
+        </div>
+
+        <div class="member-stats">
+          <div class="stat-item">
+            <span class="stat-label hindi-text">अगली देय तिथि</span>
+            <span class="stat-value">{{ memberData.nextDueDate || 'लागू नहीं' }}</span>
+          </div>
+          
+          <mat-divider [vertical]="true"></mat-divider>
+          
+          <div class="stat-item">
+            <span class="stat-label hindi-text">लंबित राशि</span>
+            <span class="stat-value amount">₹{{ memberData.pendingAmount }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Payment Actions -->
+  <div class="payment-actions-section">
+    <mat-card class="payment-card">
+      <mat-card-content>
+        <div class="payment-info">
+          <mat-icon class="payment-icon">account_balance_wallet</mat-icon>
+          <div>
+            <h3 class="hindi-text">वार्षिक शुल्क भुगतान</h3>
+            <p class="hindi-text">₹200 प्रति वर्ष</p>
+          </div>
+        </div>
+        
+        <button mat-raised-button 
+                color="primary" 
+                (click)="openPaymentModal()"
+                class="pay-now-btn">
+          <mat-icon>payment</mat-icon>
+          <span class="hindi-text">अब भुगतान करें</span>
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Quick Info Cards -->
+    <div class="quick-info-grid">
+      <mat-card class="info-card">
+        <mat-icon>calendar_today</mat-icon>
+        <h4 class="hindi-text">कुल सदस्यता</h4>
+        <p class="value">{{ paymentHistory.length }} वर्ष</p>
+      </mat-card>
+
+      <mat-card class="info-card">
+        <mat-icon>payments</mat-icon>
+        <h4 class="hindi-text">कुल भुगतान</h4>
+        <p class="value">₹{{ paymentHistory.length * 200 }}</p>
+      </mat-card>
+
+      <mat-card class="info-card">
+        <mat-icon>verified</mat-icon>
+        <h4 class="hindi-text">स्थिति</h4>
+        <p class="value hindi-text">{{ memberData.status }}</p>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Payment History -->
+  <mat-card class="history-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h2 class="hindi-text">भुगतान इतिहास</h2>
+      </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <vsd-table
+        [columns]="paymentColumns"
+        [data]="paymentHistory"
+        [actions]="paymentActions"
+        [paginate]="true"
+        [pageSize]="10"
+        emptyMessage="कोई भुगतान इतिहास उपलब्ध नहीं है">
+      </vsd-table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading-state">
+  <p class="hindi-text">लोड हो रहा है...</p>
+</div>
+

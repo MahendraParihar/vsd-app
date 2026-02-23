@@ -1,0 +1,148 @@
+<div class="verson-otp-modal">
+  <div class="modal-header">
+    <button mat-icon-button (click)="goBack()" *ngIf="currentStep !== 'mobile'">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="hindi-text">वार्षिक शुल्क भुगतान</h2>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <!-- Step 1: Mobile Number -->
+    <div *ngIf="currentStep === 'mobile'" class="step-container">
+      <div class="step-icon">
+        <mat-icon>phone_android</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">मोबाइल नंबर दर्ज करें</h3>
+      <p class="subtitle hindi-text">हम आपको एक ओटीपी भेजेंगे</p>
+
+      <form [formGroup]="mobileForm" (ngSubmit)="sendOTP()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="hindi-text">मोबाइल नंबर</mat-label>
+          <input matInput 
+                 formControlName="mobile" 
+                 placeholder="10 अंकों का मोबाइल नंबर"
+                 maxlength="10"
+                 type="tel">
+          <mat-icon matPrefix>phone</mat-icon>
+          <mat-error *ngIf="mobileForm.get('mobile')?.hasError('required')">
+            मोबाइल नंबर आवश्यक है
+          </mat-error>
+          <mat-error *ngIf="mobileForm.get('mobile')?.hasError('pattern')">
+            कृपया मान्य मोबाइल नंबर दर्ज करें
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button 
+                color="primary" 
+                type="submit"
+                [disabled]="loading || mobileForm.invalid"
+                class="full-width">
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <span *ngIf="!loading" class="hindi-text">ओटीपी भेजें</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 2: OTP Verification -->
+    <div *ngIf="currentStep === 'otp'" class="step-container">
+      <div class="step-icon">
+        <mat-icon>verified_user</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">ओटीपी सत्यापित करें</h3>
+      <p class="subtitle hindi-text">
+        {{ mobile }} पर भेजा गया 6 अंकों का कोड दर्ज करें
+      </p>
+
+      <form [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
+        <mat-form-field appearance="outline" class="full-width otp-field">
+          <mat-label class="hindi-text">ओटीपी</mat-label>
+          <input matInput 
+                 formControlName="otp" 
+                 placeholder="123456"
+                 maxlength="6"
+                 type="text"
+                 class="otp-input">
+          <mat-icon matPrefix>lock</mat-icon>
+          <mat-error *ngIf="otpForm.get('otp')?.hasError('required')">
+            ओटीपी आवश्यक है
+          </mat-error>
+          <mat-error *ngIf="otpForm.get('otp')?.hasError('pattern')">
+            कृपया 6 अंकों का ओटीपी दर्ज करें
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button 
+                color="primary" 
+                type="submit"
+                [disabled]="loading || otpForm.invalid"
+                class="full-width">
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <span *ngIf="!loading" class="hindi-text">सत्यापित करें</span>
+        </button>
+
+        <button mat-button 
+                type="button"
+                (click)="resendOTP()"
+                [disabled]="loading"
+                class="full-width resend-btn">
+          <span class="hindi-text">ओटीपी पुनः भेजें</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 3: New Member Profile -->
+    <div *ngIf="currentStep === 'profile'" class="step-container">
+      <div class="step-icon">
+        <mat-icon>person_add</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">नई सदस्यता</h3>
+      <p class="subtitle hindi-text">कृपया अपना विवरण दर्ज करें</p>
+
+      <form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="hindi-text">नाम</mat-label>
+          <input matInput formControlName="name" placeholder="पूरा नाम">
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-error *ngIf="profileForm.get('name')?.hasError('required')">
+            नाम आवश्यक है
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="hindi-text">मंडल</mat-label>
+          <mat-select formControlName="mandalId">
+            <mat-option *ngFor="let mandal of mandals" [value]="mandal.id">
+              {{ mandal.name }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matPrefix>location_city</mat-icon>
+          <mat-error *ngIf="profileForm.get('mandalId')?.hasError('required')">
+            मंडल चयन आवश्यक है
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label class="hindi-text">पंजीकरण संख्या (वैकल्पिक)</mat-label>
+          <input matInput formControlName="registrationNumber" placeholder="यदि है तो">
+          <mat-icon matPrefix>badge</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button 
+                color="primary" 
+                type="submit"
+                [disabled]="loading || profileForm.invalid"
+                class="full-width">
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <span *ngIf="!loading" class="hindi-text">प्रोफ़ाइल बनाएं</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

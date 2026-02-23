@@ -1,0 +1,44 @@
+<mat-card class="feature-card" (click)="onViewDetails()">
+  <!-- Image Section -->
+  <div class="card-image-container">
+    <img 
+      mat-card-image 
+      [src]="data.image" 
+      [alt]="data.title"
+      class="card-image"
+      loading="lazy">
+  </div>
+
+  <!-- Content Section -->
+  <mat-card-content class="card-content">
+    <!-- Metadata Row -->
+    <div class="card-metadata" *ngIf="data.category || data.readTime">
+      <span class="category-tag" *ngIf="data.category && showCategory">{{ data.category }}</span>
+      <span class="read-time" *ngIf="data.readTime">{{ data.readTime }}</span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="card-title line-clamp-2">{{ data.title }}</h3>
+    
+    <!-- Description -->
+    <p class="card-description line-clamp-2">{{ data.description }}</p>
+
+    <!-- Read More Link -->
+    <div class="card-footer">
+      <a class="read-more-link" (click)="onViewDetails()">
+        Read more
+        <mat-icon>arrow_forward</mat-icon>
+      </a>
+      
+      <button 
+        mat-icon-button 
+        class="share-btn"
+        (click)="onShare($event)"
+        matTooltip="Share"
+        matTooltipPosition="above">
+        <mat-icon>share</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+

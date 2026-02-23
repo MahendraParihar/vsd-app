@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+// Material 3 Light Theme Configuration
+// Using #FF5733 as the primary color (coral/orange)
+
+// Generate M3 palette using Material's built-in function
+// We'll use the orange palette as base and customize
+$_primary: map.merge(mat.$orange-palette, (
+  40: #ff5733,  // Our target color
+));
+
+// Create the light theme with #FF5733 as primary
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: $_primary,
+    tertiary: mat.$yellow-palette,
+  ),
+  typography: (
+    brand-family: 'Roboto, "Helvetica Neue", sans-serif',
+    plain-family: 'Roboto, "Helvetica Neue", sans-serif',
+  ),
+  density: (
+    scale: 0,
+  )
+));
+

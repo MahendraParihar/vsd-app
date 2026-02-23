@@ -1,0 +1,229 @@
+.home-container {
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin-top: -64px; // Offset the fixed header
+}
+
+// Banner Slider Section
+.banner-slider-section {
+  margin-top: 64px; // Account for fixed header
+  margin-bottom: 0;
+
+  @media (max-width: 767px) {
+    margin-bottom: var(--spacing-6);
+  }
+}
+
+// Features Section
+.features-section {
+  padding: 80px 0;
+  background: var(--background-color);
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-12);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-8);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .feature-icon {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(21, 101, 192, 0.1) 100%);
+    border-radius: var(--border-radius-full);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  mat-card-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+}
+
+// Color Section
+.color-section {
+  padding: 80px 0;
+  background: var(--surface-color);
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-4);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.color-card {
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .color-label {
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Card Demo Section
+.card-demo-section {
+  padding: 80px 0;
+  background: var(--background-color);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-8);
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+}
+
+// Font Demo Section
+.font-demo-section {
+  padding: 60px 0;
+  background: var(--surface-color);
+}
+
+// FAQ Section
+.faq-section {
+  padding: 80px 0;
+  background: var(--surface-color);
+
+  .section-subtitle-hindi {
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-2);
+    font-weight: 500;
+  }
+
+  .faq-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: var(--spacing-8);
+  }
+
+  @media (max-width: 767px) {
+    padding: 60px 0;
+  }
+}
+
+// CTA Section
+.cta-section {
+  background: linear-gradient(135deg, #e41b1b 0%, #b81414 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  
+  h3 {
+    margin-top: var(--spacing-2);
+    font-size: clamp(20px, 3vw, 28px);
+  }
+}
+
+.cta-content {
+  h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    margin-bottom: var(--spacing-4);
+  }
+
+  p {
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: var(--spacing-8);
+    opacity: 0.95;
+  }
+}
+
+.cta-button {
+  height: 56px;
+  padding: 0 var(--spacing-8);
+  font-size: 18px;
+  font-weight: 600;
+
+  mat-icon {
+    margin-right: var(--spacing-2);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 60px 0 80px;
+  }
+
+  .features-section,
+  .color-section,
+  .cta-section {
+    padding: 60px 0;
+  }
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .feature-card {
+    background: var(--card-color);
+    
+    &:hover {
+      background: #303030;
+    }
+  }
+}
+

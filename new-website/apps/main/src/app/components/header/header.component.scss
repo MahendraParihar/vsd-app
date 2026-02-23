@@ -1,0 +1,84 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: inherit;
+
+  .toolbar {
+    padding: 0;
+    min-height: 64px;
+  }
+
+  .toolbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 var(--spacing-4);
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .nav-menu {
+    display: none;
+    gap: var(--spacing-2);
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+
+    button {
+      font-weight: 500;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+
+  .menu-btn {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+// Dark theme adjustments
+.dark-theme .app-header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+

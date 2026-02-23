@@ -1,0 +1,27 @@
+<header class="app-header">
+  <mat-toolbar color="primary" class="toolbar">
+    <div class="container toolbar-content">
+      <div class="logo-section">
+        <mat-icon class="logo-icon">web</mat-icon>
+        <span class="logo-text">{{ title }}</span>
+      </div>
+      
+      <div class="spacer"></div>
+      
+      <nav class="nav-menu">
+        <button mat-button>Home</button>
+        <button mat-button>Events</button>
+        <button mat-button>Mandals</button>
+        <button mat-button>Temples</button>
+      </nav>
+      
+      <div class="header-actions">
+        <app-theme-toggle></app-theme-toggle>
+        <button mat-icon-button class="menu-btn">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+</header>
+

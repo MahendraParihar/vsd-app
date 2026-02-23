@@ -1,0 +1,139 @@
+.business-promotions-container {
+  padding: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.business-promotions-header {
+  margin-bottom: 32px;
+  text-align: center;
+  
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+}
+
+.filters-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  
+  .search-field {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .category-field {
+    min-width: 200px;
+  }
+}
+
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--text-muted);
+  
+  mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  
+  p {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+
+:host ::ng-deep .mat-grid-tile-content {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+.promo-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: var(--text-primary);
+}
+
+.promo-description {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.promo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+    
+    .meta-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.promo-actions {
+  margin-top: auto;
+  padding-top: 16px;
+  
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .business-promotions-container {
+    padding: 16px;
+  }
+  
+  .business-promotions-header {
+    h1 {
+      font-size: 28px;
+    }
+    
+    .subtitle {
+      font-size: 16px;
+    }
+  }
+  
+  .filters-section {
+    flex-direction: column;
+    
+    .search-field,
+    .category-field {
+      width: 100%;
+    }
+  }
+}
+

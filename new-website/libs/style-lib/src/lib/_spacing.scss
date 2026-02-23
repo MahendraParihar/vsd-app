@@ -1,0 +1,90 @@
+// Spacing Scale (8px base)
+$spacing-0: 0;
+$spacing-1: 4px;   // 0.25rem
+$spacing-2: 8px;   // 0.5rem
+$spacing-3: 12px;  // 0.75rem
+$spacing-4: 16px;  // 1rem
+$spacing-5: 20px;  // 1.25rem
+$spacing-6: 24px;  // 1.5rem
+$spacing-7: 28px;  // 1.75rem
+$spacing-8: 32px;  // 2rem
+$spacing-10: 40px; // 2.5rem
+$spacing-12: 48px; // 3rem
+$spacing-16: 64px; // 4rem
+$spacing-20: 80px; // 5rem
+$spacing-24: 96px; // 6rem
+$spacing-32: 128px; // 8rem
+
+// Semantic spacing
+$spacing-xs: $spacing-1;
+$spacing-sm: $spacing-2;
+$spacing-md: $spacing-4;
+$spacing-lg: $spacing-6;
+$spacing-xl: $spacing-8;
+$spacing-2xl: $spacing-12;
+$spacing-3xl: $spacing-16;
+
+// Container widths
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1536px;
+
+// Spacing utilities mixin
+@mixin spacing-utilities {
+  .m-0 { margin: $spacing-0 !important; }
+  .m-1 { margin: $spacing-1 !important; }
+  .m-2 { margin: $spacing-2 !important; }
+  .m-3 { margin: $spacing-3 !important; }
+  .m-4 { margin: $spacing-4 !important; }
+  .m-6 { margin: $spacing-6 !important; }
+  .m-8 { margin: $spacing-8 !important; }
+  
+  .mt-0 { margin-top: $spacing-0 !important; }
+  .mt-1 { margin-top: $spacing-1 !important; }
+  .mt-2 { margin-top: $spacing-2 !important; }
+  .mt-3 { margin-top: $spacing-3 !important; }
+  .mt-4 { margin-top: $spacing-4 !important; }
+  .mt-6 { margin-top: $spacing-6 !important; }
+  .mt-8 { margin-top: $spacing-8 !important; }
+  
+  .mb-0 { margin-bottom: $spacing-0 !important; }
+  .mb-1 { margin-bottom: $spacing-1 !important; }
+  .mb-2 { margin-bottom: $spacing-2 !important; }
+  .mb-3 { margin-bottom: $spacing-3 !important; }
+  .mb-4 { margin-bottom: $spacing-4 !important; }
+  .mb-6 { margin-bottom: $spacing-6 !important; }
+  .mb-8 { margin-bottom: $spacing-8 !important; }
+  
+  .p-0 { padding: $spacing-0 !important; }
+  .p-1 { padding: $spacing-1 !important; }
+  .p-2 { padding: $spacing-2 !important; }
+  .p-3 { padding: $spacing-3 !important; }
+  .p-4 { padding: $spacing-4 !important; }
+  .p-6 { padding: $spacing-6 !important; }
+  .p-8 { padding: $spacing-8 !important; }
+}
+
+:root {
+  --spacing-0: #{$spacing-0};
+  --spacing-1: #{$spacing-1};
+  --spacing-2: #{$spacing-2};
+  --spacing-3: #{$spacing-3};
+  --spacing-4: #{$spacing-4};
+  --spacing-5: #{$spacing-5};
+  --spacing-6: #{$spacing-6};
+  --spacing-8: #{$spacing-8};
+  --spacing-10: #{$spacing-10};
+  --spacing-12: #{$spacing-12};
+  --spacing-16: #{$spacing-16};
+  --spacing-20: #{$spacing-20};
+  --spacing-24: #{$spacing-24};
+  
+  --container-sm: #{$container-sm};
+  --container-md: #{$container-md};
+  --container-lg: #{$container-lg};
+  --container-xl: #{$container-xl};
+  --container-2xl: #{$container-2xl};
+}
+

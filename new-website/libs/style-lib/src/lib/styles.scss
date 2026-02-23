@@ -1,0 +1,128 @@
+// Import Angular Material theming
+@use '@angular/material' as mat;
+
+// Import custom theme files
+@use './themes/light-theme.scss' as light;
+@use './themes/dark-theme.scss' as dark;
+
+// Import design tokens
+@use './colors';
+@use './typography';
+@use './spacing';
+@use './variables';
+@use './mixins';
+@use './animations';
+
+// Utilities must be imported as forward
+@forward './utilities';
+
+// Include Angular Material core styles (M3)
+@include mat.core();
+
+// Apply the light theme by default (Material 3 API)
+html {
+  @include mat.all-component-themes(light.$light-theme);
+}
+
+// Dark theme class (Material 3 API)
+html.dark-theme,
+.dark-theme {
+  @include mat.all-component-colors(dark.$dark-theme);
+}
+
+// Apply spacing utilities
+@include spacing.spacing-utilities;
+
+// Global base styles
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: typography.$font-family-base;
+  font-size: typography.$font-size-base;
+  line-height: typography.$line-height-normal;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  transition: background-color variables.$transition-base, color variables.$transition-base;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 spacing.$spacing-4 0;
+  font-family: typography.$font-family-heading;
+  font-weight: typography.$font-weight-semibold;
+  line-height: typography.$line-height-tight;
+  color: var(--text-primary);
+}
+
+h1 { @include typography.heading-1; }
+h2 { @include typography.heading-2; }
+h3 { @include typography.heading-3; }
+h4 { @include typography.heading-4; }
+h5 { @include typography.heading-5; }
+h6 { @include typography.heading-6; }
+
+// Paragraphs
+p {
+  margin: 0 0 spacing.$spacing-4 0;
+  @include typography.body-regular;
+}
+
+// Links
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color variables.$transition-fast;
+  
+  &:hover {
+    color: var(--primary-600);
+    text-decoration: underline;
+  }
+  
+  &:focus-visible {
+    @include mixins.focus-ring;
+  }
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Buttons
+button {
+  font-family: inherit;
+  
+  &:focus-visible {
+    @include mixins.focus-ring;
+  }
+}
+
+// Custom scrollbar
+body {
+  @include mixins.custom-scrollbar(
+    8px,
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+}
+
+.dark-theme body {
+  @include mixins.custom-scrollbar(
+    8px,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+}
+

@@ -1,0 +1,294 @@
+.banner-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  background: #000;
+}
+
+// Slides Container
+.slides-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  transform: scale(1.05);
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+  }
+
+  &.prev,
+  &.next {
+    opacity: 0;
+    z-index: 1;
+  }
+}
+
+// Background Image
+.slide-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// Overlay - Subtle gradient
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(36, 49, 84, 0.7) 0%,
+    rgba(36, 49, 84, 0.4) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+
+  &.dark {
+    background: linear-gradient(
+      135deg,
+      rgba(36, 49, 84, 0.85) 0%,
+      rgba(36, 49, 84, 0.6) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+}
+
+// Content
+.slide-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+
+  .content-wrapper {
+    max-width: 600px;
+    padding: var(--spacing-6);
+
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.slide-title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  color: white;
+  margin: 0 0 var(--spacing-4) 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slide-subtitle {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 var(--spacing-6) 0;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slide-button {
+  height: 52px;
+  padding: 0 var(--spacing-8);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(228, 27, 27, 0.4);
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(228, 27, 27, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+// Navigation Arrows - Minimal & Professional
+.slider-navigation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-3);
+  z-index: 3;
+  pointer-events: none;
+
+  .nav-button {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    pointer-events: all;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: none;
+    opacity: 0.9;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: #243154; // Primary navy color
+      transition: all 0.2s ease;
+    }
+
+    &:hover {
+      background: white;
+      opacity: 1;
+      transform: scale(1.08);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+      mat-icon {
+        color: #e41b1b; // Red accent on hover
+      }
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 0 var(--spacing-2);
+    
+    .nav-button {
+      width: 40px;
+      height: 40px;
+      opacity: 0.95;
+
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+// Dark theme - subtle adjustment
+.dark-theme {
+  .slider-navigation .nav-button {
+    background: rgba(36, 49, 84, 0.9); // Navy with transparency
+    
+    mat-icon {
+      color: white;
+    }
+
+    &:hover {
+      background: rgba(36, 49, 84, 1);
+      
+      mat-icon {
+        color: #e41b1b;
+      }
+    }
+  }
+}
+
+// Indicators - Modern minimal design
+.slider-indicators {
+  position: absolute;
+  bottom: var(--spacing-6);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--spacing-2);
+  z-index: 3;
+  padding: 0;
+
+  .indicator {
+    width: 32px;
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    min-width: auto;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: white;
+      transition: width 0.4s ease;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: scaleY(1.5);
+    }
+
+    &.active {
+      background: white;
+      width: 48px;
+
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    bottom: var(--spacing-3);
+    
+    .indicator {
+      width: 24px;
+      height: 3px;
+
+      &.active {
+        width: 36px;
+      }
+    }
+  }
+}
+
+
+// Animations
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: slideIn 0.8s ease-out;
+}
+

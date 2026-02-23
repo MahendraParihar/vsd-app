@@ -1,0 +1,115 @@
+// Brand Color Palette - Based on #FF5733
+$primary-50: #fff3f0;
+$primary-100: #ffe0d9;
+$primary-200: #ffcbbf;
+$primary-300: #ffb5a5;
+$primary-400: #ff8c6b;
+$primary-500: #ff5733;
+$primary-600: #ff3d1a;
+$primary-700: #e63a17;
+$primary-800: #cc3314;
+$primary-900: #a6290f;
+
+$accent-50: #fff8e1;
+$accent-100: #ffecb3;
+$accent-200: #ffe082;
+$accent-300: #ffd54f;
+$accent-400: #ffca28;
+$accent-500: #ffc107;
+$accent-600: #ffb300;
+$accent-700: #ffa000;
+$accent-800: #ff8f00;
+$accent-900: #ff6f00;
+
+// Semantic Colors
+$primary-color: #ff5733;
+$accent-color: #ffc107;
+$warn-color: #f44336;
+$success-color: #4caf50;
+$info-color: #2196f3;
+$warning-color: #ff9800;
+$error-color: #f44336;
+
+// Background Colors
+$background-light: #fafafa;
+$background-dark: #121212;
+$surface-light: #ffffff;
+$surface-dark: #1e1e1e;
+$card-light: #ffffff;
+$card-dark: #2c2c2c;
+
+// Text Colors
+$text-primary-light: #212121;
+$text-secondary-light: #757575;
+$text-disabled-light: #bdbdbd;
+$text-hint-light: #9e9e9e;
+
+$text-primary-dark: #ffffff;
+$text-secondary-dark: #b0b0b0;
+$text-disabled-dark: #6c6c6c;
+$text-hint-dark: #808080;
+
+// Border Colors
+$border-light: #e0e0e0;
+$border-dark: #424242;
+$divider-light: #e0e0e0;
+$divider-dark: #424242;
+
+// Gradient Colors (for modern UI)
+$gradient-primary: linear-gradient(135deg, $primary-500 0%, $primary-800 100%);
+$gradient-accent: linear-gradient(135deg, #ffc107 0%, #ff8f00 100%);
+$gradient-success: linear-gradient(135deg, #66bb6a 0%, #2e7d32 100%);
+$gradient-hero: linear-gradient(135deg, rgba(255, 87, 51, 0.95) 0%, rgba(204, 51, 20, 0.95) 100%);
+
+// Export as CSS variables
+:root {
+  // Primary shades
+  --primary-50: #{$primary-50};
+  --primary-100: #{$primary-100};
+  --primary-200: #{$primary-200};
+  --primary-300: #{$primary-300};
+  --primary-400: #{$primary-400};
+  --primary-500: #{$primary-500};
+  --primary-600: #{$primary-600};
+  --primary-700: #{$primary-700};
+  --primary-800: #{$primary-800};
+  --primary-900: #{$primary-900};
+
+  // Semantic colors
+  --primary-color: #{$primary-color};
+  --accent-color: #{$accent-color};
+  --warn-color: #{$warn-color};
+  --success-color: #{$success-color};
+  --info-color: #{$info-color};
+  --warning-color: #{$warning-color};
+  --error-color: #{$error-color};
+
+  // Backgrounds
+  --background-color: #{$background-light};
+  --surface-color: #{$surface-light};
+  --card-color: #{$card-light};
+
+  // Text
+  --text-primary: #{$text-primary-light};
+  --text-secondary: #{$text-secondary-light};
+  --text-disabled: #{$text-disabled-light};
+  --text-hint: #{$text-hint-light};
+
+  // Borders
+  --border-color: #{$border-light};
+  --divider-color: #{$divider-light};
+}
+
+// Dark theme variables
+.dark-theme {
+  --background-color: #{$background-dark};
+  --surface-color: #{$surface-dark};
+  --card-color: #{$card-dark};
+  --text-primary: #{$text-primary-dark};
+  --text-secondary: #{$text-secondary-dark};
+  --text-disabled: #{$text-disabled-dark};
+  --text-hint: #{$text-hint-dark};
+  --border-color: #{$border-dark};
+  --divider-color: #{$divider-dark};
+}
+

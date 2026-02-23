@@ -1,0 +1,186 @@
+<div class="home-container">
+  <!-- Marketing Banner Slider -->
+  <section class="banner-slider-section">
+    <lib-banner-slider 
+      [slides]="bannerSlides"
+      [autoPlay]="true"
+      [interval]="4000"
+      [height]="bannerHeight"
+      [showIndicators]="true"
+      [showNavigation]="true">
+    </lib-banner-slider>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title text-center">Design System Features</h2>
+      <p class="section-subtitle text-center">Everything you need for modern web development</p>
+      
+      <div class="feature-grid">
+        <mat-card class="feature-card animate-slide-in-up">
+          <mat-card-header>
+            <div mat-card-avatar class="feature-icon">
+              <mat-icon color="primary">palette</mat-icon>
+            </div>
+            <mat-card-title>Color System</mat-card-title>
+            <mat-card-subtitle>Complete palette</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Comprehensive color palette with light/dark theme support and semantic color naming.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card animate-slide-in-up animation-delay-100">
+          <mat-card-header>
+            <div mat-card-avatar class="feature-icon">
+              <mat-icon color="primary">text_fields</mat-icon>
+            </div>
+            <mat-card-title>Typography</mat-card-title>
+            <mat-card-subtitle>Modular scale</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Responsive typography with mixins for headings, body text, and captions.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card animate-slide-in-up animation-delay-200">
+          <mat-card-header>
+            <div mat-card-avatar class="feature-icon">
+              <mat-icon color="primary">space_bar</mat-icon>
+            </div>
+            <mat-card-title>Spacing</mat-card-title>
+            <mat-card-subtitle>8px base grid</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Consistent spacing scale with utility classes for margins and padding.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card animate-slide-in-up animation-delay-300">
+          <mat-card-header>
+            <div mat-card-avatar class="feature-icon">
+              <mat-icon color="primary">devices</mat-icon>
+            </div>
+            <mat-card-title>Responsive</mat-card-title>
+            <mat-card-subtitle>Mobile-first</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Breakpoint mixins and responsive utilities for all screen sizes.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card animate-slide-in-up">
+          <mat-card-header>
+            <div mat-card-avatar class="feature-icon">
+              <mat-icon color="primary">animation</mat-icon>
+            </div>
+            <mat-card-title>Animations</mat-card-title>
+            <mat-card-subtitle>Smooth transitions</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Pre-built animations with utility classes and customizable mixins.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="feature-card animate-slide-in-up animation-delay-100">
+          <mat-card-header>
+            <div mat-card-avatar class="feature-icon">
+              <mat-icon color="primary">build_circle</mat-icon>
+            </div>
+            <mat-card-title>Components</mat-card-title>
+            <mat-card-subtitle>Material Design</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Full Angular Material component library with custom theming.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Showcase -->
+  <section class="color-section">
+    <div class="container">
+      <h2 class="section-title text-center">Color Palette</h2>
+      <p class="section-subtitle text-center">Beautiful colors for light and dark themes</p>
+      
+      <div class="color-grid">
+        <div class="color-card" style="background: var(--primary-500);">
+          <span class="color-label">Primary Blue</span>
+        </div>
+        <div class="color-card" style="background: #e41b1b;">
+          <span class="color-label">Button Red</span>
+        </div>
+        <div class="color-card" style="background: var(--success-color);">
+          <span class="color-label">Success</span>
+        </div>
+        <div class="color-card" style="background: var(--warning-color);">
+          <span class="color-label">Warning</span>
+        </div>
+        <div class="color-card" style="background: var(--error-color);">
+          <span class="color-label">Error</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card Demo Section -->
+  <section class="card-demo-section">
+    <div class="container">
+      <h2 class="section-title text-center">Feature Cards</h2>
+      <p class="section-subtitle text-center">Beautiful cards with image, title, description, and actions</p>
+      
+      <div class="cards-grid">
+        <lib-feature-card
+          *ngFor="let card of demoCards"
+          [data]="card"
+          (share)="onShare($event)"
+          (viewDetails)="onViewDetails($event)">
+        </lib-feature-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Font Demo Section -->
+  <section class="font-demo-section">
+    <div class="container">
+      <app-hindi-demo></app-hindi-demo>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title text-center">Frequently Asked Questions</h2>
+      <h3 class="section-subtitle-hindi text-center">अक्सर पूछे जाने वाले प्रश्न</h3>
+      <p class="section-subtitle text-center">Find answers to common questions about our community</p>
+      
+      <div class="faq-wrapper">
+        <lib-faq 
+          [faqs]="faqItems"
+          [showCategory]="true"
+          [multiExpand]="false"
+          [bilingual]="true">
+        </lib-faq>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to build something amazing?</h2>
+        <h3 style="font-weight: 400; opacity: 0.9; margin-top: 1rem;">क्या आप कुछ अद्भुत बनाने के लिए तैयार हैं?</h3>
+        <p>Start creating your events, mandals, and temples features</p>
+        <p style="font-size: 16px; opacity: 0.85;">अपने कार्यक्रम, मंडल और मंदिर सुविधाएँ बनाना शुरू करें</p>
+        <button mat-raised-button color="accent" class="cta-button">
+          <mat-icon>rocket_launch</mat-icon>
+          Start Building
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+

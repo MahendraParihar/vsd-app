@@ -1,0 +1,125 @@
+.verson-otp-modal {
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E0E0E0;
+  
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.modal-content {
+  padding: 32px 24px;
+}
+
+.step-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .step-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    
+    mat-icon {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      color: white;
+    }
+  }
+  
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    text-align: center;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0 0 32px 0;
+    text-align: center;
+  }
+  
+  form {
+    width: 100%;
+    
+    mat-form-field {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.otp-field {
+  .otp-input {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    text-align: center;
+  }
+}
+
+button[mat-raised-button] {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  
+  mat-spinner {
+    margin: 0 auto;
+  }
+}
+
+.resend-btn {
+  color: var(--primary);
+  
+  &:hover {
+    background-color: rgba(255, 153, 51, 0.08);
+  }
+}
+
+@media (max-width: 600px) {
+  .verson-otp-modal {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .modal-content {
+    padding: 24px 16px;
+  }
+  
+  .step-container {
+    h3 {
+      font-size: 20px;
+    }
+    
+    .subtitle {
+      font-size: 13px;
+    }
+  }
+}
+

@@ -1,0 +1,79 @@
+<div class="business-promotions-container">
+  <div class="business-promotions-header">
+    <h1 class="hindi-text">व्यवसाय प्रमोशन</h1>
+    <p class="subtitle hindi-text">हमारे समुदाय के व्यवसायों का समर्थन करें</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>खोजें</mat-label>
+      <input matInput 
+             [(ngModel)]="searchText" 
+             (ngModelChange)="onSearchChange()"
+             placeholder="व्यवसाय का नाम या विवरण">
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="category-field">
+      <mat-label>श्रेणी</mat-label>
+      <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange()">
+        <mat-option *ngFor="let category of categories" [value]="category.value">
+          {{ category.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <p class="hindi-text">लोड हो रहा है...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && filteredPromotions.length === 0" class="empty-state">
+    <mat-icon>business</mat-icon>
+    <p class="hindi-text">कोई व्यवसाय नहीं मिला</p>
+  </div>
+
+  <!-- Promotions Grid -->
+  <mat-grid-list 
+    *ngIf="!loading && filteredPromotions.length > 0"
+    [cols]="getGridCols()" 
+    rowHeight="400px" 
+    gutterSize="24px">
+    <mat-grid-tile *ngFor="let promo of filteredPromotions">
+      <vsd-card 
+        [clickable]="true"
+        [imageUrl]="getImageUrl(promo.bannerImagePath)"
+        [imageAlt]="promo.businessName || ''"
+        (cardClick)="viewDetails(promo.businessPromotionId!)">
+        
+        <h3 class="promo-title hindi-text">{{ promo.businessName }}</h3>
+        
+        <p class="promo-description hindi-text" *ngIf="promo.shortDescription">
+          {{ promo.shortDescription }}
+        </p>
+
+        <div class="promo-meta">
+          <div class="meta-item" *ngIf="promo.ownerName">
+            <mat-icon class="meta-icon">person</mat-icon>
+            <span class="hindi-text">{{ promo.ownerName }}</span>
+          </div>
+          
+          <div class="meta-item" *ngIf="promo.mobile">
+            <mat-icon class="meta-icon">phone</mat-icon>
+            <span>{{ promo.mobile }}</span>
+          </div>
+        </div>
+
+        <div class="promo-actions">
+          <button mat-raised-button color="primary" (click)="viewDetails(promo.businessPromotionId!)">
+            <span class="hindi-text">विस्तार देखें</span>
+          </button>
+        </div>
+      </vsd-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+

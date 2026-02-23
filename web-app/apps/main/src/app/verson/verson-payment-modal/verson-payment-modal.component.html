@@ -1,0 +1,186 @@
+<div class="payment-modal">
+  <div class="modal-header">
+    <button mat-icon-button (click)="goBack()" *ngIf="currentStep !== 'amount' && currentStep !== 'success'">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="hindi-text">भुगतान प्रक्रिया</h2>
+    <button mat-icon-button (click)="close()" *ngIf="currentStep !== 'success'">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <!-- Step 1: Select Years/Amount -->
+    <div *ngIf="currentStep === 'amount'" class="step-container">
+      <div class="step-icon">
+        <mat-icon>calendar_today</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">कितने वर्षों के लिए भुगतान करना चाहते हैं?</h3>
+      
+      <form [formGroup]="amountForm" class="amount-form">
+        <div class="year-options">
+          <button type="button"
+                  *ngFor="let year of yearOptions"
+                  mat-raised-button
+                  [color]="amountForm.value.years === year ? 'primary' : ''"
+                  (click)="amountForm.patchValue({ years: year })"
+                  class="year-option">
+            <span class="year-label hindi-text">{{ year }} वर्ष</span>
+            <span class="year-amount">₹{{ year * amountPerYear }}</span>
+          </button>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="amount-summary">
+          <div class="summary-row">
+            <span class="hindi-text">प्रति वर्ष राशि:</span>
+            <span class="amount">₹{{ amountPerYear }}</span>
+          </div>
+          <div class="summary-row">
+            <span class="hindi-text">चयनित वर्ष:</span>
+            <span>{{ amountForm.value.years }}</span>
+          </div>
+          <div class="summary-row total">
+            <span class="hindi-text">कुल राशि:</span>
+            <span class="amount">₹{{ totalAmount }}</span>
+          </div>
+        </div>
+
+        <button mat-raised-button 
+                color="primary" 
+                (click)="proceedToPaymentMethod()"
+                [disabled]="amountForm.invalid"
+                class="full-width proceed-btn">
+          <span class="hindi-text">आगे बढ़ें</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 2: Select Payment Method -->
+    <div *ngIf="currentStep === 'method'" class="step-container">
+      <div class="step-icon">
+        <mat-icon>payment</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">भुगतान विधि चुनें</h3>
+      
+      <form [formGroup]="paymentMethodForm">
+        <mat-radio-group formControlName="paymentMethod" class="payment-methods">
+          <div *ngFor="let method of paymentMethods" 
+               class="payment-method-option"
+               [class.selected]="paymentMethodForm.value.paymentMethod === method.id">
+            <mat-radio-button [value]="method.id">
+              <div class="method-content">
+                <mat-icon>{{ method.icon }}</mat-icon>
+                <span class="hindi-text">{{ method.nameHi }}</span>
+              </div>
+            </mat-radio-button>
+          </div>
+        </mat-radio-group>
+
+        <button mat-raised-button 
+                color="primary" 
+                (click)="proceedToConfirm()"
+                [disabled]="paymentMethodForm.invalid"
+                class="full-width proceed-btn">
+          <span class="hindi-text">आगे बढ़ें</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 3: Confirm Payment -->
+    <div *ngIf="currentStep === 'confirm'" class="step-container">
+      <div class="step-icon">
+        <mat-icon>receipt</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">भुगतान की पुष्टि करें</h3>
+      
+      <div class="confirmation-details">
+        <div class="detail-row">
+          <span class="label hindi-text">सदस्य का नाम:</span>
+          <span class="value hindi-text">{{ data.memberName }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label hindi-text">सदस्य आईडी:</span>
+          <span class="value">{{ data.memberId }}</span>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="detail-row">
+          <span class="label hindi-text">वर्ष:</span>
+          <span class="value">{{ amountForm.value.years }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label hindi-text">भुगतान विधि:</span>
+          <span class="value hindi-text">{{ getSelectedMethodName() }}</span>
+        </div>
+        
+        <div class="detail-row total">
+          <span class="label hindi-text">कुल राशि:</span>
+          <span class="value amount">₹{{ totalAmount }}</span>
+        </div>
+      </div>
+
+      <button mat-raised-button 
+              color="primary" 
+              (click)="processPayment()"
+              [disabled]="loading"
+              class="full-width proceed-btn">
+        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+        <span *ngIf="!loading" class="hindi-text">भुगतान करें</span>
+      </button>
+    </div>
+
+    <!-- Step 4: Success -->
+    <div *ngIf="currentStep === 'success'" class="step-container success-container">
+      <div class="success-icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      
+      <h3 class="hindi-text">भुगतान सफल!</h3>
+      <p class="success-message hindi-text">आपका भुगतान सफलतापूर्वक संसाधित हो गया है।</p>
+      
+      <div class="transaction-details">
+        <div class="detail-row">
+          <span class="label hindi-text">लेन-देन आईडी:</span>
+          <span class="value transaction-id">{{ transactionId }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label hindi-text">राशि:</span>
+          <span class="value amount">₹{{ totalAmount }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label hindi-text">तिथि:</span>
+          <span class="value">{{ Date.now() | date: 'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+
+      <div class="success-actions">
+        <button mat-stroked-button 
+                (click)="downloadReceipt()"
+                class="download-btn">
+          <mat-icon>download</mat-icon>
+          <span class="hindi-text">रसीद डाउनलोड करें</span>
+        </button>
+        
+        <button mat-raised-button 
+                color="primary" 
+                (click)="close()"
+                class="done-btn">
+          <span class="hindi-text">पूर्ण</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

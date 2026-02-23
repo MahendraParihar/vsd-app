@@ -1,0 +1,101 @@
+<div class="business-detail-container" *ngIf="promotion">
+  <!-- Header with back button -->
+  <div class="detail-header">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="hindi-text">{{ promotion.businessName }}</h1>
+    <button mat-icon-button (click)="sharePromotion()">
+      <mat-icon>share</mat-icon>
+    </button>
+  </div>
+
+  <!-- Banner Image -->
+  <div class="banner-section">
+    <img [src]="getImageUrl(promotion.bannerImagePath)" 
+         [alt]="promotion.businessName || ''"
+         class="banner-image">
+  </div>
+
+  <!-- Business Info -->
+  <div class="business-info-section">
+    <div class="info-card">
+      <h2 class="section-title hindi-text">व्यवसाय की जानकारी</h2>
+      
+      <p class="description hindi-text" *ngIf="promotion.shortDescription">
+        {{ promotion.shortDescription }}
+      </p>
+
+      <div class="info-grid">
+        <div class="info-item" *ngIf="promotion.ownerName">
+          <mat-icon>person</mat-icon>
+          <div>
+            <span class="info-label hindi-text">मालिक का नाम</span>
+            <span class="info-value hindi-text">{{ promotion.ownerName }}</span>
+          </div>
+        </div>
+
+        <div class="info-item" *ngIf="promotion.mobile">
+          <mat-icon>phone</mat-icon>
+          <div>
+            <span class="info-label hindi-text">मोबाइल</span>
+            <span class="info-value">{{ promotion.mobile }}</span>
+          </div>
+        </div>
+
+        <div class="info-item" *ngIf="promotion.email">
+          <mat-icon>email</mat-icon>
+          <div>
+            <span class="info-label hindi-text">ईमेल</span>
+            <span class="info-value">{{ promotion.email }}</span>
+          </div>
+        </div>
+
+        <div class="info-item" *ngIf="promotion.address">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <span class="info-label hindi-text">पता</span>
+            <span class="info-value hindi-text">{{ promotion.address }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <button mat-raised-button color="primary" (click)="callBusiness()">
+        <mat-icon>phone</mat-icon>
+        <span class="hindi-text">कॉल करें</span>
+      </button>
+      
+      <button mat-raised-button color="accent" (click)="openDirections()">
+        <mat-icon>directions</mat-icon>
+        <span class="hindi-text">दिशा निर्देश</span>
+      </button>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Products Section -->
+  <div class="products-section">
+    <h2 class="section-title hindi-text">उत्पाद / सेवाएं</h2>
+    
+    <mat-grid-list 
+      [cols]="getGridCols()" 
+      rowHeight="200px" 
+      gutterSize="16px">
+      <mat-grid-tile *ngFor="let image of productImages">
+        <div class="product-image-container">
+          <img [src]="image" alt="Product" class="product-image">
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading-state">
+  <p class="hindi-text">लोड हो रहा है...</p>
+</div>
+

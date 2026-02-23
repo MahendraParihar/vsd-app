@@ -1,0 +1,17 @@
+/* The style library (with themes) is included via project.json */
+/* You can add additional global styles below if needed */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans', 'Noto Sans Devanagari', 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+

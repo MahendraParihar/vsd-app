@@ -1,0 +1,34 @@
+<div class="faq-container">
+  <mat-accordion [multi]="multiExpand">
+    <mat-expansion-panel 
+      *ngFor="let faq of faqs; let i = index"
+      class="faq-panel"
+      [expanded]="isPanelOpen(i)"
+      (opened)="togglePanel(i)">
+      
+      <!-- Question Header -->
+      <mat-expansion-panel-header class="faq-header">
+        <mat-panel-title class="faq-question">
+          <mat-icon class="question-icon">help_outline</mat-icon>
+          <span class="question-text">
+            {{ faq.question }}
+            <span class="question-hindi" *ngIf="bilingual && faq.questionHindi">
+              • {{ faq.questionHindi }}
+            </span>
+          </span>
+        </mat-panel-title>
+        
+        <mat-panel-description class="faq-category" *ngIf="showCategory && faq.category">
+          <span class="category-badge">{{ faq.category }}</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- Answer Content -->
+      <div class="faq-answer">
+        <p class="answer-text">{{ faq.answer }}</p>
+        <p class="answer-hindi" *ngIf="bilingual && faq.answerHindi">{{ faq.answerHindi }}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
